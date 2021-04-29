@@ -1,0 +1,8 @@
+@function responsize-text($target)
+    $vw-content: (1000*.01) * 1px
+    @return ($target/$vw-content) * 1vw
+    
+$title_weight: 800
+$subtitle_weight: 600
+$title_size: responsize-text(78px)
+$subtitle_size: responsize-text(24px)
