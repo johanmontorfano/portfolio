@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { StyleVariables } from "../../app/styles/data/variables";
-import { ResponsiveChilds } from "../../modules/responsive/childrens";
-import { ResponsiveComponent } from "../../modules/responsive/responsive";
 import { ResponsiveSubtitle } from "../responsive/responsive-subtitle";
-import { ResponsiveTitle } from "../responsive/responsive-title";
 
 export const LoadInterface = () => {
+
+
+
   return (
     <div
       style={{

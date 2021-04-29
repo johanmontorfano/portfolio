@@ -1,7 +1,9 @@
 import { SceneElement } from "./types";
+import { UseLang } from "../../modules/lang";
+
+
 import Video1 from "../../videos/introduction-1.mov";
 import Video2 from "../../videos/introduction-2.mov";
-import { UseLang } from "../../modules/lang";
 
 export const SceneData: SceneElement = {
   SceneData: {

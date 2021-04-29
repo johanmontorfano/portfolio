@@ -138,8 +138,8 @@ export const SceneData: SceneElement = {
           US: "React, to build easily powerful and lightweight elements",
         }),
         UseLang({
-          FR: "Framer, pour faire de belles animations et transitions",
-          US: "Framer, to build stunning animations and transitions",
+          FR: "Framer, pour faire de belles animations et transitions réactives aux interactions.",
+          US: "Framer, to build stunning animations and transitions reactives to gestures.",
         }),
         UseLang({
           FR: "SVGs, pour faire de belles formes et les animer avec Framer",
@@ -147,7 +147,7 @@ export const SceneData: SceneElement = {
         }),
       ],
       comps: [
-        <div>Hello React World :)</div>,
+        <div style={{fontSize: "150%"}}>Hello React World :)</div>,
         <motion.div
           drag
           dragConstraints={{

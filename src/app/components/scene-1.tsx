@@ -29,6 +29,7 @@ export const SceneScript = (): JSX.Element => {
           }}
           mobile_style={{
             display: "grid",
+            height: "100vh",
             gridTemplateColumns: "1fr",
             gridTemplateRows: "50% 50%",
           }}

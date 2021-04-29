@@ -14,6 +14,10 @@ export const StyleVariables = {
         },
         radius: {
             multi: "radial-gradient(circle at top right, rgba(255,106,0,1) 10%, transparent 40%), radial-gradient(circle at right, rgba(255,0,0,1) 0%, transparent 60%), radial-gradient(circle at bottom right, rgba(72,0,255,1) 0%, transparent 60%)"
+        },
+        link: {
+            default: "blue",
+            whileHover: "violet"
         }
     },
     values: {
