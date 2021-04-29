@@ -6,3 +6,4 @@ firestore.indexes.json
 firestore.rules
 .firebaserc
 database.rules.json
+.firebase
