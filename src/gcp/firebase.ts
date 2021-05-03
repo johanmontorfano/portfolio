@@ -1,6 +1,6 @@
 import { BannerFlow } from "./../components/banner/index";
 import firebase from "firebase";
-import { UseLang } from "../modules/lang";
+import { UseLang } from "../modules/doc/lang";
 
 const FirebaseConfiguration = require("./firebase.config.json");
 

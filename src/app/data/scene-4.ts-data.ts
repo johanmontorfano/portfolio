@@ -1,4 +1,4 @@
-import { UseLang } from "../../modules/lang";
+import { UseLang } from "../../modules/doc/lang";
 import { SceneElement } from "./types";
 
 export const SceneData: SceneElement = {

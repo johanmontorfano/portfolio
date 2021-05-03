@@ -1,46 +1,31 @@
 import { motion } from "framer-motion";
-import React from "react";
-import { Tween } from "react-gsap";
-import { StyleVariables } from "../../app/styles/data/variables";
+import {
+  EditTitleLayoutStyle,
+  LayoutStyles,
+} from "../../app/styles/styled/layouts";
 import { ResponsiveComponent } from "../../modules/responsive/responsive";
 import { AnimatedAppear } from "../appear";
 
 export const ResponsiveTitle = (props: { children: string }) => (
   <AnimatedAppear>
     <ResponsiveComponent
-      style={{
-        fontSize: StyleVariables.values.font_size.title.default,
-        fontFamily: "Helvetica",
-        fontWeight: StyleVariables.values.weight.title,
-        lineHeight: 1,
-        whiteSpace: "pre-line",
-        cursor: "default",
-        userSelect: "none",
-        background: "webkit-linear-gradient(#eee, #333)",
-        WebkitBackgroundClip: "text",
-        WebkitBackdropFilter: "transparent",
-      }}
-      mobile_style={{
-        fontSize: StyleVariables.values.font_size.title.mobile,
-        fontFamily: "Helvetica",
-        fontWeight: StyleVariables.values.weight.title,
-        lineHeight: 1,
-        textAlign: "center",
-        whiteSpace: "pre-line",
-        cursor: "default",
-        userSelect: "none",
-      }}
+      style={LayoutStyles.TitleLayout.initial}
+      mobile_style={EditTitleLayoutStyle.initialBlock([
+        { edit: "textAlign", value: "center" },
+      ])}
     >
-      {props.children.split(" ").map((word) => (
+      {props.children.split(" ").map((word, index) => (
         <ResponsiveComponent
           style={{ display: "flex" }}
           mobile_style={{ display: "flex", justifyContent: "center" }}
+          key={index}
         >
           <motion.div
             initial={{ scale: 0.9 }}
             animate={{
               scale: 1,
             }}
+            className="big-font-size-current"
           >
             <div
               style={{

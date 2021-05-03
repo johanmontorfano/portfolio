@@ -16,11 +16,28 @@ ResponsiveChildrens props.children[]
 
 export const ResponsiveChilds = (props: {
   children: any[];
+  useBasicResponsiveRules?: boolean;
 }) => {
-  const [isMobile, setMobile] = useState<boolean>(window.innerWidth < 1024);
+  const [isMobile, setMobile] = useState<boolean>(
+    props.useBasicResponsiveRules
+      ? window.innerWidth < 1024
+      : (window.innerWidth < 1024 &&
+          window.innerWidth / window.innerHeight <= 1) ||
+          window.innerWidth < window.innerHeight
+  );
 
   useEffect(() => {
-    const interval = setInterval(() => setMobile(window.innerWidth < 1024), 1);
+    const interval = setInterval(
+      () =>
+        setMobile(
+          props.useBasicResponsiveRules
+            ? window.innerWidth < 1024
+            : (window.innerWidth < 1024 &&
+                window.innerWidth / window.innerHeight <= 1) ||
+                window.innerWidth < window.innerHeight
+        ),
+      10
+    );
 
     return function cleanup() {
       clearInterval(interval);

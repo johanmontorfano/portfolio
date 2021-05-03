@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { Timeline } from "react-gsap";
-import { Controller, Scene } from "react-scrollmagic";
+import { useState } from "react";
 import { ResponsiveButton } from "../../components/responsive/responsive-button";
 import { ResponsiveDescription } from "../../components/responsive/responsive-description";
 import { ResponsiveTextArea } from "../../components/responsive/responsive-textarea";
@@ -62,12 +60,13 @@ export const SceneScript = () => {
       <div
         style={{
           width: "100%",
-          height: "100vh",
+          minHeight: "100vh",
           background: "white",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           color: "black",
+          marginBottom: "2vh"
         }}
       >
         <div

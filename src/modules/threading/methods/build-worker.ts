@@ -1,8 +1,11 @@
 import { ParseThread } from "./parse-thread";
 import { useAsFile } from "./use-as-file";
 
-//WHEN YOU TRYING TO PUSH SPECIFIC FUNCTIONS IN YOUR THREAD YOU SHOULD USE THE FOLLOWING SYNTAX
-//'@threadInject FUNCTION_INTHREAD_NAME #use FUNCTION'
+/**
+ *
+ * @param _worker put your worker code here
+ * !! WHEN YOU TRYING TO PUSH SPECIFIC FUNCTIONS IN YOUR THREAD YOU SHOULD USE THE FOLLOWING SYNTAX {code}@threadInject FUNCTION_INTHREAD_NAME #use FUNCTION'
+ */
 
 export const BuildWorker = function (_worker: (() => void) | string) {
   return window.URL.createObjectURL(
@@ -33,11 +36,10 @@ const useImportations = function (_workercode: string): string {
 const injectComments = function (_workercode: string): string {
   return (
     `
-//THREAD BUILT
-
 const window  = Object.assign(self);
-//DUPLICATING self OBJECT AS WINDOW IN CASE THE USER TRYNA USE THE WINDOW OBJECT TO DO SELF OBJECT THINGS
-
+const ReadFile = Object.assign(new FileReader())
+//the self object is duplicated as the window object to help the user use basic capabilities
+// the ReadFile object is a new FileReader object to help the user use basic capabilities
     ` + _workercode
   );
 };

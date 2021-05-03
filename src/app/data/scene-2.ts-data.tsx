@@ -1,8 +1,5 @@
-import { StyleVariables } from "../styles/data/variables";
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
-import { ResponsiveDescription } from "../../components/responsive/responsive-description";
-import { ResponsiveText } from "../../components/responsive/responsive-text";
+import { useEffect, useState } from "react";
 import {
   GetLikes,
   ManipulateLikes,
@@ -10,8 +7,9 @@ import {
 import { Express_SVG } from "../../svg/express-svg";
 import { MySQL_SVG } from "../../svg/sql-svg";
 import { SceneElement } from "./types";
-import { UseLang } from "../../modules/lang";
+import { UseLang } from "../../modules/doc/lang";
 import { ResponsiveButton } from "../../components/responsive/responsive-button";
+import { GetClassnameValue } from "../styles/styled";
 
 let pushed = false;
 
@@ -165,7 +163,7 @@ export const SceneData: SceneElement = {
             width: "100px",
             height: "100px",
             borderRadius: "50%",
-            background: StyleVariables.colors["gradient@circle"],
+            background: GetClassnameValue("linear-gradient"),
             userSelect: "none",
           }}
           whileHover={{
@@ -180,7 +178,7 @@ export const SceneData: SceneElement = {
           whileDrag={{
             width: "100px",
             height: "100px",
-            borderRadius: StyleVariables.values.radius.shortRadius + "%",
+            borderRadius: GetClassnameValue("element-border-radius-size"),
           }}
         >
           🤔

@@ -1,5 +1,5 @@
 import React from "react";
-import { UseLang } from "../../modules/lang";
+import { UseLang } from "../../modules/doc/lang";
 import { SceneElement } from "./types";
 
 export const SceneData: SceneElement = {
@@ -18,10 +18,14 @@ export const SceneData: SceneElement = {
     subtitle2: "Social",
     description2: UseLang({
       US:
-        "Add me on social networks ! Click on one of the screenshots to go to the social page.",
+        "Add me on social networks !",
       FR:
-        "Ajoutez moi sur les réseaux sociaux! Tapez une des images pour aller sur un de mes comptes.",
+        "Ajoutez moi sur les réseaux sociaux !",
     }),
+    bannerRedirectText: UseLang({
+      US: "Redirection...",
+      FR: "Chargement..."
+    })
   },
   SceneSVGs: {
     AppleMusic: (props: { style?: React.CSSProperties }) => (

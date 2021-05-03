@@ -1,19 +1,33 @@
 import { motion } from "framer-motion";
-import { Timeline, Tween } from "react-gsap";
-import { Controller, Scene } from "react-scrollmagic";
 import { ResponsiveDescription } from "../../components/responsive/responsive-description";
 import { ResponsiveGrid } from "../../components/responsive/responsive-grid";
 import { ResponsiveText } from "../../components/responsive/responsive-text";
 import { ResponsiveSubtitle } from "../../components/responsive/responsive-subtitle";
-import { UseHorizontalRatio } from "../../modules/ratio";
+import { UseRatio } from "../../modules/sizing/ratio";
 import { ResponsiveComponent } from "../../modules/responsive/responsive";
 import { SceneData } from "../data/scene-2.ts-data";
-import { StyleVariables } from "../styles/data/variables";
 
 import "../styles/sass/scene.sass";
 import { UseNonUndefined } from "../../modules/var/non-undefined-content";
+import { GetClassnameValue } from "../styles/styled";
+import { Parallax } from "react-scroll-parallax";
+import { useEffect, useState } from "react";
 
 export const SceneScript = (): JSX.Element => {
+  const [ParallaxTransition, setParallaxTransition] = useState<{
+    [key: string]: number[];
+  }>({ y: [-20, 10] });
+
+  /*useEffect(() => {
+    const interval = setInterval(() => {
+      setParallaxTransition(window.innerWidth > 1023? {scale: [-20, 10]} : {y: [-20, 10]});
+    }, 100);
+
+    return function cleanup () {
+      clearInterval(interval);
+    }
+  }, []);*/
+
   const VerifiedSceneTexts = UseNonUndefined(SceneData.SceneTexts);
   const VerifiedSceneTables = UseNonUndefined(SceneData.SceneTables);
 
@@ -23,7 +37,7 @@ export const SceneScript = (): JSX.Element => {
         style={{
           width: "100%",
           height: "100%",
-          background: StyleVariables.colors.radius.multi,
+          background: GetClassnameValue("radial-gradient"),
           backgroundRepeat: "no-repeat",
         }}
       >
@@ -68,41 +82,45 @@ export const SceneScript = (): JSX.Element => {
                     gridLeftContent={VerifiedSceneTables[1].text}
                     gridRightContent={VerifiedSceneTables[1].comps}
                     gridLeftContentTemplate={(props: { children?: any }) => (
-                      <div
+                      <ResponsiveComponent
                         style={{
                           width: "90%",
                           textAlign: "left",
                           marginLeft: "5%",
                         }}
+                        mobile_style={{
+                          width: "90%",
+                          textAlign: "center",
+                          marginLeft: "0%",
+                        }}
                       >
-                        <ResponsiveText animated>
-                          {props.children}
-                        </ResponsiveText>
-                      </div>
+                        <ResponsiveText>{props.children}</ResponsiveText>
+                      </ResponsiveComponent>
                     )}
                     gridRightContentTemplate={(props: { children?: any }) => (
-                      <motion.div
-                        initial={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          width: UseHorizontalRatio(16 / 9, 150).width,
-                          height: UseHorizontalRatio(16 / 9, 150).height,
-                          boxShadow:
-                            "0px 0px 35px 2px " +
-                            StyleVariables.values.shadows.light.default,
-                          borderRadius:
-                            StyleVariables.values.radius.shortRadius,
-                          backgroundColor: "white",
-                        }}
-                        whileHover={{
-                          boxShadow:
-                            "0px 0px 45px 2px " +
-                            StyleVariables.values.shadows.light.active,
-                        }}
-                      >
-                        {props.children}
-                      </motion.div>
+                      <Parallax {...ParallaxTransition}>
+                        <motion.div
+                          initial={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            width: UseRatio(16 / 9, 150).width,
+                            height: UseRatio(16 / 9, 150).height,
+                            boxShadow: GetClassnameValue("white-box-shadow"),
+                            borderRadius: GetClassnameValue(
+                              "element-border-radius-size"
+                            ),
+                            backgroundColor: "white",
+                          }}
+                          whileHover={{
+                            boxShadow: GetClassnameValue(
+                              "white-box-shadow-active"
+                            ),
+                          }}
+                        >
+                          {props.children}
+                        </motion.div>
+                      </Parallax>
                     )}
                     allowedDimensions={{
                       width: "100%",
@@ -143,34 +161,35 @@ export const SceneScript = (): JSX.Element => {
                             marginLeft: "5%",
                           }}
                         >
-                          <ResponsiveText animated>
+                          <ResponsiveText>
                             {props.children}
                           </ResponsiveText>
                         </div>
                       )}
                       gridRightContentTemplate={(props: { children?: any }) => (
-                        <motion.div
-                          initial={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            width: UseHorizontalRatio(16 / 9, 150).width,
-                            height: UseHorizontalRatio(16 / 9, 150).height,
-                            boxShadow:
-                              "0px 0px 35px 2px " +
-                              StyleVariables.values.shadows.light.default,
-                            borderRadius:
-                              StyleVariables.values.radius.shortRadius,
-                            backgroundColor: "white",
-                          }}
-                          whileHover={{
-                            boxShadow:
-                              "0px 0px 45px 2px " +
-                              StyleVariables.values.shadows.light.active,
-                          }}
-                        >
-                          {props.children}
-                        </motion.div>
+                        <Parallax {...ParallaxTransition}>
+                          <motion.div
+                            initial={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              width: UseRatio(16 / 9, 150).width,
+                              height: UseRatio(16 / 9, 150).height,
+                              boxShadow: GetClassnameValue("white-box-shadow"),
+                              borderRadius: GetClassnameValue(
+                                "element-border-radius-size"
+                              ),
+                              backgroundColor: "white",
+                            }}
+                            whileHover={{
+                              boxShadow: GetClassnameValue(
+                                "white-box-shadow-active"
+                              ),
+                            }}
+                          >
+                            {props.children}
+                          </motion.div>
+                        </Parallax>
                       )}
                       allowedDimensions={{
                         width: "100%",

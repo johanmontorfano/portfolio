@@ -1,5 +1,8 @@
 import { BuildWorker } from './build-worker';
 
+/**
+ * Make the Worker usable in a thread
+ */
 export class ObjectizeWorker {
     threadUsableCode: (() => void) | string;
     threadBlobFilepath: string;

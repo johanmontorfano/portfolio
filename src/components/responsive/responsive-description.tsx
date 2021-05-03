@@ -1,4 +1,7 @@
-import { StyleVariables } from "../../app/styles/data/variables";
+import {
+  EditDescriptionLayoutStyle,
+  LayoutStyles,
+} from "../../app/styles/styled/layouts";
 import { ResponsiveComponent } from "../../modules/responsive/responsive";
 import { AnimatedAppear } from "../appear";
 
@@ -7,22 +10,13 @@ export const ResponsiveDescription = (props: {
   dark?: boolean;
 }) => (
   <AnimatedAppear>
-  <ResponsiveComponent
-    style={{
-      fontFamily: "Helvetica",
-      fontSize: StyleVariables.values.font_size.description.default,
-      fontWeight: 600,
-      color: props.dark ? "white" : StyleVariables.colors["text@description"],
-      textAlign: "justify",
-    }}
-    mobile_style={{
-      fontFamily: "Helvetica",
-      fontSize: StyleVariables.values.font_size.description.mobile,
-      fontWeight: 600,
-      color: props.dark ? "white" : StyleVariables.colors["text@description"],
-      textAlign: "center",
-    }}
-  >
-    {props.children}
-  </ResponsiveComponent></AnimatedAppear>
+    <ResponsiveComponent
+      style={LayoutStyles.DescriptionLayout.initial}
+      mobile_style={EditDescriptionLayoutStyle.initialBlock([
+        { edit: "textAlign", value: "center" },
+      ])}
+    >
+      <div className="middle-font-size-current">{props.children}</div>
+    </ResponsiveComponent>
+  </AnimatedAppear>
 );

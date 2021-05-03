@@ -1,19 +1,23 @@
 import { motion, useAnimation } from "framer-motion";
-import { Timeline } from "react-gsap";
-import { Controller, Scene } from "react-scrollmagic";
 import { ResponsiveDescription } from "../../components/responsive/responsive-description";
 import { ResponsiveSubtitle } from "../../components/responsive/responsive-subtitle";
 import { ResponsiveComponent } from "../../modules/responsive/responsive";
 import { SceneData } from "../data/scene-3.ts-data";
-import { StyleVariables } from "../styles/data/variables";
 
 import TwitterProfileImage from "../../images/twitter_profile.jpeg";
 import InstagramProfileImage from "../../images/insta_profile.jpeg";
 import { UseNonUndefined } from "../../modules/var/non-undefined-content";
 import "../styles/sass/scene.sass";
-import { ResponsiveButton } from "../../components/responsive/responsive-button";
-import { ResponsiveText } from "../../components/responsive/responsive-text";
 import { ResponsiveChilds } from "../../modules/responsive/childrens";
+import { ImageElement } from "../../components/media/image";
+import { EditImageLayoutStyle, LayoutStyles } from "../styles/styled/layouts";
+import { UseRatio } from "../../modules/sizing/ratio";
+import { UsePercentage } from "../../modules/sizing/percentage";
+import { useEffect, useState } from "react";
+import { ResponsiveText } from "../../components/responsive/responsive-text";
+import { GetClassnameValue } from "../styles/styled";
+import { BannerFlow } from "../../components/banner";
+import { Parallax } from "react-scroll-parallax";
 
 const PlaylistPreviewLoadableIconsURL = [
   "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/2c/cf/29/2ccf2974-c994-621f-cc25-e5c08f9d7150/00602577027888.rgb.jpg/80x80bb-50.jpg",
@@ -37,9 +41,23 @@ const PlaylistPreviewLoadableIconsURLMobile = [
 const ImagesElementsSources = [TwitterProfileImage, InstagramProfileImage];
 
 export const SceneScript = (): JSX.Element => {
+  const [ImageRatioHeight, setImageRatioHeight] = useState<number>(
+    UseRatio(9 / 16, UsePercentage(50)).height
+  );
+
   const VerifiedSceneText = UseNonUndefined(SceneData.SceneTexts);
-  const VerififedScenesSVGs = UseNonUndefined(SceneData.SceneSVGs);
-  const playbuttonControls = useAnimation();
+
+  const AnimationControllers = [useAnimation(), useAnimation()];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setImageRatioHeight(UseRatio(9 / 16, UsePercentage(50)).height);
+    }, 10);
+
+    return function cleanup() {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <div {...SceneData.SceneData}>
@@ -55,245 +73,99 @@ export const SceneScript = (): JSX.Element => {
           <div
             style={{
               padding: "2vw",
+              height: "100%",
             }}
           >
-            <ResponsiveComponent
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                columnGap: "1%",
-                height: "100vh",
-              }}
-              mobile_style={{
-                display: "grid",
-                gridTemplateRows: "50% 50%",
-                gridTemplateColumns: "1fr",
-                height: "100vh",
-              }}
-            >
-              <div style={{ height: "100%" }}>
-                <ResponsiveSubtitle>
-                  {VerifiedSceneText.subtitle2}
-                </ResponsiveSubtitle>
-                <ResponsiveDescription>
-                  {VerifiedSceneText.description2}
-                </ResponsiveDescription>
-                <div>
-                  <ResponsiveComponent
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                    mobile_style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                    }}
-                  >
-                    {ImagesElementsSources.map((source, i) => (
-                      <ResponsiveChilds>
-                        <motion.img
-                          src={source}
-                          onClick={() =>
-                            window.location.assign(
-                              i > 0
-                                ? "https://www.twitter.com/franndjoo"
-                                : "https://www.instagram.com/franndjoo"
-                            )
-                          }
-                          initial={{
-                            zIndex: 1,
-                            width: "20vw",
-                            x: i > 0 ? "-50%" : "0%",
-                            y: i > 0 ? "25%" : "0%",
-                            borderRadius:
-                              StyleVariables.values.radius.shortRadius,
-                            boxShadow:
-                              "0px 0px 15px 1px " +
-                              StyleVariables.values.shadows.dark.default,
-                          }}
-                          whileHover={{
-                            zIndex: 100,
-                            scale: 1.1,
-                          }}
-                        />
-                        <motion.img
-                          src={source}
-                          onClick={() =>
-                            window.location.assign(
-                              i > 0
-                                ? "https://www.twitter.com/franndjoo"
-                                : "https://www.instagram.com/franndjoo"
-                            )
-                          }
-                          initial={{
-                            zIndex: 1,
-                            width: "30vw",
-                            x: i > 0 ? "0%" : "0%",
-                            y: i > 0 ? "0%" : "0%",
-                            borderRadius:
-                              StyleVariables.values.radius.shortRadius,
-                            boxShadow:
-                              "0px 0px 15px 1px " +
-                              StyleVariables.values.shadows.dark.default,
-                          }}
-                          whileHover={{
-                            zIndex: 100,
-                            scale: 1.1,
-                          }}
-                        />
-                      </ResponsiveChilds>
-                    ))}
-                  </ResponsiveComponent>
-                </div>
-              </div>
-
-              <div>
-                <ResponsiveSubtitle>
-                  {VerifiedSceneText.subtitle1}
-                </ResponsiveSubtitle>
-                <ResponsiveDescription>
-                  {VerifiedSceneText.description1}
-                </ResponsiveDescription>
-                <ResponsiveComponent
-                  style={{
-                    display: "flex",
-                    transform: "translateY(50%)",
-                    justifyContent: "center",
-                  }}
-                  mobile_style={{
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <motion.div
-                    initial={{
-                      boxShadow:
-                        "0px 0px 15px 2px " +
-                        StyleVariables.values.shadows.dark.default,
-                      display: "flex",
-                      flexDirection: "column",
-                      borderRadius: StyleVariables.values.radius.shortRadius,
-                      padding: "1%",
-                    }}
-                    whileHover={{
-                      boxShadow:
-                        "0px 0px 45px 4px " +
-                        StyleVariables.values.shadows.dark.active,
-                      cursor: "pointer",
-                    }}
-                    onHoverStart={() => playbuttonControls.start("animate")}
-                    onHoverEnd={() => playbuttonControls.start("initial")}
-                    onClick={() =>
-                      window.location.assign(
-                        "https://music.apple.com/library/playlist/p.6xZa376sYA4oA3P"
-                      )
-                    }
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div style={{ width: "3vw" }}>
-                        <VerififedScenesSVGs.AppleMusic
-                          style={{ fill: "#fa2d48" }}
-                        />
-                      </div>
-                      <div style={{ display: "flex" }}>
+            <div style={{ height: "100%" }}>
+              <ResponsiveSubtitle>
+                {VerifiedSceneText.subtitle2}
+              </ResponsiveSubtitle>
+              <ResponsiveDescription>
+                {VerifiedSceneText.description2}
+              </ResponsiveDescription>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                  width: "100%",
+                  minHeight: "70%",
+                }}
+              >
+                {ImagesElementsSources.map((source, i) => {
+                  return (
+                    <Parallax y={[-10, 5]}>
+                      <div style={{ position: "relative" }}>
                         <motion.div
-                          initial="initial"
+                          initial={"initial"}
+                          animate={AnimationControllers[i]}
+                          onClick={() =>
+                            AnimationControllers[i].start("active")
+                          }
+                          onTapStart={() => {
+                            BannerFlow.next({
+                              color: "black",
+                              content: VerifiedSceneText.bannerRedirectText,
+                              title: "Social",
+                              duration: 1500,
+                            });
+
+                            window.location.assign(
+                              i > 0
+                                ? "https://www.twitter.com/franndjoo"
+                                : "https://www.instagram.com/franndjoo"
+                            );
+                          }}
+                          whileHover={{
+                            height: "90%",
+                            marginBottom: "10%",
+                          }}
                           variants={{
                             initial: {
-                              width: "2vw",
-                              translateX: "20%",
+                              position: "absolute",
+                              zIndex: 101,
+                              color: "black",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              width: "100%",
+                              height: "100%",
+                              borderRadius: GetClassnameValue(
+                                "element-border-radius-size"
+                              ),
+                              background: "white",
+                              scale: 1,
+                            },
+                            active: {
+                              height: "0%",
+                              marginBottom: "100%",
                               opacity: 0,
                             },
-                            animate: { translateX: "80%", opacity: 1 },
                           }}
-                          animate={playbuttonControls}
                         >
-                          <VerififedScenesSVGs.PlayButton
-                            style={{ fill: "#ff6375", opacity: 1 }}
-                          />
+                          <ResponsiveText>
+                            {i > 0 ? "Twitter" : "Instagram"}
+                          </ResponsiveText>
                         </motion.div>
-                        <motion.div
-                          initial="initial"
-                          variants={{
-                            initial: {
-                              width: "2vw",
-                              translateX: "20%",
-                              opacity: 1,
+                        <ImageElement
+                          image={source}
+                          MotionImageStyle={{
+                            whileHover: EditImageLayoutStyle.whileHoverBlock([
+                              { edit: "zIndex", value: 100 },
+                            ]),
+                            initial: LayoutStyles.ImageLayout.initial,
+                            animate: {
+                              height: UseRatio(9 / 16, UsePercentage(50))
+                                .height,
                             },
-                            animate: { translateX: "40%" },
                           }}
-                          animate={playbuttonControls}
-                        >
-                          <VerififedScenesSVGs.PlayButton
-                            style={{ fill: "#fa2d48", opacity: 1 }}
-                          />
-                        </motion.div>
-                        <motion.div
-                          initial="initial"
-                          variants={{
-                            initial: {
-                              width: "2vw",
-                              translateX: "-20%",
-                              opacity: 1,
-                            },
-                            animate: { translateX: "20%", opacity: 0 },
-                          }}
-                          animate={playbuttonControls}
-                        >
-                          <VerififedScenesSVGs.PlayButton
-                            style={{ fill: "#ff6375", opacity: 1 }}
-                          />
-                        </motion.div>
+                        />
                       </div>
-                    </div>
-                    <div style={{ alignItems: "center", display: "flex"}}>
-                      <motion.div
-                        initial={{
-                          display: "grid",
-                          gridTemplateRows: "1fr 1fr",
-                          gridTemplateColumns: "1fr 1fr 1fr",
-                          gap: "0.5vw",
-                          rowGap: "0.5vw",
-                        }}
-                      >
-                        <ResponsiveChilds>
-                          {PlaylistPreviewLoadableIconsURL.map((url) => (
-                            <motion.img
-                              src={url}
-                              initial={{
-                                borderRadius:
-                                  StyleVariables.values.radius.shortRadius,
-                                scale: 1
-                              }}
-                              whileHover={{ scale: 0.9 }}
-                            />
-                          ))}
-                          {PlaylistPreviewLoadableIconsURLMobile.map((url) => (
-                            <motion.img
-                              src={url}
-                              initial={{
-                                borderRadius:
-                                  StyleVariables.values.radius.shortRadius,
-                                scale: 1,
-                              }}
-                              whileHover={{ scale: 0.9 }}
-                            />
-                          ))}
-                        </ResponsiveChilds>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                </ResponsiveComponent>
+                    </Parallax>
+                  );
+                })}
               </div>
-            </ResponsiveComponent>
+            </div>
           </div>
         </div>
       </div>

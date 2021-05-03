@@ -42,56 +42,30 @@ export const ResponsiveGrid = (props: {
             display: "grid",
             gridTemplateColumns: "1fr",
             gridTemplateRows: "auto 1fr",
-            rowGap: "1rem",
+            rowGap: "2rem",
             placeItems: "center",
           }}
+          useBasicResponsiveRules
         >
-          <ResponsiveChilds>
-            <>
-              {/* desktop */}
-              {props.gridLeftContent.map((leftContent, index) => {
-                //define templates as usable component case
+          {props.gridLeftContent.map((leftContent, index) => {
+            //define templates as usable component case
 
-                const RCTemplate = TemplateComponentsFactory(
-                  props.gridRightContentTemplate
-                );
-                const LCTemplate = TemplateComponentsFactory(
-                  props.gridLeftContentTemplate
-                );
+            const RCTemplate = TemplateComponentsFactory(
+              props.gridRightContentTemplate
+            );
+            const LCTemplate = TemplateComponentsFactory(
+              props.gridLeftContentTemplate
+            );
 
-                if (props.gridRightContent[index] !== undefined) {
-                  return [
-                    <LCTemplate>{leftContent}</LCTemplate>,
-                    <RCTemplate>{props.gridRightContent[index]}</RCTemplate>,
-                  ];
-                }
+            if (props.gridRightContent[index] !== undefined) {
+              return [
+                <LCTemplate>{leftContent}</LCTemplate>,
+                <RCTemplate>{props.gridRightContent[index]}</RCTemplate>,
+              ];
+            }
 
-                return null;
-              })}
-            </>
-            <>
-              {/* mobile */}
-              {props.gridLeftContent.map((leftContent, index) => {
-                //define templates as usable component case
-
-                const RCTemplate = TemplateComponentsFactory(
-                  props.gridRightContentTemplate
-                );
-                const LCTemplate = TemplateComponentsFactory(
-                  props.gridLeftContentTemplate
-                );
-
-                if (props.gridRightContent[index] !== undefined) {
-                  return [
-                    <RCTemplate>{props.gridRightContent[index]}</RCTemplate>,
-                    <LCTemplate>{leftContent}</LCTemplate>,
-                  ];
-                }
-
-                return null;
-              })}
-            </>
-          </ResponsiveChilds>
+            return null;
+          })}
         </ResponsiveComponent>
       </div>
     </AnimatedAppear>

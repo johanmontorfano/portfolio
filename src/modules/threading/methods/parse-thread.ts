@@ -1,5 +1,9 @@
-//[string, string] => threadCode, parser
+// ! [string, string] => threadCode, parser
 
+/**
+ * @param threadCode thread code function passed in BuildWorker
+ * @returns 
+ */
 export const ParseThread = (threadCode: (() => void)): [string, string] => {
     
     const str = threadCode
