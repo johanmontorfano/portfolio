@@ -94,7 +94,7 @@ export const SceneScript = (): JSX.Element => {
               >
                 {ImagesElementsSources.map((source, i) => {
                   return (
-                    <Parallax y={[-10, 5]}>
+                    <Parallax y={[-5, 5]}>
                       <div style={{ position: "relative" }}>
                         <motion.div
                           initial={"initial"}
