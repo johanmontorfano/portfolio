@@ -42,9 +42,6 @@ export const App = () => {
     console.info("%s: data-loaded", new Date().getTime());
     setDataLoaded(true);
     document.body.style.setProperty("overflow", "initial");
-  };
-
-  useEffect(() => {
     if (!cookieInfoDisplayed) {
       BannerFlow.next({
         title: "analytics",
@@ -62,7 +59,7 @@ export const App = () => {
       });
       cookieInfoDisplayed = true;
     }
-  }, []);
+  };
 
   return (
     <BrowserRouter>

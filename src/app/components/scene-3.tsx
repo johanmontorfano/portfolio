@@ -112,8 +112,8 @@ export const SceneScript = (): JSX.Element => {
 
                             window.location.assign(
                               i > 0
-                                ? "https://www.twitter.com/franndjoo"
-                                : "https://www.instagram.com/franndjoo"
+                                ? "https://www.instagram.com/franndjoo"
+                                : "https://www.twitter.com/franndjoo"
                             );
                           }}
                           whileHover={{
