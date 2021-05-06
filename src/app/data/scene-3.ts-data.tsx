@@ -13,7 +13,7 @@ export const SceneData: SceneElement = {
       US:
         "You can listen the songs I have listened during the developement of my portfolio !",
       FR:
-        "Vous pouvez écouter les musiques que j'ai écoutées en faisant ce portfolio!",
+        "Vous pouvez écouter les musiques que j'ai écoutées en développant ce portfolio!",
     }),
     subtitle2: "Social",
     description2: UseLang({

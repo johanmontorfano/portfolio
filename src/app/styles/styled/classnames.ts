@@ -61,6 +61,7 @@ export type ClassnamesSignature =
   | "white-box-shadow"
   | "white-box-shadow-active"
   | "element-border-radius-size"
+  | "huge-element-border-radius-size"
   | "big-font-size"
   | "big-font-size-mobile"
   | "semi-big-font-size"
@@ -102,6 +103,7 @@ export const ClassnamesTable = {
   "white-box-shadow": "white-box-shadow",
   "white-box-shadow-active": "white-box-shadow-active",
   "element-border-radius-size": "element-border-radius-size",
+  "huge-element-border-radius-size": "huge-element-border-radius-size",
   "big-font-size": "big-font-size",
   "big-font-size-mobile": "big-font-size-mobile",
   "semi-big-font-size-": "semi-big-font-size-",

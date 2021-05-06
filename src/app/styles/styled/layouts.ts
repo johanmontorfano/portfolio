@@ -23,6 +23,7 @@ export const LayoutStyles: {
       display: "block",
       borderRadius: GetClassnameValue("element-border-radius-size"),
       pointerEvents: "none",
+      height: "0%"
     },
   },
   ImageLayout: {
@@ -39,28 +40,21 @@ export const LayoutStyles: {
   BannerLayout: {
     variants: {
       noBanner: {
-        width: "100%",
-        height: "0vh",
-        background: "black",
+        width: "96%",
+        minHeight: "0vh",
         color: "white",
-        zIndex: 1000,
-        position: "fixed",
-        padding: "0vh",
-        opacity: 0,
-        top: 0,
+        background: "black",
+        borderRadius: GetClassnameValue("element-border-radius-size"),
+        y: "500%"
       },
       banner: {
-        width: "100%",
+        width: "96%",
+        minHeight: "2vh",
         display: "flex",
         alignItems: "center",
-        background: "black",
-        color: "white",
-        height: "5vh",
-        zIndex: 1000,
-        position: "fixed",
-        opacity: 1,
-        padding: "1vh",
-        top: 0,
+        padding: "1%",
+        borderRadius: GetClassnameValue("element-border-radius-size"),
+        y: "0%"
       },
     },
   },
@@ -86,21 +80,37 @@ export const LayoutStyles: {
     },
   },
   ButtonLayout: {
-    initial: "initial",
     variants: {
       initial: {
         padding: "1.5vh",
         fontFamily: "Helvetica",
         background: GetClassnameValue("background-button"),
-        borderRadius: GetClassnameValue("element-border-radius-size"),
+        borderRadius: GetClassnameValue("huge-element-border-radius-size"),
         color: GetClassnameValue("text-color-button"),
         textAlign: "center",
-        border: "1px solid rgb(0,0,0)"
+        border: "1px solid rgb(0,0,0)",
+        scale: 1
+      },
+      initialTiny: {
+        padding: "1vh",
+        fontFamily: "Helvetica",
+        background: GetClassnameValue("background-button"),
+        borderRadius: GetClassnameValue("huge-element-border-radius-size"),
+        color: "rgb(0,0,0)",
+        textAlign: "center",
+        border: "1px solid rgb(0,0,0)",
+        scale: 1
       },
       active: {
         border: "1px solid " + GetClassnameValue("text-color-button-active"),
         color: GetClassnameValue("text-color-button-active"),
         background: GetClassnameValue("background-button-active"),
+      },
+      clicked: {
+        border: "1px solid " + GetClassnameValue("text-color-button-active"),
+        color: GetClassnameValue("text-color-button-active"),
+        background: GetClassnameValue("background-button-active"),
+        scale: 0.8
       },
     },
     whileHover: { scale: 1.05, cursor: "pointer" },
@@ -117,9 +127,10 @@ export const LayoutStyles: {
       outline: "none",
       width: "87.5%",
       resize: "none",
+      boxShadow: "none",
       fontFamily: "Helvetica",
       borderRadius: GetClassnameValue("element-border-radius-size"),
-      padding: "4%",
+      padding: "2%",
       background: GetClassnameValue("background"),
       border: "1px solid gray",
       color: GetClassnameValue("important-font-color"),
@@ -129,11 +140,12 @@ export const LayoutStyles: {
     initial: {
       outline: "none",
       border: "1px solid gray",
+      boxShadow: "none",
       width: "87.5%",
       resize: "none",
       height: "2vh",
       maxHeight: "400px",
-      padding: "4%",
+      padding: "2%",
       fontFamily: "Helvetica",
       borderRadius: GetClassnameValue("element-border-radius-size"),
       background: GetClassnameValue("background"),

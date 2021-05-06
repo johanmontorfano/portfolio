@@ -27,7 +27,8 @@ export const ClassNamesValues: { [key: string]: [string, string] } = {
     "0px 0px 20px 2px rgba(255,255,255,0.8)",
     "box-shadow",
   ],
-  "element-border-radius-size": ["15px", "border-radius"],
+  "element-border-radius-size": ["1vw", "border-radius"],
+  "huge-element-border-radius-size": ["5vw", "border-radius"],
   "big-font-size": ["8vw", "font-size"],
   "big-font-size-mobile": ["10vw", "font-size"],
   "semi-big-font-size": ["4vw", "font-size"],
@@ -36,11 +37,11 @@ export const ClassNamesValues: { [key: string]: [string, string] } = {
   "middle-font-size-mobile": ["6vw", "font-size"],
   "normal-font-size": ["1.5vw", "font-size"],
   "normal-font-size-mobile": ["5.5vw", "font-size"],
-  "tiny-font-size": ["0.8vw", "font-size"],
-  "tiny-font-size-mobile": ["2.8vw", "font-size"],
+  "tiny-font-size": ["1vw", "font-size"],
+  "tiny-font-size-mobile": ["3vw", "font-size"],
   "big-font-size-current": ["8vw", "font-size"],
   "semi-big-font-size-current": ["4vw", "font-size"],
   "middle-font-size-current": ["2vw", "font-size"],
   "normal-font-size-current": ["1.5vw", "font-size"],
-  "tiny-font-size-current": ["0.8vw", "font-size"]
+  "tiny-font-size-current": ["1vw", "font-size"]
 };

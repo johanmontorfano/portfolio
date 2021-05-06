@@ -7,26 +7,54 @@ import { UseRatio } from "../../modules/sizing/ratio";
 import { ResponsiveComponent } from "../../modules/responsive/responsive";
 import { SceneData } from "../data/scene-2.ts-data";
 
-import "../styles/sass/scene.sass";
 import { UseNonUndefined } from "../../modules/var/non-undefined-content";
 import { GetClassnameValue } from "../styles/styled";
 import { Parallax } from "react-scroll-parallax";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
+
+import "../styles/sass/scene.sass";
+import { BannerFlow } from "../../components/banner";
 
 export const SceneScript = (): JSX.Element => {
   const [ParallaxTransition, setParallaxTransition] = useState<{
     [key: string]: number[];
   }>({ y: [-20, 10] });
+  const ref = useRef();
+  const [inViewRef, inView] = useInView({
+    threshold: 0.25,
+    triggerOnce: true,
+  });
+  //allow the script to send the tip to the flow
+  const [canDisplayTips, setCanDisplayTips] = useState<boolean>(false);
 
-  /*useEffect(() => {
-    const interval = setInterval(() => {
-      setParallaxTransition(window.innerWidth > 1023? {scale: [-20, 10]} : {y: [-20, 10]});
-    }, 100);
+  const setRef = useCallback(
+    (node) => {
+      // Ref's from useRef needs to have the node assigned to `current`
+      ref.current = node;
+      // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
+      inViewRef(node);
+    },
+    [inViewRef]
+  );
 
-    return function cleanup () {
-      clearInterval(interval);
-    }
-  }, []);*/
+  useEffect(() => {
+    const timeout = setTimeout(() => setCanDisplayTips(true), 500);
+
+    return function cleanup() {
+      clearInterval(timeout);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (canDisplayTips)
+      BannerFlow.next({
+        title: VerifiedSceneTexts.bannerTipTitle,
+        content: VerifiedSceneTexts.bannerTipContent,
+        color: "black",
+        duration: 5000,
+      });
+  }, [inView]);
 
   const VerifiedSceneTexts = UseNonUndefined(SceneData.SceneTexts);
   const VerifiedSceneTables = UseNonUndefined(SceneData.SceneTables);
@@ -77,7 +105,7 @@ export const SceneScript = (): JSX.Element => {
                     </ResponsiveDescription>
                   </div>
                 </ResponsiveComponent>
-                <div>
+                <div ref={setRef}>
                   <ResponsiveGrid
                     gridLeftContent={VerifiedSceneTables[1].text}
                     gridRightContent={VerifiedSceneTables[1].comps}
@@ -161,9 +189,7 @@ export const SceneScript = (): JSX.Element => {
                             marginLeft: "5%",
                           }}
                         >
-                          <ResponsiveText>
-                            {props.children}
-                          </ResponsiveText>
+                          <ResponsiveText>{props.children}</ResponsiveText>
                         </div>
                       )}
                       gridRightContentTemplate={(props: { children?: any }) => (

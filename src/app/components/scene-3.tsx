@@ -144,7 +144,7 @@ export const SceneScript = (): JSX.Element => {
                           }}
                         >
                           <ResponsiveText>
-                            {i > 0 ? "Twitter" : "Instagram"}
+                            {i > 0 ? "Instagram" : "Twitter"}
                           </ResponsiveText>
                         </motion.div>
                         <ImageElement

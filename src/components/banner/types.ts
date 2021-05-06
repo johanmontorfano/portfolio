@@ -1,5 +1,5 @@
 export type BannerFlowEntry = {
-    content: string;
+    content: string | JSX.Element;
     title: string;
     duration: number;
     color: string;

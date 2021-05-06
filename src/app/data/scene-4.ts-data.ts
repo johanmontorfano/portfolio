@@ -16,8 +16,8 @@ export const SceneData: SceneElement = {
       FR: "Votre message n'a pas pris le bon chemin :(",
     }),
     bannerSuccessText: UseLang({
-      US: "Your message reach to server :)",
-      FR: "Votre message est arrivé au serveur :)",
+      US: "Your message reach the servers :)",
+      FR: "Votre message est arrivé jusqu'au aux serveurs :)",
     }),
     subtitle1: UseLang({
       US: "Leave me a message",

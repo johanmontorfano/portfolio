@@ -8,18 +8,24 @@ import { UseNonUndefined } from "../../modules/var/non-undefined-content";
 import { SceneData } from "../data/scene-1.ts-data";
 import { EditVideoLayoutStyle, LayoutStyles } from "../styles/styled/layouts";
 
-import "../styles/sass/scene.sass";
 import { UsePercentage } from "../../modules/sizing/percentage";
+import React, { useEffect, useState } from "react";
+import { ImageElement } from "../../components/media/image";
+import { Parallax } from "react-scroll-parallax";
+
+import "../styles/sass/scene.sass";
+import { motion } from "framer-motion";
+import { ResponsiveButton } from "../../components/responsive/responsive-button";
 import { ResponsiveChilds } from "../../modules/responsive/childrens";
-import { useEffect, useState } from "react";
 
 export const SceneScript = (): JSX.Element => {
   const [VideoRatioHeight, setVideoRatioHeight] = useState<number>(
-    UseRatio(9 / 16, UsePercentage(25)).height
+    UseRatio(9 / 16, UsePercentage(35)).height
   );
 
   const VerifiedSceneText = UseNonUndefined(SceneData.SceneTexts);
   const VerifiedSceneVideos = UseNonUndefined(SceneData.SceneVideos);
+  const VerifiedSceneImages = UseNonUndefined(SceneData.SceneImages);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -71,7 +77,7 @@ export const SceneScript = (): JSX.Element => {
                 height: "100%",
               }}
             >
-              <div>
+              <Parallax y={[-5, 15]}>
                 <ResponsiveTitle>{VerifiedSceneText.title}</ResponsiveTitle>
                 <ResponsiveComponent
                   style={{ width: "40vw", marginTop: "2%" }}
@@ -87,7 +93,36 @@ export const SceneScript = (): JSX.Element => {
                     </ResponsiveDescription>
                   </div>
                 </ResponsiveComponent>
-              </div>
+                <ResponsiveChilds>
+                  <motion.div
+                    initial={{
+                      width: "98%",
+                      padding: "0.5vw",
+                      display: "flex",
+                    }}
+                  >
+                    <div style={{ marginRight: "5%" }}>
+                      <ResponsiveButton
+                        handleClick={() =>
+                          window.location.assign(
+                            "https://github.com/franndjoo/portfolio-v3"
+                          )
+                        }
+                      >
+                        {VerifiedSceneText.buttonGithub}
+                      </ResponsiveButton>
+                    </div>
+                    <ResponsiveButton
+                      handleClick={() =>
+                        window.location.assign("mailto:johaaan.m@icloud.com")
+                      }
+                    >
+                      {VerifiedSceneText.buttonMail}
+                    </ResponsiveButton>
+                  </motion.div>
+                  <div />
+                </ResponsiveChilds>
+              </Parallax>
             </ResponsiveComponent>
           </ResponsiveComponent>
           <ResponsiveComponent
@@ -108,20 +143,30 @@ export const SceneScript = (): JSX.Element => {
               alignItems: "center",
             }}
           >
-            <VideoPlayer
-              video={VerifiedSceneVideos[1]}
-              MotionVideoStyle={{
-                initial: LayoutStyles.VideoLayout.initial,
-                animate: { height: VideoRatioHeight, x: "10%", y: "-2.5%" },
-              }}
-            />
-            <VideoPlayer
-              video={VerifiedSceneVideos[2]}
-              MotionVideoStyle={{
-                initial: LayoutStyles.VideoLayout.initial,
-                animate: { height: VideoRatioHeight, x: "-10%", y: "2.5%" },
-              }}
-            />
+            <Parallax y={[-20, 17.5]}>
+              <ImageElement
+                image={VerifiedSceneImages[1]}
+                MotionImageStyle={{
+                  initial: EditVideoLayoutStyle.initialBlock([
+                    { edit: "height", value: VideoRatioHeight },
+                    { edit: "x", value: "10%" },
+                    { edit: "y", value: "-2.5%" },
+                  ]),
+                }}
+              />
+            </Parallax>
+            <Parallax y={[-20, 17.5]}>
+              <VideoPlayer
+                video={VerifiedSceneVideos[1]}
+                MotionVideoStyle={{
+                  initial: EditVideoLayoutStyle.initialBlock([
+                    { edit: "height", value: VideoRatioHeight },
+                    { edit: "x", value: "-10%" },
+                    { edit: "y", value: "2.5%" },
+                  ]),
+                }}
+              />
+            </Parallax>
           </ResponsiveComponent>
         </ResponsiveComponent>
       </div>

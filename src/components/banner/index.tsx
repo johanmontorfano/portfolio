@@ -29,6 +29,7 @@ export const Banner = () => {
   }, []);
 
   return (
+    <div style={{width: "100%", padding: "1%", position: "fixed", bottom: 0, zIndex: 1000}}>
     <motion.div
       animate={motionControls}
       initial="noBanner"
@@ -36,8 +37,9 @@ export const Banner = () => {
     >
       <div
         style={{
-          marginRight: "2%",
-          fontWeight: parseInt(GetClassnameValue("bold-font-weight"))
+          marginRight: "1%",
+          fontWeight: parseInt(GetClassnameValue("bold-font-weight")),
+          textTransform: "uppercase"
         }}
       >
         <ResponsiveText tiny>{lastBannerFlowPackage?.title || ""}</ResponsiveText>
@@ -45,6 +47,6 @@ export const Banner = () => {
       <div style={{ color: "white" }}>
         <ResponsiveText tiny>{lastBannerFlowPackage?.content || ""}</ResponsiveText>
       </div>
-    </motion.div>
+    </motion.div></div>
   );
 };

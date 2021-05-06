@@ -4,7 +4,7 @@ const LikesDocument = FirebaseFirestore.collection("misc").doc("numbers");
 
 export const ManipulateLikes = (method: "add" | "remove") => {
   return LikesDocument.update({
-    likes: FirestoreBatch.FieldValue.increment(method === "add" ? 1 : -2)
+    likes: FirestoreBatch.FieldValue.increment(method === "add" ? 1 : -1)
   });
 };
 export const GetLikes = () => {

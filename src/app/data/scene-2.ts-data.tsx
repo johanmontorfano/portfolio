@@ -8,8 +8,9 @@ import { Express_SVG } from "../../svg/express-svg";
 import { MySQL_SVG } from "../../svg/sql-svg";
 import { SceneElement } from "./types";
 import { UseLang } from "../../modules/doc/lang";
-import { ResponsiveButton } from "../../components/responsive/responsive-button";
 import { GetClassnameValue } from "../styles/styled";
+import { ResponsiveText } from "../../components/responsive/responsive-text";
+import { MorphHeart } from "../../svg/heart-svg";
 
 let pushed = false;
 
@@ -19,7 +20,7 @@ const SVGContainer = (props: { children: any }) => (
 
 const SVGMorphExample = () => {
   //which path is gnna be displayed on animate, changes at every animation complete event
-  const [animatedPathID, setAnimatedPathID] = useState<2 | 3>(3);
+  const [animatedPathID, setAnimatedPathID] = useState<number>(1);
 
   const paths = {
     1: {
@@ -36,18 +37,6 @@ const SVGMorphExample = () => {
     },
   };
 
-  useEffect(() => {
-    //updates the animatable path
-    const pathIDInterval = setInterval(() => {
-      setAnimatedPathID((...prev) => (prev[0] > 2 ? 2 : 3));
-    }, 4000);
-
-    return function cleanup() {
-      //clear interval
-      clearInterval(pathIDInterval);
-    };
-  }, []);
-
   return (
     <motion.svg
       initial="1"
@@ -57,13 +46,18 @@ const SVGMorphExample = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       animate={animatedPathID.toString()}
+      onMouseEnter={() =>
+        setAnimatedPathID((...prev) => (prev[0] === 3 ? 1 : prev[0] + 1))
+      }
+      onClick={() =>
+        setAnimatedPathID((...prev) => (prev[0] === 3 ? 1 : prev[0] + 1))
+      }
     >
       <motion.path
         variants={paths}
         transition={{
-          duration: 2,
-          repeat: Infinity,
-          repeatType: "reverse",
+          duration: 1,
+          bounce: 0.6,
         }}
         fill="rgb(0,0,0)"
       />
@@ -73,6 +67,7 @@ const SVGMorphExample = () => {
 
 const FirebaseLikeButton = () => {
   const [likes, setLikes] = useState<number>(0);
+  const [liked, setLiked] = useState<boolean>(false);
 
   const UpdateLikes = () => {
     GetLikes()
@@ -90,18 +85,28 @@ const FirebaseLikeButton = () => {
   useEffect(() => UpdateLikes(), []);
 
   return (
-    <ResponsiveButton
-      handleClick={() => {
-        if (pushed) RemoveLike();
-        AddLike();
-        
-        console.log("clicked");
-
-        pushed = !pushed;
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      {(pushed ? "💔" : "💗") +" | "+  likes.toString() + " likes"}
-    </ResponsiveButton>
+      <MorphHeart
+        state={liked}
+        MotionSVGProps={{
+          initial: { width: "10%", scale: 1 },
+          animate: { fill: liked ? "red" : "black" },
+          whileHover: { width: "15%", cursor: "pointer" },
+          onTap: () => {
+            setLiked(!liked);
+            if (liked) RemoveLike();
+            else AddLike();
+          },
+        }}
+      />
+      <ResponsiveText>{likes.toString() + " likes"}</ResponsiveText>
+    </div>
   );
 };
 
@@ -126,6 +131,12 @@ export const SceneData: SceneElement = {
       US:
         "I'm also a back-end developer, I make servers and use databases with frameworks like:",
     }),
+    bannerTipTitle: UseLang({ FR: "Aide", US: "Tip" }),
+    bannerTipContent: UseLang({
+      FR:
+        "Les examples à côté de mes compétences sont interactifs, joue avec !",
+      US: "Examples are interactives, play with it !",
+    }),
   },
   SceneTables: {
     1: {
@@ -136,8 +147,10 @@ export const SceneData: SceneElement = {
           US: "React, to build easily powerful and lightweight elements",
         }),
         UseLang({
-          FR: "Framer, pour faire de belles animations et transitions réactives aux interactions.",
-          US: "Framer, to build stunning animations and transitions reactives to gestures.",
+          FR:
+            "Framer, pour faire de belles animations et transitions réactives aux interactions.",
+          US:
+            "Framer, to build stunning animations and transitions reactives to gestures.",
         }),
         UseLang({
           FR: "SVGs, pour faire de belles formes et les animer avec Framer",
@@ -145,7 +158,7 @@ export const SceneData: SceneElement = {
         }),
       ],
       comps: [
-        <div style={{fontSize: "150%"}}>Hello React World :)</div>,
+        <div style={{ fontSize: "150%" }}>Hello React World :)</div>,
         <motion.div
           drag
           dragConstraints={{
@@ -160,8 +173,8 @@ export const SceneData: SceneElement = {
             alignItems: "center",
             justifyContent: "center",
             color: "white",
-            width: "100px",
-            height: "100px",
+            width: "55%",
+            height: "100%",
             borderRadius: "50%",
             background: GetClassnameValue("linear-gradient"),
             userSelect: "none",
