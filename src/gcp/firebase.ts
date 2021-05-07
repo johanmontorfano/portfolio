@@ -17,7 +17,7 @@ export const FirebaseRealtime = FirebaseApp.database();
 export const RealtimeBatch = firebase.database;
 export const FirestoreBatch = firebase.firestore;
 
-//export analytics to let the cookies page disable analytics
+//export analytics to let the privacy page disable analytics
 export const FirebaseAnalytics = FirebaseApp.analytics();
 
 

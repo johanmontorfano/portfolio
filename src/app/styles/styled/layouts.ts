@@ -89,7 +89,9 @@ export const LayoutStyles: {
         color: GetClassnameValue("text-color-button"),
         textAlign: "center",
         border: "1px solid rgb(0,0,0)",
-        scale: 1
+        scale: 1,
+        height: "fit-content",
+        fill: "black"
       },
       initialTiny: {
         padding: "1vh",
@@ -99,12 +101,15 @@ export const LayoutStyles: {
         color: "rgb(0,0,0)",
         textAlign: "center",
         border: "1px solid rgb(0,0,0)",
-        scale: 1
+        scale: 1,
+        height: "fit-content",
+        fill: "black"
       },
       active: {
         border: "1px solid " + GetClassnameValue("text-color-button-active"),
         color: GetClassnameValue("text-color-button-active"),
         background: GetClassnameValue("background-button-active"),
+        fill: "white"
       },
       clicked: {
         border: "1px solid " + GetClassnameValue("text-color-button-active"),

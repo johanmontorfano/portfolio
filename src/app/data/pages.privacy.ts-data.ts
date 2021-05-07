@@ -1,10 +1,10 @@
-import { UseLang } from './../../modules/doc/lang';
+import { UseLang } from '../../modules/doc/lang';
 import { SceneElement } from './types';
 
 export const PageData: SceneElement = {
     SceneData: {
         className: "scene",
-        name: "cookies-page"
+        name: "privacy-page"
     },
     SceneTexts: {
         intro: UseLang({
@@ -21,7 +21,7 @@ export const PageData: SceneElement = {
     SceneTables: {
         list: [
             UseLang({US: "Device resolution", FR: "Résolution de l'écran"}),
-            UseLang({US: "Device OS", FR: "OS de l'appareil"}),
+            UseLang({US: "Device OS", FR: "SE de l'appareil"}),
             UseLang({US: "Device country location", FR: "Pays de l'appareil"}),
             UseLang({US: "Device city location", FR: "Ville de l'appareil"}),
             UseLang({US: "Device model", FR: "Modèle de l'appareil"}),

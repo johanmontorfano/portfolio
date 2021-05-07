@@ -1,122 +1,68 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect, useState } from "react";
+import { GetClassnameValue } from "../../app/styles/styled";
 
-export const Loader = () => (
-  <div
-    style={{
-      width: "100%",
-      height: "100vh",
-      background: "white",
-      zIndex: 100,
-      color: "black",
-      position: "fixed",
-      top: 0,
-    }}
-  >
-    <motion.div
-      initial={{
-        width: "20%",
-        height: "5vh",
-        background: "black",
-        borderRadius: "15px",
-        margin: "4vh",
-        marginBottom: "8vh",
-        opacity: 0.2,
-        y: "120%",
-      }}
-      animate={{
-        opacity: 1,
-        y: "0%",
-        width: "40%",
-      }}
-      transition={{
-        repeat: Infinity,
-        repeatDelay: 2,
-        duration: 0.5,
-      }}
-    />
-    <motion.div
-      initial={{
-        width: "20%",
-        height: "2vh",
-        background: "black",
-        borderRadius: "15px",
-        margin: "4vh",
-        opacity: 0.2,
-        y: "120%",
-      }}
-      animate={{
-        opacity: 1,
-        y: "0%",
-        width: "55%",
-      }}
-      transition={{
-        repeat: Infinity,
-        repeatDelay: 2,
-        duration: 0.5,
-      }}
-    />
-    <motion.div
-      initial={{
-        width: "20%",
-        height: "2vh",
-        background: "black",
-        borderRadius: "15px",
-        margin: "4vh",
-        opacity: 0.2,
-        y: "120%",
-      }}
-      animate={{
-        opacity: 1,
-        y: "0%",
-        width: "70%",
-      }}
-      transition={{
-        repeat: Infinity,
-        repeatDelay: 2,
-        duration: 0.5,
-      }}
-    />
-    <div style={{ display: "flex" }}>
+export const Loader = (props: {
+  children: JSX.Element;
+  loadState: boolean;
+}) => {
+  const AnimationControls = useAnimation();
+  const [
+    fictiveLoadedPercentage,
+    setFictiveLoadedPercentage,
+  ] = useState<number>(0);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    if (props.loadState) {
+      for (let i = 0; i <= 100; i++) {
+        setTimeout(() => {
+          setFictiveLoadedPercentage(i);
+          if (i === 100) {
+            AnimationControls.start("loaded");
+            document.body.style.setProperty("overflow", "auto");
+          }
+        }, 5 * i);
+      }
+    } else {
+      AnimationControls.start("loads");
+      setFictiveLoadedPercentage(0);
+    }
+  }, [props.loadState]);
+
+  return (
+    <div>
       <motion.div
-        initial={{
-          width: "10vh",
-          height: "10vh",
-          background: "black",
-          borderRadius: "15px",
-          margin: "4vh",
-          opacity: 0.2,
-          y: "120%",
+        variants={{
+          loads: {
+            height: "100vh",
+            width: "100%",
+            background: "black",
+            color: "whitesmoke",
+            position: "absolute",
+            top: 0,
+            opacity: 1,
+            zIndex: 1000,
+            fontSize: "30vw",
+            fontFamily: "Helvetica",
+            fontWeight: parseInt(GetClassnameValue("semi-bold-font-weight")),
+            display: "flex",
+            alignItems: "flex-end",
+          },
+          loaded: {
+            opacity: 0,
+            zIndex: 0,
+          },
         }}
-        animate={{
-          opacity: 1,
-          y: "0%",
-        }}
-        transition={{
-          repeat: Infinity,
-          repeatDelay: 2,
-          duration: 0.5,
-        }}
-      />
-      <motion.div
-        initial={{
-          width: "10vh",
-          height: "10vh",
-          background: "black",
-          borderRadius: "15px",
-          margin: "4vh",
-          opacity: 0.2,
-          y: "120%",
-        }}
-        animate={{
-          opacity: 1,
-          y: "0%",
-        }}
-        transition={{
-          repeat: Infinity,
-          repeatDelay: 2,
-          duration: 0.5,
-        }}
-      />
+        initial="loads"
+        animate={AnimationControls}
+      >
+        {fictiveLoadedPercentage} %
+      </motion.div>
+      {props.children}
     </div>
-  </div>
-);
+  );
+};

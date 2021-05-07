@@ -27,6 +27,10 @@ const Translates = {
     FR: "Voir le code sur GitHub",
     US: "See the code on GitHub",
   }),
+  PrivacyLink: UseLang({
+    FR: "Confidentialité",
+    US: "Privacy"
+  })
 };
 
 export const BottomBar = () => {
@@ -47,8 +51,13 @@ export const BottomBar = () => {
             </ResponsiveLink>
           </li>
           <li>
-            <ResponsiveLink tiny redirectTo="/cookies">
-              Cookies
+            <ResponsiveLink tiny redirectTo="/cv">
+              Curriculum Vitae
+            </ResponsiveLink>
+          </li>
+          <li>
+            <ResponsiveLink tiny redirectTo="/privacy">
+              {Translates.PrivacyLink}
             </ResponsiveLink>
           </li>
         </ul>
@@ -77,6 +86,11 @@ export const BottomBar = () => {
               redirectTo="https://github.com/franndjoo/portfolio-v3"
             >
               {Translates.MoreGithubEntry}
+            </ResponsiveLink>
+          </li>
+          <li>
+            <ResponsiveLink tiny redirectTo="/console">
+              Console
             </ResponsiveLink>
           </li>
         </ul>

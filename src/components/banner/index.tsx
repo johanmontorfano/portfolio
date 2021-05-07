@@ -29,7 +29,7 @@ export const Banner = () => {
   }, []);
 
   return (
-    <div style={{width: "100%", padding: "1%", position: "fixed", bottom: 0, zIndex: 1000}}>
+    <div style={{width: "100%", position: "fixed", bottom: "1%", zIndex: 1000, display: "flex", justifyContent: "center"}}>
     <motion.div
       animate={motionControls}
       initial="noBanner"

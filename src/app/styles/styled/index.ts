@@ -14,12 +14,12 @@ export const ComputeClassnames = () => {
         `;
     if (ClassNamesMediaQueries[className] !== undefined) {
       styledElement += `
-            @media only screen and (max-width: 1023px) {
+            @media only screen and (max-width: 1023px) and (orientation: portrait) {
                 .${className} {
                     ${ClassNamesValues[className][1]}: ${ClassNamesMediaQueries[className].small}
                 }
             }
-            @media only screen and (min-width: 1024px) {
+            @media only screen and (min-width: 1024px) or (max-width: 1023px) and (orientation: landscape) {
                 .${className} {
                     ${ClassNamesValues[className][1]}: ${ClassNamesMediaQueries[className].normal}
                 }
