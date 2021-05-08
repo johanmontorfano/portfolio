@@ -1,10 +1,5 @@
 import { BottomBar } from "../components/bar";
 
-import { SceneScript as SceneScript1 } from "./components/scene-1";
-import { SceneScript as SceneScript2 } from "./components/scene-2";
-import { SceneScript as SceneScript3 } from "./components/scene-3";
-import { SceneScript as SceneScript4 } from "./components/scene-4";
-
 import { ComputeClassnames } from "./styles/styled";
 import { Banner, BannerFlow } from "../components/banner";
 
@@ -21,8 +16,9 @@ import {
 } from "react-router-dom";
 import { PrivacyPage } from "./pages/privacy";
 import { CV } from "./pages/cv";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader } from "../components/loader";
+import { _ } from "./pages/_";
 
 export let PreloadedData: { [key: string]: any } = {};
 const StyledIndexComponent = ComputeClassnames();
@@ -87,10 +83,7 @@ export const App = () => {
             <Banner />
             <Switch>
               <Route exact path={["/"]}>
-                <SceneScript1 />
-                <SceneScript2 />
-                <SceneScript3 />
-                <SceneScript4 />
+                <_ />
               </Route>
               <Route exact path={["/privacy"]}>
                 <PrivacyPage />
