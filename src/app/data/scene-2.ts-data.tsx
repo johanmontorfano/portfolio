@@ -6,7 +6,7 @@ import {
 } from "../../gcp/modules/firestore.like-button";
 import { Express_SVG } from "../../svg/express-svg";
 import { MySQL_SVG } from "../../svg/sql-svg";
-import { SceneElement } from "./types";
+import { PageElement } from "./types";
 import { UseLang } from "../../modules/doc/lang";
 import { GetClassnameValue } from "../styles/styled";
 import { ResponsiveText } from "../../components/responsive/responsive-text";
@@ -110,12 +110,12 @@ const FirebaseLikeButton = () => {
   );
 };
 
-export const SceneData: SceneElement = {
-  SceneData: {
+export const PageData: PageElement = {
+  PageData: {
     className: "scene",
     name: "Skills",
   },
-  SceneTexts: {
+  PageTexts: {
     subtitle1: UseLang({
       FR: "Qu'est-ce que je fais.",
       US: "What kind of work I do",
@@ -138,7 +138,7 @@ export const SceneData: SceneElement = {
       US: "Examples are interactives, play with it !",
     }),
   },
-  SceneTables: {
+  PageTables: {
     1: {
       text: [
         UseLang({

@@ -10,6 +10,8 @@ import { Parallax } from "react-scroll-parallax";
 import Memoji from "../../images/memoji.png";
 import { ResponsiveComponent } from "../../modules/responsive/responsive";
 import { ResponsiveChilds } from "../../modules/responsive/childrens";
+import { PageData } from "../data/pages.cv.ts-data";
+import { UseNonUndefined } from "../../modules/var/non-undefined-content";
 
 export const MiniCardList = (props: {
   title: string;
@@ -46,6 +48,9 @@ export const MiniCardList = (props: {
 );
 
 export const CV = () => {
+  const VerifiedPageTexts = UseNonUndefined(PageData.PageTexts);
+  const VerifiedPageTables = UseNonUndefined(PageData.PageTables);
+
   return (
     <div
       style={{
@@ -65,7 +70,7 @@ export const CV = () => {
           border: "1px solid gray",
         }}
         mobile_style={{
-          width: UseRatio(29.7 / 21, UsePercentage(40)).height,
+          width: "100%",
           backgroundColor: "#fcfcfc",
           borderRadius: GetClassnameValue("element-border-radius-size"),
           border: "1px solid gray",
@@ -78,7 +83,7 @@ export const CV = () => {
             padding: "2%",
           }}
           mobile_style={{
-            padding: "2%"
+            padding: "2%",
           }}
         >
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -90,7 +95,11 @@ export const CV = () => {
           </div>
           <ResponsiveComponent
             style={{ display: "grid", gridTemplateColumns: "30% 70%" }}
-            mobile_style={{ display: "grid", gridTemplateColumns: "0% 100%", gridTemplateRows: "0% auto" }}
+            mobile_style={{
+              display: "grid",
+              gridTemplateColumns: "0% 100%",
+              gridTemplateRows: "0% auto",
+            }}
           >
             <ResponsiveChilds>
               <div>
@@ -132,32 +141,17 @@ export const CV = () => {
               </div>
               <div />
             </ResponsiveChilds>
-            <div style={{ marginLeft: "10%", marginRight: "10%" }}>
-              <ResponsiveSubtitle>Who I am ?</ResponsiveSubtitle>
-              <ResponsiveText>
-                I'm Johan. I live in France, around Lyon.
-              </ResponsiveText>
-              <br />
-              <br />
-              <ResponsiveSubtitle>What I do ?</ResponsiveSubtitle>
-              <ResponsiveText>
-                <div style={{ textAlign: "justify" }}>
-                  I'm a freelancer programmer. I do especially websites and
-                  prepare backends. I'm specialized in building responsives and
-                  animated interfaces which responds to gestures by animations
-                  and micro-interactions.
+            <div style={{marginLeft: "5%", marginRight: "5%"}}>
+              {VerifiedPageTables.paraphs.map((entry: [string, string]) => (
+                <div>
+                  <ResponsiveSubtitle>{entry[0]}</ResponsiveSubtitle>
+                  <ResponsiveText>
+                    <div style={{ textAlign: "justify" }}>{entry[1]}</div>
+                  </ResponsiveText>
+                  <br />
+                  <br />
                 </div>
-              </ResponsiveText>
-              <br />
-              <br />
-              <ResponsiveSubtitle>What motivates me ?</ResponsiveSubtitle>
-              <ResponsiveText>
-                <div style={{ textAlign: "justify" }}>
-                  Programming is something that passionates me. I love
-                  programming and I like good job, I build websites quickly with
-                  both front-end and back-end ended by myself.
-                </div>
-              </ResponsiveText>
+              ))}
             </div>
           </ResponsiveComponent>
         </ResponsiveComponent>

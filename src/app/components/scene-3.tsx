@@ -2,7 +2,7 @@ import { motion, useAnimation } from "framer-motion";
 import { ResponsiveDescription } from "../../components/responsive/responsive-description";
 import { ResponsiveSubtitle } from "../../components/responsive/responsive-subtitle";
 import { ResponsiveComponent } from "../../modules/responsive/responsive";
-import { SceneData } from "../data/scene-3.ts-data";
+import { PageData } from "../data/scene-3.ts-data";
 
 import TwitterProfileImage from "../../images/twitter_profile.jpeg";
 import InstagramProfileImage from "../../images/insta_profile.jpeg";
@@ -22,21 +22,28 @@ import { ResponsiveLink } from "../../components/responsive/responsive-link";
 import { ResponsiveButton } from "../../components/responsive/responsive-button";
 import { InstagramSVG } from "../../svg/instagram-svg";
 import { TwitterSVG } from "../../svg/twitter-svg";
+import { ResponsiveValue } from "../../modules/responsive/value";
 
 const ImagesElementsSources = [TwitterProfileImage, InstagramProfileImage];
 
-export const SceneScript = (): JSX.Element => {
+export const PageScript = (): JSX.Element => {
   const [ImageRatioHeight, setImageRatioHeight] = useState<number>(
-    UseRatio(9 / 16, UsePercentage(50)).height
+    ResponsiveValue(
+      UseRatio(9 / 16, UsePercentage(50)).height,
+      UseRatio(9 / 16, UsePercentage(50)).width
+    )
   );
 
-  const VerifiedSceneText = UseNonUndefined(SceneData.SceneTexts);
-
-  const AnimationControllers = [useAnimation(), useAnimation()];
+  const VerifiedPageText = UseNonUndefined(PageData.PageTexts);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setImageRatioHeight(UseRatio(9 / 16, UsePercentage(50)).height);
+      setImageRatioHeight(
+        ResponsiveValue(
+          UseRatio(9 / 16, UsePercentage(50)).height,
+          UseRatio(9 / 16, UsePercentage(70)).width
+        )
+      );
     }, 10);
 
     return function cleanup() {
@@ -45,7 +52,7 @@ export const SceneScript = (): JSX.Element => {
   }, []);
 
   return (
-    <div {...SceneData.SceneData}>
+    <div {...PageData.PageData}>
       <div style={{ height: "100vh", width: "100%" }}>
         <div
           style={{
@@ -73,12 +80,19 @@ export const SceneScript = (): JSX.Element => {
                 gridTemplateRows: "50% 50%",
               }}
             >
-              <div
+              <ResponsiveComponent
                 style={{
                   display: "flex",
                   width: "100%",
                   minHeight: "70%",
                   alignItems: "center",
+                }}
+                mobile_style={{
+                  display: "flex",
+                  width: "100%",
+                  minHeight: "70%",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 <ResponsiveChilds>
@@ -91,9 +105,10 @@ export const SceneScript = (): JSX.Element => {
                             { edit: "rotateX", value: "345deg" },
                             { edit: "rotateY", value: "320deg" },
                             { edit: "rotateZ", value: "355deg" },
+                            { edit: "height", value: ImageRatioHeight },
                           ]),
                           animate: {
-                            height: UseRatio(9 / 16, UsePercentage(50)).height,
+                            height: ImageRatioHeight,
                           },
                         }}
                       />
@@ -108,9 +123,10 @@ export const SceneScript = (): JSX.Element => {
                             { edit: "rotateZ", value: "355deg" },
                             { edit: "translateX", value: "-70%" },
                             { edit: "translateY", value: "5%" },
+                            { edit: "height", value: ImageRatioHeight },
                           ]),
                           animate: {
-                            height: UseRatio(9 / 16, UsePercentage(50)).height,
+                            height: ImageRatioHeight,
                           },
                         }}
                       />
@@ -126,9 +142,10 @@ export const SceneScript = (): JSX.Element => {
                             { edit: "rotateY", value: "320deg" },
                             { edit: "rotateZ", value: "355deg" },
                             { edit: "translateX", value: "20%" },
+                            { edit: "height", value: ImageRatioHeight },
                           ]),
                           animate: {
-                            height: UseRatio(9 / 16, UsePercentage(50)).height,
+                            height: ImageRatioHeight,
                           },
                         }}
                       />
@@ -142,25 +159,26 @@ export const SceneScript = (): JSX.Element => {
                             { edit: "rotateY", value: "320deg" },
                             { edit: "rotateZ", value: "355deg" },
                             { edit: "translateX", value: "-20%" },
+                            { edit: "height", value: ImageRatioHeight },
                           ]),
                           animate: {
-                            height: UseRatio(9 / 16, UsePercentage(50)).height,
+                            height: ImageRatioHeight,
                           },
                         }}
                       />
                     </Parallax>
                   </>
                 </ResponsiveChilds>
-              </div>
+              </ResponsiveComponent>
               <div
                 style={{ zIndex: 100, display: "flex", alignItems: "center" }}
               >
                 <div>
                   <ResponsiveSubtitle>
-                    {VerifiedSceneText.subtitle2}
+                    {VerifiedPageText.subtitle2}
                   </ResponsiveSubtitle>
                   <ResponsiveDescription>
-                    {VerifiedSceneText.description2}
+                    {VerifiedPageText.description2}
                   </ResponsiveDescription>
                   <div
                     style={{

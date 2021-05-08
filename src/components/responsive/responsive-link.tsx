@@ -20,6 +20,9 @@ export const ResponsiveLink = (props: {
         userSelect: "none",
       }}
       whileHover={{ cursor: "pointer", textDecoration: "underline" }}
+      onClick={() => {
+        if (props.redirectTo[0] === "/") window.scrollTo(0, 0);
+      }}
     >
       <ConditionnalComponent
         condition={props.redirectTo[0] === "/"}

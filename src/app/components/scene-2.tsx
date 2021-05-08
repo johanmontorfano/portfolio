@@ -5,7 +5,7 @@ import { ResponsiveText } from "../../components/responsive/responsive-text";
 import { ResponsiveSubtitle } from "../../components/responsive/responsive-subtitle";
 import { UseRatio } from "../../modules/sizing/ratio";
 import { ResponsiveComponent } from "../../modules/responsive/responsive";
-import { SceneData } from "../data/scene-2.ts-data";
+import { PageData } from "../data/scene-2.ts-data";
 
 import { UseNonUndefined } from "../../modules/var/non-undefined-content";
 import { GetClassnameValue } from "../styles/styled";
@@ -15,8 +15,10 @@ import { useInView } from "react-intersection-observer";
 
 import "../styles/sass/scene.sass";
 import { BannerFlow } from "../../components/banner";
+import { UsePercentage } from "../../modules/sizing/percentage";
+import { ResponsiveValue } from "../../modules/responsive/value";
 
-export const SceneScript = (): JSX.Element => {
+export const PageScript = (): JSX.Element => {
   const [ParallaxTransition, setParallaxTransition] = useState<{
     [key: string]: number[];
   }>({ y: [-20, 10] });
@@ -25,8 +27,20 @@ export const SceneScript = (): JSX.Element => {
     threshold: 0.25,
     triggerOnce: true,
   });
+  const [percentageMultiplicator, setPercentageMultiplicator] = useState<10 | 25>(ResponsiveValue(10, 25));
   //allow the script to send the tip to the flow
   const [canDisplayTips, setCanDisplayTips] = useState<boolean>(false);
+
+  useEffect(() => {
+
+    const interval = setInterval(() => {
+      setPercentageMultiplicator(ResponsiveValue(10, 25));
+    }, 10);
+
+    return function cleanup () {
+      clearInterval(interval);
+    }
+  }, []);
 
   const setRef = useCallback(
     (node) => {
@@ -49,18 +63,18 @@ export const SceneScript = (): JSX.Element => {
   useEffect(() => {
     if (canDisplayTips)
       BannerFlow.next({
-        title: VerifiedSceneTexts.bannerTipTitle,
-        content: VerifiedSceneTexts.bannerTipContent,
+        title: VerifiedPageTexts.bannerTipTitle,
+        content: VerifiedPageTexts.bannerTipContent,
         color: "black",
         duration: 5000,
       });
   }, [inView]);
 
-  const VerifiedSceneTexts = UseNonUndefined(SceneData.SceneTexts);
-  const VerifiedSceneTables = UseNonUndefined(SceneData.SceneTables);
+  const VerifiedPageTexts = UseNonUndefined(PageData.PageTexts);
+  const VerifiedPageTables = UseNonUndefined(PageData.PageTables);
 
   return (
-    <div {...SceneData.SceneData}>
+    <div {...PageData.PageData}>
       <div
         style={{
           width: "100%",
@@ -96,19 +110,19 @@ export const SceneScript = (): JSX.Element => {
                 >
                   <div>
                     <ResponsiveSubtitle>
-                      {VerifiedSceneTexts.subtitle1}
+                      {VerifiedPageTexts.subtitle1}
                     </ResponsiveSubtitle>
                   </div>
                   <div>
                     <ResponsiveDescription>
-                      {VerifiedSceneTexts.description1}
+                      {VerifiedPageTexts.description1}
                     </ResponsiveDescription>
                   </div>
                 </ResponsiveComponent>
                 <div ref={setRef}>
                   <ResponsiveGrid
-                    gridLeftContent={VerifiedSceneTables[1].text}
-                    gridRightContent={VerifiedSceneTables[1].comps}
+                    gridLeftContent={VerifiedPageTables[1].text}
+                    gridRightContent={VerifiedPageTables[1].comps}
                     gridLeftContentTemplate={(props: { children?: any }) => (
                       <ResponsiveComponent
                         style={{
@@ -132,8 +146,8 @@ export const SceneScript = (): JSX.Element => {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-                            width: UseRatio(16 / 9, 150).width,
-                            height: UseRatio(16 / 9, 150).height,
+                            width: UseRatio(16 / 9, UsePercentage(percentageMultiplicator)).width,
+                            height: UseRatio(16 / 9, UsePercentage(percentageMultiplicator)).height,
                             boxShadow: GetClassnameValue("white-box-shadow"),
                             borderRadius: GetClassnameValue(
                               "element-border-radius-size"
@@ -168,19 +182,19 @@ export const SceneScript = (): JSX.Element => {
                   >
                     <div>
                       <ResponsiveSubtitle>
-                        {VerifiedSceneTexts.subtitle2}
+                        {VerifiedPageTexts.subtitle2}
                       </ResponsiveSubtitle>
                     </div>
                     <div>
                       <ResponsiveDescription>
-                        {VerifiedSceneTexts.description2}
+                        {VerifiedPageTexts.description2}
                       </ResponsiveDescription>
                     </div>
                   </ResponsiveComponent>
                   <div>
                     <ResponsiveGrid
-                      gridLeftContent={VerifiedSceneTables[2].text}
-                      gridRightContent={VerifiedSceneTables[2].comps}
+                      gridLeftContent={VerifiedPageTables[2].text}
+                      gridRightContent={VerifiedPageTables[2].comps}
                       gridLeftContentTemplate={(props: { children?: any }) => (
                         <div
                           style={{
@@ -199,8 +213,8 @@ export const SceneScript = (): JSX.Element => {
                               display: "flex",
                               justifyContent: "center",
                               alignItems: "center",
-                              width: UseRatio(16 / 9, 150).width,
-                              height: UseRatio(16 / 9, 150).height,
+                              width: UseRatio(16 / 9, UsePercentage(percentageMultiplicator)).width,
+                              height: UseRatio(16 / 9, UsePercentage(percentageMultiplicator)).height,
                               boxShadow: GetClassnameValue("white-box-shadow"),
                               borderRadius: GetClassnameValue(
                                 "element-border-radius-size"

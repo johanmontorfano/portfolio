@@ -5,8 +5,8 @@ import { UseRatio } from "../../modules/sizing/ratio";
 import { ResponsiveComponent } from "../../modules/responsive/responsive";
 import { UseNonUndefined } from "../../modules/var/non-undefined-content";
 
-import { SceneData } from "../data/scene-1.ts-data";
-import { EditVideoLayoutStyle, LayoutStyles } from "../styles/styled/layouts";
+import { PageData } from "../data/scene-1.ts-data";
+import { EditVideoLayoutStyle } from "../styles/styled/layouts";
 
 import { UsePercentage } from "../../modules/sizing/percentage";
 import React, { useEffect, useState } from "react";
@@ -17,19 +17,22 @@ import "../styles/sass/scene.sass";
 import { motion } from "framer-motion";
 import { ResponsiveButton } from "../../components/responsive/responsive-button";
 import { ResponsiveChilds } from "../../modules/responsive/childrens";
+import { SharedData } from "../data/pages.any.ts-data";
+import { ResponsiveValue } from "../../modules/responsive/value";
 
-export const SceneScript = (): JSX.Element => {
+export const PageScript = (): JSX.Element => {
   const [VideoRatioHeight, setVideoRatioHeight] = useState<number>(
-    UseRatio(9 / 16, UsePercentage(35)).height
+    ResponsiveValue(UseRatio(9 / 16, UsePercentage(20)).width, UseRatio(9 / 16, UsePercentage(50)).width)
   );
 
-  const VerifiedSceneText = UseNonUndefined(SceneData.SceneTexts);
-  const VerifiedSceneVideos = UseNonUndefined(SceneData.SceneVideos);
-  const VerifiedSceneImages = UseNonUndefined(SceneData.SceneImages);
+  const VerifiedPageValues = UseNonUndefined(SharedData.PageValues);
+  const VerifiedPageText = UseNonUndefined(PageData.PageTexts);
+  const VerifiedPageImages = UseNonUndefined(PageData.PageImages);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setVideoRatioHeight(UseRatio(16 / 9, UsePercentage(25)).height);
+      setVideoRatioHeight(
+        ResponsiveValue(UseRatio(9 / 16, UsePercentage(20)).width, UseRatio(9 / 16, UsePercentage(50)).width));
     }, 10);
 
     return function cleanup() {
@@ -38,7 +41,7 @@ export const SceneScript = (): JSX.Element => {
   }, []);
 
   return (
-    <div {...SceneData.SceneData}>
+    <div {...PageData.PageData}>
       <div
         style={{
           height: "100vh",
@@ -78,7 +81,7 @@ export const SceneScript = (): JSX.Element => {
               }}
             >
               <Parallax y={[-5, 15]}>
-                <ResponsiveTitle>{VerifiedSceneText.title}</ResponsiveTitle>
+                <ResponsiveTitle>{VerifiedPageText.title}</ResponsiveTitle>
                 <ResponsiveComponent
                   style={{ width: "40vw", marginTop: "2%" }}
                   mobile_style={{
@@ -89,7 +92,7 @@ export const SceneScript = (): JSX.Element => {
                 >
                   <div style={{ width: "80%" }}>
                     <ResponsiveDescription>
-                      {VerifiedSceneText.subtitle}
+                      {VerifiedPageText.subtitle}
                     </ResponsiveDescription>
                   </div>
                 </ResponsiveComponent>
@@ -109,15 +112,17 @@ export const SceneScript = (): JSX.Element => {
                           )
                         }
                       >
-                        {VerifiedSceneText.buttonGithub}
+                        {VerifiedPageText.buttonGithub}
                       </ResponsiveButton>
                     </div>
                     <ResponsiveButton
                       handleClick={() =>
-                        window.location.assign("mailto:johaaan.m@icloud.com")
+                        document.getElementsByName("form")[0].scrollIntoView({
+                          behavior: "smooth"
+                        })
                       }
                     >
-                      {VerifiedSceneText.buttonMail}
+                      {VerifiedPageText.buttonMail}
                     </ResponsiveButton>
                   </motion.div>
                   <div />
@@ -145,25 +150,31 @@ export const SceneScript = (): JSX.Element => {
           >
             <Parallax y={[-20, 17.5]}>
               <ImageElement
-                image={VerifiedSceneImages[1]}
+                image={VerifiedPageImages[1]}
                 MotionImageStyle={{
                   initial: EditVideoLayoutStyle.initialBlock([
-                    { edit: "height", value: VideoRatioHeight },
                     { edit: "x", value: "10%" },
                     { edit: "y", value: "-2.5%" },
+                    { edit: "height", value: VideoRatioHeight },
                   ]),
+                  animate: {
+                    height: VideoRatioHeight
+                  }
                 }}
               />
             </Parallax>
             <Parallax y={[-20, 17.5]}>
-              <VideoPlayer
-                video={VerifiedSceneVideos[1]}
-                MotionVideoStyle={{
+              <ImageElement
+                image={VerifiedPageImages[2]}
+                MotionImageStyle={{
                   initial: EditVideoLayoutStyle.initialBlock([
                     { edit: "height", value: VideoRatioHeight },
                     { edit: "x", value: "-10%" },
                     { edit: "y", value: "2.5%" },
                   ]),
+                  animate: {
+                    height: VideoRatioHeight,
+                  }
                 }}
               />
             </Parallax>

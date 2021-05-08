@@ -17,7 +17,12 @@ export const VideoPlayer = (props: {
       loop
       muted
     >
-      <motion.source src={props.video} />
+      <motion.source
+        src={props.video}
+        {...(!props.MotionVideoStyle
+          ? LayoutStyles.VideoLayout
+          : props.MotionVideoStyle)}
+      />
       Your browser doesn't support some features of the site :(
     </motion.video>
   );

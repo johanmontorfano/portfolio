@@ -4,7 +4,7 @@
  * @returns {number}number
  */
 export const UsePercentage = (percentage: number) =>
-  (window.innerWidth / 100 + window.innerHeight / 100) * percentage;
+  (window.outerWidth / 100 + window.outerHeight / 100) * percentage;
 
 /**
  * @desc Automatically returns a percentage relative to the biggest dimension
@@ -12,8 +12,8 @@ export const UsePercentage = (percentage: number) =>
  * @returns {number}number
  */
 export const UseUniDirectionnalPercentage = (percentage: number) =>
-  ((window.innerWidth > window.innerHeight
-    ? window.innerWidth
-    : window.innerHeight) /
+  ((window.outerWidth > window.outerHeight
+    ? window.outerWidth
+    : window.outerHeight) /
     100) *
   percentage;

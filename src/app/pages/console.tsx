@@ -20,7 +20,6 @@ export const Console = () => {
           "---- Help ----",
           "home => go on graphical interface",
           "cv => redirect you to the cv page",
-          "download <doc> => let you download a specified document, use 'download help' to see which docs can be printed",
           "clear => clear the console",
         ];
 

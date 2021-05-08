@@ -5,7 +5,7 @@ import { ResponsiveTextArea } from "../../components/responsive/responsive-texta
 import { ResponsiveSubtitle } from "../../components/responsive/responsive-subtitle";
 import { ResponsiveComponent } from "../../modules/responsive/responsive";
 
-import { SceneData } from "../data/scene-4.ts-data";
+import { PageData } from "../data/scene-4.ts-data";
 import { ResponsiveInput } from "../../components/responsive/responsive-input";
 import { PushMessage } from "../../gcp/modules/firestore.message";
 import { BannerFlow } from "../../components/banner";
@@ -13,11 +13,11 @@ import { BannerFlow } from "../../components/banner";
 import "../styles/sass/scene.sass";
 import { UseNonUndefined } from "../../modules/var/non-undefined-content";
 
-export const SceneScript = () => {
+export const PageScript = () => {
   const [messageFrom, setOrigin] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
-  const VerifiedSceneText = UseNonUndefined(SceneData.SceneTexts);
+  const VerifiedPageText = UseNonUndefined(PageData.PageTexts);
 
   const handleNewMessage = () => {
     const messagePackage = {
@@ -26,7 +26,7 @@ export const SceneScript = () => {
     };
     BannerFlow.next({
       color: "blue",
-      content: VerifiedSceneText.bannerSendingText,
+      content: VerifiedPageText.bannerSendingText,
       title: "Message",
       duration: 5000,
     });
@@ -38,7 +38,7 @@ export const SceneScript = () => {
       .catch(() => {
         BannerFlow.next({
           color: "red",
-          content: VerifiedSceneText.bannerErrorText,
+          content: VerifiedPageText.bannerErrorText,
           title: "Error",
           duration: 5000,
         });
@@ -48,7 +48,7 @@ export const SceneScript = () => {
       .then(() =>
         BannerFlow.next({
           color: "#0b3d00",
-          content: VerifiedSceneText.bannerSuccessText,
+          content: VerifiedPageText.bannerSuccessText,
           title: "Success",
           duration: 5000,
         })
@@ -56,7 +56,7 @@ export const SceneScript = () => {
   };
 
   return (
-    <div {...SceneData.SceneData}>
+    <div {...PageData.PageData}>
       <div
         style={{
           width: "100%",
@@ -76,10 +76,10 @@ export const SceneScript = () => {
         >
           <div>
             <ResponsiveSubtitle>
-              {VerifiedSceneText.subtitle1}
+              {VerifiedPageText.subtitle1}
             </ResponsiveSubtitle>
             <ResponsiveDescription>
-              {VerifiedSceneText.description1}
+              {VerifiedPageText.description1}
             </ResponsiveDescription>
           </div>
           <div
@@ -88,7 +88,7 @@ export const SceneScript = () => {
             }}
           >
             <ResponsiveDescription>
-              {VerifiedSceneText.description2}
+              {VerifiedPageText.description2}
             </ResponsiveDescription>
           </div>
           <div
@@ -101,7 +101,7 @@ export const SceneScript = () => {
             <ResponsiveInput
               value={messageFrom}
               dispatcher={setOrigin}
-              placeholder={VerifiedSceneText.placeholder1}
+              placeholder={VerifiedPageText.placeholder1}
             />
           </div>
           <div
@@ -110,7 +110,7 @@ export const SceneScript = () => {
             }}
           >
             <ResponsiveDescription>
-              {VerifiedSceneText.description3}
+              {VerifiedPageText.description3}
             </ResponsiveDescription>
           </div>
           <div
@@ -123,7 +123,7 @@ export const SceneScript = () => {
             <ResponsiveTextArea
               value={message}
               dispatcher={setMessage}
-              placeholder={VerifiedSceneText.placeholder2}
+              placeholder={VerifiedPageText.placeholder2}
             />
           </div>
           <div
@@ -147,7 +147,7 @@ export const SceneScript = () => {
                   messageFrom.indexOf("@") > 0
                 }
               >
-                {VerifiedSceneText.buttonText1}
+                {VerifiedPageText.buttonText1}
               </ResponsiveButton>
             </ResponsiveComponent>
           </div>

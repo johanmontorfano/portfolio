@@ -20,10 +20,10 @@ export const ResponsiveChilds = (props: {
 }) => {
   const [isMobile, setMobile] = useState<boolean>(
     props.useBasicResponsiveRules
-      ? window.innerWidth < 1024
-      : (window.innerWidth < 1024 &&
-          window.innerWidth / window.innerHeight <= 1) ||
-          window.innerWidth < window.innerHeight
+      ? window.outerWidth < 1024
+      : (window.outerWidth < 1024 &&
+          window.outerWidth / window.outerHeight <= 1) ||
+          window.outerWidth < window.outerHeight
   );
 
   useEffect(() => {
@@ -31,10 +31,10 @@ export const ResponsiveChilds = (props: {
       () =>
         setMobile(
           props.useBasicResponsiveRules
-            ? window.innerWidth < 1024
-            : (window.innerWidth < 1024 &&
-                window.innerWidth / window.innerHeight <= 1) ||
-                window.innerWidth < window.innerHeight
+            ? window.outerWidth < 1024
+            : (window.outerWidth < 1024 &&
+                window.outerWidth / window.outerHeight <= 1) ||
+                window.outerWidth < window.outerHeight
         ),
       10
     );

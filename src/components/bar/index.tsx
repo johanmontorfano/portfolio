@@ -1,6 +1,8 @@
+import { SharedData } from "../../app/data/pages.any.ts-data";
 import { UseLang } from "../../modules/doc/lang";
 import { ResponsiveComponent } from "../../modules/responsive/responsive";
 import { EditJSONObject } from "../../modules/var/edit-json-object";
+import { UseNonUndefined } from "../../modules/var/non-undefined-content";
 import { ResponsiveLink } from "../responsive/responsive-link";
 import { ResponsiveText } from "../responsive/responsive-text";
 
@@ -34,6 +36,8 @@ const Translates = {
 };
 
 export const BottomBar = () => {
+  const VerifiedPageValues = UseNonUndefined(SharedData.PageValues);
+
   return (
     <ResponsiveComponent
       style={DefinedBottomBarStyle}
@@ -66,7 +70,7 @@ export const BottomBar = () => {
         <ResponsiveText>{Translates.ContactEntry}</ResponsiveText>
         <ul>
           <li>
-            <ResponsiveLink tiny redirectTo="mailto:johaaan.m@icloud.com">
+            <ResponsiveLink tiny redirectTo={"mailto:" + VerifiedPageValues["ionosEmail"]}>
               {Translates.ContactEmailEntry}
             </ResponsiveLink>
           </li>

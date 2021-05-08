@@ -9,14 +9,12 @@ export const ImageElement = (props: {
   image: string;
   MotionImageStyle?: MotionProps;
 }) => {
-  const [IsVideoLoaded, setLoadState] = useState<boolean>(false);
 
   return (
       <motion.img
         {...(!props.MotionImageStyle
           ? LayoutStyles.ImageLayout
           : props.MotionImageStyle)}
-        onLoadedData={() => setLoadState(true)}
         src={props.image}
       />
   );

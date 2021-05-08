@@ -1,16 +1,16 @@
-import { SceneElement } from "./types";
+import { PageElement } from "./types";
 import { UseLang } from "../../modules/doc/lang";
 
 
-import Video1 from "../../videos/intro-1.mp4";
 import Image1 from "../../images/intro-1.jpg";
+import Image2 from "../../images/intro-2.jpg";
 
-export const SceneData: SceneElement = {
-  SceneData: {
+export const PageData: PageElement = {
+  PageData: {
     className: "scene",
     name: "WelcomePage",
   },
-  SceneTexts: {
+  PageTexts: {
     title: UseLang({ FR: "Johan Montorfano", US: "Johan Montorfano" }),
     subtitle: UseLang({
       FR:
@@ -29,10 +29,8 @@ export const SceneData: SceneElement = {
       }
     )
   },
-  SceneVideos: {
-    1: Video1,
-  },
-  SceneImages: {
-    1: Image1
+  PageImages: {
+    1: Image1,
+    2: Image2
   }
 };

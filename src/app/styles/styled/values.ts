@@ -4,7 +4,7 @@ export const ClassNamesValues: { [key: string]: [string, string] } = {
   background: ["rgb(255,255,255)", "background"],
   "background-alternative": ["whitesmoke", "background"],
   "background-button": ["rgb(255,255,255)", "background"],
-  "background-button-active": ["rgb(0, 72, 255)", "background"],
+  "background-button-active": ["rgb(255, 169, 22)", "background"],
   "text-color-button": ["rgb(170, 170, 170)", "color"],
   "text-color-button-active": ["rgb(255,255,255)", "color"],
   "link-color": ["black", "color"],

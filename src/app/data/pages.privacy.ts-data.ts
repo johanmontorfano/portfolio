@@ -1,12 +1,12 @@
 import { UseLang } from '../../modules/doc/lang';
-import { SceneElement } from './types';
+import { PageElement } from './types';
 
-export const PageData: SceneElement = {
-    SceneData: {
+export const PageData: PageElement = {
+    PageData: {
         className: "scene",
         name: "privacy-page"
     },
-    SceneTexts: {
+    PageTexts: {
         intro: UseLang({
             US: "This website uses the Google Analytics API to make traffic analysis. It's useful to know more about how the user uses the website and improves this experience.",
             FR: "Ce site utilise l'API Google Analytics pour faire de l'analyse de traffic. C'est utile pour en savoir plus sur la manière dont l'utilisateur se sert du site pour améliorer son expérience."
@@ -18,7 +18,7 @@ export const PageData: SceneElement = {
         disableButton: UseLang({US: "Disable Analytics for this session", FR: "Désactiver Analytics pour cette session"}),
         disabledButton: UseLang({US: "Analytics disabled !", FR: "Analytics désactivés !"})
     },
-    SceneTables: {
+    PageTables: {
         list: [
             UseLang({US: "Device resolution", FR: "Résolution de l'écran"}),
             UseLang({US: "Device OS", FR: "SE de l'appareil"}),

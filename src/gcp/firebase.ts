@@ -1,4 +1,4 @@
-import { BannerFlow } from "./../components/banner/index";
+import { BannerFlow } from "../components/banner/index";
 import firebase from "firebase";
 import { UseLang } from "../modules/doc/lang";
 

@@ -1,4 +1,4 @@
-import { motion, Target, VariantLabels } from "framer-motion";
+import { motion, Target, useAnimation, VariantLabels } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export const ResponsiveComponent = (props: {
@@ -9,10 +9,10 @@ export const ResponsiveComponent = (props: {
 }) => {
   const [isMobile, setMobile] = useState<boolean>(
     props.useBasicResponsiveRules
-      ? window.innerWidth < 1024
-      : (window.innerWidth < 1024 &&
-          window.innerWidth / window.innerHeight <= 1) ||
-          window.innerWidth < window.innerHeight
+      ? window.outerWidth < 1024
+      : (window.outerWidth < 1024 &&
+          window.outerWidth / window.outerHeight <= 1) ||
+          window.outerWidth < window.outerHeight
   );
 
   useEffect(() => {
@@ -20,10 +20,10 @@ export const ResponsiveComponent = (props: {
       () =>
         setMobile(
           props.useBasicResponsiveRules
-            ? window.innerWidth < 1024
-            : (window.innerWidth < 1024 &&
-                window.innerWidth / window.innerHeight <= 1) ||
-                window.innerWidth < window.innerHeight
+            ? window.outerWidth < 1024
+            : (window.outerWidth < 1024 &&
+                window.outerWidth / window.outerHeight <= 1) ||
+                window.outerWidth < window.outerHeight
         ),
       10
     );
@@ -39,7 +39,7 @@ export const ResponsiveComponent = (props: {
   };
 
   return (
-    <div style={isMobile ? variants.mobile : variants.desktop}>
+    <div style={isMobile? variants.mobile : variants.desktop}>
       {props.children}
     </div>
   );

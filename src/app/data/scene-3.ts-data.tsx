@@ -1,13 +1,13 @@
 import React from "react";
 import { UseLang } from "../../modules/doc/lang";
-import { SceneElement } from "./types";
+import { PageElement } from "./types";
 
-export const SceneData: SceneElement = {
-  SceneData: {
+export const PageData: PageElement = {
+  PageData: {
     className: "scene",
     name: "bonus",
   },
-  SceneTexts: {
+  PageTexts: {
     subtitle1: UseLang({ US: "Songs", FR: "Musiques" }),
     description1: UseLang({
       US:
@@ -27,7 +27,7 @@ export const SceneData: SceneElement = {
       FR: "Chargement..."
     })
   },
-  SceneSVGs: {
+  PageSVGs: {
     AppleMusic: (props: { style?: React.CSSProperties }) => (
       <svg
         xmlns="http://www.w3.org/2000/svg"

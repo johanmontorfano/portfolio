@@ -19,7 +19,7 @@ export const ComputeClassnames = () => {
                     ${ClassNamesValues[className][1]}: ${ClassNamesMediaQueries[className].small}
                 }
             }
-            @media only screen and (min-width: 1024px) or (max-width: 1023px) and (orientation: landscape) {
+            @media only screen and (min-width: 1024px) or ((max-width: 1023px) and (orientation: landscape)) {
                 .${className} {
                     ${ClassNamesValues[className][1]}: ${ClassNamesMediaQueries[className].normal}
                 }
@@ -32,6 +32,7 @@ export const ComputeClassnames = () => {
     ${styledElement}
 
     min-width: 100%
+    max-width: 100vw
   `;
 };
 

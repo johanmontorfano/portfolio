@@ -22,8 +22,8 @@ const Translates = {
 }
 
 export const PrivacyPage = () => {
-  const VerifiedText = UseNonUndefined(PageData.SceneTexts);
-  const VerifiedTables = UseNonUndefined(PageData.SceneTables);
+  const VerifiedText = UseNonUndefined(PageData.PageTexts);
+  const VerifiedTables = UseNonUndefined(PageData.PageTables);
 
   const [isAnalyticsDisabled, setDisablingState] = useState<boolean>(!AnalyticsData.isAnalyticsEnabled);
 

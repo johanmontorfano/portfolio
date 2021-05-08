@@ -1,12 +1,12 @@
 import { UseLang } from "../../modules/doc/lang";
-import { SceneElement } from "./types";
+import { PageElement } from "./types";
 
-export const SceneData: SceneElement = {
-  SceneData: {
+export const PageData: PageElement = {
+  PageData: {
     className: "scene",
     name: "form",
   },
-  SceneTexts: {
+  PageTexts: {
     bannerSendingText: UseLang({
       US: "Sending your message...",
       FR: "Envoi de votre message...",

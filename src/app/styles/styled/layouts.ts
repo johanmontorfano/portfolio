@@ -8,7 +8,7 @@ import { UseNonUndefined } from "../../../modules/var/non-undefined-content";
 export const LayoutStyles: {
   VideoLayout: MotionProps;
   ImageLayout: MotionProps;
-  SceneWrapper: MotionProps;
+  PageWrapper: MotionProps;
   BannerLayout: MotionProps;
   DescriptionLayout: MotionProps;
   TitleLayout: MotionProps;
@@ -23,7 +23,8 @@ export const LayoutStyles: {
       display: "block",
       borderRadius: GetClassnameValue("element-border-radius-size"),
       pointerEvents: "none",
-      height: "0%"
+      height: "0%",
+      boxSizing: "content-box"
     },
   },
   ImageLayout: {
@@ -31,7 +32,7 @@ export const LayoutStyles: {
       borderRadius: GetClassnameValue("element-border-radius-size"),
     },
   },
-  SceneWrapper: {
+  PageWrapper: {
     initial: {
       minHeight: "100vh",
       background: GetClassnameValue("background"),
@@ -181,14 +182,14 @@ export const EditImageLayoutStyle = {
   ),
   blocks: EditJSONObjectFactory(UseNonUndefined(LayoutStyles.ImageLayout)),
 };
-export const EditSceneWrapperStyle = {
+export const EditPageWrapperStyle = {
   initialBlock: EditJSONObjectFactory(
-    UseNonUndefined(LayoutStyles.SceneWrapper.initial)
+    UseNonUndefined(LayoutStyles.PageWrapper.initial)
   ),
   animateBlock: EditJSONObjectFactory(
-    UseNonUndefined(LayoutStyles.SceneWrapper.animate)
+    UseNonUndefined(LayoutStyles.PageWrapper.animate)
   ),
-  blocks: EditJSONObjectFactory(UseNonUndefined(LayoutStyles.SceneWrapper)),
+  blocks: EditJSONObjectFactory(UseNonUndefined(LayoutStyles.PageWrapper)),
 };
 export const EditBannerLayoutStyle = {
   initialBlock: EditJSONObjectFactory(

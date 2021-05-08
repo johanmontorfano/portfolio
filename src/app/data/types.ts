@@ -1,21 +1,24 @@
-export type SceneElement = {
-  SceneData: {
+export type PageElement = {
+  PageData: {
     className: string;
     name: string;
   };
-  SceneTexts?: {
+  PageValues?: {
+    [key: string]: any;
+  }
+  PageTexts?: {
     [key: string]: any;
   };
-  SceneTables?: {
+  PageTables?: {
     [key: string]: any;
   };
-  SceneImages?: {
+  PageImages?: {
     [key: string]: any;
   };
-  SceneSVGs?: {
+  PageSVGs?: {
     [key: string]: any;
   };
-  SceneVideos?: {
+  PageVideos?: {
     [key: string]: any;
   };
 };
