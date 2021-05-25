@@ -1,0 +1,57 @@
+.button {
+    font-size: var(--regular-font-size);
+    font-weight: var(--semi-bold-weight);
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    //to limit to button sizes to it's content
+    display: inline-block;
+    padding-left: calc(var(--padding) * 4);
+    padding-right: calc(var(--padding) * 4);
+    
+    // ! notice that color and background-color attrs are not defined
+    // ! in the global.sass file under .light or .dark definition because
+    // ! they cannot be defined by a color theme, only hover effect can
+    // ! be declared on theme definitions because it uses mutable colors
+
+    &.process {
+        animation: cubic-bezier(0.25, 0.46, 0.45, 0.94) load 2s infinite
+    }
+
+    &.enabled {
+        color: var(--cultured);
+        background: var(--blue-ryb);
+        border: 1px solid var(--blue-ryb);
+    }
+    &.disabled {
+        // ! the disabled state is defined in the global.sass file because colors depends on the theme
+        transform: scale(0.9);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:hover.enabled {
+        cursor: pointer;
+        transform: scale(1.025);
+    }
+
+    &:active.enabled {
+        transform: scale(0.9);
+    }
+}
+
+@keyframes load {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.05);
+    }
+    80% {
+        transform: scale(0.95)
+    }
+    100% {
+        transform: scale(1);
+    }
+}

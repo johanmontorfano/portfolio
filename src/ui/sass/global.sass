@@ -1,0 +1,131 @@
+//importing Inter w/weights: 400 600 800
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap');
+//importing Gloria Hallelujah w/weights: 400
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
+*:root
+    // ! font-sizing
+    // ! notice Npx + number to define a minimum font-size, it's a trick
+    --large-font-size: calc(calc(8vw + 8vh) / 2 + 20px)
+    --medium-font-size: calc(calc(4.5vw + 4.5vh) / 2 + 18px)
+    --regular-font-size: calc(calc(2vw + 2vh) / 2 + 16px)
+    --tiny-font-size: calc(calc(1vw + 1vh) / 2 + 14px)
+    --s-tiny-font-size: calc(calc(1vw + 1vh) / 2 + 12px)
+    // ! font-weights
+    --regular-weight: 400
+    --semi-bold-weight: 600
+    --bold-weight: 800
+    // ! color sheme
+    //usage of azure:
+    //for hovered elements with blue-ryb as default color
+    --azure: hsla(212, 100%, 56%, 1)
+    //usage of dark-jungle-green:
+    //for texts, background on dark-mode as a variant of black
+    --dark-jungle-green: hsla(144, 7%, 13%, 1)
+    //usage of  blue-ryb:
+    //for buttons or any interactive element background
+    --blue-ryb: hsla(236, 100%, 58%, 1)
+    //usage of cultured:
+    //background on light-mode, for texts on dark-mode or on elements
+    //with  blue-ryb as background
+    --cultured: hsla(0, 0%, 94%, 1)
+    //usage of current theme significative color:
+    //for components which are not or can't be declared in a .scss file
+    //and which wants to get the current color which points to the theme
+    --significative-theme-color: white
+    //the same properties by with transparency
+    --significative-theme-color-opacity: rgba(255,255,255,0.6)
+    //usage of palette relative significative theme color:
+    //for components which wants to use a color depending on theme
+    //but compared to --significative-theme-color, this value gets color
+    //extracted from the palette
+    --significative-theme-color-relative-to-palette: var(--cultured)
+    //the reversed one is the contrary of the significative color
+    --significative-theme-color-relative-to-palette-reversed: var(--dark-jungle-green)
+    // ! values
+    --border-radius: 15px
+    --padding: calc(calc(0.75vw + 0.75vh) / 2)
+
+//apply some basic definitions to elements
+.button, .title, .subtitle, .text, .image, .link
+    font-family: Inter
+    user-select: none
+    transition: all 0.2s ease
+
+img
+    //prevent image quality to be decreased in compatible browsers
+    image-rendering: high-quality
+
+*
+    scroll-behavior: smooth
+
+//body definition
+body#body
+    margin: 0
+    padding: 0
+    overflow-x: hidden
+
+//stylize navigation bar
+body::-webkit-scrollbar 
+  width: 7.5px
+body::-webkit-scrollbar-thumb
+  border-radius: 20px
+  box-shadow: inset 0 0 6px rgba(0,0,0,.3)
+  background-color: #737272
+  border: 1px solid black
+
+
+//light theme definition
+.light
+    //update the significative color theme for light mode
+    --significative-theme-color: white
+    --significative-theme-color-opacity: rgba(255,255,255,0.6)
+    --significative-theme-color-relative-to-palette: var(--cultured)
+    --significative-theme-color-relative-to-palette-reversed: var(--dark-jungle-green)
+    //set box-shadow effect for light mode
+    //box-shadow-relative-to-palette use the theme color palette to box shadow
+    --box-shadow: 0px 0px 15px 1px var(--dark-jungle-green)
+    --box-shadow-relative-to-palette: 0px 0px 15px 4px var(--cultured)
+
+    background: white
+    .title, .subtitle, .text, .handwrite, .link, .input, .textarea
+        color: var(--dark-jungle-green)
+        
+    .button
+        &.disabled
+            background: var(--cultured)
+            border: 1px solid white
+            color: gray
+        &:hover.enabled
+            background: var(--cultured)
+            color: var(--dark-jungle-green)
+            border: 1px solid var(--dark-jungle-green)
+    .bar, .background-depending-on-theme
+        background: var(--cultured)
+//dark theme definition
+.dark
+    //update the significative color theme for dark mode
+    --significative-theme-color: black
+    --significative-theme-color-opacity: rgba(0,0,0,0.6)
+    --significative-theme-color-relative-to-palette: var(--dark-jungle-green)
+    --significative-theme-color-relative-to-palette-reversed: var(--cultured)
+    //set box-shadow effect for dark mode
+    //box-shadow-relative-to-palette use the theme color palette to box shadow
+    --box-shadow: 0px 0px 15px 1px var(--cultured)
+    --box-shadow-relative-to-palette: 0px 0px 15px 4px var(--dark-jungle-green)
+
+    background: black
+    .title, .subtitle, .text, .handwrite, .link, .input, .textarea
+        color: var(--cultured)
+        
+    .button
+        &.disabled
+            background: var(--dark-jungle-green)
+            border: 1px solid black
+            color: gray
+        &:hover.enabled
+            background: var(--dark-jungle-green)
+            color: var(--cultured)
+            border: 1px solid var(--cultured)
+    .bar, .background-depending-on-theme
+        background: var(--dark-jungle-green)

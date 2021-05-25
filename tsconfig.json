@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "../johanmontorfano-redirecthandler/scripts", "../johanmontorfano-redirecthandler/index.tsx"  ]
 }

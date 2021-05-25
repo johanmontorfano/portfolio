@@ -1,6 +1,14 @@
 import { render } from "react-dom";
-import { App } from "./app/app";
+import Cookies from "universal-cookie";
+import { App } from "./app/";
+import { handleNavigation } from "./scripts/navigate";
 
-const appDoc = document.getElementById("app");
+//import the global sass file
+import "./ui/sass/global.sass";
 
-render(<App />, appDoc);
+export const CookieSesion = new Cookies();
+
+//handling function to know if it's a redirect did with a navigate function
+handleNavigation();
+
+render(<App />, document.getElementById("app"));
