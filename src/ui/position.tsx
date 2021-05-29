@@ -1,15 +1,17 @@
-import { CSSProperties } from "react";
+import { CSSProperties, HTMLAttributes } from "react";
+import { EditJSONEntries } from "../data/manipulation";
 
 export const BuildPositionComponent =
   (position: "static" | "sticky" | "fixed" | "absolute" | "relative") =>
-  ({
-    children,
-    style
-  }: {
-    children: any;
-    style?: CSSProperties
-  }) =>
-    <div style={{ position: position, ...style }}>{children}</div>;
+  (props: HTMLAttributes<HTMLDivElement>) =>
+    (
+      <div
+        {...EditJSONEntries(
+          [["style", { position: position, ...props.style }]],
+          props
+        )}
+      />
+    );
 
 //set position method for element
 export const Fixed = BuildPositionComponent("fixed");

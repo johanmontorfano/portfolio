@@ -1,39 +1,30 @@
-import { Container } from "./container";
-import { useEffect, useState } from "react";
-import { MoveScroller, ScrollFeature } from "../scripts/features";
+import { useState } from "react";
+import { Title } from "./title";
+import { Fixed, Static, Sticky } from "./position";
 
 import "./sass/loader.scss";
 
 export const Loader = (props: { children: any }) => {
-  const [boxClassnames, setBoxClassnames] = useState<string>("loading");
+  //set the loading state, boolean
+  const [loadingState, setLoadingState] = useState<boolean>(false);
 
-  useEffect(() => {
-    MoveScroller(0,0);
-    //disable scrolling during loading
-    ScrollFeature(false);
-  }, []);
-
+  //fire event when the page is loaded and ready
   window.onload = () => {
-    setBoxClassnames("loaded");
-    setTimeout(() => {
-      ScrollFeature(true);
-      MoveScroller(0, 0);
-    }, 2255);
+    //update the loading state
+    setLoadingState(true);
   };
 
+  //renders the loader and the page
   return (
-    <Container
-      width={"100%"}
-      height={"100vh"}
-      style={{
-        background: "var(--significative-theme-color)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-      className={boxClassnames + "-container"}
-    >
-      <div className={boxClassnames}>{props.children}</div>
-    </Container>
+    <div>
+    <div>{props.children}</div>
+      <Fixed
+        className={
+          "background-depending-on-theme loader-interface " + loadingState
+        }
+      >
+        <Title style={{ fontStyle: "italic" }} className="loader-title">Johan Montorfano</Title>
+      </Fixed>
+    </div>
   );
 };

@@ -29,15 +29,15 @@ export const App = () => (
               entries: [
                 {
                   name: "Instagram",
-                  path: "instagram.com/franndjoo",
+                  path: "https://www.instagram.com/franndjoo",
                 },
                 {
                   name: "Snapchat",
-                  path: "snapchat.com/add/snaapdjoo",
+                  path: "https://www.snapchat.com/add/snaapdjoo",
                 },
                 {
                   name: "Twitter",
-                  path: "twitter.com/franndjoo",
+                  path: "https://www.twitter.com/franndjoo",
                 },
               ],
             },
@@ -46,7 +46,7 @@ export const App = () => (
               entries: [
                 {
                   name: "The code",
-                  path: "github.com/franndjoo/portfolio",
+                  path: "https://www.github.com/franndjoo/portfolio",
                 },
                 {
                   name: "The blog page",

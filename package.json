@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "versionName": "release 1 improve 1",
   "scripts": {
     "start": "react-scripts start",
