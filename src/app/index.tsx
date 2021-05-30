@@ -22,61 +22,7 @@ export const App = () => (
         </Switch>
         <Separe />
         <Separe />
-        <Footer
-          columns={[
-            {
-              name: "Social networks",
-              entries: [
-                {
-                  name: "Instagram",
-                  path: "https://www.instagram.com/franndjoo",
-                },
-                {
-                  name: "Snapchat",
-                  path: "https://www.snapchat.com/add/snaapdjoo",
-                },
-                {
-                  name: "Twitter",
-                  path: "https://www.twitter.com/franndjoo",
-                },
-              ],
-            },
-            {
-              name: "Deeper about this website :)",
-              entries: [
-                {
-                  name: "The code",
-                  path: "https://www.github.com/franndjoo/portfolio",
-                },
-                {
-                  name: "The blog page",
-                  path: 'local-subdomain-w/settings{"app": "blog", "params": "/about-this-website"}',
-                },
-              ],
-            },
-            {
-              name: "Subdomains",
-              entries: [
-                {
-                  name: "Blog",
-                  path: 'local-subdomain-w/settings{"app":"blog"}',
-                },
-                {
-                  name: "Todos",
-                  path: 'local-subdomain-w/settings{"app":"todo-cards"}',
-                },
-                {
-                  name: "Article Editor",
-                  path: 'local-subdomain-w/settings{"app": "article-editor"}',
-                },
-                {
-                  name: "Accounting",
-                  path: 'local-subdomain-w/settings{"app": "accounting"}',
-                },
-              ],
-            },
-          ]}
-        />
+        <Footer />
       </Loader>
     </BrowserRouter>
   </Themed>

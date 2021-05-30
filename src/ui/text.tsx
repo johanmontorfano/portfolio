@@ -5,7 +5,7 @@ import "./sass/text.scss";
 
 export const Text = (props: HTMLAttributes<HTMLDivElement>) => (
   <div
-    {...EditJSONEntries([["className", "text"]], props)}
+    {...EditJSONEntries([["className", "text " + props.className]], props)}
   />
 );
 //editing json entry "className" on the text element to add "text" class

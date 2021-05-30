@@ -8,7 +8,7 @@ export type MessageElement = {
   date: string;
 };
 
-//generate a message package
+//generate a valid message package for SendMessage
 export const GenerateMessage = (
   message: string,
   email: string,

@@ -3,15 +3,25 @@ import { Text } from "./text";
 import { Box } from "./box";
 import { Grid } from "./grid";
 import { Link } from "./link";
-import { Separe } from "./separe";
+import { useEffect, useState } from "react";
+import { GetFooterLinks } from "../gcp/static-scripts/get-footer-links";
 
 //link list are regrouped by columns
 //a column is an element in the main array
 //the name of a column is defined in the column[x].name => string property
 //the links of a column are defined in the column[x].entries => array[] property
-export const Footer = (props: {
-  columns: { name: string; entries: { name: string; path: string }[] }[];
-}) => {
+export const Footer = () => {
+  //this var stores the current givent links
+  const [linkLists, setLinkLists] = useState<
+    { name: string; entries: { name: string; path: string }[] }[]
+  >([]);
+
+  //this effect call the link loader function when the component is mounted
+  useEffect(() => {
+    //there is no catch block for this promise
+    GetFooterLinks().then((value) => setLinkLists(value));
+  }, []);
+
   return (
     <Container
       width={"100%"}
@@ -21,7 +31,7 @@ export const Footer = (props: {
         display: "block",
         borderTop:
           "1px solid var(--significative-theme-color-relative-to-palette)",
-        boxShadow: "var(--box-shadow-relative-to-palette)"
+        boxShadow: "var(--box-shadow-relative-to-palette)",
       }}
     >
       <Box x="100%" y="100%">
@@ -33,7 +43,7 @@ export const Footer = (props: {
             padding: "var(--padding)",
           }}
         >
-          {props.columns.map((column) => (
+          {linkLists.map((column) => (
             <ul>
               <Text style={{ fontSize: "var(--tiny-font-size)" }}>
                 {column.name}
