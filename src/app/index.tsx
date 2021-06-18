@@ -1,9 +1,6 @@
+import { Themed, Separe, Footer, Loader } from "montorfano-utils";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Themed } from "../ui/theme";
 import { Error404 } from "./pages/errors/404";
-import { Footer } from "../ui/footer";
-import { Separe } from "../ui/separe";
-import { Loader } from "../ui/loader";
 
 //rename importations because each component in pages should export a FC named Page
 import { Page as Home } from "./pages/_";
@@ -22,7 +19,7 @@ export const App = () => (
         </Switch>
         <Separe />
         <Separe />
-        <Footer />
+        <Footer linkLists={[]}/>
       </Loader>
     </BrowserRouter>
   </Themed>

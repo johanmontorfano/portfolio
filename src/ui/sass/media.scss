@@ -1,9 +1,0 @@
-.image {
-    display: block;
-    border-radius: var(--border-radius);
-
-    &:hover {
-        box-shadow: var(--box-shadow);
-        transform: scale(1.02)
-    }
-}

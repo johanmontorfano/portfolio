@@ -1,25 +1,30 @@
-import { Title } from "../../ui/title";
-import { Container } from "../../ui/container";
-import { Appear } from "../../ui/appear";
-import { Subtitle } from "../../ui/subtitle";
-import { Layer } from "../../ui/layer";
-import { Image } from "../../ui/media";
-import { Box } from "../../ui/box";
-import { Absolute, Relative } from "../../ui/position";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
-import { VerticalScrollParallaxFollowing } from "../../ui/parallax";
-import { Separe } from "../../ui/separe";
 import { useEffect, useRef, useState } from "react";
-import { Handwrite } from "../../ui/handwrite";
-import { Grid } from "../../ui/grid";
-import { Text } from "../../ui/text";
 import { GetProjects, ProjectDefinition } from "../../gcp/scripts/get-projects";
-import { JSONToArray, VerifyEntry } from "../../data/manipulation";
-import { navigate } from "../../scripts/navigate";
-import { Input, TextArea } from "../../ui/input";
-import { Button } from "../../ui/button";
 import { motion } from "framer-motion";
 import { GenerateMessage, SendMessage } from "../../gcp/scripts/send-message";
+import {
+  Text,
+  Image,
+  Container,
+  Layer,
+  VerticalScrollParallaxFollowing,
+  Appear,
+  Title,
+  Subtitle,
+  Relative,
+  Absolute,
+  Separe,
+  Box,
+  Handwrite,
+  Grid,
+  Button,
+  navigate,
+  Input,
+  VerifyEntry,
+  TextArea,
+  JSONToArray
+} from "montorfano-utils";
 
 //images
 import TheDesktop from "../images/the_desktop.jpg";

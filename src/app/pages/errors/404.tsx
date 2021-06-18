@@ -1,8 +1,4 @@
-import { Container } from "../../../ui/container";
-import { Title } from "../../../ui/title";
-import { Subtitle } from "../../../ui/subtitle";
-import { Link } from "../../../ui/link";
-import { Appear } from "../../../ui/appear";
+import { Container, Appear, Title, Link, Subtitle } from "montorfano-utils";
 
 export const Error404 = () => (
   <Container width="100%" height="100vh" xalign="center" yalign="center">
