@@ -23,7 +23,7 @@ import {
   Input,
   VerifyEntry,
   TextArea,
-  JSONToArray
+  JSONToArray,
 } from "montorfano-utils";
 
 //images
@@ -105,7 +105,7 @@ export const Page = () => {
               </Appear>
               <Appear delay={1}>
                 <Subtitle style={{ textAlign: "center" }}>
-                  Software Engineer
+                  Full-stack developer
                 </Subtitle>
               </Appear>
             </VerticalScrollParallaxFollowing>
@@ -161,10 +161,10 @@ export const Page = () => {
                   <div style={{ padding: "5%" }}>
                     <Parallax y={[-5, 20]}>
                       <Title>Hello :)</Title>
-                      <Subtitle style={{ textAlign: "justify" }}>
+                      <Text style={{ textAlign: "justify" }}>
                         Glad to see you here! I'm Johan and I'm a full-stack
                         developer. I'm from Lyon in France.
-                      </Subtitle>
+                      </Text>
                     </Parallax>
                   </div>
                   <div style={{ padding: "5%" }}>
@@ -177,23 +177,6 @@ export const Page = () => {
                     </Handwrite>
                   </div>
                 </div>
-                {/*
-
-                <br />
-                <Text style={{textAlign: "justify"}}>
-                  I'm from Lyon in France. I'm passionnate by coding, it's
-                  something that really intrigates me since 10 and now I can't
-                  stay without programming more than 1 day.
-                </Text>
-                <br />
-                <Text style={{textAlign: "justify"}}>
-                  You can scroll down a little bit more to access to the
-                  "professionnal" part of the website. Everything you are going
-                  to see is made by myself and I have learned everything to do
-                  that by myself.
-                </Text>
-
-                */}
               </Box>
             </Container>
           </Appear>
@@ -242,7 +225,7 @@ export const Page = () => {
         >
           <Title>Projects</Title>
         </Box>
-        <Subtitle>Explore some of my projects :)</Subtitle>
+        <Subtitle>Here you can explore some of my projects !</Subtitle>
         <Grid
           style={{
             gridTemplateColumns: "1fr",
@@ -339,6 +322,9 @@ export const Page = () => {
           }}
         >
           <div style={{ width: "100%", maxWidth: "1150px" }}>
+            <Appear>
+              <Text>Name</Text>
+            </Appear>
             <Appear delay={0.05}>
               <Input
                 style={{ width: "100%" }}
@@ -349,6 +335,9 @@ export const Page = () => {
               />
             </Appear>
             <Appear delay={0.1}>
+              <Text>E-mail</Text>
+            </Appear>
+            <Appear delay={0.15}>
               <Input
                 style={{ width: "100%", marginTop: "2%" }}
                 placeholder={"What is your email address ?"}
@@ -357,8 +346,11 @@ export const Page = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Appear>
+            <Appear delay={0.2}>
+              <Text>Your message</Text>
+            </Appear>
             <div style={{ width: "100%", marginTop: "2%" }}>
-              <Appear delay={0.15}>
+              <Appear delay={0.25}>
                 <TextArea
                   style={{
                     width: "100%",
@@ -380,7 +372,7 @@ export const Page = () => {
                 marginTop: "2%",
               }}
             >
-              <Appear delay={0.2}>
+              <Appear delay={0.3}>
                 <Button
                   className={
                     VerifyEntry(name).byLength(3) &&
