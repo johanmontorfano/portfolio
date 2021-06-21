@@ -24,6 +24,7 @@ import {
   VerifyEntry,
   TextArea,
   JSONToArray,
+  ShareIt
 } from "montorfano-utils";
 
 //images
@@ -91,13 +92,11 @@ export const Page = () => {
 
   return (
     <ParallaxProvider>
-      <Container width="100%" height="100vh" xalign="center" yalign="center">
+      <ShareIt title="Johan's Portfolio" url="https://www.johanmontorfano.com" />
+      <Container style={{width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
         <Layer layer={1}>
           <Container
-            width="100%"
-            height="100vh"
-            xalign="center"
-            yalign="center"
+            style={{width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center"}}
           >
             <VerticalScrollParallaxFollowing>
               <Appear delay={1}>
@@ -113,10 +112,7 @@ export const Page = () => {
         </Layer>
         <Layer layer={2}>
           <Container
-            width="100%"
-            height="100vh"
-            xalign="center"
-            yalign="center"
+            style={{width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center"}}
           >
             <Relative style={{ width: "100%", height: "100vh" }}>
               <Absolute style={{ top: "1%", left: "1%" }}>
@@ -135,19 +131,17 @@ export const Page = () => {
       </Container>
       <Separe />
       <Container
-        width={"100%"}
-        height={"100vh"}
-        style={{ position: "relative" }}
+        style={{width: "100%", height: "100vh", display: "flex", position: "relative"}}
       >
         <Layer layer={2}>
           <Appear delay={0.5}>
-            <Container width={"100%"} height={"100vh"} xalign="flex-start">
+            <Container style={{width: "100%", height: "100vh", display: "flex", justifyContent: "flex-start"}}>
               <Box
-                x={boxWidth}
-                y="100%"
                 style={{
                   background:
                     "linear-gradient(135deg, var(--significative-theme-color) 20%, transparent 100%)",
+                    width: boxWidth,
+                    height: "100%"
                 }}
               >
                 <div
@@ -183,8 +177,8 @@ export const Page = () => {
         </Layer>
         <Layer layer={1}>
           <Appear delay={1}>
-            <Container width={"100%"} height={"100vh"} xalign="flex-end">
-              <Box x="auto" y="100%">
+            <Container style={{width: "100%", height: "100vh", display: "flex", justifyContent: "flex-end"}}>
+              <Box style={{width: "auto", height: "100%"}}>
                 <span ref={TheDesktopRef}>
                   <Image
                     source={TheDesktop}
@@ -201,19 +195,17 @@ export const Page = () => {
       </Container>
       <Separe />
       <Container
-        width={"90%"}
-        height={"auto"}
         style={{
           display: "flex",
           flexDirection: "column",
           minHeight: "100vh",
           marginLeft: "5%",
           marginRight: "5%",
+          width: "90%",
+          height: "auto"
         }}
       >
         <Box
-          x="auto"
-          y="auto"
           style={{
             padding: "2%",
             position: "sticky",
@@ -221,6 +213,8 @@ export const Page = () => {
             background: "var(--significative-theme-color-opacity)",
             backdropFilter: "blur(5px)",
             zIndex: 2,
+            width: "auto",
+            height: "auto"
           }}
         >
           <Title>Projects</Title>
@@ -290,9 +284,9 @@ export const Page = () => {
       </Container>
       <Separe />
       <Container
-        width={"90%"}
-        height={"auto"}
         style={{
+          width: "90%",
+          height: "auto",
           display: "flex",
           flexDirection: "column",
           marginLeft: "5%",
@@ -300,8 +294,6 @@ export const Page = () => {
         }}
       >
         <Box
-          x="auto"
-          y="auto"
           style={{
             padding: "2%",
             background: "var(--significative-theme-color-opacity)",
@@ -312,13 +304,12 @@ export const Page = () => {
           <Title>Contact me :)</Title>
         </Box>
         <Box
-          x="auto"
-          y="100%"
           style={{
             padding: "2.5%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            height: "100%"
           }}
         >
           <div style={{ width: "100%", maxWidth: "1150px" }}>
