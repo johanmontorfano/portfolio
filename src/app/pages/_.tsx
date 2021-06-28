@@ -1,4 +1,3 @@
-import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import { useEffect, useRef, useState } from "react";
 import { GetProjects, ProjectDefinition } from "../../gcp/scripts/get-projects";
 import { motion } from "framer-motion";
@@ -24,7 +23,8 @@ import {
   VerifyEntry,
   TextArea,
   JSONToArray,
-  ShareIt
+  ShareIt,
+  Parallax
 } from "montorfano-utils";
 
 //images
@@ -55,8 +55,9 @@ export const Page = () => {
   //this value store the data relative to the button inner text
   //the button inner text is relative to the processing result
   //it can be "Sended" or "Failed" or "Send"
-  const [buttonText, setButtonText] =
-    useState<"Sended 😀" | "Failed 😑" | "Send ✈">("Send ✈");
+  const [buttonText, setButtonText] = useState<
+    "Sent 😀" | "Failed 😑" | "Send ✈"
+  >("Send ✈");
 
   //useEffect [] handles:
   //handling TheDesktopRef common using with boxWidth
@@ -91,12 +92,29 @@ export const Page = () => {
   }, []);
 
   return (
-    <ParallaxProvider>
-      <ShareIt title="Johan's Portfolio" url="https://www.johanmontorfano.com" />
-      <Container style={{width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
+    <div>
+      <ShareIt
+        title="Johan's Portfolio"
+        url="https://www.johanmontorfano.com"
+      />
+      <Container
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Layer layer={1}>
           <Container
-            style={{width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center"}}
+            style={{
+              width: "100%",
+              height: "100vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             <VerticalScrollParallaxFollowing>
               <Appear delay={1}>
@@ -112,7 +130,13 @@ export const Page = () => {
         </Layer>
         <Layer layer={2}>
           <Container
-            style={{width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center"}}
+            style={{
+              width: "100%",
+              height: "100vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             <Relative style={{ width: "100%", height: "100vh" }}>
               <Absolute style={{ top: "1%", left: "1%" }}>
@@ -131,17 +155,29 @@ export const Page = () => {
       </Container>
       <Separe />
       <Container
-        style={{width: "100%", height: "100vh", display: "flex", position: "relative"}}
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          position: "relative",
+        }}
       >
         <Layer layer={2}>
           <Appear delay={0.5}>
-            <Container style={{width: "100%", height: "100vh", display: "flex", justifyContent: "flex-start"}}>
+            <Container
+              style={{
+                width: "100%",
+                height: "100vh",
+                display: "flex",
+                justifyContent: "flex-start",
+              }}
+            >
               <Box
                 style={{
                   background:
                     "linear-gradient(135deg, var(--significative-theme-color) 20%, transparent 100%)",
-                    width: boxWidth,
-                    height: "100%"
+                  width: boxWidth,
+                  height: "100%",
                 }}
               >
                 <div
@@ -177,8 +213,15 @@ export const Page = () => {
         </Layer>
         <Layer layer={1}>
           <Appear delay={1}>
-            <Container style={{width: "100%", height: "100vh", display: "flex", justifyContent: "flex-end"}}>
-              <Box style={{width: "auto", height: "100%"}}>
+            <Container
+              style={{
+                width: "100%",
+                height: "100vh",
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Box style={{ width: "auto", height: "100%" }}>
                 <span ref={TheDesktopRef}>
                   <Image
                     source={TheDesktop}
@@ -202,7 +245,7 @@ export const Page = () => {
           marginLeft: "5%",
           marginRight: "5%",
           width: "90%",
-          height: "auto"
+          height: "auto",
         }}
       >
         <Box
@@ -214,7 +257,7 @@ export const Page = () => {
             backdropFilter: "blur(5px)",
             zIndex: 2,
             width: "auto",
-            height: "auto"
+            height: "auto",
           }}
         >
           <Title>Projects</Title>
@@ -233,7 +276,6 @@ export const Page = () => {
           {projectData.map((project) => (
             <motion.div
               style={{
-                padding: "var(--padding)",
                 borderRadius: "var(--border-radius)",
                 border:
                   "2px solid var(--significative-theme-color-relative-to-palette)",
@@ -247,6 +289,7 @@ export const Page = () => {
                   flexDirection: "column",
                   justifyContent: "space-between",
                   height: "100%",
+                  padding: "var(--padding)",
                 }}
               >
                 <div
@@ -259,11 +302,7 @@ export const Page = () => {
                   <Subtitle>{project.name}</Subtitle>
                   <Button
                     onClick={() => {
-                      navigate(
-                        'local-subdomain-w/settings{"app": "' +
-                          project.url +
-                          '"}'
-                      );
+                      navigate(project.url);
                     }}
                     style={{
                       background:
@@ -309,7 +348,7 @@ export const Page = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "100%"
+            height: "100%",
           }}
         >
           <div style={{ width: "100%", maxWidth: "1150px" }}>
@@ -385,7 +424,7 @@ export const Page = () => {
                         }, 4000);
                       })
                       .then(() => {
-                        setButtonText("Sended 😀");
+                        setButtonText("Sent 😀");
                         setName("");
                         setEmail("");
                         setMessage("");
@@ -400,6 +439,6 @@ export const Page = () => {
           </div>
         </Box>
       </Container>
-    </ParallaxProvider>
+    </div>
   );
 };

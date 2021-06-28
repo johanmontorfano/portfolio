@@ -1,4 +1,10 @@
-import { Themed, Separe, Footer, Loader } from "montorfano-utils";
+import {
+  Themed,
+  Separe,
+  Footer,
+  Loader,
+  MontorfanoUtilsProvider,
+} from "montorfano-utils";
 import { useEffect } from "react";
 import { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -18,22 +24,24 @@ export const App = () => {
   }, []);
 
   return (
-    <Themed>
-      <BrowserRouter>
-        <Loader>
-          <Switch>
-            <Route exact path={["/"]}>
-              <Home />
-            </Route>
-            <Route>
-              <Error404 />
-            </Route>
-          </Switch>
-          <Separe />
-          <Separe />
-          <Footer linkLists={linkLists} />
-        </Loader>
-      </BrowserRouter>
-    </Themed>
+    <MontorfanoUtilsProvider>
+      <Themed>
+        <BrowserRouter>
+          <Loader>
+            <Switch>
+              <Route exact path={["/"]}>
+                <Home />
+              </Route>
+              <Route>
+                <Error404 />
+              </Route>
+            </Switch>
+            <Separe />
+            <Separe />
+            <Footer linkLists={linkLists} />
+          </Loader>
+        </BrowserRouter>
+      </Themed>
+    </MontorfanoUtilsProvider>
   );
 };
