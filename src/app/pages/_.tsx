@@ -115,7 +115,7 @@ export const Page = () => {
             alignItems: "stretch",
           }}
         >
-          {projectData.map((project) => (
+          {projectData.map((project, i) => (
             <motion.div
               style={{
                 borderRadius: "var(--border-radius)",
@@ -125,6 +125,7 @@ export const Page = () => {
               }}
               whileHover={{ scale: 1.025 }}
               whileTap={{ scale: 1 }}
+              key={i}
             >
               <div
                 style={{

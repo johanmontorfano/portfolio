@@ -1,3 +1,6 @@
+# Changelogs 4.0.1
+## - Changing data of reward "clickedonthecircle"
+## - Resolving unkeying error of mapped projects
 # Changelogs 4.0.0
 ## - Lifting of title screen
 ## - Lifting of about screen
