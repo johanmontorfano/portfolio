@@ -1,3 +1,7 @@
+# Changelogs 4.0.0
+## - Lifting of title screen
+## - Lifting of about screen
+## - Resolving an issue of the projects tiles (letters was outside the container.)
 # Changelogs 3.0.2
 ## - Updating the loader working method
 ## - Fixing some components in UI folder

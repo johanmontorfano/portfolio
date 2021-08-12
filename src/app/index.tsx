@@ -13,6 +13,7 @@ import { GetFooterLinks, LinkListProp } from "../gcp/scripts/get-footer-links";
 
 //rename importations because each component in pages should export a FC named Page
 import { Page as Home } from "./pages/_";
+import { RewardInterface } from "./components/rewards";
 
 export const App = () => {
   //this hook saves the linklist
@@ -28,6 +29,7 @@ export const App = () => {
       <Themed>
         <BrowserRouter>
           <Loader>
+            <RewardInterface />
             <Switch>
               <Route exact path={["/"]}>
                 <Home />
