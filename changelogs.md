@@ -1,3 +1,5 @@
+# Changelogs 4.0.2
+## - Resolving issue with about screen data printing
 # Changelogs 4.0.1
 ## - Changing data of reward "clickedonthecircle"
 ## - Resolving unkeying error of mapped projects

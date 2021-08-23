@@ -71,8 +71,7 @@ export const Page = () => {
       <Container
         style={{
           width: "100%",
-          height: "100vh",
-          display: "flex",
+          minHeight: "100vh",
           position: "relative",
           background: "var(--significative-theme-color)",
         }}
@@ -121,7 +120,7 @@ export const Page = () => {
                 borderRadius: "var(--border-radius)",
                 border:
                   "2px solid var(--significative-theme-color-relative-to-palette)",
-                  padding: "1%"
+                padding: "1%",
               }}
               whileHover={{ scale: 1.025 }}
               whileTap={{ scale: 1 }}
