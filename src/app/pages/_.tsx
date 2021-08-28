@@ -117,48 +117,28 @@ export const Page = () => {
           {projectData.map((project, i) => (
             <motion.div
               style={{
-                borderRadius: "var(--border-radius)",
-                border:
+                borderBottom:
                   "2px solid var(--significative-theme-color-relative-to-palette)",
-                padding: "1%",
+                padding: "var(--padding)",
+                backgroundColor: "var(--significative-theme-color)"
               }}
-              whileHover={{ scale: 1.025 }}
+              whileHover={{
+                scale: 1.025,
+                cursor: "pointer",
+              }}
               whileTap={{ scale: 1 }}
               key={i}
+              onClick={() => navigate(project.url)}
             >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  height: "100%",
-                  padding: "var(--padding)",
-                }}
+              <Text
+                style={{ fontSize: "var(--s-tiny-font-size)", color: "gray" }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <Subtitle>{project.name}</Subtitle>
-                  <Button
-                    onClick={() => {
-                      navigate(project.url);
-                    }}
-                    style={{
-                      background:
-                        "var(--significative-theme-color-relative-to-palette)",
-                    }}
-                    className="enabled"
-                  >
-                    <Text>Go</Text>
-                  </Button>
-                </div>
-                <br />
-                <Text>{project.description}</Text>
-              </div>
+                Click to go.
+              </Text>
+              <Text style={{ fontWeight: 600 }}>{project.name}</Text>
+              <Text style={{ fontSize: "var(--s-tiny-font-size)" }}>
+                {project.description}
+              </Text>
             </motion.div>
           ))}
         </Grid>

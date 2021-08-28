@@ -50,7 +50,11 @@ export const TitleScreen = () => {
   }, [isMobileDevice]);
 
   function updatePalette() {
-    setHexGeneratorColorReference([generateColorEntry(), generateColorEntry(), generateColorEntry()]);
+    setHexGeneratorColorReference([
+      generateColorEntry(),
+      generateColorEntry(),
+      generateColorEntry(),
+    ]);
     if (!isMobileDevice) setScale(8);
     setPalette([
       generateHexColor(70),
@@ -67,14 +71,16 @@ export const TitleScreen = () => {
     return Math.floor(Math.random() * 255) - (isDark ? 50 : 0);
   }
 
-  function generateHexColor(hexDifference: number, monochromatic: boolean = false) {
-    if (monochromatic || useMonochromatic)
-      monochromatic = true;
+  function generateHexColor(
+    hexDifference: number,
+    monochromatic: boolean = false
+  ) {
+    if (monochromatic || useMonochromatic) monochromatic = true;
 
     const hexEntries = [
       hexGeneratorColorReference[0] + hexDifference,
       hexGeneratorColorReference[1] + hexDifference,
-      hexGeneratorColorReference[2] + hexDifference
+      hexGeneratorColorReference[2] + hexDifference,
     ];
 
     if (monochromatic) {
@@ -92,9 +98,13 @@ export const TitleScreen = () => {
   return (
     <Container onClick={updatePalette} style={{ maxWidth: "100vw" }}>
       <Container className="shapes" style={{ background: palette[0] }}>
-        <Shape color={palette[1]} size={35 + scale} />
-        <Shape color={palette[2]} size={25 + scale} />
-        <Shape color={palette[3]} size={15 + scale} />
+        {isMobileDevice ? null : (
+          <>
+            <Shape color={palette[1]} size={35 + scale} />
+            <Shape color={palette[2]} size={25 + scale} />
+            <Shape color={palette[3]} size={15 + scale} />
+          </>
+        )}
       </Container>
 
       <Container className={"title-screen-content"}>

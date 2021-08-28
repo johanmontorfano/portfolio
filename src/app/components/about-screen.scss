@@ -27,14 +27,13 @@
     width: 100vw;
     display: flex;
     justify-content: space-evenly;
+    background-color: var(--significative-theme-color-relative-to-palette);
 
     &>* {
         display: flex;
         justify-content: space-between;
         max-width: 300px;
         width: 100%;
-        background-color: var(--significative-theme-color-relative-to-palette);
-        padding: 0.5%;
         border-radius: 50em;
         padding-left: 0.75%;
         padding-right: 0.75%;

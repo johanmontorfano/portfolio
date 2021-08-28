@@ -1,3 +1,5 @@
+# Changelogs 4.1.0
+## - Started transitionning the website to minimalistic interface
 # Changelogs 4.0.2
 ## - Resolving issue with about screen data printing
 # Changelogs 4.0.1
