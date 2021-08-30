@@ -21,11 +21,9 @@ import {
 } from "montorfano-utils";
 import { TitleScreen } from "../components/title-screen";
 import { AboutScreen } from "../components/about-screen";
+import { ProjectScreen } from "../components/project-screen";
 
 export const Page = () => {
-  //store the data of Projects
-  const [projectData, setProjectData] = useState<ProjectDefinition[]>([]);
-
   //here there is the form data
   //including the name, email and message
   const [name, setName] = useState<string>("");
@@ -43,13 +41,6 @@ export const Page = () => {
   const [buttonText, setButtonText] = useState<
     "Sent 😀" | "Failed 😑" | "Send ✈"
   >("Send ✈");
-
-  //useEffect [] handles:
-  //set project data
-  useEffect(() => {
-    //load project data from firebase
-    GetProjects().then((data) => setProjectData(JSONToArray(data)));
-  }, []);
 
   return (
     <div id="_">
@@ -71,7 +62,6 @@ export const Page = () => {
       <Container
         style={{
           width: "100%",
-          minHeight: "100vh",
           position: "relative",
           background: "var(--significative-theme-color)",
         }}
@@ -83,7 +73,6 @@ export const Page = () => {
         style={{
           display: "flex",
           flexDirection: "column",
-          minHeight: "100vh",
           marginLeft: "5%",
           marginRight: "5%",
           width: "90%",
@@ -104,44 +93,7 @@ export const Page = () => {
         >
           <Title>Projects</Title>
         </Box>
-        <Grid
-          style={{
-            gridTemplateColumns: "1fr",
-            rowGap: "calc(var(--padding) + 20px)",
-            width: "100%",
-            justifyContent: "center",
-            marginTop: "5%",
-            alignItems: "stretch",
-          }}
-        >
-          {projectData.map((project, i) => (
-            <motion.div
-              style={{
-                borderBottom:
-                  "2px solid var(--significative-theme-color-relative-to-palette)",
-                padding: "var(--padding)",
-                backgroundColor: "var(--significative-theme-color)"
-              }}
-              whileHover={{
-                scale: 1.025,
-                cursor: "pointer",
-              }}
-              whileTap={{ scale: 1 }}
-              key={i}
-              onClick={() => navigate(project.url)}
-            >
-              <Text
-                style={{ fontSize: "var(--s-tiny-font-size)", color: "gray" }}
-              >
-                Click to go.
-              </Text>
-              <Text style={{ fontWeight: 600 }}>{project.name}</Text>
-              <Text style={{ fontSize: "var(--s-tiny-font-size)" }}>
-                {project.description}
-              </Text>
-            </motion.div>
-          ))}
-        </Grid>
+        <ProjectScreen />
       </Container>
       <Separe />
       <Container
@@ -157,6 +109,8 @@ export const Page = () => {
         <Box
           style={{
             padding: "2%",
+            position: "sticky",
+            top: 0,
             background: "var(--significative-theme-color-opacity)",
             backdropFilter: "blur(5px)",
             zIndex: 2,
@@ -166,7 +120,6 @@ export const Page = () => {
         </Box>
         <Box
           style={{
-            padding: "2.5%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -191,7 +144,7 @@ export const Page = () => {
             </Appear>
             <Appear delay={0.15}>
               <Input
-                style={{ width: "100%", marginTop: "2%" }}
+                style={{ width: "100%" }}
                 placeholder={"What is your email address ?"}
                 type="email"
                 value={email}
@@ -201,7 +154,7 @@ export const Page = () => {
             <Appear delay={0.2}>
               <Text>Your message</Text>
             </Appear>
-            <div style={{ width: "100%", marginTop: "2%" }}>
+            <div style={{ width: "100%" }}>
               <Appear delay={0.25}>
                 <TextArea
                   style={{
@@ -221,7 +174,6 @@ export const Page = () => {
                 width: "100%",
                 display: "flex",
                 justifyContent: "flex-end",
-                marginTop: "2%",
               }}
             >
               <Appear delay={0.3}>
@@ -229,7 +181,7 @@ export const Page = () => {
                   className={
                     VerifyEntry(name).byLength(3) &&
                     VerifyEntry(email).byRegex("@") &&
-                    VerifyEntry(message).byLength(2) &&
+                    VerifyEntry(message).byLength(10) &&
                     !isProcessing
                       ? "enabled"
                       : isProcessing
@@ -252,6 +204,9 @@ export const Page = () => {
                         setMessage("");
                       })
                       .catch(() => setButtonText("Failed 😑"));
+                  }}
+                  style={{
+                    marginTop: "2%"
                   }}
                 >
                   {buttonText}
