@@ -1,3 +1,6 @@
+# Changelogs 4.1.3
+## - Fixing issue with unresponsiveness of social buttons
+## - Removing circles
 # Changelogs 4.1.2
 ## - Adding social network buttons on the title screen
 ## - Resolving issue with reward notification fixing

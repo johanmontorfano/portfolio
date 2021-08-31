@@ -24,11 +24,9 @@
     }
 
     &>svg {
-        width: 2vw;
-        min-width: 30px;
-        max-width: 48px;
-        padding-left: 8px;
-        padding-top: 8px;
+        width: var(--medium-font-size);
+        padding-left: 1vw;
+        padding-top: 1vh;
         fill: var(--significative-theme-color-relative-to-palette-reversed);
 
         &:hover {
