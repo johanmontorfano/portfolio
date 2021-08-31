@@ -67,16 +67,17 @@ export const RewardInterface = (): JSX.Element => {
 
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-        width: "98vw",
-        height: "calc(100vh - 2vw)",
-        position: "absolute",
-        top: 0,
+      style={{
+        position: "fixed",
+        bottom: 0,
         padding: "1vw",
         display: "flex",
-        alignItems: "flex-end",
         justifyContent: "center",
+        width: "100%",
+        zIndex: 1000
+      }}
+      initial={{
+        opacity: 0,
         willChange: "opacity",
       }}
       animate={{

@@ -1,3 +1,10 @@
+# Changelogs 4.1.2
+## - Adding social network buttons on the title screen
+## - Resolving issue with reward notification fixing
+## - Changed border weight from 1px to 2px
+## - Changed circle printing behavior
+## - Resolving issue with color changing on first click
+## - Changed title banners vertical padding properties
 # Changelogs 4.1.1
 ## - Reworked the projects list to get minimalistic interface
 # Changelogs 4.1.0

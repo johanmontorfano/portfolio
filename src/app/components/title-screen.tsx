@@ -1,8 +1,16 @@
-import { Container, Parallax, Subtitle, Title } from "montorfano-utils";
+import {
+  Container,
+  navigate,
+  Parallax,
+  Subtitle,
+  Title,
+} from "montorfano-utils";
 import { useMouseMove } from "../hooks/use-mouse-move";
 import "./title-screen.scss";
 import { useEffect, useState } from "react";
 import { RewardsSubject } from "./rewards";
+import { InstagramSVG } from "../sources/instagram.svg";
+import { TwitterSVG } from "../sources/twitter.svg";
 
 /**
  * THIS BOX WILL FOLLOW THE CURSOR POSITION
@@ -14,7 +22,7 @@ export const Shape = (props: { color: string; size: number }): JSX.Element => {
     <div
       style={{
         transform: "translate(-50%, -50%)",
-        background: props.color,
+        border: "2px solid " + props.color,
         width: props.size * 10,
         height: props.size * 10,
         borderRadius: "50em",
@@ -46,15 +54,16 @@ export const TitleScreen = () => {
     );
 
   useEffect(() => {
+    generateHexColorReference();
+    updatePalette();
+  }, []);
+  useEffect(() => {
     if (isMobileDevice) setScale(26);
   }, [isMobileDevice]);
 
   function updatePalette() {
-    setHexGeneratorColorReference([
-      generateColorEntry(),
-      generateColorEntry(),
-      generateColorEntry(),
-    ]);
+    generateHexColorReference();
+
     if (!isMobileDevice) setScale(8);
     setPalette([
       generateHexColor(70),
@@ -63,14 +72,46 @@ export const TitleScreen = () => {
       generateHexColor(10),
     ]);
     if (!isMobileDevice) setTimeout(() => setScale(0), 500);
-    RewardsSubject.next("clickedonthecircle");
   }
 
   function generateColorEntry() {
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    return Math.floor(Math.random() * 255) - (isDark ? 50 : 0);
+    return Math.floor(Math.random() * 255 - (isDark ? 50 : 0));
   }
 
+  /**
+   * generateHexColorReferenec set an hex color reference, it's useful because it avoids to have too light colors that
+   * makes contrast difficulty
+   */
+  function generateHexColorReference() {
+    let colorReference: [number, number, number] = [
+      generateColorEntry(),
+      generateColorEntry(),
+      generateColorEntry(),
+    ];
+
+    //color tolerance is computed by computing generated entries average value and comparing it to the maximum tolerance value for lightening
+    //it avoids to get too light colors. higher is the tolerance value, longer the generating process will be and lighten the color reference will be
+    while (
+      (colorReference[0] + colorReference[1] + colorReference[2]) / 3 >=
+      200
+    ) {
+      colorReference = [
+        generateColorEntry(),
+        generateColorEntry(),
+        generateColorEntry(),
+      ];
+    }
+
+    setHexGeneratorColorReference(colorReference);
+  }
+
+  /**
+   * generateHexColor returns an hex color relative to the hex color reference
+   *
+   * @param hexDifference darken difference
+   * @param monochromatic should be n&b
+   */
   function generateHexColor(
     hexDifference: number,
     monochromatic: boolean = false
@@ -96,22 +137,23 @@ export const TitleScreen = () => {
   }
 
   return (
-    <Container onClick={updatePalette} style={{ maxWidth: "100vw" }}>
-      <Container className="shapes" style={{ background: palette[0] }}>
-        {isMobileDevice ? null : (
-          <>
-            <Shape color={palette[1]} size={35 + scale} />
-            <Shape color={palette[2]} size={25 + scale} />
-            <Shape color={palette[3]} size={15 + scale} />
-          </>
-        )}
-      </Container>
-
+    <Container
+      onClick={() => {
+        updatePalette();
+        RewardsSubject.next("clickedonthecircle");
+      }}
+      style={{ maxWidth: "100vw" }}
+    >
+      <Container className="shapes" style={{ background: palette[2] }} />
       <Container className={"title-screen-content"}>
-        <Parallax y={[-50, 50]}>
-          <Title style={{ textAlign: "center" }}>Johan Montorfano</Title>
-          <Subtitle style={{ textAlign: "center" }}>Full-Stack Dev</Subtitle>
-        </Parallax>
+        <InstagramSVG />
+        <TwitterSVG />
+        <div className="center">
+          <Parallax y={[-50, 50]}>
+            <Title style={{ textAlign: "center" }}>Johan Montorfano</Title>
+            <Subtitle style={{ textAlign: "center" }}>Full-Stack Dev</Subtitle>
+          </Parallax>
+        </div>
       </Container>
     </Container>
   );

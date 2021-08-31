@@ -29,7 +29,7 @@ export const ProjectScreen = () => {
               padding: "var(--padding)",
               borderRadius: "var(--border-radius)",
               border:
-                "1px solid var(--significative-theme-color-relative-to-palette-reversed)",
+                "2px solid var(--significative-theme-color-relative-to-palette-reversed)",
               marginLeft: "25px",
               scale: 1,
               willChange: "scale",

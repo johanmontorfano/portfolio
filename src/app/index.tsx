@@ -1,5 +1,4 @@
 import {
-  Themed,
   Separe,
   Footer,
   Loader,
@@ -26,7 +25,6 @@ export const App = () => {
 
   return (
     <MontorfanoUtilsProvider>
-      <Themed>
         <BrowserRouter>
           <Loader>
             <RewardInterface />
@@ -43,7 +41,6 @@ export const App = () => {
             <Footer linkLists={linkLists} />
           </Loader>
         </BrowserRouter>
-      </Themed>
     </MontorfanoUtilsProvider>
   );
 };

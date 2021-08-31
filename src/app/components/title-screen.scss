@@ -12,9 +12,7 @@
 .title-screen-content {
     width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: var(--significative-theme-color-opacity);
     mix-blend-mode: screen;
     position: absolute;
     top: 0;
@@ -25,11 +23,25 @@
 
     }
 
-    @media screen and (prefers-color-scheme: dark) {
-        background: rgb(0, 0, 0);
+    &>svg {
+        width: 2vw;
+        min-width: 30px;
+        max-width: 48px;
+        padding-left: 8px;
+        padding-top: 8px;
+        fill: var(--significative-theme-color-relative-to-palette-reversed);
+
+        &:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
     }
 
-    @media screen and (prefers-color-scheme: light) {
-        background: rgba(255, 255, 255, 0.95);
+    &>.center {
+        height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

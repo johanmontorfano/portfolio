@@ -82,6 +82,8 @@ export const Page = () => {
         <Box
           style={{
             padding: "2%",
+            paddingTop: "1%",
+            paddingBottom: "1%",
             position: "sticky",
             top: 0,
             background: "var(--significative-theme-color-opacity)",
@@ -109,6 +111,8 @@ export const Page = () => {
         <Box
           style={{
             padding: "2%",
+            paddingTop: "1%",
+            paddingBottom: "1%",
             position: "sticky",
             top: 0,
             background: "var(--significative-theme-color-opacity)",
