@@ -18,7 +18,7 @@ export const ProjectScreen = () => {
         display: "flex",
         flexDirection: "row",
         width: "100%",
-        overflowX: "auto",
+        overflowX: "auto"
       }}
     >
       {projects.map((project, i) => {

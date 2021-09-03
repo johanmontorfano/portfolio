@@ -1,22 +1,16 @@
-import { useEffect, useRef, useState } from "react";
-import { GetProjects, ProjectDefinition } from "../../gcp/scripts/get-projects";
-import { motion } from "framer-motion";
+import { useState } from "react";
 import { GenerateMessage, SendMessage } from "../../gcp/scripts/send-message";
 import {
   Text,
   Container,
   Appear,
   Title,
-  Subtitle,
   Separe,
   Box,
-  Grid,
   Button,
-  navigate,
   Input,
   VerifyEntry,
   TextArea,
-  JSONToArray,
   ShareIt,
 } from "montorfano-utils";
 import { TitleScreen } from "../components/title-screen";
@@ -65,7 +59,7 @@ export const Page = () => {
         style={{
           display: "flex",
           flexDirection: "column",
-          width: "90%",
+          width: "100%",
         }}
       >
         <Box
@@ -87,6 +81,8 @@ export const Page = () => {
             style={{
               marginLeft: "5%",
               marginRight: "5%",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <ProjectScreen />
@@ -96,17 +92,14 @@ export const Page = () => {
       <Separe />
       <Container
         style={{
-          width: "90%",
-          height: "auto",
-          display: "flex",
-          flexDirection: "column",
+          width: "100%",
         }}
       >
         <Box
           style={{
             padding: "2%",
-            paddingTop: "1%",
-            paddingBottom: "1%",
+            paddingTop: "2%",
+            paddingBottom: "2%",
             position: "sticky",
             top: 0,
             background: "var(--significative-theme-color-opacity)",
@@ -114,105 +107,111 @@ export const Page = () => {
             zIndex: 2,
           }}
         >
-          <Title>Contact me :)</Title>
+          <Title style={{ margin: 0 }}>Contact me :)</Title>
         </Box>
         <Box
           style={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
+            flexDirection: "column",
             height: "100%",
             marginLeft: "5%",
             marginRight: "5%",
+            width: "90%",
           }}
         >
-          <div style={{ width: "100%", maxWidth: "1150px" }}>
-            <Appear>
-              <Text style={{ marginBottom: 5 }}>Name</Text>
-            </Appear>
-            <Appear delay={0.05}>
-              <Input
-                style={{ width: "100%" }}
-                placeholder={"What is your name ?"}
-                type="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </Appear>
-            <Appear delay={0.1}>
-              <Text style={{ marginBottom: 5 }}>E-mail</Text>
-            </Appear>
-            <Appear delay={0.15}>
-              <Input
-                style={{ width: "100%" }}
-                placeholder={"What is your email address ?"}
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Appear>
-            <Appear delay={0.2}>
-              <Text style={{ marginBottom: 5 }}>Your message</Text>
-            </Appear>
-            <div style={{ width: "100%" }}>
-              <Appear delay={0.25}>
-                <TextArea
-                  style={{
-                    width: "100%",
-                    resize: "none",
-                    height: "100%",
-                    minHeight: "200px",
-                  }}
-                  placeholder={"What do you want to tell me ?"}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                />
-              </Appear>
-            </div>
-            <div
+          <Appear>
+            <Text style={{ marginBottom: 5 }}>Name</Text>
+          </Appear>
+          <Appear delay={0.05}>
+            <Input
               style={{
                 width: "100%",
-                display: "flex",
-                justifyContent: "flex-end",
+                fontSize: "calc(var(--regular-font-size) + 8px)",
               }}
-            >
-              <Appear delay={0.3}>
-                <Button
-                  className={
-                    VerifyEntry(name).byLength(3) &&
-                    VerifyEntry(email).byRegex("@") &&
-                    VerifyEntry(message).byLength(10) &&
-                    !isProcessing
-                      ? "enabled"
-                      : isProcessing
-                      ? "process disabled"
-                      : "disabled"
-                  }
-                  onClick={() => {
-                    setProcessState(true);
-                    SendMessage(GenerateMessage(message, email, name))
-                      .finally(() => {
-                        setProcessState(false);
-                        setTimeout(() => {
-                          setButtonText("Send ✈");
-                        }, 4000);
-                      })
-                      .then(() => {
-                        setButtonText("Sent 😀");
-                        setName("");
-                        setEmail("");
-                        setMessage("");
-                      })
-                      .catch(() => setButtonText("Failed 😑"));
-                  }}
-                  style={{
-                    marginTop: "7%",
-                  }}
-                >
-                  {buttonText}
-                </Button>
-              </Appear>
-            </div>
+              placeholder={"What is your name ?"}
+              type="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Appear>
+          <Appear delay={0.1}>
+            <Text style={{ marginBottom: 5 }}>E-mail</Text>
+          </Appear>
+          <Appear delay={0.15}>
+            <Input
+              style={{
+                width: "100%",
+                fontSize: "calc(var(--regular-font-size) + 8px)",
+              }}
+              placeholder={"What is your email address ?"}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Appear>
+          <Appear delay={0.2}>
+            <Text style={{ marginBottom: 5 }}>Your message</Text>
+          </Appear>
+          <div style={{ width: "100%" }}>
+            <Appear delay={0.25}>
+              <TextArea
+                style={{
+                  width: "100%",
+                  resize: "none",
+                  height: "100%",
+                  minHeight: "200px",
+                  fontSize: "calc(var(--regular-font-size) + 8px)",
+                }}
+                placeholder={"What do you want to tell me ?"}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+            </Appear>
+          </div>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Appear delay={0.3}>
+              <Button
+                className={
+                  VerifyEntry(name).byLength(3) &&
+                  VerifyEntry(email).byRegex("@") &&
+                  VerifyEntry(message).byLength(10) &&
+                  !isProcessing
+                    ? "enabled"
+                    : isProcessing
+                    ? "process disabled"
+                    : "disabled"
+                }
+                onClick={() => {
+                  setProcessState(true);
+                  SendMessage(GenerateMessage(message, email, name))
+                    .finally(() => {
+                      setProcessState(false);
+                      setTimeout(() => {
+                        setButtonText("Send ✈");
+                      }, 4000);
+                    })
+                    .then(() => {
+                      setButtonText("Sent 😀");
+                      setName("");
+                      setEmail("");
+                      setMessage("");
+                    })
+                    .catch(() => setButtonText("Failed 😑"));
+                }}
+                style={{
+                  marginTop: "7%",
+                }}
+              >
+                {buttonText}
+              </Button>
+            </Appear>
           </div>
         </Box>
       </Container>

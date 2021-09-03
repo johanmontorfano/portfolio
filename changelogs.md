@@ -1,3 +1,5 @@
+# Changelogs 4.1.5
+### - Resolving issue with Project screen and Contact screen mis-align
 # Changelogs 4.1.4
 ### - Disabling notifications and rewards until a fix of notification unresponsiveness on montorfano-utils
 ### - Changing navigation behaviors of about screen for effortless navigation
