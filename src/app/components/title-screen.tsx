@@ -38,7 +38,7 @@ export const Shape = (props: { color: string; size: number }): JSX.Element => {
 
 export const TitleScreen = () => {
   const [useMonochromatic, setUseMonochromatic] = useState<boolean>(false);
-  const [scale, setScale] = useState<number>(0);
+  const [hasBeenDisplayed, setDisplayingState] = useState<boolean>(false);
   const [hexGeneratorColorReference, setHexGeneratorColorReference] = useState<
     [number, number, number]
   >([generateColorEntry(), generateColorEntry(), generateColorEntry()]);
@@ -48,30 +48,26 @@ export const TitleScreen = () => {
     generateHexColor(40),
     generateHexColor(20),
   ]);
-  const isMobileDevice =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
-      navigator.userAgent
-    );
 
+  window.addEventListener("load", () =>
+    setTimeout(() => setDisplayingState(true), 400)
+  );
   useEffect(() => {
     generateHexColorReference();
     updatePalette();
   }, []);
   useEffect(() => {
-    if (isMobileDevice) setScale(26);
-  }, [isMobileDevice]);
+    document.documentElement.style.setProperty("--blue-ryb", palette[2]);
+  }, [palette]);
 
   function updatePalette() {
     generateHexColorReference();
-
-    if (!isMobileDevice) setScale(8);
     setPalette([
       generateHexColor(70),
       generateHexColor(50),
       generateHexColor(30),
       generateHexColor(10),
     ]);
-    if (!isMobileDevice) setTimeout(() => setScale(0), 500);
   }
 
   function generateColorEntry() {
@@ -146,12 +142,31 @@ export const TitleScreen = () => {
     >
       <Container className="shapes" style={{ background: palette[2] }} />
       <Container className={"title-screen-content"}>
-        <InstagramSVG />
-        <TwitterSVG />
+        <Parallax y={[-150, 50]}>
+          <div className="svg-content">
+            <InstagramSVG />
+            <TwitterSVG />
+          </div>
+        </Parallax>
         <div className="center">
-          <Parallax y={[-50, 50]}>
-            <Title style={{ textAlign: "center" }}>Johan Montorfano</Title>
-            <Subtitle style={{ textAlign: "center" }}>Full-Stack Dev</Subtitle>
+          <Parallax y={[-150, 50]}>
+            <div
+              style={{
+                transform: "scale(" + (hasBeenDisplayed ? 1 : 8) + ")",
+                backgroundColor: hasBeenDisplayed ? "unset" : "white",
+              }}
+            >
+              <Title
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                Johan Montorfano
+              </Title>
+              <Subtitle style={{ textAlign: "center" }}>
+                Full-Stack Dev
+              </Subtitle>
+            </div>
           </Parallax>
         </div>
       </Container>

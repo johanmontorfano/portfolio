@@ -1,18 +1,27 @@
-import { Box, Container, Separe, Subtitle, Text } from "montorfano-utils";
-import { useEffect, useRef, useState } from "react";
-import { resolveImage } from "../../gcp/scripts/storage";
+import { Container, Separe, Subtitle, Text } from "montorfano-utils";
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import "./about-screen.scss";
+import { AboutScreenPicture } from "./about-screen-picture";
 
 export const AboutScreen = () => {
-  //const ref = useRef<any>();
-  const [activeScreen, setActiveScreen] = useState<0 | 1 | 2>(0);
+  //observers for parts
+  const intersectionObservers = {
+    0: useInView({ rootMargin: "-12.5%" }),
+    1: useInView({ rootMargin: "-12.5%" }),
+  };
 
-  const [me2URL, setme2URL] = useState<string>("");
-
+  //effect for observer 0 to change screen (0 -> 1)
   useEffect(() => {
-    //resolve the me2 url from storage
-    resolveImage("me2").then((url) => setme2URL(url));
-  }, []);
+    if (intersectionObservers[0][1]) setActiveScreens(1);
+  }, [intersectionObservers[0][1]]);
+  //effect for observer 1 to change screen (1 -> 2)
+  useEffect(() => {
+    if (intersectionObservers[1][1]) setActiveScreens(2);
+  }, [intersectionObservers[1][1]]);
+
+  const [activeScreens, setActiveScreens] = useState<0 | 1 | 2>(0);
+
 
   /**
    * compute my age
@@ -45,127 +54,89 @@ export const AboutScreen = () => {
   }
 
   return (
-    <>
-      <Container className="horizontal-navigation">
-        <div>
-          <Text
-            onClick={() => setActiveScreen(0)}
-            className={activeScreen === 0 ? "active" : ""}
-          >
-            Hello
-          </Text>
-          <Text
-            onClick={() => setActiveScreen(1)}
-            className={activeScreen === 1 ? "active" : ""}
-          >
-            Passions
-          </Text>
-          <Text
-            onClick={() => setActiveScreen(2)}
-            className={activeScreen === 2 ? "active" : ""}
-          >
-            Skills
-          </Text>
+    <Container className="horizontal-wrapper">
+      <Container
+        className={
+          (activeScreens >= 0 ? "active" : "") + " horizontal-presentation"
+        }
+      >
+        <Separe />
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "stretch",
+          }}
+        >
+          <AboutScreenPicture />
         </div>
-      </Container>
-      <Container className="horizontal-wrapper" style={{
-        height: document.getElementsByClassName("horizontal-presentation " + (activeScreen + 1))[0]?.getBoundingClientRect().height
-      }}>
-        <Container
-          className={
-            (activeScreen === 0 ? "active" : "") + " horizontal-presentation 1"
-          }
-        >
-          <Separe />
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "stretch",
-            }}
-          >
-            <img
-              src={me2URL}
-              style={{
-                width: "15vw",
-                height: "15vw",
-                borderRadius: "50em",
-                objectFit: "cover",
-              }}
-            />
-          </div>
-          <Separe />
-          <div>
-            <Subtitle style={{ marginBottom: "3%" }}>
-              Hello there, I'm Johan. I'm glad to see you here.
-            </Subtitle>
-            <Text style={{ marginBottom: "3%" }}>
-              I'm {ageCompute()} years old and {intentionRelativeToAge()}
-            </Text>
-            <Text style={{ marginBottom: "3%" }}>
-              I'm from Lyon. It's a pretty city near the south of France.
-            </Text>
-            <Text
-              style={{
-                marginBottom: "3%",
-                fontSize: "var(--s-tiny-font-size)",
-              }}
-            >
-              Click on the other buttons to learn more about me !
-            </Text>
-          </div>
-        </Container>
-        <Container
-          className={
-            (activeScreen === 1 ? "active" : "") + " horizontal-presentation 2"
-          }
-        >
-          <Subtitle style={{ marginBottom: "3%" }}>About my passions,</Subtitle>
-          <Text style={{ marginBottom: "3%" }}>
-            I've always been interested by programming. I really like to write
-            lines and lines of codes, test and improves them.
-          </Text>
-          <Text style={{ marginBottom: "3%" }}>
-            But I also likes a lot of other things, especially art and fashion.
-            I can stay an hour facing a painting to try to find out what does
-            the painting means.
-          </Text>
-          <Text>
-            In art, there is 1 thing I love: <strong>Minimalism</strong>. And I
-            believe an UI following minimalism rules cannot be bad.
-          </Text>
-        </Container>
-        <Container
-          className={
-            (activeScreen === 2 ? "active" : "") + " horizontal-presentation 3"
-          }
-        >
-          <Subtitle style={{ marginBottom: "3%" }}>
-            Let's see what I can do,
+        <Separe />
+        <div>
+          <Subtitle style={{ textDecoration: "underline", marginBottom: "3%" }}>
+            Hello there, I'm Johan. I'm glad to see you here.
           </Subtitle>
           <Text style={{ marginBottom: "3%" }}>
-            Since my first programming experiences, I've learned some basic
-            stuff like <strong>C++</strong> and <strong>Java</strong>. I'm good
-            at that but it's not my main skill.
+            I'm {ageCompute()} years old and {intentionRelativeToAge()}
           </Text>
           <Text style={{ marginBottom: "3%" }}>
-            My main skill is <strong>javascript frameworks</strong>. I work
-            using <strong>React</strong> since I've tried it. I can do anything
-            using React, from creating a responsive website to develop a social
-            network application for mobiles.
+            I'm from Lyon. It's a pretty city near the south of France.
           </Text>
-          <Text style={{ marginBottom: "3%" }}>
-            I'm also really good at using <strong>NodeJS</strong> to create
-            back-end. I know how to use and manage <strong>Firebase</strong> and{" "}
-            <strong>AWS</strong> if you need it in your project.
-          </Text>
-          <Text style={{ fontSize: "var(--s-tiny-font-size)" }}>
-            In the page below, you will see an overview of all the projects I've
-            worked on.
-          </Text>
-        </Container>
+          <div ref={intersectionObservers[0][0]} />
+        </div>
       </Container>
-    </>
+      <Container
+        className={
+          (activeScreens >= 1 ? "active" : "") + " horizontal-presentation"
+        }
+      >
+        <Subtitle style={{ textDecoration: "underline", marginBottom: "3%" }}>
+          About my passions,
+        </Subtitle>
+        <Text style={{ marginBottom: "3%" }}>
+          I've always been interested by programming. I really like to write
+          lines and lines of codes, test and improves them.
+        </Text>
+        <Text style={{ marginBottom: "3%" }}>
+          But I also likes a lot of other things, especially art and fashion. I
+          can stay an hour facing a painting to try to find out what does the
+          painting means.
+        </Text>
+        <Text>
+          In art, there is 1 thing I love: <strong>Minimalism</strong>. And I
+          believe an UI following minimalism rules cannot be bad.
+        </Text>
+          <div ref={intersectionObservers[1][0]} />
+      </Container>
+      <Container
+        className={
+          (activeScreens === 2 ? "active" : "") + " horizontal-presentation"
+        }
+      >
+        <Subtitle style={{ textDecoration: "underline", marginBottom: "3%" }}>
+          Let's see what I can do,
+        </Subtitle>
+        <Text style={{ marginBottom: "3%" }}>
+          Since my first programming experiences, I've learned some basic stuff
+          like <strong>C++</strong> and <strong>Java</strong>. I'm good at that
+          but it's not my main skill.
+        </Text>
+        <Text style={{ marginBottom: "3%" }}>
+          My main skill is <strong>javascript frameworks</strong>. I work using{" "}
+          <strong>React</strong> since I've tried it. I can do anything using
+          React, from creating a responsive website to develop a social network
+          application for mobiles.
+        </Text>
+        <Text style={{ marginBottom: "3%" }}>
+          I'm also really good at using <strong>NodeJS</strong> to create
+          back-end. I know how to use and manage <strong>Firebase</strong> and{" "}
+          <strong>AWS</strong> if you need it in your project.
+        </Text>
+        <Text style={{ fontSize: "var(--s-tiny-font-size)" }}>
+          In the page below, you will see an overview of all the projects I've
+          worked on.
+        </Text>
+      </Container>
+    </Container>
   );
 };

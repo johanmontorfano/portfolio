@@ -59,24 +59,13 @@ export const Page = () => {
       >
         <TitleScreen />
       </Container>
-      <Container
-        style={{
-          width: "100%",
-          position: "relative",
-          background: "var(--significative-theme-color)",
-        }}
-      >
-        <AboutScreen />
-      </Container>
+      <AboutScreen />
       <Separe />
       <Container
         style={{
           display: "flex",
           flexDirection: "column",
-          marginLeft: "5%",
-          marginRight: "5%",
           width: "90%",
-          height: "auto",
         }}
       >
         <Box
@@ -94,8 +83,15 @@ export const Page = () => {
           }}
         >
           <Title>Projects</Title>
+          <div
+            style={{
+              marginLeft: "5%",
+              marginRight: "5%",
+            }}
+          >
+            <ProjectScreen />
+          </div>
         </Box>
-        <ProjectScreen />
       </Container>
       <Separe />
       <Container
@@ -104,8 +100,6 @@ export const Page = () => {
           height: "auto",
           display: "flex",
           flexDirection: "column",
-          marginLeft: "5%",
-          marginRight: "5%",
         }}
       >
         <Box
@@ -128,11 +122,13 @@ export const Page = () => {
             justifyContent: "center",
             alignItems: "center",
             height: "100%",
+            marginLeft: "5%",
+            marginRight: "5%",
           }}
         >
           <div style={{ width: "100%", maxWidth: "1150px" }}>
             <Appear>
-              <Text>Name</Text>
+              <Text style={{ marginBottom: 5 }}>Name</Text>
             </Appear>
             <Appear delay={0.05}>
               <Input
@@ -144,7 +140,7 @@ export const Page = () => {
               />
             </Appear>
             <Appear delay={0.1}>
-              <Text>E-mail</Text>
+              <Text style={{ marginBottom: 5 }}>E-mail</Text>
             </Appear>
             <Appear delay={0.15}>
               <Input
@@ -156,7 +152,7 @@ export const Page = () => {
               />
             </Appear>
             <Appear delay={0.2}>
-              <Text>Your message</Text>
+              <Text style={{ marginBottom: 5 }}>Your message</Text>
             </Appear>
             <div style={{ width: "100%" }}>
               <Appear delay={0.25}>
@@ -210,7 +206,7 @@ export const Page = () => {
                       .catch(() => setButtonText("Failed 😑"));
                   }}
                   style={{
-                    marginTop: "2%"
+                    marginTop: "7%",
                   }}
                 >
                   {buttonText}

@@ -81,7 +81,7 @@ export const RewardInterface = (): JSX.Element => {
         willChange: "opacity",
       }}
       animate={{
-        opacity: isClosed ? 0 : 1,
+        opacity: true ? 0 : 1,
       }}
     >
       <Notification

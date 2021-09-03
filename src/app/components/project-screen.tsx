@@ -18,13 +18,13 @@ export const ProjectScreen = () => {
         display: "flex",
         flexDirection: "row",
         width: "100%",
-        height: "min-content",
         overflowX: "auto",
       }}
     >
-      {projects.map((project) => {
+      {projects.map((project, i) => {
         return (
           <motion.div
+            key={i}
             initial={{
               padding: "var(--padding)",
               borderRadius: "var(--border-radius)",
@@ -37,9 +37,11 @@ export const ProjectScreen = () => {
               justifyContent: "space-between",
               flexDirection: "column",
               width: "35vw",
-              minWidth: "250px",
+              minWidth: "300px",
               maxWidth: "400px",
-              height: "50vh",
+              height: "auto",
+              minHeight: "500px",
+              maxHeight: "600px"
             }}
             whileHover={{
               scale: 0.95,

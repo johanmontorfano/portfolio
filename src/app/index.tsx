@@ -27,7 +27,6 @@ export const App = () => {
     <MontorfanoUtilsProvider>
         <BrowserRouter>
           <Loader>
-            <RewardInterface />
             <Switch>
               <Route exact path={["/"]}>
                 <Home />

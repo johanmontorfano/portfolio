@@ -16,7 +16,7 @@ export const GetFooterLinks = (): Promise<LinkListProp> => {
         }
       )
       .catch(() => {
-        resolve([{ name: "Error", entries: [] }]);
+        resolve([{ name: "Hum hum... Are you connected to the internet ? I cannot find something :(", entries: [] }]);
       });
   });
 };
