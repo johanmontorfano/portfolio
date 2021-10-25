@@ -133,8 +133,8 @@ export const AboutScreen = () => {
           <strong>AWS</strong> if you need it in your project.
         </Text>
         <Text style={{ fontSize: "var(--s-tiny-font-size)" }}>
-          In the page below, you will see an overview of all the projects I've
-          worked on.
+          Below, you will see an overview of all the projects I've
+          worked on (and finished).
         </Text>
       </Container>
     </Container>

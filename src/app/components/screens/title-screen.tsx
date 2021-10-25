@@ -5,12 +5,12 @@ import {
   Subtitle,
   Title,
 } from "montorfano-utils";
-import { useMouseMove } from "../hooks/use-mouse-move";
+import { useMouseMove } from "../../hooks/use-mouse-move";
 import "./title-screen.scss";
 import { useEffect, useState } from "react";
-import { RewardsSubject } from "./rewards";
-import { InstagramSVG } from "../sources/instagram.svg";
-import { TwitterSVG } from "../sources/twitter.svg";
+import { RewardsSubject } from "../rewards";
+import { InstagramSVG } from "../../sources/instagram.svg";
+import { TwitterSVG } from "../../sources/twitter.svg";
 
 /**
  * THIS BOX WILL FOLLOW THE CURSOR POSITION
@@ -164,7 +164,7 @@ export const TitleScreen = () => {
                 Johan Montorfano
               </Title>
               <Subtitle style={{ textAlign: "center" }}>
-                Full-Stack Dev
+                UI/UX and Back-end Developer
               </Subtitle>
             </div>
           </Parallax>

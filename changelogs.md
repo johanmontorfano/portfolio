@@ -1,3 +1,5 @@
+# Changelogs 4.2.0
+### - Created custom pages for every project (overquick, montorfano-utils), removed data and scripts about project lists
 # Changelogs 4.1.5
 ### - Resolving issue with Project screen and Contact screen mis-align
 # Changelogs 4.1.4

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { resolveImage } from "../../gcp/scripts/storage";
+import { resolveImage } from "../../../gcp/scripts/storage";
 
 export const AboutScreenPicture = () => {
   const [currentPictureURL, updatePictureURL] = useState<string>("");
