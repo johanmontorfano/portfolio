@@ -29,7 +29,7 @@
     "react-scripts": "^4.0.3",
     "react-scroll-parallax": "^2.4.0",
     "rxjs": "^7.3.0",
-    "three": "^0.128.0",
+    "three": "^0.137.0",
     "typescript": "^4.2.4",
     "universal-cookie": "^4.0.4"
   },
