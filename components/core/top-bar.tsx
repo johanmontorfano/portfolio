@@ -43,7 +43,33 @@ export default function TopBar() {
           : {}
       }
     >
-      <Motion.div style={{position: "absolute", top: 0, height: "2px", background: "var(--text)", left: "0"}} animate={{ width: window.innerWidth / 2 * StepScrollContext.originalElementDistance() + "px" }} />
+      <Motion.p
+        style={{ "text-align": "center" }}
+        initial={{ top: 0, opacity: 0 }}
+        animate={
+          StepScrollContext.originalElementDistance() > 0
+            ? { y: -50, opacity: 0 }
+            : { y: 0, opacity: 1 }
+        }
+        class="tiny"
+      >
+        Copyright © 2022, Johan Montorfano
+      </Motion.p>
+      <Motion.div
+        style={{
+          position: "absolute",
+          top: 0,
+          height: "2px",
+          background: "var(--text)",
+          left: "0",
+        }}
+        animate={{
+          width:
+            (window.innerWidth / 2) *
+              StepScrollContext.originalElementDistance() +
+            "px",
+        }}
+      />
     </Motion.div>
   );
 }
