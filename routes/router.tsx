@@ -12,10 +12,12 @@ import "../sass/shared/global.scss";
 import "../sass/shared/mixins.scss";
 import "../sass/shared/placers.scss";
 import "../sass/shared/svg.scss";
+import { useDynamicIcon } from "../hooks/rel-icon";
 
 emailjs.init("99HG3BGXyFMTd-jj2");
 
-function Main() {
+export default function () {
+  useDynamicIcon("/public/johan-montorfano-white.png", "/public/johan-montorfano-black.png");
   const Routes = useRoutes([
     {
       path: "/",
@@ -29,5 +31,3 @@ function Main() {
     </Router>
   );
 }
-
-render(() => <Main />, document.getElementById("root") as HTMLElement);

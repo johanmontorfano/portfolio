@@ -63,7 +63,9 @@ svg.fill-stroke {
 
 // prevent selection
 *.prevent-select {
+  -webkit-user-select: none;
   user-select: none;
+
   &:hover {
     transform: none;
     cursor: default;
@@ -71,5 +73,29 @@ svg.fill-stroke {
   &:active {
     transform: none;
     cursor: default;
+  }
+}
+
+path.progressive-path-svg-draw {
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 1500;
+  animation: ppsvd 5s linear infinite;
+}
+
+@keyframes ppsvd {
+  from {
+    stroke-dashoffset: 3000;
+  }
+  25% {
+    stroke-dashoffset: 1500;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  75% {
+    stroke-dashoffset: -1500;
+  }
+  to {
+    stroke-dashoffset: -3000;
   }
 }
