@@ -1,4 +1,5 @@
-
+## 5.0.2
+- Added Google Analytics support
 ## 5.0.1 changes
 - Added a custom and efficient loader
 - Added meta tags to allow efficient indexing
