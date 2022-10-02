@@ -1,0 +1,72 @@
+@use "../shared/mixins.scss";
+@use "../shared/fonts.scss";
+
+@import "../shared/global.scss";
+@import "./button.scss";
+
+input {
+  background-color: var(--background);
+  border: none;
+  padding: clamp(8px, 2%, 12px);
+  border-radius: 12px;
+  min-width: 150px;
+  max-width: 550px;
+  width: calc(95% - 20px);
+  border: 1px solid var(--border);
+
+  &.input-warn {
+    border-color: orange;
+  }
+
+  &[type="submit"] {
+    @extend .button;
+
+    &:disabled {
+      opacity: 0.5;
+      @extend .prevent-user-select;
+    }
+  }
+  &input[type="date"]:not(.has-value):before{
+    color: var(--disc-text);
+    content: attr(placeholder);
+
+    &input[type="date"] {
+      opacity: 0;
+    }
+  }
+
+  &:focus:read-write {
+    @include mixins.box-shadow(rgba(0, 0, 0, 0.25));
+    border: 1px solid var(--container);
+    outline: none;
+    background: var(--container);
+  }
+
+  &[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    min-width: 0px;
+    max-width: none;
+    border: none;
+  }
+
+  &[type="file"] {
+    padding: 0px;
+  }
+
+  @include fonts.font(20px, 400);
+  @include mixins.transition;
+}
+
+textarea {
+  @extend input;
+  min-width: 0px;
+  max-width: 95%;
+  resize: vertical;
+}
+
+*.input-label {
+  min-width: 150px;
+  max-width: 500px;
+  width: calc(100% - 20px);
+}

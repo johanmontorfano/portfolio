@@ -1,6 +1,0 @@
-user-agent: *
-
-disallow: /console
-disallow: /privacy
-disallow: /favicon.png
-disallow: /card.png

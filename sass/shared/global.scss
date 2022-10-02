@@ -1,0 +1,128 @@
+@use "./mixins.scss";
+
+:root {
+  // colorized colors
+  --green: rgb(0, 201, 10);
+  --red: rgb(214, 0, 0);
+  --blue: rgb(0, 34, 224);
+  --violet: rgb(133, 0, 185);
+
+  // specific colors
+  @include mixins.theme-adaptative(--text, #000000, #ffffff);
+  @include mixins.theme-adaptative(--reversed-text, #ffffff, #000000);
+  @include mixins.theme-adaptative(--container, #e9e9e9, #161616);
+  @include mixins.theme-adaptative(--background, #ffffff, #000000);
+  @include mixins.theme-adaptative(--reversed-background, #000000, #ffffff);
+  @include mixins.theme-adaptative(--disc-text, #737373, #acacac);
+  @include mixins.theme-adaptative(--text-bg, #e2e2e2, #252525);
+  @include mixins.theme-adaptative(--border, #c0c0c0, #3f3f3f);
+  // transparent variations
+  @include mixins.theme-adaptative(
+    --background-op,
+    rgba(255, 255, 255, .6),
+    rgba(0, 0, 0, .8)
+  );
+  @include mixins.theme-adaptative(
+    --reversed-background-op,
+    rgba(0, 0, 0, .8),
+    rgba(255, 255, 255, .6),
+  );
+  @include mixins.theme-adaptative(
+    --container-op,
+    rgba(244, 244, 244, .6),
+    rgba(22, 22, 22, .8)
+  );
+  @include mixins.theme-adaptative(
+    --background-miop,
+    rgba(255, 255, 255, .875),
+    rgba(0, 0, 0, .875)
+  );
+  @include mixins.theme-adaptative(
+    --container-miop,
+    rgba(244, 244, 244, .875),
+    rgba(28, 28, 30, .875)
+  );
+}
+
+// set default values to the body
+body {
+  color: var(--text);
+  background: var(--background);
+  max-height: 100vh;
+}
+
+// disable user-agent margin and padding on all elements
+// add transition for color, background and fill properties
+* {
+  margin: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+
+  margin-block-start: 0;
+  margin-block-end: 0;
+
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+
+  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  padding-block-start: 0;
+  padding-block-end: 0;
+
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+
+  overflow: hidden;
+}
+
+img {
+  border-radius: 8px;
+}
+
+// scrollable element
+*.scrollable {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 50vh;
+
+  &.x-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-height: none;
+  }
+}
+
+*.reset {
+  all: unset;
+}
+*.reset-child > * {
+  all: unset;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--container);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: gray;
+  width: 7px;
+  border: 2.5px solid var(--container);
+  border-radius: 7px;
+}
+
+// disable user selection
+*.prevent-user-select {
+  user-select: none;
+  pointer-events: none;
+}

@@ -1,9 +1,2 @@
 node_modules
-build
-firebase-debug.log
-firebase.json
-firestore.indexes.json
-firestore.rules
-.firebaserc
-database.rules.json
-.firebase
+dist

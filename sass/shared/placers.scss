@@ -1,0 +1,68 @@
+@use "./mixins.scss";
+
+// 2 columns on desktop - 2 rows on mobile grid
+%dynamic-2col-grid,
+div.dynamic-2col-grid {
+  display: grid;
+
+  @include mixins.width-adaptative(grid-template-columns, 775px, 1fr, 1fr 1fr);
+  @include mixins.width-adaptative(grid-template-rows, 775px, 1fr 1fr, 1fr);
+  @include mixins.width-adaptative(row-gap, 775px, 12px, 0%);
+  @include mixins.width-adaptative(column-gap, 775px, 0%, 12px);
+
+  // disable the gap
+  &.no-gap {
+    row-gap: 0px;
+    column-gap: 0px;
+  }
+
+  // center elements on every cell
+  &.center-cells {
+    place-items: center;
+  }
+
+  &.menucontent-ratio {
+    @include mixins.width-adaptative(
+      grid-template-columns,
+      775px,
+      1fr,
+      15% calc(85% - 12px)
+    );
+    @include mixins.width-adaptative(grid-template-rows, 775px, 10% calc(90% - 12px), 1fr);
+  }
+}
+
+div[style*="display: grid;"] {
+  border: 1px solid var(--text);
+
+  & > * {
+    padding: clamp(12px, 1vh, 16px);
+  }
+
+  & > :nth-child(even) {
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  & > :nth-child(odd) {
+    background-color: var(--container);
+    border-right: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    font-weight: 700;
+  }
+
+  &.prevent-styling {
+    border: none;
+
+    & > * {
+      border: none;
+      background: transparent;
+      font-weight: initial;
+    }
+  }
+  &.disable-inset-padding > * {
+    padding: 0px;
+  }
+  &.center-cells {
+    place-items: center;
+  }
+}
