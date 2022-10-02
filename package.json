@@ -1,0 +1,29 @@
+{
+  "name": "portfolio",
+  "version": "5.0.0",
+  "description": "Personal Portfolio",
+  "homepage": "johanmontorfano.com",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.54.9",
+    "typescript": "^4.8.2",
+    "vite": "^3.0.9",
+    "vite-plugin-solid": "^2.3.0"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^3.7.0",
+    "@motionone/solid": "^10.14.2",
+    "@types/dompurify": "^2.3.4",
+    "dompurify": "^2.4.0",
+    "firebase": "^9.10.0",
+    "solid-app-router": "^0.4.2",
+    "solid-js": "^1.5.1",
+    "vite-plugin-solid-svg": "^0.4.1"
+  }
+}
