@@ -1,3 +1,13 @@
+
+## 5.0.1 changes
+- Added a custom and efficient loader
+- Added meta tags to allow efficient indexing
+## 5.0.0 changes
+- The codebase is now written using SolidJS instead of React.
+- The website has been totally redesigned.
+- Vercel is now used to host the website.
+
+
 # Changelogs 4.2.0
 ### - Created custom pages for every project (overquick, montorfano-utils), removed data and scripts about project lists
 # Changelogs 4.1.5
