@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
+import { getAnalytics } from "firebase/analytics";
 
 const app = initializeApp({
     apiKey: "AIzaSyDOa1aZmgCioyqkS_LxUja7HME_78QySiU",
@@ -14,3 +15,5 @@ const app = initializeApp({
 
 export const firestore = getFirestore(app);
 export const realtime = getDatabase(app, "https://portfolio-ccddc-default-rtdb.firebaseio.com/");
+
+const analytics = getAnalytics(app);
