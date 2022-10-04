@@ -11,7 +11,7 @@ input {
   border-radius: 12px;
   min-width: 150px;
   max-width: 550px;
-  width: calc(95% - 20px);
+  width: calc(100% - 20px);
   border: 1px solid var(--border);
 
   &.input-warn {

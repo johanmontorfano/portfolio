@@ -44,7 +44,7 @@ export function ContactScreen() {
     >
       <div
         style={{
-          width: "100%",
+          width: "94%",
           height: "100%",
           padding: "3%",
         }}
@@ -57,7 +57,7 @@ export function ContactScreen() {
         </Show>
         <form
           style={{
-            width: "90%",
+            width: "100%",
             height: "100%",
           }}
           class="prevent-styling"
@@ -70,8 +70,8 @@ export function ContactScreen() {
               message: message(),
             });
 
-            updateMessageSentState(state.status === 200 ? "sent" : "fail");
             updateMessageSendingState(false);
+            updateMessageSentState(state.status === 200 ? "sent" : "fail");
 
             if (state.status === 200) {
               setFrom("");
@@ -84,78 +84,90 @@ export function ContactScreen() {
             <br />
             <br />
           </Show>
-          <div class="dynamic-2col-grid">
-            <div>
-              <Show
-                when={screenType() === "big"}
-                fallback={<h2>Your message</h2>}
-              >
-                <h2>Informations about your message</h2>
-              </Show>
-              <br />
-              <input
-                type="email"
-                name="email"
-                autocomplete="email"
-                value={from()}
-                onChange={(ev) => {
-                  setFrom((ev.target as any).value);
-                  updateMessageSendingState(false);
-                  updateMessageSentState("none");
-                }}
-                placeholder="How can I contact you back ?"
-                disabled={sendingMessage()}
-              />
-              <p class="tiny" style={{ "max-width": "500px" }}>
-                I'm going to use this email address to contact you back, make
-                sure it's correctly formatted and you wrote YOUR email address !
-              </p>
-              <Show when={screenType() === "big"}>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              "justify-content": "center",
+            }}
+          >
+            <div
+              class="dynamic-2col-grid"
+              style={{ "max-width": "1400px", width: "95%" }}
+            >
+              <div>
+                <Show
+                  when={screenType() === "big"}
+                  fallback={<h2>Your message</h2>}
+                >
+                  <h2>Informations about your message</h2>
+                </Show>
                 <br />
-                <br />
-              </Show>
-              <br />
-              <input
-                type="text"
-                autocomplete="off"
-                value={subject()}
-                onChange={(ev) => {
-                  setSubject((ev.target as any).value);
-                  updateMessageSendingState(false);
-                  updateMessageSentState("none");
-                }}
-                placeholder="What do you want to talk about ?"
-                disabled={sendingMessage()}
-              />
-              <Show when={screenType() === "big"}>
-              <p class="tiny" style={{ "max-width": "500px" }}>
-                It's the first thing I'm going to see, so make sure to be
-                absolutely clear about your demandings.
-              </p>
-                <br />
-                <br />
-              </Show>
-              <br />
-            </div>
-            <div>
-              <Show when={screenType() === "big"}>
-                <h2>Your message</h2>
+                <input
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                  value={from()}
+                  onChange={(ev) => {
+                    setFrom((ev.target as any).value);
+                    updateMessageSendingState(false);
+                    updateMessageSentState("none");
+                  }}
+                  placeholder="How can I contact you back ?"
+                  disabled={sendingMessage()}
+                />
                 <p class="tiny" style={{ "max-width": "500px" }}>
-                  This is the body of your message, you can write anything here
+                  I'm going to use this email address to contact you back, make
+                  sure it's correctly formatted and you wrote YOUR email address
                   !
                 </p>
+                <Show when={screenType() === "big"}>
+                  <br />
+                  <br />
+                </Show>
                 <br />
-              <br />
-              </Show>
-              <textarea
-                value={message()}
-                onChange={(ev) => setMessage((ev.target as any).value)}
-                placeholder="What do you have to tell me ?"
-                rows={12}
-                disabled={sendingMessage()}
-              />
-            </div>
-              <input
+                <input
+                  type="text"
+                  autocomplete="off"
+                  value={subject()}
+                  onChange={(ev) => {
+                    setSubject((ev.target as any).value);
+                    updateMessageSendingState(false);
+                    updateMessageSentState("none");
+                  }}
+                  placeholder="What do you want to talk about ?"
+                  disabled={sendingMessage()}
+                />
+                <Show when={screenType() === "big"}>
+                  <p class="tiny" style={{ "max-width": "500px" }}>
+                    It's the first thing I'm going to see, so make sure to be
+                    absolutely clear about your demandings.
+                  </p>
+                  <br />
+                  <br />
+                </Show>
+                <br />
+              </div>
+              <div>
+                <Show when={screenType() === "big"}>
+                  <h2>Your message</h2>
+                  <p class="tiny" style={{ "max-width": "500px" }}>
+                    This is the body of your message, you can write anything
+                    here !
+                  </p>
+                  <br />
+                  <br />
+                </Show>
+                <textarea
+                  value={message()}
+                  onChange={(ev) => setMessage((ev.target as any).value)}
+                  placeholder="What do you have to tell me ?"
+                  rows={12}
+                  disabled={sendingMessage()}
+                />
+              </div>
+              <div style={{ display: "flex", "justify-content": screenType() === "tiny" ? "center": "left" }}>
+              <Motion.input
                 type="submit"
                 value={
                   sendingMessage()
@@ -171,8 +183,23 @@ export function ContactScreen() {
                     ? true
                     : false
                 }
+                initial={{
+                  scale: 1
+                }}
+                animate={{
+                  scale: sendingMessage() ? [1, .8, 1] : [1],
+                  width: screenType() === "tiny" && !sendingMessage() ? "100%" : "50%"
+                }}
+                transition={{
+                  scale: {
+                    repeat: Infinity,
+                    duration: 1
+                  }
+                }}
                 class={messageSentState() === "fail" ? "btn-red" : ""}
               />
+              </div>
+            </div>
           </div>
         </form>
       </div>

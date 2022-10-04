@@ -5,7 +5,7 @@ export function useScreenType() {
     const [screenType, updateScreenType] = createSignal<"tiny" | "big">(getScreenType());
 
     function getScreenType() {
-        return window.innerWidth <= 1100 ? "tiny" : "big";
+        return window.innerWidth <= 775 ? "tiny" : "big";
     }
 
     window.addEventListener("resize", () => updateScreenType(getScreenType()));
