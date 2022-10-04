@@ -58,7 +58,7 @@ export function ExpandableCard(props: {
         position: "absolute",
         cursor: "pointer",
         "box-shadow":
-          isExpanded() && screenType() === "big"
+          isExpanded()
             ? `0px 0px 1000px 1000px rgba(0, 0, 0, .8)`
             : "0px 0px 0px 0px rgba(0, 0, 0, .8)",
         transition: "box-shadow .2s ease",
@@ -115,7 +115,6 @@ export function ExpandableCard(props: {
         animate={{ opacity: isExpanded() ? 1 : 0 }}
         id="article--container"
       >
-        <div style={{width: "100%", height: "30vh", "min-height": "200px", "max-height": "600px", background: "white"}} />
         <div id="article--header">
           <h1>{props.title}</h1>
         </div>

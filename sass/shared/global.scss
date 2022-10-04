@@ -87,12 +87,12 @@ img {
 
 // scrollable element
 *.scrollable {
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   max-height: 50vh;
 
   &.x-scroll {
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
     max-height: none;
   }
@@ -123,6 +123,7 @@ img {
 
 // disable user selection
 *.prevent-user-select {
+  -webkit-user-select: none;
   user-select: none;
   pointer-events: none;
 }

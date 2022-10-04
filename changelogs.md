@@ -1,3 +1,7 @@
+## 5.0.3
+- Fixed an issue with the step-scrolling engine on touch screens.
+- Fixed an issue with misbehaviors of the contact screen.
+- Made the send email button more friendly.
 ## 5.0.2
 - Added Google Analytics support
 ## 5.0.1 changes

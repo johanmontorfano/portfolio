@@ -29,18 +29,28 @@ function LazyLoader() {
       }}
     >
       <Motion.div
-        initial={{ opacity: 1, position: "absolute", "z-index": 50 }}
+        initial={{
+          opacity: 1,
+          position: "absolute",
+          "z-index": 50,
+          width: "100vw",
+          height: "100vh",
+          background: "var(--background)",
+          display: "flex",
+          "justify-content": "center",
+          "align-items": "center"
+        }}
         animate={{
           opacity: itemLoaded() ? 0 : 1,
-          visibility: itemLoaded() ? "hidden" : "visible" 
+          visibility: itemLoaded() ? "hidden" : "visible",
         }}
         transition={{
-            visibility: {
-                delay: 1
-            },
-            opacity: {
-                duration: 1
-            }
+          visibility: {
+            delay: 1,
+          },
+          opacity: {
+            duration: 1,
+          },
         }}
       >
         <JohanMontorfano

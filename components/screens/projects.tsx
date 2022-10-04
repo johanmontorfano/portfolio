@@ -126,7 +126,7 @@ export function ProjectScreen() {
                   v.type === "repository" ? v : undefined
                 ).length
               }, 235px)`,
-              "overflow-x": "auto",
+              "overflow-x": "hidden",
             }}
             class="prevent-styling"
             onTouchStart={() => StepScrollContext.enableStepScroll(false)}
