@@ -4,8 +4,7 @@ import BottomBar from "../../components/core/bottom-bar";
 import { ProjectScreen } from "../../components/screens/projects";
 import TopBar from "../../components/core/top-bar";
 import { StepScrollContext } from "../../contexts/step-scroll";
-import { $DEVCOMP, createSignal, onMount } from "solid-js";
-import { GlobalContext } from "../../contexts/global";
+import { createSignal, onMount } from "solid-js";
 import { Motion } from "@motionone/solid";
 import { ContactScreen } from "../../components/screens/contact";
 

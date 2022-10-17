@@ -162,7 +162,7 @@ export function ContactScreen() {
                   value={message()}
                   onChange={(ev) => setMessage((ev.target as any).value)}
                   placeholder="What do you have to tell me ?"
-                  rows={12}
+                  style={{height: screenType() === "tiny" ? "30vh" :" 30vh"}}
                   disabled={sendingMessage()}
                 />
               </div>
