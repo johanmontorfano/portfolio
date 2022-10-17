@@ -2,6 +2,7 @@ User-agent: *
 
 Allow: /
 Allow: /sitemap.xml
-Disallow: /*
+Disallow: /johan-montorfano-black.png
+Disallow: /johan-montorfano-black.png
 
 Sitemap: https://johanmontorfano.com/sitemap.xml
