@@ -1,6 +1,4 @@
-User-agent: *
-
-Disallow: /johan-montorfano-black.png
-Disallow: /johan-montorfano-black.png
-
-Sitemap: https://johanmontorfano.com/sitemap.xml
+user-agent: *
+disallow: /johan-montorfano-black.png
+disallow: /johan-montorfano-black.png
+sitemap: https://johanmontorfano.com/sitemap.xml
