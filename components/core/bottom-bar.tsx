@@ -60,7 +60,7 @@ export default function BottomBar() {
           }}
         >
           {[
-            [InstaSVG, "https://www.instagram.com/johanmnto", "fill"],
+            [InstaSVG, "https://www.instagram.com/johanmontorfano", "fill"],
             [GithubSVG, "https://github.com/franndjoo/", "fill"],
             [MailSVG, () => StepScrollContext.updateOriginalElementDistance(2), "stroke"],
             [PhoneSVG, "tel:+33763427433", "stroke"],
