@@ -1,7 +1,7 @@
 /* @refresh reload */
-import { render } from "solid-js/web";
 import { Router, useRoutes } from "solid-app-router";
 import { lazy } from "solid-js";
+import { useDynamicIcon } from "../hooks/rel-icon";
 import emailjs from "@emailjs/browser";
 
 import "../scripts/firebase-init";
@@ -12,12 +12,11 @@ import "../sass/shared/global.scss";
 import "../sass/shared/mixins.scss";
 import "../sass/shared/placers.scss";
 import "../sass/shared/svg.scss";
-import { useDynamicIcon } from "../hooks/rel-icon";
 
 emailjs.init("99HG3BGXyFMTd-jj2");
 
 export default function () {
-  useDynamicIcon("/public/johan-montorfano-white.png", "/public/johan-montorfano-black.png");
+  useDynamicIcon("/johan-montorfano-white.png", "/johan-montorfano-black.png");
   const Routes = useRoutes([
     {
       path: "/",

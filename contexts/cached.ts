@@ -1,4 +1,4 @@
-import { ProjectData } from './../types/projects';
+import { ProjectData } from '../types/projects';
 import { createStore } from "solid-js/store";
 
 /**

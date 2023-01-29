@@ -1,5 +1,5 @@
 import { Motion } from "@motionone/solid";
-import { createSignal, lazy, onMount, Show } from "solid-js";
+import { createSignal, onMount, Show } from "solid-js";
 import { render } from "solid-js/web";
 import JohanMontorfano from "../../svg/johan-montorfano.svg";
 
