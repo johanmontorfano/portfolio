@@ -44,7 +44,7 @@ export default function TopBar() {
       }
     >
       <Motion.p
-        style={{ "text-align": "center" }}
+        style={{ "text-align": "center", "font-variant": "all-small-caps" }}
         initial={{ top: 0, opacity: 0 }}
         animate={
           StepScrollContext.originalElementDistance() > 0
@@ -53,7 +53,7 @@ export default function TopBar() {
         }
         class="tiny"
       >
-        Copyright © 2022, Johan Montorfano
+        Copyright © 2023, Johan Montorfano
       </Motion.p>
       <Motion.div
         style={{

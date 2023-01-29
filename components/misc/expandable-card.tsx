@@ -4,6 +4,7 @@ import { GlobalContext } from "../../contexts/global";
 import { StepScrollContext } from "../../contexts/step-scroll";
 import { useScreenType } from "../../hooks/screen";
 
+import CloseOutline from "../../svg/close-outline.svg";
 import "../../sass/custom/article.scss";
 
 /** distance from the top on the Y axis for the expanded card */
@@ -117,6 +118,7 @@ export function ExpandableCard(props: {
       >
         <div id="article--header">
           <h1>{props.title}</h1>
+          <CloseOutline width={40} height={40} class="fill-fill" />
         </div>
         <div
           id="article--content"

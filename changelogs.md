@@ -1,3 +1,7 @@
+## 5.0.4
+- Changed the copyright's year from 2022 to 2023.
+- Fixed a typo on the contact screen.
+- Changed how the copyright text looks.
 ## 5.0.3
 - Fixed an issue with the step-scrolling engine on touch screens.
 - Fixed an issue with misbehaviors of the contact screen.

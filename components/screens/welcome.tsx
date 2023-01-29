@@ -76,7 +76,7 @@ export function WelcomeScreen() {
             }}
             transition={{ delay: 0.15 }}
           >
-            <BottomAppear delay={200}>
+            <BottomAppear delay={300}>
               <h1
                 style={{
                   "text-align": "left",
@@ -95,7 +95,7 @@ export function WelcomeScreen() {
               </h1>
             </BottomAppear>
 
-            <BottomAppear delay={400}>
+            <BottomAppear delay={500}>
               <h1
                 style={{
                   "text-align": "left",

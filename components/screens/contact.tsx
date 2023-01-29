@@ -100,7 +100,7 @@ export function ContactScreen() {
                   when={screenType() === "big"}
                   fallback={<h2>Your message</h2>}
                 >
-                  <h2>Informations about your message</h2>
+                  <h2>Who are you ?</h2>
                 </Show>
                 <br />
                 <input
