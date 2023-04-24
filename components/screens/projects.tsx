@@ -4,11 +4,7 @@ import { StepScrollContext } from "../../contexts/step-scroll";
 import { usePredefinedRequest } from "../../hooks/request";
 import ArrowForward from "../../svg/arrow-forward-outline.svg";
 import { ProjectData } from "../../types/projects";
-import { ExpandableCard } from "../misc/expandable-card";
-import * as _DOMPurify from "dompurify";
 import { Collapsable } from "../core/collapse";
-
-const DOMPurify = _DOMPurify.default;
 
 export function ProjectScreen() {
   const projects = usePredefinedRequest<ProjectData>("projects");
@@ -62,48 +58,44 @@ export function ProjectScreen() {
                     height: "50px",
                   }}
                 >
-                  <ExpandableCard
-                    initialBoundaries={{ width: "350px", height: "50px" }}
-                    onExpanded={DOMPurify.sanitize(item.description, {
-                      USE_PROFILES: { html: true },
-                    })}
-                    title={item.name}
+                  <Motion.div
+                    onClick={() => window.location.assign(item.description)}
+                    style={{
+                      display: "flex",
+                      "align-items": "center",
+                      width: "100%",
+                      "max-width": "350px",
+                      "justify-content": "space-between",
+                      background: "var(--container)",
+                      padding: "2%",
+                      "border-radius": "12px"
+                    }}
+                    initial={{
+                      opacity: 0,
+                      x: -50,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      x: 0,
+                    }}
+                    transition={{
+                      delay: 1 + i() * 0.1,
+                    }}
+                    class="category--container"
                   >
-                    <Motion.div
+                    <p
                       style={{
-                        display: "flex",
-                        "align-items": "center",
-                        width: "100%",
-                        "max-width": "350px",
-                        "justify-content": "space-between",
+                        "font-variant-caps": "all-small-caps",
+                        "font-weight": "500",
                       }}
-                      initial={{
-                        opacity: 0,
-                        x: -50,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        x: 0,
-                      }}
-                      transition={{
-                        delay: 1 + i() * 0.1,
-                      }}
-                      class="category--container"
                     >
-                      <p
-                        style={{
-                          "font-variant-caps": "all-small-caps",
-                          "font-weight": "500",
-                        }}
-                      >
-                        {item.name}
-                      </p>{" "}
-                      <ArrowForward
-                        class="fill-stroke"
-                        height={"clamp(21px, 6vw, 25px)"}
-                      />
-                    </Motion.div>
-                  </ExpandableCard>
+                      {item.name}
+                    </p>{" "}
+                    <ArrowForward
+                      class="fill-stroke"
+                      height={"clamp(21px, 6vw, 25px)"}
+                    />
+                  </Motion.div>
                 </div>
               );
             }}
@@ -126,7 +118,7 @@ export function ProjectScreen() {
                   v.type === "repository" ? v : undefined
                 ).length
               }, 235px)`,
-              "overflow-x": "hidden",
+              "overflow-x": "auto",
             }}
             class="prevent-styling"
             onTouchStart={() => StepScrollContext.enableStepScroll(false)}
@@ -139,8 +131,10 @@ export function ProjectScreen() {
             >
               {(item, i) => {
                 return (
-                  <div style={{ height: "300px" }}
-                  onClick={() => window.location.assign(item.description)}>
+                  <div
+                    style={{ height: "300px" }}
+                    onClick={() => window.location.assign(item.description)}
+                  >
                     <Motion.div
                       style={{
                         display: "flex",
@@ -189,7 +183,7 @@ export function ProjectScreen() {
       <div style={{ padding: "4%", "padding-bottom": "1%" }}>
         <Collapsable
           title="SKILLS"
-          targetHeight={window.innerHeight * .5}
+          targetHeight={window.innerHeight * 0.5}
           overridingValue={!repoCollapserOpened()}
           onChange={(v) => updateRepoCollapserOpeningState(!v)}
         >
