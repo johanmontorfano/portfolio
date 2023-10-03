@@ -1,101 +1,39 @@
-// compatibility: apply text color to svg elements
-svg.fill-fill {
-  fill: var(--text);
-  & > * {
+// Apply various styles to common SVG.
+svg.fill {
     fill: var(--text);
-    transition: all 0.1s ease;
-  }
-
-  &.reversed {
-    fill: var(--reversed-text);
-    & > * {
-      fill: var(--reversed-text);
-    }
-  }
-
-  transition: all 0.1s ease;
-}
-svg.fill-stroke {
-  stroke: var(--text);
-  & > * {
-    stroke: var(--text);
-    transition: all 0.1s ease;
-  }
-  transition: all 0.1s ease;
-
-  &.reversed {
-    stroke: var(--reversed-text);
-    & > * {
-      stroke: var(--reversed-text);
-    }
-  }
-
-  &.discreet {
-    stroke: var(--disc-text);
-    & > * {
-      stroke: var(--disc-text);
-    }
-  }
-}
-
-// clickable element
-*.clickable {
-  &:hover {
     cursor: pointer;
-    &.fill-fill {
-      fill: var(--green);
-      & > * {
-        fill: var(--green);
-      }
+    padding: 10px;
+
+    transition: all .15s ease;
+
+    &:hover {
+        opacity: .4;
     }
-    &.fill-stroke {
-      stroke: var(--green);
-      & > * {
-        stroke: var(--green);
-      }
+
+    &:active {
+        transform: scale(1.2);
     }
-  }
-
-  &:active {
-    transform: scale(0.95);
-  }
-}
-
-// prevent selection
-*.prevent-select {
-  -webkit-user-select: none;
-  user-select: none;
-
-  &:hover {
-    transform: none;
-    cursor: default;
-  }
-  &:active {
-    transform: none;
-    cursor: default;
-  }
 }
 
 path.progressive-path-svg-draw {
   stroke-dasharray: 3000;
-  stroke-dashoffset: 1500;
-  animation: ppsvd 5s linear infinite;
+  fill: var(--text);
+  transform-origin: center;
+
+  animation: ppsvd 2.5s linear;
 }
 
 @keyframes ppsvd {
   from {
     stroke-dashoffset: 3000;
+    fill: var(--background);
+    transform: scale(1);
   }
-  25% {
-    stroke-dashoffset: 1500;
-  }
-  50% {
+  80% {
     stroke-dashoffset: 0;
-  }
-  75% {
-    stroke-dashoffset: -1500;
+    fill: var(--background);
   }
   to {
-    stroke-dashoffset: -3000;
+    fill: var(--text);
   }
 }
