@@ -901,7 +901,7 @@ packages:
       '@types/long': 4.0.2
       lodash.camelcase: 4.3.0
       long: 4.0.0
-      protobufjs: 6.11.3
+      protobufjs: 6.11.4
       yargs: 16.2.0
     dev: false
 
@@ -1171,7 +1171,7 @@ packages:
       graphemer: 1.4.0
       ignore: 5.2.0
       natural-compare-lite: 1.4.0
-      semver: 7.3.7
+      semver: 7.5.4
       tsutils: 3.21.0(typescript@4.8.2)
       typescript: 4.8.2
     transitivePeerDependencies:
@@ -1279,7 +1279,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.3.7
+      semver: 7.5.4
       tsutils: 3.21.0(typescript@4.8.2)
       typescript: 4.8.2
     transitivePeerDependencies:
@@ -1300,7 +1300,7 @@ packages:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.8.2)
       eslint: 8.50.0
       eslint-scope: 5.1.1
-      semver: 7.3.7
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -1319,7 +1319,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       '@typescript-eslint/types': 5.62.0
-      eslint-visitor-keys: 3.3.0
+      eslint-visitor-keys: 3.4.3
     dev: false
 
   /acorn-jsx@5.3.2(acorn@8.10.0):
@@ -2160,7 +2160,7 @@ packages:
       ignore: 5.2.0
       is-core-module: 2.13.0
       minimatch: 3.1.2
-      resolve: 1.22.1
+      resolve: 1.22.6
       semver: 7.5.4
     dev: false
 
@@ -3104,8 +3104,8 @@ packages:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
     dev: false
 
-  /protobufjs@6.11.3:
-    resolution: {integrity: sha512-xL96WDdCZYdU7Slin569tFX712BxsxslWwAfAhCYjQKGTq7dAU91Lomy6nLLhh/dyGhk/YH4TwTSRxTzhuHyZg==}
+  /protobufjs@6.11.4:
+    resolution: {integrity: sha512-5kQWPaJHi1WoCpjTGszzQ32PG2F4+wRY6BmAT4Vfw56Q2FZ4YZzK20xUYQH4YkfehY1e6QSICrJquM6xXZNcrw==}
     hasBin: true
     requiresBuild: true
     dependencies:
