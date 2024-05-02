@@ -8,6 +8,7 @@ const LIGHT_LIGHTING = 0xFFFFFF;
 const DARK_LOGO = 0x404040;
 const LIGHT_LOGO = 0xFFFFFF;
 
+const drag_text = document.createElement("p");
 const is_dark = window.matchMedia("(prefers-color-scheme: dark)");
 let current_background = is_dark.matches ? DARK_BACKGROUND : LIGHT_BACKGROUND;
 let current_lighting = is_dark.matches ? DARK_LIGHTING : LIGHT_LIGHTING;
@@ -25,6 +26,8 @@ camera.position.z = 95;
 const renderer = new THREE.WebGLRenderer();
 const logo = (await gltf_loader.loadAsync("logo.glb")).scene;
 
+drag_text.textContent = "You can drag the logo horizontally.";
+drag_text.classList.add("tip");
 logo.scale.x = 10;
 logo.scale.y = 10;
 logo.scale.z = 10;
@@ -33,8 +36,8 @@ scene.add(logo);
 scene.add(ambient_light);
 scene.add(camera_spotlight);
 renderer.setSize(width, height);
-console.log(logo);
 
+document.body.append(drag_text);
 document.body.append(renderer.domElement);
 document.querySelector('meta[name="theme"]')
     ?.setAttribute("content", is_dark.matches ? "black" : "white");
@@ -52,15 +55,19 @@ is_dark.addEventListener("change", (is_dark) => {
 
 renderer.domElement.addEventListener("mousedown", () => {
     lock_rotation = true;
+    drag_text.classList.add("active");
 });
 renderer.domElement.addEventListener("touchstart", () => {
     lock_rotation = true;
+    drag_text.classList.add("active");
 });
 renderer.domElement.addEventListener("mouseup", () => {
     lock_rotation = false;
+    drag_text.classList.remove("active");
 });
 renderer.domElement.addEventListener("touchend", () => {
     lock_rotation = false;
+    drag_text.classList.remove("active");
 });
 renderer.domElement.addEventListener("mousemove", (ev) => {
     if (lock_rotation) logo.rotation.y = ev.x / 40;
