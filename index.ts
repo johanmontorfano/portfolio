@@ -26,7 +26,7 @@ camera.position.z = 95;
 const renderer = new THREE.WebGLRenderer();
 const logo = (await gltf_loader.loadAsync("logo.glb")).scene;
 
-drag_text.textContent = "You can drag the logo horizontally.";
+drag_text.textContent = "You can drag the logo horizontally";
 drag_text.classList.add("tip");
 logo.scale.x = 10;
 logo.scale.y = 10;
@@ -81,7 +81,7 @@ renderer.domElement.addEventListener("touchmove", (ev) => {
     const {innerWidth: width, innerHeight: height} = window;
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    if (!lock_rotation) logo.rotation.y += 0.03; 
+    if (!lock_rotation) logo.rotation.y -= 0.03; 
     scene.background = new THREE.Color(current_background);
     ambient_light.color = new THREE.Color(current_lighting);
     (logo.children[0] as any).material.color = new THREE.Color(current_logo);

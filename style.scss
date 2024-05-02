@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 :root {
     @media screen and (prefers-color-scheme: dark) {
         --text-color: white;
+        --faded-text-color: #DDDDDD;
     }
     @media screen and (prefers-color-scheme: light) {
         --text-color: black;
+        --faded-text-color: #333333;
     }
 }
 
@@ -14,8 +18,10 @@ p.tip {
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
-    color: var(--text-color);
+    color: var(--faded-text-color);
+    font-family: Roboto;
     transition: all .2s ease;
+    font-variant: all-small-caps;
 
     &.active {
         opacity: 1;
