@@ -43,6 +43,8 @@ onThemeChange((is_dark) => {
     (logo.children[0] as any).material.color = is_dark ? DARK_LOGO : LIGHT_LOGO;
     document.querySelector('meta[name="theme"]')
         ?.setAttribute("content", is_dark ? "black" : "white");
+    document.querySelector('link[rel="icon"]')
+        ?.setAttribute("href", is_dark ? "./logo-white.svg" : "./logo.svg");
     document.body.style
         .setProperty("background", is_dark ? "#141414" : "#CCCCCC");
 });
