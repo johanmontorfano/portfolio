@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+    @media screen and (prefers-color-scheme: dark) {
+        --text-color: white;
+        --faded-text-color: #DDDDDD;
+    }
+    @media screen and (prefers-color-scheme: light) {
+        --text-color: black;
+        --faded-text-color: #333333;
+    }
+}
+
+// Used for tips texts, such as the dragging tip.
+p.tip {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    color: var(--faded-text-color);
+    font-family: Roboto;
+    transition: all .2s ease;
+    font-variant: all-small-caps;
+
+    &.active {
+        opacity: 1;
+    }
+}
