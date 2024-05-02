@@ -1,6 +1,6 @@
 {
-    "name": "vanilla-portfolio",
-    "version": "1.0.0",
+    "name": "jm-portfolio",
+    "version": "7.0.0",
     "scripts": {
         "start": "vite",
         "build": "vite build"
