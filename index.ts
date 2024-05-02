@@ -19,7 +19,7 @@ const {innerWidth: width, innerHeight: height} = window;
 const scene = new THREE.Scene();
 const gltf_loader = new GLTFLoader();
 const ambient_light = new THREE.AmbientLight(NULL_COLOR);
-const camera_spotlight = new THREE.SpotLight(NULL_COLOR, 10000);
+const camera_spotlight = new THREE.SpotLight(LIGHT_LIGHTING, 10000);
 const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
 const logo = (await gltf_loader.loadAsync("logo.glb")).scene;
@@ -36,10 +36,8 @@ scene.add(ambient_light);
 scene.add(camera_spotlight);
 renderer.setSize(width, height);
 
-document.body.append(drag_text);
-document.body.append(renderer.domElement)
+document.body.append(drag_text, renderer.domElement);
 onThemeChange((is_dark) => {
-    camera_spotlight.color = is_dark ? DARK_LIGHTING : LIGHT_LIGHTING;
     ambient_light.color = is_dark ? DARK_LIGHTING : LIGHT_LIGHTING;
     scene.background = is_dark ? DARK_BACKGROUND : LIGHT_BACKGROUND;
     (logo.children[0] as any).material.color = is_dark ? DARK_LOGO : LIGHT_LOGO;
