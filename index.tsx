@@ -33,7 +33,7 @@ function Index() {
         >
             <Bouncer onClick={() => {
                  three_ref.style.setProperty("transition-duration", "0.5s");
-                 three_ref.style.setProperty("transform", "scale(0.8)");
+                 three_ref.style.setProperty("transform", "scale(0.5)");
                  setBegin(true);
             }} />
         </Motion.div>
@@ -47,10 +47,11 @@ function Index() {
                 "justify-content": "center",
                 "overflow-x": "hidden"
             }}
+            initial={{
+                visibility: "hidden"
+            }}
             animate={{
-                opacity: began() ? 1 : 0,
                 visibility: began() ? "visible" : "hidden",
-                scale: began() ? 1 : 0.8
             }}
             transition={{
                 visibility: {duration: 0}

@@ -93,6 +93,7 @@ export function Projects(props: {
                 "justify-content": "center",
                 position: "sticky",
                 "mix-blend-mode": "exclusion",
+                color: "var(--green-2)",
                 top: 0
             }}>
                 <h1>Projects</h1>
