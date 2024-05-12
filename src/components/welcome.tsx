@@ -21,7 +21,7 @@ export function Welcome(props: {
             <h1>Hey,</h1>
             <h1>I'm Johan</h1>
             <br />
-            <p>It's a pleasure to meet you !</p>
+            <p>This is a work in progress.</p>
         </div>
         <div id="navigation" 
             style={{display: "flex", "justify-content": "space-between"}}
@@ -33,9 +33,24 @@ export function Welcome(props: {
                     "justify-content": "space-between"
                 }}
             >
-                <IoLogoGithub size={35} />
-                <IoLogoLinkedin size={35} />
-                <IoMailOutline size={35} />
+                <IoLogoGithub 
+                    onClick={() => window.location.assign(
+                        "https://github.com/johanmontorfano"
+                    )}
+                    size={35} 
+                />
+                <IoLogoLinkedin 
+                    onClick={() => window.location.assign(
+                        "https://linkedin.com/in/jhnm"
+                    )}
+                    size={35} 
+                />
+                <IoMailOutline 
+                    onClick={() => window.location.assign(
+                        "mailto:me@johanmontorfano.com"
+                    )}
+                    size={35} 
+                />
             </div>
             <Motion.div
                 onClick={() => props.setProjectsOpen(!props.projectsOpen)}
