@@ -8,11 +8,12 @@ import {
     LIGHT_LIGHTING,
     LIGHT_LOGO,
     NULL_COLOR
-} from "./src/constants";
-import { useThemeLifecycle } from "./src/theme";
-import { addEventListeners } from "./src/batch_events";
+} from "./constants";
+import { useThemeLifecycle } from "./theme";
+import { addEventListeners } from "./batch_events";
 
 let lock_rotation = false;
+const parent = document.getElementById("three_main") as HTMLElement;
 const { onThemeChange } = useThemeLifecycle();
 const drag_text = document.createElement("p");
 const {innerWidth: width, innerHeight: height} = window;
@@ -22,7 +23,7 @@ const ambient_light = new THREE.AmbientLight(NULL_COLOR);
 const camera_spotlight = new THREE.SpotLight(LIGHT_LIGHTING, 10000);
 const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
-const logo = (await gltf_loader.loadAsync("logo.glb")).scene;
+const logo = (await gltf_loader.loadAsync("./assets/logo.glb")).scene;
 
 drag_text.textContent = "You can drag the logo horizontally";
 drag_text.classList.add("tip");
@@ -36,7 +37,7 @@ scene.add(ambient_light);
 scene.add(camera_spotlight);
 renderer.setSize(width, height);
 
-document.body.append(drag_text, renderer.domElement);
+parent.append(drag_text, renderer.domElement);
 onThemeChange((is_dark) => {
     ambient_light.color = is_dark ? DARK_LIGHTING : LIGHT_LIGHTING;
     scene.background = is_dark ? DARK_BACKGROUND : LIGHT_BACKGROUND;
@@ -44,7 +45,10 @@ onThemeChange((is_dark) => {
     document.querySelector('meta[name="theme"]')
         ?.setAttribute("content", is_dark ? "black" : "white");
     document.querySelector('link[rel="icon"]')
-        ?.setAttribute("href", is_dark ? "./logo-white.svg" : "./logo.svg");
+        ?.setAttribute(
+            "href",
+            is_dark ? "./assets/logo-white.svg" : "./assets/logo.svg"
+        );
     document.body.style
         .setProperty("background", is_dark ? "#141414" : "#CCCCCC");
 });
