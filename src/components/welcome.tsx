@@ -1,4 +1,9 @@
-import {IoArrowForward, IoLogoGithub, IoLogoLinkedin, IoMailOutline} from "solid-icons/io";
+import {
+    IoArrowForward, 
+    IoLogoGithub, 
+    IoLogoLinkedin, 
+    IoMailOutline
+} from "solid-icons/io";
 import { Motion } from "solid-motionone";
 
 export function Welcome(props: {
