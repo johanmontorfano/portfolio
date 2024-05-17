@@ -1,32 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Roboto&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
 :root {
-    @media screen and (prefers-color-scheme: dark) {
-        --text-color: white;
-        --faded-text-color: #DDDDDD;
-        --background: black;
-        --t-background: rgba(0, 0, 0, 0.3);
-        --green-1: #A0E3B0;
-        --green-2: #52CB6E;
-        --green-3: #2A8D41;
-        --green-4: #0E2F16;
-        --t-green-4: #0E2F1680;
-        --green-5: #051007;
-    }
-    @media screen and (prefers-color-scheme: light) {
-        --text-color: black;
-        --faded-text-color: #333333;
-        --background: white;
-        --t-background: rgba(255, 255, 255, 0.3);
-        --green-1: #EFFAF2;
-        --green-2: #D0F1D8;
-        --green-3: #A0E3B0;
-        --green-4: #52CB6E;
-        --t-green-4: #52CB6E80;
-        --green-5: #2A8D41;
+    --background: rgb(13, 105, 0);
+    --color: white;
 
-    }
-    color: var(--text-color);
+    --dark-text-color: white;
+    --dark-faded-text-color: #DDDDDD;
+    --dark-background: black;
+    --dark-t-background: rgba(0, 0, 0, 0.3);
+    --dark-green-1: #A0E3B0;
+    --dark-green-2: #52CB6E;
+    --dark-green-3: #2A8D41;
+    --dark-green-4: #0E2F16;
+    --dark-t-green-4: #0E2F1680;
+    --dark-green-5: #051007;
+    --text-color: black;
+    --faded-text-color: #333333;
+    // --background: white;
+    --t-background: rgba(255, 255, 255, 0.3);
+    --green-1: #EFFAF2;
+    --green-2: #D0F1D8;
+    --green-3: #A0E3B0;
+    --green-4: #52CB6E;
+    --t-green-4: #52CB6E80;
+    --green-5: #2A8D41;
+
+    color: var(--color);
 }
 
 * {
@@ -61,13 +60,11 @@ p.tip {
 a {
     text-decoration: underline;
     cursor: pointer;
-    color: var(--text-color);
-    opacity: 0.7;
     transition: all .2s ease;
-
-    &:hover {
-        opacity: 1;
-    }
+    font-family: "Source Code Pro";
+    color: var(--color);
+    margin-left: 8px;
+    margin-right: 8px;
 
     &:visited {
         color: var(--green-1);
