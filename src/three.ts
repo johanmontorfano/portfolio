@@ -1,80 +1,41 @@
 import * as THREE from "three";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
-import { 
-    DARK_BACKGROUND,
-    DARK_LIGHTING,
-    DARK_LOGO,
-    LIGHT_BACKGROUND,
-    LIGHT_LIGHTING,
-    LIGHT_LOGO,
-    NULL_COLOR
-} from "./constants";
-import { useThemeLifecycle } from "./theme";
-import { addEventListeners } from "./batch_events";
+
+function min(value: number, current: number) {
+    return current < value ? value : current;
+}
 
 let lock_rotation = false;
-const parent = document.getElementById("three_main") as HTMLElement;
-const { onThemeChange } = useThemeLifecycle();
-const drag_text = document.createElement("p");
-const {innerWidth: width, innerHeight: height} = window;
+let width = window.innerWidth;
 const scene = new THREE.Scene();
 const gltf_loader = new GLTFLoader();
-const ambient_light = new THREE.AmbientLight(NULL_COLOR);
-const camera_spotlight = new THREE.SpotLight(LIGHT_LIGHTING, 10000);
-const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer();
+const ambient_light = new THREE.AmbientLight(0xFFFFFF);
+const camera_spotlight = new THREE.SpotLight(0xFFFFFF, 10000);
+const camera = new THREE.OrthographicCamera(
+    min(2000, width) / -20, 
+    min(2000, width) / 20, 
+    min(2000, width) / 20, 
+    min(2000, width) / -20, 
+    1, 
+    300
+);
+export const renderer = new THREE.WebGLRenderer();
 const logo = (await gltf_loader.loadAsync("./assets/logo.glb")).scene;
 
-drag_text.textContent = "You can drag the logo horizontally";
-drag_text.classList.add("tip");
+scene.background = new THREE.Color(0x0D6900)
 camera.position.z = 95;
-camera_spotlight.position.z = 75;
-logo.scale.x = 10;
-logo.scale.y = 10;
-logo.scale.z = 10;
+camera_spotlight.position.z = 95;
+logo.scale.x = 25;
+logo.scale.y = 25;
+logo.scale.z = 25;
 scene.add(logo);
 scene.add(ambient_light);
 scene.add(camera_spotlight);
-renderer.setSize(width, height);
-
-parent.append(drag_text, renderer.domElement);
-onThemeChange((is_dark) => {
-    ambient_light.color = is_dark ? DARK_LIGHTING : LIGHT_LIGHTING;
-    scene.background = is_dark ? DARK_BACKGROUND : LIGHT_BACKGROUND;
-    (logo.children[0] as any).material.color = is_dark ? DARK_LOGO : LIGHT_LOGO;
-    document.querySelector('meta[name="theme"]')
-        ?.setAttribute("content", is_dark ? "black" : "white");
-    document.querySelector('link[rel="icon"]')
-        ?.setAttribute(
-            "href",
-            is_dark ? "./assets/logo-white.svg" : "./assets/logo.svg"
-        );
-    document.body.style
-        .setProperty("background", is_dark ? "#141414" : "#CCCCCC");
-});
-
-addEventListeners(renderer.domElement, ["mousedown", "touchstart"], () => {
-    lock_rotation = true;
-    drag_text.classList.add("active");
-});
-addEventListeners(renderer.domElement, ["mouseup", "touchend"], () => {
-    lock_rotation = false;
-    drag_text.classList.remove("active");
-});
-renderer.domElement.addEventListener("mousemove", (ev) => {
-    if (lock_rotation) logo.rotation.y = ev.screenX / 40;
-});
-renderer.domElement.addEventListener("touchmove", (ev) => {
-    if (lock_rotation) logo.rotation.y = 
-        ev.touches.item(ev.touches.length - 1)?.screenX as 1 / 40;
-});
 
 (function animate() {
-    const {innerWidth: width, innerHeight: height} = window;
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+    const {innerWidth: width} = window;
     if (!lock_rotation) logo.rotation.y -= 0.03; 
-    renderer.setSize(width, height);
+    renderer.setSize(min(150, width * 0.05), min(150, width * 0.05));
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
 }());
