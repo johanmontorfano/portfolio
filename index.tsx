@@ -10,7 +10,7 @@ function App() {
         <div style={{
             position: "absolute", 
             bottom: "0%",
-            padding: "2%"
+            padding: "30px"
         }}>
             <div>
                 {ThreeScene.domElement} 
