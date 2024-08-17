@@ -78,7 +78,7 @@ for line in script:
         v[2] = if_var_replace(v[2])
         output.append(f"stp({v[0]}, '{v[1]}', {v[2]})")
     elif instr == "text":
-        v[1] = if_var_replace(v[1])
+        v[1] = if_var_replace(" ".join(v[1:]))
         output.append(f"text({v[0]}, {v[1]})")
     elif in_stg and instr == "stg-var":
         for id in stg_curr_ids:
