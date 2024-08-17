@@ -10,13 +10,25 @@ Heres the list of commands available:
 | var [name] [value]        | Sets a value                                     |
 | sty [id] [prop] [val]     | Sets a style property to an element              |
 | stg [...id]               | Declares a styling group beginning               |
+| stg-var [name] [value]    | Set a variable for members of an `stg`           |
 | [prop] [val]              | Declares a style property in a styling group     |
 | stg END                   | Ends a styling group declaration                 |
 | addch [selector] [...id]  | Append childs to a selected HTML element         |
+| wait [duration]           | Waits a given number of milliseconds             |
+| stp [id] [prop] [val]     | Sets a property to an element                    |
+| text [id] [content]       | Sets a text to an element                        |
 
 ## Using parallax for an element:
 
 To enable parallax for an element, use the following instruction:
 ```
-plx [id] [style-range] [scroll-range]
+plx [id] [style-range] [style_unit] [style-prop] [scroll-range]
 ```
+
+## Macros:
+
+| macro                     | description                                      |
+| ------------------------- | ------------------------------------------------ |
+| rand-range->[a]:[b].unit  | Generates a random number in a specific unit     |
+| rand-hex->[a]:[b]         | Generates a random color between two hex colors  |
+| stg-var->[name]           | Uses a value set using `stg-var`                 |
