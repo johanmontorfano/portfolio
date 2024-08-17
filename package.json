@@ -1,18 +1,16 @@
 {
     "name": "jm-portfolio",
-    "version": "7.0.0",
+    "version": "7.1.0",
     "scripts": {
         "start": "vite",
         "build": "vite build"
     },
     "dependencies": {
-        "@types/three": "^0.164.0",
-        "solid-js": "^1.8.17",
-        "three": "^0.164.1",
-        "vite": "^5.2.10",
-        "vite-plugin-solid": "^2.10.2"
+        "vite": "^5.2.10"
     },
     "devDependencies": {
-        "sass": "^1.69.7"
+        "sass": "^1.77.8",
+        "vite-plugin-restart": "^0.4.1",
+        "vite-plugin-run": "^0.5.2"
     }
 }

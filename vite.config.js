@@ -1,9 +1,24 @@
 import { defineConfig } from "vite";
-import solidPlugin from "vite-plugin-solid";
+import { run } from 'vite-plugin-run'
+import ViteRestart from "vite-plugin-restart";
 
 export default defineConfig({
-    plugins: [solidPlugin()],
     build: {
         target: "ESNext"
     },
+    plugins: [
+        run([{
+            name: "moviemaker transpile",
+            run: [
+                "py", 
+                "./moviemaker/index.py", 
+                "./src/index.an", 
+                "./src/index.js", 
+                "./moviemaker/glue.js"
+            ]
+        }]),
+        ViteRestart({
+            restart: ["./src/index.an"]
+        })
+    ]
 });

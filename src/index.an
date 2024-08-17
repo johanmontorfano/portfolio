@@ -1,0 +1,13 @@
+el orb1 div
+el orb2 div
+el orb3 div
+var green-1 #FFFF00
+stg orb1 orb2 orb3
+width 50vw
+height 50vw
+background $green-1
+border-radius 50rem
+stg END
+plx orb1 width 50vw:10vw 1200:3000
+
+addch html>body orb1 orb2 orb3
