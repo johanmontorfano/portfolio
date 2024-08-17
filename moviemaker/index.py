@@ -39,7 +39,7 @@ def if_var_replace(val_decl):
     return exec_macro(val_decl)
 
 for line in script:
-    line = line.removesuffix("\n")
+    line = line.removesuffix("\n").strip()
     [instr, *v] = line.split(" ")
 
 
