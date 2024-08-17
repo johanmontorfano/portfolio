@@ -51,7 +51,7 @@ for line in script:
         declared_vars[v[0]] = v[1]
     elif instr == "sty":
         v[1] = if_var_replace(v[1])
-        v[2] = if_var_replace(v[2])
+        v[2] = if_var_replace(" ".join(v[2:]))
         output.append(f"st({v[0]}, '{v[1]}', '{v[2]}');")
     elif instr == "stg":
         if v[0] == "END":
