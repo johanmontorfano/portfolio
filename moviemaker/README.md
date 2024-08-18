@@ -6,7 +6,8 @@ Heres the list of commands available:
 
 | command                   | description                                      |
 | ------------------------- | ------------------------------------------------ |
-| el [id] [html_type]       | Creates a bew element with a given `id`          |
+| el [id] [html_type]       | Creates a new element with a given `id`          |
+| gel [id] [sel]            | Load an element from the DOM                     |
 | var [name] [value]        | Sets a value                                     |
 | sty [id] [prop] [val]     | Sets a style property to an element              |
 | stg [...id]               | Declares a styling group beginning               |

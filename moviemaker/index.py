@@ -46,6 +46,9 @@ for line in script:
     if instr == "el" and declared_els.__contains__(v[0]) == False:
         declared_els.append(v[0])
         output.append(f"const {v[0]} = document.createElement('{v[1]}');")
+    elif instr == "gel" and declared_els.__contains__(v[0]) == False:
+        declared_els.append(v[0])
+        output.append(f"const {v[0]} = document.querySelectorAll('{v[1]}')[0]")
     elif instr == "var":
         v[1] = if_var_replace(v[1])
         declared_vars[v[0]] = v[1]
