@@ -15,8 +15,11 @@ Heres the list of commands available:
 | stg END                   | Ends a styling group declaration                 |
 | addch [selector] [...id]  | Append childs to a selected HTML element         |
 | wait [duration]           | Waits a given number of milliseconds             |
-| stp [id] [prop] [val]     | Sets a property to an element                    |
-| text [id] [content]       | Sets a text to an element                        |
+| stp [id] [prop] [val]     | Sets a property to an element*                   |
+| text [id] [content]       | Sets a text to an element*                       |
+
+* The value is not auto-formatted, hence if it's a string, write it "text".
+
 
 ## Using parallax for an element:
 
