@@ -11,11 +11,13 @@ output = []
 output_path = sys.argv[2]
 stg_curr_ids = []
 in_stg = False
+in_for = False
+in_js = False
 
 def exec_macro(val_decl: str):
     if val_decl.startswith("rand-range->"):
         val_decl = val_decl.removeprefix("rand-range->")
-        [f, to] = val_decl.split(":")
+        [f, to] = val_decl.split(":", maxsplit=1)
         [to, unit] = to.split(".")
         return f"{random.randrange(int(f), int(to))}{unit}"
     elif val_decl.startswith("stg-var->"):
@@ -26,8 +28,25 @@ def exec_macro(val_decl: str):
         return stg_vars_dict
     elif val_decl.startswith("rand-hex->"):
         val_decl = val_decl.removeprefix("rand-hex->")
-        [a, b] = val_decl.split(":")
+        [a, b] = val_decl.split(":", maxsplit=1)
         return hex.generate_random_hex_color(a, b)
+    elif val_decl.startswith("json-get->"):
+        val_decl = val_decl.removeprefix("json-get->")
+        return f"await(await fetch('{val_decl}')).json()"
+    elif val_decl.startswith("for-item->"):
+        val_decl = val_decl.removeprefix("for-item->")
+        if val_decl == "@":
+            return "item"
+        elif val_decl == "index":
+            return "index"
+        else:
+            return f"item.{val_decl}"
+    elif val_decl.startswith("rconcat->"):
+        val_decl = val_decl.removeprefix("rconcat->")
+        [a, b] = val_decl.split(":", maxsplit=1)
+        a = if_var_replace(a)
+        b = if_var_replace(b)
+        return f"{a} + {b}"
     return val_decl
 
 # Replace a variable caller by it's value or macro
@@ -36,22 +55,38 @@ def if_var_replace(val_decl):
         val_decl = val_decl.removeprefix("$")
         if declared_vars.get(val_decl) != None:
             return declared_vars.get(val_decl)
+    elif val_decl[0] == "@":
+        return val_decl.removeprefix("@")
     return exec_macro(val_decl)
 
 for line in script:
     line = line.removesuffix("\n").strip()
     [instr, *v] = line.split(" ")
 
-
-    if instr == "el" and declared_els.__contains__(v[0]) == False:
+    if in_js == True and instr != "js" and v[0] != "END":
+        output.append(line)
+    elif instr == "el" and declared_els.__contains__(v[0]) == False:
         declared_els.append(v[0])
         output.append(f"const {v[0]} = document.createElement('{v[1]}');")
     elif instr == "gel" and declared_els.__contains__(v[0]) == False:
         declared_els.append(v[0])
         output.append(f"const {v[0]} = document.querySelectorAll('{v[1]}')[0]")
     elif instr == "var":
+        v[0] = if_var_replace(v[0])
         v[1] = if_var_replace(v[1])
         declared_vars[v[0]] = v[1]
+    elif instr == "rvar":
+        v[0] = if_var_replace(v[0])
+        v[1] = if_var_replace(v[1])
+        output.append(f"let {v[0]} = {v[1]};")
+    elif instr == "for":
+        if v[0] == "END":
+            in_for = False
+            output.append("});")
+        else:
+            in_for = True
+            v[0] = if_var_replace(v[0])
+            output.append(f"{v[0]}.forEach((item, index) => {{")
     elif instr == "sty":
         v[1] = if_var_replace(v[1])
         v[2] = if_var_replace(" ".join(v[2:]))
@@ -64,9 +99,13 @@ for line in script:
             in_stg = True
             stg_curr_ids = v[0:]
     elif instr == "addch":
+        selector = if_var_replace(v[0])
         ids = v[1:]
         for id in ids:
-            output.append(f"ps({id}, '{v[0]}');")
+            if selector == v[0]:
+                output.append(f"ps({id}, '{selector}')")
+            else:
+                output.append(f"ps({id}, {selector})")
     elif instr == "plx":
         [from_s, to_s] = v[1].split(":")
         [from_scr, to_scr] = v[4].split(":")
@@ -83,6 +122,9 @@ for line in script:
     elif instr == "text":
         v[1] = if_var_replace(" ".join(v[1:]))
         output.append(f"text({v[0]}, {v[1]})")
+        in_js = False
+    elif instr == "js":
+        in_js = len(v) < 1
     elif in_stg and instr == "stg-var":
         for id in stg_curr_ids:
             name = v[0]

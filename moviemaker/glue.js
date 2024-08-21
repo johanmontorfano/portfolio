@@ -51,6 +51,6 @@ export const stp = (el, prop, val) => el.setAttribute(prop, val);
 export const text = (el, text) => el.textContent = text;
 
 window.addEventListener("wheel", ev => {
-    vsd += ev.deltaY;
+    vsd += ev.deltaY > 0 ? Math.min(10, ev.deltaY) : Math.max(-10, ev.deltaY);
     cbs.forEach(c => c());
 });
