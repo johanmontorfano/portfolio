@@ -63,7 +63,7 @@ for line in script:
     line = line.removesuffix("\n").strip()
     [instr, *v] = line.split(" ")
 
-    if in_js == True and instr != "js" and v[0] != "END":
+    if in_js == True and instr != "js" and len(v) < 1:
         output.append(line)
     elif instr == "el" and declared_els.__contains__(v[0]) == False:
         declared_els.append(v[0])
@@ -91,6 +91,16 @@ for line in script:
         v[1] = if_var_replace(v[1])
         v[2] = if_var_replace(" ".join(v[2:]))
         output.append(f"st({v[0]}, '{v[1]}', '{v[2]}');")
+    elif instr == "styplxa":
+        v[1] = if_var_replace(v[1])
+        v[2] = if_var_replace(v[2])
+        v[3] = if_var_replace(" ".join(v[3:]))
+        output.append(f"styplxafter({v[0]}, '{v[1]}', '{v[3]}', {v[2]});")
+    elif instr == "styplxb":
+        v[1] = if_var_replace(v[1])
+        v[2] = if_var_replace(v[2])
+        v[3] = if_var_replace(" ".join(v[3:]))
+        output.append(f"styplxbefore({v[0]}, '{v[1]}', '{v[3]}', {v[2]});")
     elif instr == "stg":
         if v[0] == "END":
             stg_curr_id = []
@@ -125,6 +135,9 @@ for line in script:
         in_js = False
     elif instr == "js":
         in_js = len(v) < 1
+    elif instr == "jsl":
+        rawjs = " ".join(v)
+        output.append(rawjs)
     elif in_stg and instr == "stg-var":
         for id in stg_curr_ids:
             name = v[0]

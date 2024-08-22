@@ -46,11 +46,29 @@ export const plx = (el, from_s, to_s, unit, s_prop, from_vsd, to_vsd) => {
         else st(el, s_prop, tvc(from_s, to_s, p) + unit);
     });
 };
+export const styplxbefore = (el, prop, val, before) => {
+    let is_after = vsd >= before;
+    cbs.push(() => {
+        if (vsd < before && is_after) {
+            is_after = false;
+            st(el, prop, val);
+        } else if (vsd >= before) is_after = true;
+    });
+}
+export const styplxafter = (el, prop, val, after) => {
+    let is_after = vsd => after;
+    cbs.push(() => {
+        if (vsd >= after && !is_after) {
+            is_after = true;
+            st(el, prop, val);
+        } else if (vsd < after) is_after = false;
+    });
+}
 export const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 export const stp = (el, prop, val) => el.setAttribute(prop, val);
 export const text = (el, text) => el.textContent = text;
 
 window.addEventListener("wheel", ev => {
-    vsd += ev.deltaY > 0 ? Math.min(10, ev.deltaY) : Math.max(-10, ev.deltaY);
+    vsd += ev.deltaY > 0 ? Math.min(20, ev.deltaY) : Math.max(-20, ev.deltaY);
     cbs.forEach(c => c());
 });

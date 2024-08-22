@@ -4,25 +4,28 @@ Tiny utility that generates "movies" out of declarations. It supports parallax.
 
 Heres the list of commands available:
 
-| command                   | description                                      |
-| ------------------------- | ------------------------------------------------ |
-| el [id] [html_type]       | Creates a new element with a given `id`          |
-| gel [id] [sel]            | Load an element from the DOM                     |
-| var [name] [value]        | Sets a value                                     |
-| rvar [name] [value]       | Sets a runtime value*                            |
-| sty [id] [prop] [val]     | Sets a style property to an element              |
-| stg [...id]               | Declares a styling group beginning               |
-| stg-var [name] [value]    | Set a variable for members of an `stg`           |
-| [prop] [val]              | Declares a style property in a styling group     |
-| stg END                   | Ends a styling group declaration                 |
-| addch [selector] [...id]  | Append childs to a selected HTML element         |
-| wait [duration]           | Waits a given number of milliseconds             |
-| stp [id] [prop] [val]     | Sets a property to an element*                   |
-| text [id] [content]       | Sets a text to an element*                       |
-| for [variable]            | Loops through the items of an array              |
-| for END                   | Ends a `for` statement                           |
-| js                        | Starts a raw JS block                            |
-| js END                    | Ends a raw JS block                              |
+| command                       | description                                  |
+| ----------------------------- | -------------------------------------------- |
+| el [id] [html_type]           | Creates a new element with a given `id`      |
+| gel [id] [sel]                | Load an element from the DOM                 |
+| var [name] [value]            | Sets a value                                 |
+| rvar [name] [value]           | Sets a runtime value*                        |
+| sty [id] [prop] [val]         | Sets a style property to an element          |
+| styplxa [id] [prop] [p] [val] | Sets a stye when `vsd` >= `p`                |
+| styplxb [id] [prop] [p] [val] | Sets a style when `vsd` < `p`                |
+| stg [...id]                   | Declares a styling group beginning           |
+| stg-var [name] [value]        | Set a variable for members of an `stg`       |
+| [prop] [val]                  | Declares a style property in a styling group |
+| stg END                       | Ends a styling group declaration             |
+| addch [selector] [...id]      | Append childs to a selected HTML element     |
+| wait [duration]               | Waits a given number of milliseconds         |
+| stp [id] [prop] [val]         | Sets a property to an element*               |
+| text [id] [content]           | Sets a text to an element*                   |
+| for [variable]                | Loops through the items of an array          |
+| for END                       | Ends a `for` statement                       |
+| js                            | Starts a raw JS block                        |
+| js END                        | Ends a raw JS block                          |
+| jsl                           | Write a single line of JavaScript            |
 
 - `*` The value is not auto-formatted, hence if it's a string, write it "text".
 - `var`-declared values can be accessed with `$`
