@@ -1,4 +1,5 @@
 let vsd = 0;
+let touchPoints = [];
 const cbs = [];
 
 /// Calculate a value out of a given progression in the transition from a value
@@ -56,7 +57,7 @@ export const styplxbefore = (el, prop, val, before) => {
     });
 }
 export const styplxafter = (el, prop, val, after) => {
-    let is_after = vsd => after;
+    let is_after = vsd >= after;
     cbs.push(() => {
         if (vsd >= after && !is_after) {
             is_after = true;
@@ -68,6 +69,29 @@ export const wait = (ms) => new Promise((res) => setTimeout(res, ms));
 export const stp = (el, prop, val) => el.setAttribute(prop, val);
 export const text = (el, text) => el.textContent = text;
 
+function calculateDistance(points) {
+    let totalDistance = 0;
+
+    for (let i = 1; i < points.length; i++) {
+        const {clientY: y1} = points[i - 1];
+        const {clientY: y2} = points[i];
+
+        totalDistance += y2 - y1;
+    }
+
+    return totalDistance;
+}
+
+document.body.addEventListener("touchstart", (event) => {
+    touchPoints = [event.touches[0]];
+});
+document.body.addEventListener("touchmove", (event) => {
+    touchPoints.push(event.touches[0]);
+    const delta = calculateDistance(touchPoints);
+    vsd += delta > 0 ? Math.min(20, delta) : Math.max(-20, delta);
+    touchPoints = [event.touches[0]];
+    cbs.forEach(c => c());
+});
 window.addEventListener("wheel", ev => {
     vsd += ev.deltaY > 0 ? Math.min(20, ev.deltaY) : Math.max(-20, ev.deltaY);
     cbs.forEach(c => c());
