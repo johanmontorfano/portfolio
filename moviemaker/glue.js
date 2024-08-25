@@ -76,7 +76,7 @@ function calculateDistance(points) {
         const {clientY: y1} = points[i - 1];
         const {clientY: y2} = points[i];
 
-        totalDistance += y2 - y1;
+        totalDistance += y2 - y1 * -1;
     }
 
     return totalDistance;
