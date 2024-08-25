@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    background: #DDDDDD;
+}
+
+body > *, body > * > * {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+}
+
+div#app {
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+h1 {
+    font-family: "Playfair Display";
+    font-size: clamp(40px, 8vw, 50px);
+    font-weight: 700;
+}
+
+h2 {
+    font-family: "Playfair Display";
+    font-size: clamp(35px, 6vw 45px);
+    font-weight: 700;
+}
+
+h1, h2, h3, p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+p {
+    font-family: Roboto;
+    font-size: clamp(16px, 3vw, 24px);
+
+    &.paraph {
+        line-height: clamp(35px, 5vw, 55px);
+        text-align: justify;
+    }
+}
+
+a {
+    font-family: Roboto;
+    font-size: clamp(16px, 3vw, 20px);
+    text-decoration: underline;
+    color: #393939;
+}
+
+div#footer_content {
+    display: grid;
+    padding: 30px;
+    color: white;
+
+    @media screen and (max-width: 800px) {
+        grid-template-columns: 1fr;
+    }
+
+    @media screen and (min-width: 801px) {
+        grid-template-columns: 2fr 1fr;
+        column-gap: 70px;
+    }
+
+    & > * {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        & > * {
+            width: clamp(300px, 90%, 700px);
+
+            & > * {
+                color: white;
+            }
+        }
+    }
+}
+
+div#f__link_container {
+    @media screen and (max-width: 800px) {
+        opacity: 0;
+    }
+
+    & > a {
+        white-space: nowrap;
+    }
+}

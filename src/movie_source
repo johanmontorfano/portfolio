@@ -1,0 +1,325 @@
+jsl import {footer_body_injection} from "./footer.js"
+
+el orb1 div
+el orb2 div
+el orb3 div
+el text_firstname h1
+el text_lastname h1
+el blur_layer div
+gel body body
+
+text text_firstname "JOHAN"
+text text_lastname "MONTORFANO"
+
+var bg-orb1 #00FF00
+var bg-orb2 #00B400
+var bg-orb3 #007A00
+var len-orb1 40vw
+var len-orb2 35vw
+var len-orb3 25vw
+
+sty text_firstname z-index 2
+sty text_lastname z-index 2
+
+stg blur_layer
+    width 100%
+    height 100dvh
+    background #FFFFFFA0
+    backdrop-filter blur(50px)
+stg END
+
+stg text_firstname text_lastname
+    top 50%
+    opacity 0.3
+    transition all 1s ease
+stg END
+
+stg text_firstname
+    left 13%
+    transform translateX(-110%) translateY(-50%)
+stg END
+
+stg text_lastname
+    left 75%
+    transform translateX(0%) translateY(-50%)
+stg END
+
+stg orb1 orb2 orb3
+    position absolute
+    top 50%
+    left 50%
+    transform translateX(-50%) translateY(-50%)
+    width stg-var->len
+    height stg-var->len
+    background stg-var->bg
+    border-radius 50rem
+    transition all 1s ease
+stg END
+
+sty orb1 top 40%
+sty orb2 top 60%
+sty orb2 left 45%
+sty orb3 top 55%
+sty orb3 left 65%
+
+addch html>body>#app orb1 orb2 orb3 blur_layer text_firstname text_lastname
+
+wait 1000
+
+stg text_firstname text_lastname
+    left 50%
+    opacity 1
+stg END
+
+var len-orb1 30vw
+var len-orb2 25vw
+var len-orb3 15vw
+stg orb1 orb2 orb3
+    width stg-var->len
+    height stg-var->len
+stg END
+
+el text_greeting h1
+el text_catchphrase p
+el greet_container div
+
+stp greet_container id "text_greeting"
+text text_greeting "Hi, I'm Johan"
+text text_catchphrase "I can do (almost) anything you want"
+
+stg text_catchphrase
+    font-family Playfair Display
+    opacity 0.8
+    font-size clamp(35px, 6vw, 45p)
+stg END
+
+stg greet_container
+    position absolute
+    top 4rem
+    left 3rem
+    opacity 0
+    transition all 1s ease
+stg END
+
+addch html>body>#app greet_container
+addch div#text_greeting text_greeting text_catchphrase
+
+el footer div
+el footer_top div
+el link_container div
+el logo img
+el github_link a
+el mail_link a
+
+stp footer id "footer"
+stp footer_top id "footer_top"
+stp link_container id "f__link_container"
+text github_link "Check out my GitHub account"
+text mail_link "Contact me via email"
+stp github_link href "https://www.github.com/johanmontorfano"
+stp mail_link href "mailto:me@johanmontorfano.com"
+stp logo src "/assets/logo.svg"
+stp logo width 50
+stp logo height 50
+
+stg logo
+    padding-left 30px
+    padding-right 30px
+stg END
+
+stg link_container
+    position absolute
+    left 50%
+    transform translateX(-50%)
+    display flex
+    align-items center
+    gap 20px
+stg END
+
+stg footer
+    position absolute
+    bottom -80px
+    width 100vw
+    height 50px
+    background #FFFFFF99
+    backdrop-filter blur(50px)
+    border-top 1px solid #AAAAAA
+    opacity 0
+    display flex
+    flex-direction column
+    transition all 1s ease
+    overflow hidden
+stg END
+
+stg footer_top
+    display flex
+    align-items center
+    width 100vw
+    height 70px
+stg END
+
+el text_start p
+text text_start "Scroll to start the experience"
+stg text_start
+    top 50%
+    left 85%
+    transform translateY(-50%) translateX(-100%)
+    opacity 0
+    white-space nowrap
+    transition all 1s ease
+stg END
+
+addch html>body>#app footer text_start
+addch div#footer footer_top
+addch div#footer_top logo link_container
+addch div#f__link_container github_link mail_link
+
+wait 1000
+
+sty orb1 top 0%
+sty orb1 left 85%
+sty orb1 width 50vw
+sty orb1 height 60vh
+sty orb2 top 50%
+sty orb2 left 85%
+sty orb2 height 45vh
+sty orb2 width 35vw
+sty orb3 top 85%
+sty orb3 left 85%
+sty orb3 width 40vw
+sty orb3 height 45vh
+
+stg text_start
+    left 95%
+    opacity 1
+stg END
+
+stg footer
+    bottom 0px
+    opacity 1
+stg END
+
+stg greet_container
+    top 3rem
+    opacity 1
+stg END
+
+stg text_firstname text_lastname
+    top 45%
+    opacity 0
+stg END
+
+sty logo --invert 0%
+sty logo filter invert(var(--invert))
+
+wait 1000
+
+plx text_start 95:50 % left 0:150
+plx text_start 100:0 % opacity 0:150
+plx greet_container 3:-3 rem top 0:150
+plx greet_container 100:0 % opacity 0:150
+plx body "#DDDDDDFF":"#333333FF" ->hex background 0:250
+plx blur_layer "#FFFFFFAA":"#111111AA" ->hex background 0:250
+plx footer "#FFFFFFAA":"#111111AA" ->hex background 0:250
+plx github_link "#393939FF":"#D3D3D3FF" ->hex color 0:250
+plx mail_link "#393939FF":"#D3D3D3FF" ->hex color 0:250
+plx logo 0:100 % --invert 0:250
+plx orb1 85:-20 % left 0:1400
+plx orb2 85:-10 % left 0:1400
+plx orb3 85:-15 % left 0:1400
+
+el github_container div
+el github_logo img
+el github_text p
+stp github_container id "github_container"
+
+el projlist div
+stp projlist id "projlist"
+stg projlist
+    display flex
+    height 100dvh
+    column-gap 10dvw
+    box-sizing content-box
+    --left 100%
+    transform translateX(var(--left))
+stg END
+plx projlist 90:-100 % --left 0:1400
+addch body>#app projlist
+
+rvar projects json-get->/static/projects.json
+for @projects
+    el projcontainer div
+    el projtitle h3
+
+    stg projcontainer
+        width 79.6dvh
+        height 45dvh
+        white-space nowrap
+        background-image url('+item.img_url+')
+        background-position center center
+        background-repeat no-repeat
+        background-size contain
+        border-radius 20px
+        cursor pointer
+    stg END
+
+    stg projtitle
+        position absolute
+        width calc(100% - 50px)
+        padding 25px
+        bottom 0
+        background black
+        color white
+        height 0%
+        opacity 0%
+        overflow hidden
+        border-bottom-left-radius 19px
+        border-bottom-right-radius 19px
+    stg END
+
+    stp projcontainer id rconcat->"proj":for-item->index
+    text projtitle for-item->name
+
+    jsl if (index % 2 == 0) {
+        sty projcontainer transform translateY(20%)
+    jsl } else {
+        sty projcontainer transform translateY(90%)
+    jsl }
+
+    jsl projcontainer.addEventListener("mouseenter", () => {
+        sty projcontainer transition all 0.2s ease
+    jsl if (index % 2 == 0) { 
+            sty projcontainer transform translateY(20%) scale(1.1)
+        jsl } else {
+            sty projcontainer transform translateY(90%) scale(1.1)
+        jsl }
+    jsl })
+    jsl projcontainer.addEventListener("mouseleave", () => {
+        sty projcontainer transition all 0.2s ease
+        jsl if (index % 2 == 0) {
+            sty projcontainer transform translateY(20%) scale(1)
+        jsl } else {
+            sty projcontainer transform translateY(90%) scale(1)
+        jsl }  
+    jsl })
+
+ 
+    jsl projcontainer.addEventListener("click", () => {
+    jsl     window.location.assign(item.project_url)
+    jsl })
+
+    plx projtitle 0:5 % height (150+index*125):(250+index*125)
+    plx projtitle 0:100 % opacity (150+index*125):(250+index*125)
+
+    addch #projlist projcontainer
+    # addch rconcat->"#":rconcat->"proj":for-item->index projtitle
+for END
+
+jsl footer_body_injection()
+
+
+styplxb footer transition 1000 all 0s ease
+styplxa footer transition 1000 all 1s ease
+styplxb footer height 1450 50px
+styplxa footer height 1450 100dvh
+

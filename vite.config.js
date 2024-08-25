@@ -12,13 +12,13 @@ export default defineConfig({
             run: [
                 "py", 
                 "./moviemaker/index.py", 
-                "./src/index.an", 
-                "./src/index.js", 
+                "./src/movie_source", 
+                "./src/movie.js", 
                 "./moviemaker/glue.js"
             ]
         }]),
         ViteRestart({
-            restart: ["./src/index.an"]
+            restart: ["./src/movie_source"]
         })
     ]
 });
