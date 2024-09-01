@@ -182,8 +182,8 @@ st(text_catchphrase, 'font-family', 'Playfair Display');
 st(text_catchphrase, 'opacity', '0.8');
 st(text_catchphrase, 'font-size', 'clamp(35px, 6vw, 45p)');
 st(greet_container, 'position', 'absolute');
-st(greet_container, 'top', '4rem');
-st(greet_container, 'left', '3rem');
+st(greet_container, 'top', '3rem');
+st(greet_container, 'left', '10%');
 st(greet_container, 'opacity', '0');
 st(greet_container, 'transition', 'all 1s ease');
 ps(greet_container, 'html>body>#app')
@@ -195,6 +195,12 @@ const link_container = document.createElement('div');
 const logo = document.createElement('img');
 const github_link = document.createElement('a');
 const mail_link = document.createElement('a');
+const github_container = document.createElement('div');
+const github_logo = document.createElement('img');
+const github_text = document.createElement('p');
+const projlist = document.createElement('div');
+stp(projlist, 'id', "projlist")
+stp(github_container, 'id', "github_container")
 stp(footer, 'id', "footer")
 stp(footer_top, 'id', "footer_top")
 stp(link_container, 'id', "f__link_container")
@@ -224,26 +230,65 @@ st(footer, 'opacity', '0');
 st(footer, 'display', 'flex');
 st(footer, 'flex-direction', 'column');
 st(footer, 'transition', 'all 1s ease');
+st(footer, 'z-index', '10');
 st(footer, 'overflow', 'hidden');
 st(footer_top, 'display', 'flex');
 st(footer_top, 'align-items', 'center');
 st(footer_top, 'width', '100vw');
 st(footer_top, 'height', '70px');
-const text_start = document.createElement('p');
-text(text_start, "Scroll to start the experience")
-st(text_start, 'top', '50%');
-st(text_start, 'left', '85%');
-st(text_start, 'transform', 'translateY(-50%) translateX(-100%)');
-st(text_start, 'opacity', '0');
-st(text_start, 'white-space', 'nowrap');
-st(text_start, 'transition', 'all 1s ease');
+st(projlist, 'display', 'flex');
+st(projlist, 'height', '100dvh');
+st(projlist, 'column-gap', '10dvw');
+st(projlist, 'box-sizing', 'content-box');
+st(projlist, '--left', '10%');
+st(projlist, 'transform', 'translateX(var(--left))');
+st(projlist, 'opacity', '0');
+st(projlist, 'transition', 'all 1s ease');
 ps(footer, 'html>body>#app')
-ps(text_start, 'html>body>#app')
+ps(projlist, 'html>body>#app')
 ps(footer_top, 'div#footer')
 ps(logo, 'div#footer_top')
 ps(link_container, 'div#footer_top')
 ps(github_link, 'div#f__link_container')
 ps(mail_link, 'div#f__link_container')
+let projects = await(await fetch('/static/projects.json')).json();
+projects.forEach((item, index) => {
+const projcontainer = document.createElement('div');
+const projtitle = document.createElement('h2');
+st(projcontainer, 'width', '79.6dvh');
+st(projcontainer, 'height', '45dvh');
+st(projcontainer, 'white-space', 'nowrap');
+st(projcontainer, 'background-image', 'url('+item.img_url+')');
+st(projcontainer, 'background-position', 'center center');
+st(projcontainer, 'background-repeat', 'no-repeat');
+st(projcontainer, 'background-size', 'contain');
+st(projcontainer, 'transform', 'translateY(50%)');
+st(projcontainer, 'border-radius', '20px');
+st(projcontainer, 'cursor', 'pointer');
+st(projtitle, 'position', 'absolute');
+st(projtitle, 'width', 'calc(100% - 50px)');
+st(projtitle, 'padding', '25px');
+st(projtitle, 'bottom', '0');
+st(projtitle, 'color', 'white');
+st(projtitle, 'mix-blend-mode', 'difference');
+st(projtitle, 'overflow', 'hidden');
+st(projtitle, 'font-family', 'Roboto');
+stp(projcontainer, 'id', "proj" + index)
+text(projtitle, item.name)
+projcontainer.addEventListener("mouseenter", () => {
+st(projcontainer, 'transition', 'all 0.2s ease');
+st(projcontainer, 'transform', 'translateY(50%) scale(1.1)');
+})
+projcontainer.addEventListener("mouseleave", () => {
+st(projcontainer, 'transition', 'all 0.2s ease');
+st(projcontainer, 'transform', 'translateY(50%) scale(1)');
+})
+projcontainer.addEventListener("click", () => {
+    window.location.assign(item.project_url)
+})
+ps(projcontainer, '#projlist')
+ps(projtitle, "#" + "proj" + index)
+});
 await wait(1000);
 st(orb1, 'top', '0%');
 st(orb1, 'left', '85%');
@@ -257,11 +302,14 @@ st(orb3, 'top', '85%');
 st(orb3, 'left', '85%');
 st(orb3, 'width', '40vw');
 st(orb3, 'height', '45vh');
-st(text_start, 'left', '95%');
-st(text_start, 'opacity', '1');
+st(orb1, 'opacity', '0');
+st(orb2, 'opacity', '0');
+st(orb3, 'opacity', '0');
+st(projlist, '--left', '2.5%');
+st(projlist, 'opacity', '1');
 st(footer, 'bottom', '0px');
 st(footer, 'opacity', '1');
-st(greet_container, 'top', '3rem');
+st(greet_container, 'left', '5%');
 st(greet_container, 'opacity', '1');
 st(text_firstname, 'top', '45%');
 st(text_lastname, 'top', '45%');
@@ -270,8 +318,6 @@ st(text_lastname, 'opacity', '0');
 st(logo, '--invert', '0%');
 st(logo, 'filter', 'invert(var(--invert))');
 await wait(1000);
-plx(text_start, 95, 50, '%', 'left', 0, 150)
-plx(text_start, 100, 0, '%', 'opacity', 0, 150)
 plx(greet_container, 3, -3, 'rem', 'top', 0, 150)
 plx(greet_container, 100, 0, '%', 'opacity', 0, 150)
 plx(body, "#DDDDDDFF", "#333333FF", '->hex', 'background', 0, 250)
@@ -280,77 +326,7 @@ plx(footer, "#FFFFFFAA", "#111111AA", '->hex', 'background', 0, 250)
 plx(github_link, "#393939FF", "#D3D3D3FF", '->hex', 'color', 0, 250)
 plx(mail_link, "#393939FF", "#D3D3D3FF", '->hex', 'color', 0, 250)
 plx(logo, 0, 100, '%', '--invert', 0, 250)
-plx(orb1, 85, -20, '%', 'left', 0, 1400)
-plx(orb2, 85, -10, '%', 'left', 0, 1400)
-plx(orb3, 85, -15, '%', 'left', 0, 1400)
-const github_container = document.createElement('div');
-const github_logo = document.createElement('img');
-const github_text = document.createElement('p');
-stp(github_container, 'id', "github_container")
-const projlist = document.createElement('div');
-stp(projlist, 'id', "projlist")
-st(projlist, 'display', 'flex');
-st(projlist, 'height', '100dvh');
-st(projlist, 'column-gap', '10dvw');
-st(projlist, 'box-sizing', 'content-box');
-st(projlist, '--left', '100%');
-st(projlist, 'transform', 'translateX(var(--left))');
-plx(projlist, 90, -100, '%', '--left', 0, 1400)
-ps(projlist, 'body>#app')
-let projects = await(await fetch('/static/projects.json')).json();
-projects.forEach((item, index) => {
-const projcontainer = document.createElement('div');
-const projtitle = document.createElement('h3');
-st(projcontainer, 'width', '79.6dvh');
-st(projcontainer, 'height', '45dvh');
-st(projcontainer, 'white-space', 'nowrap');
-st(projcontainer, 'background-image', 'url('+item.img_url+')');
-st(projcontainer, 'background-position', 'center center');
-st(projcontainer, 'background-repeat', 'no-repeat');
-st(projcontainer, 'background-size', 'contain');
-st(projcontainer, 'border-radius', '20px');
-st(projcontainer, 'cursor', 'pointer');
-st(projtitle, 'position', 'absolute');
-st(projtitle, 'width', 'calc(100% - 50px)');
-st(projtitle, 'padding', '25px');
-st(projtitle, 'bottom', '0');
-st(projtitle, 'background', 'black');
-st(projtitle, 'color', 'white');
-st(projtitle, 'height', '0%');
-st(projtitle, 'opacity', '0%');
-st(projtitle, 'overflow', 'hidden');
-st(projtitle, 'border-bottom-left-radius', '19px');
-st(projtitle, 'border-bottom-right-radius', '19px');
-stp(projcontainer, 'id', "proj" + index)
-text(projtitle, item.name)
-if (index % 2 == 0) {
-st(projcontainer, 'transform', 'translateY(20%)');
-} else {
-st(projcontainer, 'transform', 'translateY(90%)');
-}
-projcontainer.addEventListener("mouseenter", () => {
-st(projcontainer, 'transition', 'all 0.2s ease');
-if (index % 2 == 0) {
-st(projcontainer, 'transform', 'translateY(20%) scale(1.1)');
-} else {
-st(projcontainer, 'transform', 'translateY(90%) scale(1.1)');
-}
-})
-projcontainer.addEventListener("mouseleave", () => {
-st(projcontainer, 'transition', 'all 0.2s ease');
-if (index % 2 == 0) {
-st(projcontainer, 'transform', 'translateY(20%) scale(1)');
-} else {
-st(projcontainer, 'transform', 'translateY(90%) scale(1)');
-}
-})
-projcontainer.addEventListener("click", () => {
-    window.location.assign(item.project_url)
-})
-plx(projtitle, 0, 5, '%', 'height', (150+index*125), (250+index*125))
-plx(projtitle, 0, 100, '%', 'opacity', (150+index*125), (250+index*125))
-ps(projcontainer, '#projlist')
-});
+plx(projlist, 2.5, -100, '%', '--left', 0, 1400)
 footer_body_injection()
 styplxbefore(footer, 'transition', 'all 0s ease', 1000);
 styplxafter(footer, 'transition', 'all 1s ease', 1000);

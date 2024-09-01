@@ -95,8 +95,8 @@ stg END
 
 stg greet_container
     position absolute
-    top 4rem
-    left 3rem
+    top 3rem
+    left 10%
     opacity 0
     transition all 1s ease
 stg END
@@ -110,7 +110,13 @@ el link_container div
 el logo img
 el github_link a
 el mail_link a
+el github_container div
+el github_logo img
+el github_text p
+el projlist div
 
+stp projlist id "projlist"
+stp github_container id "github_container"
 stp footer id "footer"
 stp footer_top id "footer_top"
 stp link_container id "f__link_container"
@@ -148,6 +154,7 @@ stg footer
     display flex
     flex-direction column
     transition all 1s ease
+    z-index 10
     overflow hidden
 stg END
 
@@ -158,21 +165,71 @@ stg footer_top
     height 70px
 stg END
 
-el text_start p
-text text_start "Scroll to start the experience"
-stg text_start
-    top 50%
-    left 85%
-    transform translateY(-50%) translateX(-100%)
+stg projlist
+    display flex
+    height 100dvh
+    column-gap 10dvw
+    box-sizing content-box
+    --left 10%
+    transform translateX(var(--left))
     opacity 0
-    white-space nowrap
     transition all 1s ease
 stg END
 
-addch html>body>#app footer text_start
+addch html>body>#app footer projlist
 addch div#footer footer_top
 addch div#footer_top logo link_container
 addch div#f__link_container github_link mail_link
+
+rvar projects json-get->/static/projects.json
+for @projects
+    el projcontainer div
+    el projtitle h2
+
+    stg projcontainer
+        width 79.6dvh
+        height 45dvh
+        white-space nowrap
+        background-image url('+item.img_url+')
+        background-position center center
+        background-repeat no-repeat
+        background-size contain
+        transform translateY(50%)
+        border-radius 20px
+        cursor pointer
+    stg END
+
+    stg projtitle
+        position absolute
+        width calc(100% - 50px)
+        padding 25px
+        bottom 0
+        color white
+        mix-blend-mode difference
+        overflow hidden
+        font-family Roboto
+    stg END
+
+    stp projcontainer id rconcat->"proj":for-item->index
+    text projtitle for-item->name
+
+    jsl projcontainer.addEventListener("mouseenter", () => {
+        sty projcontainer transition all 0.2s ease
+        sty projcontainer transform translateY(50%) scale(1.1)
+    jsl })
+    jsl projcontainer.addEventListener("mouseleave", () => {
+        sty projcontainer transition all 0.2s ease
+        sty projcontainer transform translateY(50%) scale(1)
+    jsl })
+
+ 
+    jsl projcontainer.addEventListener("click", () => {
+    jsl     window.location.assign(item.project_url)
+    jsl })
+
+    addch #projlist projcontainer
+    addch rconcat->"#":rconcat->"proj":for-item->index projtitle
+for END
 
 wait 1000
 
@@ -189,8 +246,12 @@ sty orb3 left 85%
 sty orb3 width 40vw
 sty orb3 height 45vh
 
-stg text_start
-    left 95%
+stg orb1 orb2 orb3
+    opacity 0
+stg END
+
+stg projlist
+    --left 2.5%
     opacity 1
 stg END
 
@@ -200,7 +261,7 @@ stg footer
 stg END
 
 stg greet_container
-    top 3rem
+    left 5%
     opacity 1
 stg END
 
@@ -214,8 +275,6 @@ sty logo filter invert(var(--invert))
 
 wait 1000
 
-plx text_start 95:50 % left 0:150
-plx text_start 100:0 % opacity 0:150
 plx greet_container 3:-3 rem top 0:150
 plx greet_container 100:0 % opacity 0:150
 plx body "#DDDDDDFF":"#333333FF" ->hex background 0:250
@@ -224,96 +283,7 @@ plx footer "#FFFFFFAA":"#111111AA" ->hex background 0:250
 plx github_link "#393939FF":"#D3D3D3FF" ->hex color 0:250
 plx mail_link "#393939FF":"#D3D3D3FF" ->hex color 0:250
 plx logo 0:100 % --invert 0:250
-plx orb1 85:-20 % left 0:1400
-plx orb2 85:-10 % left 0:1400
-plx orb3 85:-15 % left 0:1400
-
-el github_container div
-el github_logo img
-el github_text p
-stp github_container id "github_container"
-
-el projlist div
-stp projlist id "projlist"
-stg projlist
-    display flex
-    height 100dvh
-    column-gap 10dvw
-    box-sizing content-box
-    --left 100%
-    transform translateX(var(--left))
-stg END
-plx projlist 90:-100 % --left 0:1400
-addch body>#app projlist
-
-rvar projects json-get->/static/projects.json
-for @projects
-    el projcontainer div
-    el projtitle h3
-
-    stg projcontainer
-        width 79.6dvh
-        height 45dvh
-        white-space nowrap
-        background-image url('+item.img_url+')
-        background-position center center
-        background-repeat no-repeat
-        background-size contain
-        border-radius 20px
-        cursor pointer
-    stg END
-
-    stg projtitle
-        position absolute
-        width calc(100% - 50px)
-        padding 25px
-        bottom 0
-        background black
-        color white
-        height 0%
-        opacity 0%
-        overflow hidden
-        border-bottom-left-radius 19px
-        border-bottom-right-radius 19px
-    stg END
-
-    stp projcontainer id rconcat->"proj":for-item->index
-    text projtitle for-item->name
-
-    jsl if (index % 2 == 0) {
-        sty projcontainer transform translateY(20%)
-    jsl } else {
-        sty projcontainer transform translateY(90%)
-    jsl }
-
-    jsl projcontainer.addEventListener("mouseenter", () => {
-        sty projcontainer transition all 0.2s ease
-    jsl if (index % 2 == 0) { 
-            sty projcontainer transform translateY(20%) scale(1.1)
-        jsl } else {
-            sty projcontainer transform translateY(90%) scale(1.1)
-        jsl }
-    jsl })
-    jsl projcontainer.addEventListener("mouseleave", () => {
-        sty projcontainer transition all 0.2s ease
-        jsl if (index % 2 == 0) {
-            sty projcontainer transform translateY(20%) scale(1)
-        jsl } else {
-            sty projcontainer transform translateY(90%) scale(1)
-        jsl }  
-    jsl })
-
- 
-    jsl projcontainer.addEventListener("click", () => {
-    jsl     window.location.assign(item.project_url)
-    jsl })
-
-    plx projtitle 0:5 % height (150+index*125):(250+index*125)
-    plx projtitle 0:100 % opacity (150+index*125):(250+index*125)
-
-    addch #projlist projcontainer
-    # addch rconcat->"#":rconcat->"proj":for-item->index projtitle
-for END
+plx projlist 2.5:-100 % --left 0:1400
 
 jsl footer_body_injection()
 
