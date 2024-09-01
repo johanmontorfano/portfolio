@@ -109,6 +109,7 @@ text(text_firstname, "JOHAN")
 text(text_lastname, "MONTORFANO")
 st(text_firstname, 'z-index', '2');
 st(text_lastname, 'z-index', '2');
+st(body, '--border', '#AAAAAA');
 st(blur_layer, 'width', '100%');
 st(blur_layer, 'height', '100dvh');
 st(blur_layer, 'background', '#FFFFFFA0');
@@ -225,7 +226,7 @@ st(footer, 'width', '100vw');
 st(footer, 'height', '50px');
 st(footer, 'background', '#FFFFFF99');
 st(footer, 'backdrop-filter', 'blur(50px)');
-st(footer, 'border-top', '1px solid #AAAAAA');
+st(footer, 'border-top', '1px solid var(--border)');
 st(footer, 'opacity', '0');
 st(footer, 'display', 'flex');
 st(footer, 'flex-direction', 'column');
@@ -265,6 +266,7 @@ st(projcontainer, 'background-size', 'contain');
 st(projcontainer, 'transform', 'translateY(50%)');
 st(projcontainer, 'border-radius', '20px');
 st(projcontainer, 'cursor', 'pointer');
+st(projcontainer, 'border', '1px solid var(--border)');
 st(projtitle, 'position', 'absolute');
 st(projtitle, 'width', 'calc(100% - 50px)');
 st(projtitle, 'padding', '25px');
@@ -326,6 +328,7 @@ plx(footer, "#FFFFFFAA", "#111111AA", '->hex', 'background', 0, 250)
 plx(github_link, "#393939FF", "#D3D3D3FF", '->hex', 'color', 0, 250)
 plx(mail_link, "#393939FF", "#D3D3D3FF", '->hex', 'color', 0, 250)
 plx(logo, 0, 100, '%', '--invert', 0, 250)
+plx(body, "#AAAAAAFF", "#DDDDDDFF", '->hex', '--border', 0, 250)
 plx(projlist, 2.5, -100, '%', '--left', 0, 1400)
 footer_body_injection()
 styplxbefore(footer, 'transition', 'all 0s ease', 1000);

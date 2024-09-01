@@ -20,6 +20,7 @@ var len-orb3 25vw
 
 sty text_firstname z-index 2
 sty text_lastname z-index 2
+sty body --border #AAAAAA
 
 stg blur_layer
     width 100%
@@ -149,7 +150,7 @@ stg footer
     height 50px
     background #FFFFFF99
     backdrop-filter blur(50px)
-    border-top 1px solid #AAAAAA
+    border-top 1px solid var(--border)
     opacity 0
     display flex
     flex-direction column
@@ -197,6 +198,7 @@ for @projects
         transform translateY(50%)
         border-radius 20px
         cursor pointer
+        border 1px solid var(--border)
     stg END
 
     stg projtitle
@@ -283,10 +285,10 @@ plx footer "#FFFFFFAA":"#111111AA" ->hex background 0:250
 plx github_link "#393939FF":"#D3D3D3FF" ->hex color 0:250
 plx mail_link "#393939FF":"#D3D3D3FF" ->hex color 0:250
 plx logo 0:100 % --invert 0:250
+plx body "#AAAAAAFF":"#DDDDDDFF" ->hex --border 0:250
 plx projlist 2.5:-100 % --left 0:1400
 
 jsl footer_body_injection()
-
 
 styplxb footer transition 1000 all 0s ease
 styplxa footer transition 1000 all 1s ease
