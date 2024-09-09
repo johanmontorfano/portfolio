@@ -11,16 +11,17 @@ make parallax feel like magic.
 `moviemaker` README: [/moviemaker/README.md](./moviemaker/README.md)
 
 ## Roadmap
-- [ ] Build a parallax engine
-- [ ] Put content on the portfolio
+- [X] Build a parallax engine
+- [ ] Make the glue use momentum on scroll to make things smoother
+- [X] Put content on the portfolio
     - [X] Main projects
     - [x] About me paragraph
     - [X] Links
-    - [ ] Screen effects
-    - [ ] Text effects
-- [ ] Put orbs to make the website more colorful
+    - [X] Screen effects
+    - [X] Text effects
+- [X] Put orbs to make the website more colorful
     - [X] Choose a colorscheme for orbs
     - [X] Make orbs move with the content
-    - [ ] Make orbs interact with the content
-    - [ ] Make orbs look great on every text size
+    - [X] Make orbs interact with the content
+    - [X] Make orbs look great on every text size
 
