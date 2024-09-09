@@ -196,12 +196,8 @@ const link_container = document.createElement('div');
 const logo = document.createElement('img');
 const github_link = document.createElement('a');
 const mail_link = document.createElement('a');
-const github_container = document.createElement('div');
-const github_logo = document.createElement('img');
-const github_text = document.createElement('p');
 const projlist = document.createElement('div');
 stp(projlist, 'id', "projlist")
-stp(github_container, 'id', "github_container")
 stp(footer, 'id', "footer")
 stp(footer_top, 'id', "footer_top")
 stp(link_container, 'id', "f__link_container")

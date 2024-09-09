@@ -111,13 +111,9 @@ el link_container div
 el logo img
 el github_link a
 el mail_link a
-el github_container div
-el github_logo img
-el github_text p
 el projlist div
 
 stp projlist id "projlist"
-stp github_container id "github_container"
 stp footer id "footer"
 stp footer_top id "footer_top"
 stp link_container id "f__link_container"
