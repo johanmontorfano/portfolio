@@ -1,9 +1,25 @@
 let vsd = 0;
 let touchPoints = [];
+let scrollDirection = 0;
+let momentumCyclesLeft = 0;
 const cbs = [];
+const MAX_CYCLES = 120;
 
-/// Calculate a value out of a given progression in the transition from a value
-// a to a value b
+/// Scroll momentum cycles are processed here at 60cps
+setInterval(() => {
+    if (momentumCyclesLeft < 1) return;
+    if (momentumCyclesLeft > MAX_CYCLES) {
+        momentumCyclesLeft--;
+        return;
+    }
+
+    vsd += scrollDirection * (momentumCyclesLeft / 20);
+    momentumCyclesLeft--;
+    cbs.forEach(c => c());
+}, 1000 / 90);
+
+/** Calculate a value out of a given progression in the transition from a value
+  * a to a value b */
 const tvc = (from, to, p) => {
     const diff = to - from;
     const v_a = from > to ? from : to;
@@ -75,7 +91,6 @@ function calculateDistance(points) {
     for (let i = 1; i < points.length; i++) {
         const {clientY: y1} = points[i - 1];
         const {clientY: y2} = points[i];
-
         totalDistance += y2 - y1;
     }
 
@@ -87,14 +102,19 @@ document.body.addEventListener("touchstart", (event) => {
 });
 document.body.addEventListener("touchmove", (event) => {
     touchPoints.push(event.touches[0]);
-    const delta = calculateDistance(touchPoints);
-    vsd += delta > 0 ? Math.min(20, delta) : Math.max(-20, delta);
+    const delta = calculateDistance(touchPoints) * -1;
+    vsd += delta > 0 ? Math.min(30, delta) : Math.max(-30, delta);
     touchPoints = [event.touches[0]];
     cbs.forEach(c => c());
+    console.log(delta, "ran");
+    momentumCyclesLeft = MAX_CYCLES + 8;
+    scrollDirection = delta > 0 ? 1 : -1;
 });
 window.addEventListener("wheel", ev => {
-    vsd += ev.deltaY > 0 ? Math.min(20, ev.deltaY) : Math.max(-20, ev.deltaY);
+    vsd += ev.deltaY > 0 ? Math.min(30, ev.deltaY) : Math.max(-30, ev.deltaY);
     cbs.forEach(c => c());
+    momentumCyclesLeft = MAX_CYCLES + 1;
+    scrollDirection = ev.deltaY > 0 ? 1 : -1;
 });
 
 import {footer_body_injection} from "./footer.js"
