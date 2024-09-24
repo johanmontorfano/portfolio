@@ -23,6 +23,7 @@ p {
     font-family: Roboto;
     font-weight: 700;
     font-size: clamp(24px, 5vw, 30px);
+    text-align: center;
     color: white;
     animation-name: appear;
     animation-duration: 1.2s;
