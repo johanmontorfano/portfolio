@@ -1,21 +1,17 @@
 import {render} from "solid-js/web"
 import {MenuBar} from "./components/menu_bar";
-import { Route, Router, RouteSectionProps } from "@solidjs/router";
-import AboutRoute from "./routes/about";
-
+import {ScrollCtxProvider, ScrollStyle} from "./components/scroll";
 import "./index.css";
 
-function Wrapper(props: RouteSectionProps<any>) {
-    return <div>
+function Wrapper() {
+    return <ScrollCtxProvider>
         <MenuBar />
-        {props.children}
-    </div>
+        <div style={{display: "flex", "justify-content": "center", height: "3000px"}}>
+        </div>
+        <ScrollStyle from={{position: "absolute", top: "50%", left: "0%", from: 0}} to={{left: "80%", goBy: .5}}>
+            <p>Text</p>
+        </ScrollStyle>
+    </ScrollCtxProvider>
 }
 
-function Index() {
-    return <Router root={Wrapper}>
-        <Route path="/" component={AboutRoute} />
-    </Router>
-}
-
-render(Index, document.getElementById("app") as HTMLElement);
+render(Wrapper, document.getElementById("app") as HTMLElement);

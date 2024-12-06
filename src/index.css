@@ -2,5 +2,28 @@
 
 body {
     background: black;
-    height: 100dvh;
+}
+
+h1 {
+    font-family: "Playfair Display";
+    font-weight: 100;
+    font-size: 2.5rem;
+    color: white;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 2rem;
+    color: white;
+}
+
+p {
+    color: white;
+    font-family: Roboto;
+}
+
+.d {
+    opacity: .8;
 }
