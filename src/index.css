@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    background: whitesmoke;
+    overflow: hidden;
+}
+
+* {
+    font-size: 1.25rem;
+    font-family: Roboto;
+    user-select: none;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    padding: 15px;
+
+    & > * {
+        width: 100%;
+        max-width: 450px;
+    }
+}
+
+/* ABOUT SECTION STYLING */
+.section.about {
+    justify-content: center;
+}
+
+.section.about .display {
+    --margin: 0px;
+
+    font-weight: 600;
+    font-style: italic;
+}
+
+.section.about span {
+    --margin: 5px;
+
+    margin-right: var(--margin);
+    margin-left: var(--margin);
+}
+
+.section.about p, .section.about span {
+    --margin-block: 15px;
+
+    margin-block-start: var(--margin-block);
+    margin-block-end: var(--margin-block);
+}
+
+/* PROJECTS "LINKS" STYLING */
+.section.links p {
+    margin-block-start: 5px;
+    margin-block-end: 5px;
+    transform-origin: left center;
+    text-transform: uppercase;
+    font-style: italic;
+    cursor: pointer;
+}
