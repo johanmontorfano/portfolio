@@ -1,6 +1,11 @@
 import { For, Portal, render } from "solid-js/web";
-import { hoveredID, Project, ProjectContainer, registeredImageSource } from "./project";
-import { createEffect, createRoot, createSignal, onMount, untrack } from "solid-js";
+import { 
+    hoveredID,
+    Project, 
+    ProjectContainer, 
+    registeredImageSource 
+} from "./project";
+import { createEffect, createSignal, onMount } from "solid-js";
 import { Motion } from "solid-motionone";
 import AfterSalesImage from "../public/assets/projects/afs.png";
 import MandelbrotImage from "../public/assets/projects/mandelbrot.png";
@@ -14,8 +19,9 @@ import Logo from "../public/assets/logo.svg";
 import Face from "../public/assets/face.png";
 import "./index.css";
 
-
-export const HARDCODED_PROJECTS: Project[] = [
+const GITHUB_URL = "https://github.com/johanmontorfano";
+const UPWORK_URL = "https://upwork.com/freelancers/johanmontorfano";
+const PROJECTS: Project[] = [
     {
         name: "AfterSales",
         link: "https://aftersales.johanmontorfano.com/",
@@ -62,12 +68,11 @@ function Wrapper() {
     const [projectsHovered, setProjectsHovered] = createSignal(false);
     const [imageX, setImageX] = createSignal(0);
     const [imageY, setImageY] = createSignal(0);
-    let ref: HTMLElement;
     let timeout: number | null = null;
+    let ref: HTMLElement;
 
     onMount(() => {
         let prevt: TouchEvent;
-        let prevm: WheelEvent;
 
         window.addEventListener("mousemove", ev => {
             setImageX(ev.x);
@@ -76,7 +81,6 @@ function Wrapper() {
         document.body.addEventListener("touchmove", ev => {
             if (prevt !== undefined) {
                 const up = ev.touches[0].clientY < prevt.touches[0].clientY;
-
                 setProjectsHovered(up);
             }
             prevt = ev;
@@ -102,10 +106,10 @@ function Wrapper() {
                 height: "300px"
             }}
             animate={{
-                filter: projectsHovered() ? "blur(8px)" : "blur(0px)",
-                opacity: projectsHovered() ? 0 : 1,
                 scale: projectsHovered() ?  0.8 : 1,
-                height: projectsHovered() ? "0px" : "300px"
+                height: projectsHovered() ? "0px" : "300px",
+                filter: projectsHovered() ? "blur(8px)" : "blur(0px)",
+                opacity: projectsHovered() ? 0 : 1
             }}
         >
             <p>
@@ -120,7 +124,8 @@ function Wrapper() {
             <div style={{
                 display: "flex"
             }}>
-                <div 
+                <div
+                    onClick={() => window.location.href = UPWORK_URL}
                     style={{
                         "border-radius": "50rem",
                         width: "70px",
@@ -131,16 +136,14 @@ function Wrapper() {
                         "align-items": "center",
                         border: "2px solid gray",
                         background: "white",
-                        "margin-right": "10px"
+                        "margin-right": "10px",
+                        cursor: "pointer"
                     }}
                 >
                     <img src={Logo} width={61} height={61} />
                 </div>
                 <div 
-                    onClick={() => {
-                        window.location.href = 
-                            "https://github.com/johanmontorfano";
-                    }}
+                    onClick={() => window.location.href = GITHUB_URL}
                     style={{
                         "border-radius": "50rem",
                         width: "70px",
@@ -170,9 +173,30 @@ function Wrapper() {
             }}
             onMouseEnter={() => setProjectsHovered(true)}
         >
-            <For children={ProjectContainer} each={HARDCODED_PROJECTS} />
+            <For children={ProjectContainer} each={PROJECTS} />
         </Motion.div>
         <Portal mount={document.body}>
+            <div style={{
+                position: "absolute",
+                overflow: "hidden",
+                left: "50%",
+                bottom: "-50%",
+                transform: "translateX(-50%)",
+                width: "80vw", 
+                height: "600px", 
+                "border-radius": "400px",
+                background: "#0100FF",
+                "z-index": 0
+            }} />
+            <div style={{
+                "z-index": 1,
+                width: "100%",
+                height: "100vh",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                "backdrop-filter": "blur(200px)"
+            }} />
             <Motion.img 
                 src={registeredImageSource()} 
                 style={{
@@ -189,27 +213,6 @@ function Wrapper() {
                     opacity: hoveredID() === -1 ? 0 : 1
                 }} 
             />
-            <div style={{
-                "z-index": 1,
-                width: "100%",
-                height: "100vh",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                "backdrop-filter": "blur(200px)"
-            }} />
-            <div style={{
-                position: "absolute",
-                overflow: "hidden",
-                left: "50%",
-                bottom: "-50%",
-                transform: "translateX(-50%)",
-                width: "80vw", 
-                height: "600px", 
-                "border-radius": "400px",
-                background: "#0100FF",
-                "z-index": 0
-            }} />
         </Portal>
     </div>
 }
