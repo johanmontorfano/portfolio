@@ -17,12 +17,7 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
     const [hover, setHover] = createSignal(0);
     const [open, setOpen] = createSignal(false);
 
-    return <div onPointerDown={ev => {
-        //if (ev.pointerType === "mouse")
-        //    window.location.href = props.link;
-        //if (ev.pointerType === "touch" || ev.pointerType === "pen") 
-            setOpen(true);
-    }}>
+    return <div onPointerDown={() => setOpen(true)}>
         <Motion.p
             animate={{
                 scale: 1 + hover(),
@@ -55,12 +50,8 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                         "justify-content": "center",
                         "z-index": 10
                     }}
-                    initial={{
-                        background: "#00000000"
-                    }}
-                    animate={{
-                        background: "#000000AA"
-                    }}
+                    initial={{ background: "#00000000" }}
+                    animate={{ background: "#000000AA" }}
                     onClick={() => setOpen(false)}
                 >
                     <Motion.div 
@@ -73,12 +64,8 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                             "border-top-left-radius": "10px",
                             "border-top-right-radius": "10px"
                         }}
-                        initial={{
-                            y: "100%"
-                        }}
-                        animate={{
-                            y: "0%"
-                        }}
+                        initial={{ y: "100%" }}
+                        animate={{ y: "0%" }}
                     >
                         <DynImage src={props.img} timeout={200} />
                         <br />
@@ -107,9 +94,7 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                                 OPEN
                                 <IoGlobeOutline 
                                     height={10} 
-                                    style={{
-                                        "margin-left": "8px"
-                                    }} 
+                                    style={{ "margin-left": "8px" }} 
                                 />
                             </a>
                         </div>

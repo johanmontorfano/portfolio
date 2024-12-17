@@ -37,12 +37,8 @@ export function DynImage(props: {src: string, timeout: number}) {
                 background: "lightgray",
                 position: "absolute"
             }} 
-            initial={{
-                opacity: 1
-            }}
-            animate={{
-                opacity: loaded() ? 0 : 1
-            }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: loaded() ? 0 : 1 }}
         />
     </div>
 }
