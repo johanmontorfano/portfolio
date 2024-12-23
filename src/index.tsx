@@ -6,6 +6,7 @@ import {
     registeredImageSource 
 } from "./project";
 import { createEffect, createSignal, onMount } from "solid-js";
+import { AppLink, AppLinkPresets } from "./app_link";
 import { Motion } from "solid-motionone";
 import AfterSalesImage from "../public/assets/projects/afs.png";
 import MandelbrotImage from "../public/assets/projects/mandelbrot.png";
@@ -15,10 +16,7 @@ import HexRealmImage from "../public/assets/projects/hexrealm.png";
 import JoogleImage from "../public/assets/projects/joogle.png";
 import MaggalyImage from "../public/assets/projects/maggaly.png";
 import BrainfImage from "../public/assets/projects/brainf.png";
-import Logo from "../public/assets/logo.svg";
-import Face from "../public/assets/face.png";
 import "./index.css";
-import { AppLink, AppLinkPresets } from "./app_link";
 
 const PROJECTS: Project[] = [
     {
@@ -140,6 +138,18 @@ function Wrapper() {
             <For children={ProjectContainer} each={PROJECTS} />
         </Motion.div>
         <Portal mount={document.body}>
+            <p style={{
+                position: "absolute",
+                bottom: 0,
+                opacity: .5,
+                "font-size": ".7rem",
+                "z-index": 5,
+                left: "50%",
+                transform: "translateX(-50%)",
+                "font-variant": "all-small-caps"
+            }}>
+                © {new Date().getFullYear()} Johan Delhomme
+            </p>
             <div style={{
                 position: "absolute",
                 overflow: "hidden",
