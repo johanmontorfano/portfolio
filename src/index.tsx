@@ -18,9 +18,8 @@ import BrainfImage from "../public/assets/projects/brainf.png";
 import Logo from "../public/assets/logo.svg";
 import Face from "../public/assets/face.png";
 import "./index.css";
+import { AppLink, AppLinkPresets } from "./app_link";
 
-const GITHUB_URL = "https://github.com/johanmontorfano";
-const UPWORK_URL = "https://upwork.com/freelancers/johanmontorfano";
 const PROJECTS: Project[] = [
     {
         name: "AfterSales",
@@ -121,45 +120,10 @@ function Wrapper() {
                 <span class="display">Lyon, France.</span>
             </p>
             <br />
-            <div style={{
-                display: "flex"
-            }}>
-                <div
-                    onClick={() => window.location.href = UPWORK_URL}
-                    style={{
-                        "border-radius": "50rem",
-                        width: "70px",
-                        height: "70px",
-                        padding: "4px",
-                        display: "flex",
-                        "justify-content": "center",
-                        "align-items": "center",
-                        border: "2px solid gray",
-                        background: "white",
-                        "margin-right": "10px",
-                        cursor: "pointer"
-                    }}
-                >
-                    <img src={Logo} width={61} height={61} />
-                </div>
-                <div 
-                    onClick={() => window.location.href = GITHUB_URL}
-                    style={{
-                        "border-radius": "50rem",
-                        width: "70px",
-                        height: "70px",
-                        padding: "4px",
-                        display: "flex",
-                        "justify-content": "center",
-                        "align-items": "center",
-                        border: "2px solid gray",
-                        background: "white",
-                        overflow: "hidden",
-                        cursor: "pointer"
-                    }}
-                >
-                    <img src={Face} width={61} height={61} />
-                </div>
+            <div style={{ display: "flex" }}>
+                <AppLink {...AppLinkPresets.gh} />
+                <AppLink {...AppLinkPresets.uw} />
+                <AppLink {...AppLinkPresets.li} />
             </div>
         </Motion.div>
         <Motion.div 
