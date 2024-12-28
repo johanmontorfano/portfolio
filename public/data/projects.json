@@ -1,0 +1,123 @@
+[
+    {
+        "name": "AfterSales",
+        "link": "https://aftersales.johanmontorfano.com/",
+        "img": "/assets/projects/afs.png",
+        "skills": [
+            "Next.js",
+            "Postgres",
+            "Supabase",
+            "Vercel",
+            "Tauri",
+            "Rust",
+            "Tailwind"
+        ],
+        "description": [
+            "SaaS designed for one of my clients to make the post-sales process easier to manage. It has been made available on all devices by making both a web and a native application.",
+            "It's equipped with an administator panel, staff profiles with permissions, billing follow-up, file follow-up, client-shareable file dashboard, attachments support, e-mail server, ...",
+            "Some technical difficulties have been encountered to lower the infrastructure cost of the project. Hence, the e-mail server had to be made from scratch to run on-premise.",
+            "Originally, the database was made to run on-premise too. But due to too high maintenance costs, it has been moved to Supabase Postgres Database and Edge Functions.",
+            "As of now, the source code and the access to the app are restricted by exclusivity contracts."
+        ]
+    },
+    {
+        "name": "Mandelbrot",
+        "link": "https://github.com/johanmontorfano/mandelbrot-rs",
+        "img": "/assets/projects/mandelbrot.png",
+        "skills": [
+            "Rust",
+            "Winit",
+            "Softbuffer",
+            "GLSL"
+        ],
+        "description": [
+            "Mandelbrot set viewer made using Rust and Winit.",
+            "Originally made to run on CPU, this viewer was really laggy. The addition of chunks generation and the usage of shaders made it really efficient.",
+            "The hardest part of this project was to implement shaders. The addition of chunks generation is still under testing since it still needs a bit of tweaking..."
+        ]
+    },
+    {
+        "name": "Tic-Tac-Toe",
+        "link": "https://jmticp2p.vercel.app/",
+        "img": "/assets/projects/tictactoe.png",
+        "skills": [
+            "React.js",
+            "P2P",
+            "Peer.js",
+            "SaSS",
+            "Vercel"
+        ],
+        "description": [
+            "Tic-Tac-Toe playable single or in multiplayer mode.",
+            "This project is part of a vast plan I undertook to use as many decentralized web technologies as possible in my projects. The goal is to show my clients decentralized technologies are reliable.",
+            "This Tic-Tac-Toe relies on a relayed P2P network to work on multiplayer mode. However, due to Apple's privacy policies Apple devices may fail to connect to the network."
+        ]
+    },
+    {
+        "name": "File sharing",
+        "link": "https://jmp2p.vercel.app/",
+        "img": "/assets/projects/p2p.png",
+        "skills": [
+            "Solid.js",
+            "Vite",
+            "Typescript",
+            "Tailwind",
+            "PostCSS",
+            "Vercel"
+        ],
+        "description": [
+            "File sharing tool working only over P2P networks.",
+            "This project is part of a vast plan I undertook to use as many decentralized web technologies as possible in my projects. The goal is to show my clients decentralized technologies are reliable.",
+            "To work reliably, the tool shares data by chunks and checksums on the receiving end by comparing the sum of the sending side with the sum calculated on the receiving side."
+        ]
+    },
+    {
+        "name": "Hex Realm",
+        "link": "https://hexrealm2.vercel.app/",
+        "img": "/assets/projects/hexrealm.png",
+        "skills": [
+            "Vite",
+            "Three.js",
+            "GLSL"
+        ],
+        "description": [
+            "Side-project made to render a procedurally generated 3D world.",
+            "Based on hexagons, this world generator aims to create visually pleasing 3D scenes. This project allows me to learn more about 3D rendering.",
+            "Since I faced issues with buffer overflows while rendering. I had to learn the hard way how GPU and rendering works."
+        ]
+    },
+    {
+        "name": "Joogle Search",
+        "link": "https://github.com/johanmontorfano/joogle",
+        "img": "/assets/projects/joogle.png",
+        "skills": [
+            "Rust",
+            "Rocket.rs",
+            "Javascript",
+            "SQLite"
+        ],
+        "description": []
+    },
+    {
+        "name": "MAGGALY",
+        "link": "https://github.com/johanmontorfano/maggaly",
+        "img": "/assets/projects/maggaly.png",
+        "skills": [
+            "Vite",
+            "Typescript",
+            "Rust",
+            "Python"
+        ],
+        "description": []
+    },
+    {
+        "name": "THE F_CK",
+        "link": "https://github.com/johanmontorfano/thef-ck",
+        "img": "/assets/projects/brainf.png",
+        "skills": [
+            "Rust",
+            "Brainf*ck"
+        ],
+        "description": []
+    }
+]

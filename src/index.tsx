@@ -1,67 +1,14 @@
 import { For, Portal, render } from "solid-js/web";
-import { 
-    hoveredID,
-    Project, 
-    ProjectContainer, 
-    registeredImageSource 
-} from "./project";
-import { createEffect, createSignal, onMount } from "solid-js";
+import { hoveredID, ProjectContainer, registeredImageSource } from "./project";
+import { createEffect, createSignal, onMount, Show } from "solid-js";
 import { AppLink, AppLinkPresets } from "./app_link";
 import { Motion } from "solid-motionone";
-import AfterSalesImage from "../public/assets/projects/afs.png";
-import MandelbrotImage from "../public/assets/projects/mandelbrot.png";
-import TictactoeImage from "../public/assets/projects/tictactoe.png";
-import FileSharingImage from "../public/assets/projects/p2p.png";
-import HexRealmImage from "../public/assets/projects/hexrealm.png";
-import JoogleImage from "../public/assets/projects/joogle.png";
-import MaggalyImage from "../public/assets/projects/maggaly.png";
-import BrainfImage from "../public/assets/projects/brainf.png";
+import { Oval } from "solid-spinner";
+import { useProjectsLoader } from "./use_projects_loader";
 import "./index.css";
 
-const PROJECTS: Project[] = [
-    {
-        name: "AfterSales",
-        link: "https://aftersales.johanmontorfano.com/",
-        img: AfterSalesImage
-    },
-    {
-        name: "Mandelbrot",
-        link: "https://github.com/johanmontorfano/mandelbrot-rs",
-        img: MandelbrotImage
-    },
-    {
-        name: "Tic-Tac-Toe",
-        link: "https://jmticp2p.vercel.app/",
-        img: TictactoeImage
-    },
-    {
-        name: "File sharing",
-        link: "https://jmp2p.vercel.app/",
-        img: FileSharingImage
-    },
-    {
-        name: "Hex Realm",
-        link: "https://hexrealm2.vercel.app/",
-        img: HexRealmImage
-    },
-    {
-        name: "Joogle Search",
-        link: "https://github.com/johanmontorfano/joogle",
-        img: JoogleImage
-    },
-    {
-        name: "MAGGALY",
-        link: "https://github.com/johanmontorfano/maggaly",
-        img: MaggalyImage
-    },
-    {
-        name: "THE F_CK",
-        link: "https://github.com/johanmontorfano/thef-ck",
-        img: BrainfImage
-    }
-];
-
 function Wrapper() {
+    const [isLoaded, projects, loadingError] = useProjectsLoader();
     const [projectsHovered, setProjectsHovered] = createSignal(false);
     const [imageX, setImageX] = createSignal(0);
     const [imageY, setImageY] = createSignal(0);
@@ -135,7 +82,13 @@ function Wrapper() {
             }}
             onMouseEnter={() => setProjectsHovered(true)}
         >
-            <For children={ProjectContainer} each={PROJECTS} />
+            <Show when={isLoaded()} fallback={<Oval width={24} />}>
+                {
+                    loadingError() !== null ?
+                    <p>{loadingError()}</p> :
+                    <For children={ProjectContainer} each={projects()} />
+                }
+            </Show>
         </Motion.div>
         <Portal mount={document.body}>
             <p style={{

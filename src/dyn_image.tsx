@@ -27,7 +27,7 @@ export function DynImage(props: {src: string, timeout: number}) {
                 width: "100%", 
                 position: "absolute",
                 border: "2px solid lightgray",
-                "border-radius": "6px"
+                "border-radius": "18px"
             }} 
         />
         <Motion.div 
