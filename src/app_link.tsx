@@ -2,8 +2,8 @@ import { IoLogoGithub } from "solid-icons/io";
 import { IconTypes } from "solid-icons";
 import GithubPP from "../public/assets/pps/github_profile.png";
 import UpworkPP from "../public/assets/pps/upwork_profile.jpg";
-import Linkedin from "../public/assets/linkedin.svg";
-import Upwork from "../public/assets/upwork.svg";
+import Linkedin from "../public/assets/svg/linkedin.svg";
+import Upwork from "../public/assets/svg/upwork.svg";
 
 interface AppLinkData {
     url: string;
