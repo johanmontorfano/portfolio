@@ -22,7 +22,9 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
 
     return <Motion.div
         style={{
-            "transform-origin": "left center"
+            "transform-origin": "left center",
+            width: "min-content",
+            "white-space": "nowrap"
         }}
         initial={{
             opacity: 0,
@@ -45,7 +47,7 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
             animate={{
                 scale: 1 + hover(),
                 paddingTop: hover() * 12 + "px", 
-                paddingBottom: hover() * 12 + "px"
+                paddingBottom: hover() * 12 + "px",
             }}
             onMouseEnter={() => {
                 setHover(1);
