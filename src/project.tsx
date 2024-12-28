@@ -17,7 +17,27 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
     const [hover, setHover] = createSignal(0);
     const [open, setOpen] = createSignal(false);
 
-    return <div onPointerDown={() => setOpen(true)}>
+    return <Motion.div
+        style={{
+            "transform-origin": "left center"
+        }}
+        initial={{
+            opacity: 0,
+            y: 160,
+            filter: "blur(8px)"
+        }}
+        animate={{
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)"
+        }}
+        transition={{
+            delay: id() * .02,
+            duration: .5,
+            easing: "ease-in-out"
+        }}
+        onPointerDown={() => setOpen(true)}
+    >
         <Motion.p
             animate={{
                 scale: 1 + hover(),
@@ -102,5 +122,5 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                 </Motion.div>
             </Portal>
         </Show>
-    </div>
+    </Motion.div>
 }
