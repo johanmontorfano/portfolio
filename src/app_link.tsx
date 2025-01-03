@@ -18,7 +18,7 @@ export const AppLinkPresets: { [app: string]: AppLinkData } = {
         profilePicture: GithubPP
     },
     uw: {
-        url: "https://upwork.com/freelancers/johanmontorfano",
+        url: "https://www.upwork.com/freelancers/~01a00f2388eba98fbf",
         appPicture: Upwork,
         profilePicture: UpworkPP
     },
