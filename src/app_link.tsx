@@ -3,7 +3,6 @@ import { IconTypes } from "solid-icons";
 import GithubPP from "../public/assets/pps/github_profile.png";
 import UpworkPP from "../public/assets/pps/upwork_profile.jpg";
 import Linkedin from "../public/assets/svg/linkedin.svg";
-import Upwork from "../public/assets/svg/upwork.svg";
 
 interface AppLinkData {
     url: string;
@@ -16,11 +15,6 @@ export const AppLinkPresets: { [app: string]: AppLinkData } = {
         url: "https://github.com/johanmontorfano",
         appPicture: IoLogoGithub,
         profilePicture: GithubPP
-    },
-    uw: {
-        url: "https://www.upwork.com/freelancers/~01a00f2388eba98fbf",
-        appPicture: Upwork,
-        profilePicture: UpworkPP
     },
     li: {
         url: "https://www.linkedin.com/in/jhnm",

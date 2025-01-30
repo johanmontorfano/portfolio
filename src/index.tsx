@@ -67,7 +67,6 @@ function Wrapper() {
             <br />
             <div style={{ display: "flex" }}>
                 <AppLink {...AppLinkPresets.gh} />
-                <AppLink {...AppLinkPresets.uw} />
                 <AppLink {...AppLinkPresets.li} />
             </div>
         </Motion.div>
