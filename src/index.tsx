@@ -100,7 +100,7 @@ function Wrapper() {
                 transform: "translateX(-50%)",
                 "font-variant": "all-small-caps"
             }}>
-                © {new Date().getFullYear()} Johan Delhomme
+                Made with ❤️ by Johan Delhomme
             </p>
             <div style={{
                 position: "absolute",
