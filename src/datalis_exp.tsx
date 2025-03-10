@@ -12,6 +12,7 @@ export function DatalisExperienceToggle() {
             background: "#000000",
             "align-items": "center",
             cursor: "pointer",
+            "max-width": "calc(100% - 24px)",
             "border-radius": "4px"
         }}
         animate={{
@@ -22,13 +23,10 @@ export function DatalisExperienceToggle() {
         onMouseLeave={() => setHover(false)}
         onClick={() => setOpenDatalisExp(true)}
     >
-        <img src="https://datalis.johanmontorfano.com/favicon.svg"
+        <img src="https://datalis.johanmontorfano.com/favicon_white.svg"
             width={40}
             height={40}
-            style={{
-                filter: "invert(var(--dts-filter-invert))",
-                "margin-left": "10px"
-            }}
+            style={{"margin-left": "10px"}}
         />
         <p style={{
             color: "white",
@@ -47,8 +45,9 @@ export function DatalisExp() {
     return <Motion.div
         style={{
             width: "100%",
-            height: "100vh",
+            "max-height": "100dvh",
             position: "absolute",
+            overflow: "scroll",
             top: 0,
             left: 0,
             "z-index": openDatalisExp() ? 10 : 0,
@@ -58,7 +57,7 @@ export function DatalisExp() {
             "align-items": "center",
             transition: openDatalisExp() ?
                 "display 0s .3s" :
-                "display: 0s 0s"
+                "display 0s 0s"
         }}
         animate={{
             opacity: openDatalisExp() ? 1 : 0,
@@ -71,12 +70,12 @@ export function DatalisExp() {
             width: "calc(100% - 40px)",
             "max-width": "760px",
             padding: "20px",
-            color: "white"
+            color: "white",
+            "margin-top": "50vh"
         }} class="text-atkinson">
-            <img src="https://datalis.johanmontorfano.com/favicon.svg"
+            <img src="https://datalis.johanmontorfano.com/favicon_white.svg"
                 width={60}
                 height={60}
-                style={{filter: "invert(var(--dts-filter-invert))"}}
             />
             <h1 style={{
                 "text-transform": "uppercase",
