@@ -17,6 +17,7 @@ export function DatalisExperienceToggle() {
         animate={{
             outline: hover() ? "8px solid black" : "0px solid black"
         }}
+        class="text-atkinson"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onClick={() => setOpenDatalisExp(true)}
@@ -32,7 +33,8 @@ export function DatalisExperienceToggle() {
         <p style={{
             color: "white",
             "margin-left": "10px",
-            "font-size": "1rem" 
+            "font-size": "1rem",
+            transform: "translateY(10%)"
         }}>
             Be a part of the future of data
         </p>
@@ -50,23 +52,27 @@ export function DatalisExp() {
             top: 0,
             left: 0,
             "z-index": openDatalisExp() ? 10 : 0,
-            display: openDatalisExp() ? "flex" : "none",
+            display: "flex",
             background: "black",
             "justify-content": "center",
-            "align-items": "center"
+            "align-items": "center",
+            transition: openDatalisExp() ?
+                "display 0s .3s" :
+                "display: 0s 0s"
         }}
         animate={{
+            opacity: openDatalisExp() ? 1 : 0,
             transform: openDatalisExp() ? "scale(1)" : "scale(1.02)",
             filter: openDatalisExp() ? "blur(0px)" : "blur(50px)"
         }}
+        onClick={() => setOpenDatalisExp(false)}
     >
         <div style={{
             width: "calc(100% - 40px)",
             "max-width": "760px",
             padding: "20px",
-            "font-family": "Atkinson",
             color: "white"
-        }}>
+        }} class="text-atkinson">
             <img src="https://datalis.johanmontorfano.com/favicon.svg"
                 width={60}
                 height={60}
@@ -75,15 +81,15 @@ export function DatalisExp() {
             <h1 style={{
                 "text-transform": "uppercase",
                 "font-weight": "bolder",
-                "font-size": "xx-large"
+                "font-size": "xx-large",
             }}>Be part of the future of data.</h1>
-            <div>
+            <div class="text-atkinson">
                 <p>
                     For years, I've specialized in full-stack development,
                     building scalable web applications, cloud solutions, and
                     decentralized systems. My work has always been driven by
                     a passion for clean code, performance, and user-centric
-                    solutions—but now, I’m taking it further.
+                    solutions—but now, <u>I’m taking it further.</u>
                 </p>
                 <p>
                     With Datalis, I’m pioneering a new approach to data
@@ -96,8 +102,8 @@ export function DatalisExp() {
                     My past work showcases my ability to architect robust
                     platforms, solve complex problems, and push technological
                     boundaries. Now, with Datalis, I’m focused on creating a
-                    future where data is not just collected—it’s valued, owned,
-                    and protected.
+                    future where data is not just collected — 
+                    <strong>it’s valued, owned, and protected.</strong>
                 </p>
                 <strong>Join the movement. Explore Datalis.</strong>
                 <br />
@@ -115,12 +121,14 @@ export function DatalisExp() {
                         padding: "6px",
                         cursor: "pointer",
                         "font-variant": "all-small-caps",
-                        "font-weight": "600"
+                        "font-weight": "600",
+                        "border-radius": "4px"
                     }}
-                    animate={{width: hover() ? "52%" : "48%"}}
+                    animate={{width: hover() ? "54%" : "50%"}}
                     onClick={() => window.location.assign(
                         "https://datalis.johanmontorfano.com/about"
                     )}
+                    class="text-atkinson"
                 >
                     <span>Check out Datalis' portfolio</span>
                     <IoArrowForward style={{"margin-left": "15px"}} />
