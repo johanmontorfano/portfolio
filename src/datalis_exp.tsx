@@ -12,6 +12,7 @@ export function DatalisExperienceToggle() {
             background: "#000000",
             "align-items": "center",
             cursor: "pointer",
+            "max-width": "calc(100% - 24px)",
             "border-radius": "4px"
         }}
         animate={{
@@ -22,13 +23,10 @@ export function DatalisExperienceToggle() {
         onMouseLeave={() => setHover(false)}
         onClick={() => setOpenDatalisExp(true)}
     >
-        <img src="https://datalis.johanmontorfano.com/favicon.svg"
+        <img src="https://datalis.johanmontorfano.com/favicon_white.svg"
             width={40}
             height={40}
-            style={{
-                filter: "invert(var(--dts-filter-invert))",
-                "margin-left": "10px"
-            }}
+            style={{"margin-left": "10px"}}
         />
         <p style={{
             color: "white",
@@ -73,10 +71,9 @@ export function DatalisExp() {
             padding: "20px",
             color: "white"
         }} class="text-atkinson">
-            <img src="https://datalis.johanmontorfano.com/favicon.svg"
+            <img src="https://datalis.johanmontorfano.com/favicon_white.svg"
                 width={60}
                 height={60}
-                style={{filter: "invert(var(--dts-filter-invert))"}}
             />
             <h1 style={{
                 "text-transform": "uppercase",
