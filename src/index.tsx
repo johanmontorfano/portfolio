@@ -6,6 +6,7 @@ import { Motion } from "solid-motionone";
 import { Oval } from "solid-spinner";
 import { useProjectsLoader } from "./use_projects_loader";
 import "./index.css";
+import { DatalisExp, DatalisExperienceToggle } from "./datalis_exp";
 
 function Wrapper() {
     const [isLoaded, projects, loadingError] = useProjectsLoader();
@@ -40,18 +41,18 @@ function Wrapper() {
             timeout = null;
         }
         if (hoveredID() === -1) 
-            timeout = setTimeout(() => setProjectsHovered(false), 1000);
+            timeout = setTimeout(() => setProjectsHovered(false), 5000);
     });
     
     return <div ref={r => ref = r} class="column" style={{"z-index": 3}}>
         <Motion.div
             class="section about"
             initial={{
-                height: "300px"
+                height: "310px"
             }}
             animate={{
                 scale: projectsHovered() ?  0.8 : 1,
-                height: projectsHovered() ? "0px" : "300px",
+                height: projectsHovered() ? "50px" : "400px",
                 filter: projectsHovered() ? "blur(8px)" : "blur(0px)",
                 opacity: projectsHovered() ? 0 : 1
             }}
@@ -65,6 +66,8 @@ function Wrapper() {
                 <span class="display">Lyon, France.</span>
             </p>
             <br />
+            <DatalisExperienceToggle />
+            <br />
             <div style={{ display: "flex" }}>
                 <AppLink {...AppLinkPresets.gh} />
                 <AppLink {...AppLinkPresets.li} />
@@ -76,7 +79,7 @@ function Wrapper() {
                 "z-index": 5
             }}
             animate={{
-                paddingTop: projectsHovered() ? "0px" : "20px",
+                paddingTop: projectsHovered() ? "0px" : "60px",
                 y: -(hoveredID() + 1) * 8 + "px"
             }}
             onMouseEnter={() => setProjectsHovered(true)}
@@ -90,6 +93,7 @@ function Wrapper() {
             </Show>
         </Motion.div>
         <Portal mount={document.body}>
+            <DatalisExp />
             <p style={{
                 position: "absolute",
                 bottom: 0,
@@ -100,7 +104,7 @@ function Wrapper() {
                 transform: "translateX(-50%)",
                 "font-variant": "all-small-caps"
             }}>
-                © {new Date().getFullYear()} Johan Delhomme
+                Made with ❤️ by Johan Delhomme
             </p>
             <div style={{
                 position: "absolute",
