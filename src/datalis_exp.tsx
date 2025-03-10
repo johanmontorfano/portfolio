@@ -50,15 +50,20 @@ export function DatalisExp() {
             top: 0,
             left: 0,
             "z-index": openDatalisExp() ? 10 : 0,
-            display: openDatalisExp() ? "flex" : "none",
+            display: "flex",
             background: "black",
             "justify-content": "center",
-            "align-items": "center"
+            "align-items": "center",
+            transition: openDatalisExp() ?
+                "display 0s .3s" :
+                "display: 0s 0s"
         }}
         animate={{
+            opacity: openDatalisExp() ? 1 : 0,
             transform: openDatalisExp() ? "scale(1)" : "scale(1.02)",
             filter: openDatalisExp() ? "blur(0px)" : "blur(50px)"
         }}
+        onClick={() => setOpenDatalisExp(false)}
     >
         <div style={{
             width: "calc(100% - 40px)",
