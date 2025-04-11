@@ -2,7 +2,7 @@ import { Accessor, createSignal, Show } from "solid-js";
 import { Portal } from "solid-js/web";
 import { Motion } from "solid-motionone";
 import { DynImage } from "./dyn_image";
-import { IoGlobeOutline } from "solid-icons/io";
+import { IoOpenOutline } from "solid-icons/io";
 import { Tags } from "./tags";
 
 export const [hoveredID, setHoveredID] = createSignal(-1);
@@ -18,6 +18,7 @@ export interface Project {
 
 export function ProjectContainer(props: Project, id: Accessor<number>) {
     const [hover, setHover] = createSignal(0);
+    const [hoverLink, setHoverLink] = createSignal(false);
     const [open, setOpen] = createSignal(false);
 
     return <Motion.div
@@ -73,8 +74,8 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                         "z-index": 10,
                         "backdrop-filter": "blur(12px)"
                     }}
-                    initial={{ background: "#00000000" }}
-                    animate={{ background: "#000000AA" }}
+                    initial={{ background: "#CCCCCC00" }}
+                    animate={{ background: "#CCCCCCAA" }}
                     onClick={() => setOpen(false)}
                 >
                     <Motion.div 
@@ -105,32 +106,66 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                             top: "100%"
                         }}
                     >
-                        <div style={{
-                            display: "grid",
-                            gap: "12px"
-                        }}>
-                            <div style={{
-                                order: 2,
-                                padding: "8px"
-                            }}>
-                                <h2>ABOUT</h2>
-                                {props.description.slice(1).map(text =>
-                                    <p style={{
-                                        "text-align": "justify",
-                                        "font-size": "1.1rem"
-                                    }}>
-                                        {text}
-                                    </p>
-                                )}
-                            </div>
-                            <div>
-                                <h1 style={{
-                                    "font-size": "2rem",
-                                    background: "#FFFFFF88",
-                                    "backdrop-filter": "blur(8px)"
+                        <div style={{display: "grid"}}>
+                            <Show when={props.description.length > 0}>
+                                <div style={{
+                                    order: 2,
+                                    padding: "8px"
                                 }}>
-                                    {props.name.toUpperCase()}
-                                </h1>
+                                    <h2>ABOUT</h2>
+                                    {props.description.slice(1).map(text =>
+                                        <p style={{
+                                            "text-align": "justify",
+                                            "font-size": "1.1rem"
+                                        }}>
+                                            {text}
+                                        </p>
+                                )}
+                                </div>
+                            </Show>
+                            <div>
+                                <div style={{
+                                    display: "flex",
+                                    "justify-content": "space-between",
+                                    "align-items": "center",
+                                    position: "sticky",
+                                    top: 0,
+                                    "z-index": 10,
+                                    background: "#FFFFFFAA"
+                                }}>
+                                   <h1 style={{"font-size": "2rem"}}>
+                                        {props.name.toUpperCase()}
+                                    </h1>
+                                    <Motion.a 
+                                        href={props.link} 
+                                        target="_blank" 
+                                        onClick={ev => ev.stopPropagation()}
+                                        onMouseEnter={() => setHoverLink(true)}
+                                        onMouseLeave={() => setHoverLink(false)}
+                                        style={{
+                                            background: "#EEEEEE",
+                                            border: "2px solid #CCCCCC", 
+                                            "font-size": ".8rem",
+                                            display: "flex",
+                                            "align-items": "center",
+                                            "justify-content": "space-around",
+                                            color: "black",
+                                            "text-decoration": "none",
+                                            "min-width": "80px",
+                                            padding: "8px",
+                                            "border-radius": "8px"
+                                        }}
+                                        initial={{
+                                            scale: 1
+                                        }}
+                                        animate={{
+                                            scale: hoverLink() ? 1.1 : 1
+                                        }}
+                                    >
+                                        VISIT
+                                        <IoOpenOutline color="black" size={18} />
+                                    </Motion.a>
+                                </div>
                                 <div style={{
                                     display: "flex",
                                     "flex-wrap": "wrap",
@@ -149,21 +184,6 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                                         null
                                     }
                                 </p>
-                                <a 
-                                    href={props.link} 
-                                    target="_blank" 
-                                    onClick={ev => ev.stopPropagation()}
-                                    style={{
-                                        color: "black",
-                                        "font-size": ".8rem",
-                                        display: "flex",
-                                        "align-items": "center"
-                                    }}
-                                >
-                                    VISIT
-                                    <IoGlobeOutline color="black" size={18} />
-                                </a>
-                                <br />
                                 <DynImage src={props.img} timeout={200} />
                             </div>
                         </div>
