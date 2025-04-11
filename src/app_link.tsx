@@ -3,6 +3,7 @@ import { IconTypes } from "solid-icons";
 import GithubPP from "../public/assets/pps/github_profile.png";
 import UpworkPP from "../public/assets/pps/upwork_profile.jpg";
 import Linkedin from "../public/assets/svg/linkedin.svg";
+import ResearchGate from "../public/assets/svg/researchgate.svg";
 
 interface AppLinkData {
     url: string;
@@ -19,6 +20,11 @@ export const AppLinkPresets: { [app: string]: AppLinkData } = {
     li: {
         url: "https://www.linkedin.com/in/jhnm",
         appPicture: Linkedin,
+        profilePicture: UpworkPP
+    },
+    rg: {
+        url: "https://www.researchgate.net/profile/Johan-Delhomme-Montorfano",
+        appPicture: ResearchGate,
         profilePicture: UpworkPP
     }
 }

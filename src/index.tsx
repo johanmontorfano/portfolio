@@ -48,11 +48,11 @@ function Wrapper() {
         <Motion.div
             class="section about"
             initial={{
-                height: "310px"
+                height: "300px"
             }}
             animate={{
                 scale: projectsHovered() ?  0.8 : 1,
-                height: projectsHovered() ? "50px" : "400px",
+                height: projectsHovered() ? "50px" : "300px",
                 filter: projectsHovered() ? "blur(8px)" : "blur(0px)",
                 opacity: projectsHovered() ? 0 : 1
             }}
@@ -66,12 +66,13 @@ function Wrapper() {
                 <span class="display">Lyon, France.</span>
             </p>
             <br />
-            <DatalisExperienceToggle />
-            <br />
             <div style={{ display: "flex" }}>
                 <AppLink {...AppLinkPresets.gh} />
                 <AppLink {...AppLinkPresets.li} />
+                <AppLink {...AppLinkPresets.rg} />
             </div>
+            <br />
+            <DatalisExperienceToggle />
         </Motion.div>
         <Motion.div 
             class="section links"
