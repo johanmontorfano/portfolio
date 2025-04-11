@@ -21,6 +21,19 @@
         ]
     },
     {
+        "name": "EPICS",
+        "link": "https://github.com/johanmontorfano/epics",
+        "img": "/assets/projects/epics.png",
+        "skills": [
+            "Lua",
+            "Bash",
+            "Linux"
+        ],
+        "description": [
+            "A command-line utility to find documentation about coding style issues at Epitech."
+        ]
+    },
+    {
         "name": "Mandelbrot",
         "link": "https://github.com/johanmontorfano/mandelbrot-rs",
         "img": "/assets/projects/mandelbrot.png",
@@ -99,14 +112,14 @@
         "description": []
     },
     {
-        "name": "MAGGALY",
-        "link": "https://github.com/johanmontorfano/maggaly",
-        "img": "/assets/projects/maggaly.png",
+        "name": "JDOS",
+        "link": "https://github.com/johanmontorfano/jdos",
+        "img": "/assets/projects/jdos.png",
         "skills": [
-            "Vite",
-            "Typescript",
-            "Rust",
-            "Python"
+            "C",
+            "Assembly",
+            "x86 architecture",
+            "CPU Design"
         ],
         "description": []
     },
