@@ -107,7 +107,7 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                         }}
                     >
                         <div style={{display: "grid"}}>
-                            <Show when={props.description.length > 0}>
+                            <Show when={props.description.length > 1}>
                                 <div style={{
                                     order: 2,
                                     padding: "8px"
