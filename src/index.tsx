@@ -7,6 +7,7 @@ import { Oval } from "solid-spinner";
 import { useProjectsLoader } from "./use_projects_loader";
 import "./index.css";
 import { DatalisExp, DatalisExperienceToggle } from "./datalis_exp";
+import { Orbs } from "./orbs";
 
 function Wrapper() {
     const [isLoaded, projects, loadingError] = useProjectsLoader();
@@ -107,18 +108,7 @@ function Wrapper() {
             }}>
                 Made with ❤️ by Johan Delhomme
             </p>
-            <div style={{
-                position: "absolute",
-                overflow: "hidden",
-                left: "50%",
-                bottom: "-50%",
-                transform: "translateX(-50%)",
-                width: "80vw", 
-                height: "600px", 
-                "border-radius": "400px",
-                background: "#0100FF",
-                "z-index": 0
-            }} />
+            <Orbs />
             <div style={{
                 "z-index": 1,
                 width: "100%",
