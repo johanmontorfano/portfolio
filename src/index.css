@@ -40,6 +40,10 @@ body {
     font-family: Atkinson !important;
 }
 
+.justified-section > * {
+    text-align: justify;
+}
+
 .column {
     display: flex;
     flex-direction: column;
