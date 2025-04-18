@@ -1,6 +1,8 @@
 import { IoArrowForward } from "solid-icons/io";
-import { createSignal } from "solid-js";
+import { createSignal, Show } from "solid-js";
 import { Motion } from "solid-motionone";
+
+const ALLOW_ACCESS = false;
 
 export const [openDatalisExp, setOpenDatalisExp] = createSignal(false);
 const [hover, setHover] = createSignal(false);
@@ -82,7 +84,7 @@ export function DatalisExp() {
                 "font-weight": "bolder",
                 "font-size": "xx-large",
             }}>Be part of the future of data.</h1>
-            <div class="text-atkinson">
+            <div class="text-atkinson justified-section">
                 <p>
                     For years, I've specialized in full-stack development,
                     building scalable web applications, cloud solutions, and
@@ -104,34 +106,36 @@ export function DatalisExp() {
                     future where data is not just collected — 
                     <strong>it’s valued, owned, and protected.</strong>
                 </p>
-                <strong>Join the movement. Explore Datalis.</strong>
-                <br />
-                <br />
-                <Motion.div
-                    onMouseEnter={() => setHover(true)}
-                    onMouseLeave={() => setHover(false)}
-                    style={{
-                        background: "black",
-                        border: "1px solid white",
-                        color: "white",
-                        display: "flex",
-                        "justify-content": "space-between",
-                        "align-items": "center",
-                        padding: "6px",
-                        cursor: "pointer",
-                        "font-variant": "all-small-caps",
-                        "font-weight": "600",
-                        "border-radius": "4px"
-                    }}
-                    animate={{width: hover() ? "54%" : "50%"}}
-                    onClick={() => window.location.assign(
-                        "https://datalis.johanmontorfano.com/about"
-                    )}
-                    class="text-atkinson"
-                >
-                    <span>Check out Datalis' portfolio</span>
-                    <IoArrowForward style={{"margin-left": "15px"}} />
-                </Motion.div>
+                <strong>Stay tuned.</strong>
+                <Show when={ALLOW_ACCESS}>
+                    <br />
+                    <br />
+                    <Motion.div
+                        onMouseEnter={() => setHover(true)}
+                        onMouseLeave={() => setHover(false)}
+                        style={{
+                            background: "black",
+                            border: "1px solid white",
+                            color: "white",
+                            display: "flex",
+                            "justify-content": "space-between",
+                            "align-items": "center",
+                            padding: "6px",
+                            cursor: "pointer",
+                            "font-variant": "all-small-caps",
+                            "font-weight": "600",
+                            "border-radius": "4px"
+                        }}
+                        animate={{width: hover() ? "54%" : "50%"}}
+                        onClick={() => window.location.assign(
+                            "https://datalis.johanmontorfano.com/about"
+                        )}
+                        class="text-atkinson"
+                    >
+                        <span>Check out Datalis' portfolio</span>
+                        <IoArrowForward style={{"margin-left": "15px"}} />
+                    </Motion.div>
+                </Show>
             </div>
         </div>
     </Motion.div>
