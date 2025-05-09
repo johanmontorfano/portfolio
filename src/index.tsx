@@ -14,6 +14,7 @@ function Wrapper() {
     const [projectsHovered, setProjectsHovered] = createSignal(false);
     const [imageX, setImageX] = createSignal(0);
     const [imageY, setImageY] = createSignal(0);
+    const dts_exp = import.meta.env.VITE_DTS_EXP_ENABLED === "1";
     let timeout: number | null = null;
     let ref: HTMLElement;
 
@@ -44,12 +45,12 @@ function Wrapper() {
         if (hoveredID() === -1) 
             timeout = setTimeout(() => setProjectsHovered(false), 5000);
     });
-    
+
     return <div ref={r => ref = r} class="column" style={{"z-index": 3}}>
         <Motion.div
             class="section about"
             initial={{
-                height: "300px"
+                height: dts_exp ? "300px" : "250px"
             }}
             animate={{
                 scale: projectsHovered() ?  0.8 : 1,
@@ -73,7 +74,9 @@ function Wrapper() {
                 <AppLink {...AppLinkPresets.rg} />
             </div>
             <br />
-            <DatalisExperienceToggle />
+            <Show when={dts_exp}>
+                <DatalisExperienceToggle />
+            </Show>
         </Motion.div>
         <Motion.div 
             class="section links"
@@ -81,7 +84,8 @@ function Wrapper() {
                 "z-index": 5
             }}
             animate={{
-                paddingTop: projectsHovered() ? "0px" : "60px",
+                paddingTop: projectsHovered() ? "0px" :
+                    dts_exp ? "60px" : "0px",
                 y: -(hoveredID() + 1) * 8 + "px"
             }}
             onMouseEnter={() => setProjectsHovered(true)}
@@ -95,19 +99,9 @@ function Wrapper() {
             </Show>
         </Motion.div>
         <Portal mount={document.body}>
-            <DatalisExp />
-            <p style={{
-                position: "absolute",
-                bottom: 0,
-                opacity: .5,
-                "font-size": ".7rem",
-                "z-index": 5,
-                left: "50%",
-                transform: "translateX(-50%)",
-                "font-variant": "all-small-caps"
-            }}>
-                Made with ❤️ by Johan Delhomme
-            </p>
+            <Show when={dts_exp}>
+                <DatalisExp />
+            </Show>
             <Orbs />
             <div style={{
                 "z-index": 1,
