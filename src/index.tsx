@@ -8,6 +8,19 @@ import { useProjectsLoader } from "./use_projects_loader";
 import "./index.css";
 import { DatalisExp, DatalisExperienceToggle } from "./datalis_exp";
 import { Orbs } from "./orbs";
+import { HireExperience } from "./hire_exp";
+
+const isDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+onThemeChange(isDark as any);
+isDark.addEventListener("change", onThemeChange);
+
+function onThemeChange(ev: MediaQueryListEvent) {
+    const icon = document.querySelector("link[rel~='icon']");
+
+    (icon as HTMLLinkElement).href = 
+        `/assets/logo${ev.matches ? "-white" : ""}.svg`
+}
 
 function Wrapper() {
     const [isLoaded, projects, loadingError] = useProjectsLoader();
@@ -15,6 +28,7 @@ function Wrapper() {
     const [imageX, setImageX] = createSignal(0);
     const [imageY, setImageY] = createSignal(0);
     const dts_exp = import.meta.env.VITE_DTS_EXP_ENABLED === "1";
+    const hire_exp = import.meta.env.VITE_HIRE_EXP_ENABLED === "1";
     let timeout: number | null = null;
     let ref: HTMLElement;
 
@@ -101,6 +115,9 @@ function Wrapper() {
         <Portal mount={document.body}>
             <Show when={dts_exp}>
                 <DatalisExp />
+            </Show>
+            <Show when={hire_exp}>
+                <HireExperience />
             </Show>
             <Orbs />
             <div style={{
