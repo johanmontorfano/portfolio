@@ -34,6 +34,24 @@
         ]
     },
     {
+        "name": "Ju-Chat",
+        "link": "https://juchat.johanmontorfano.com",
+        "img": "/assets/projects/juchat.png",
+        "skills": [
+            "Vite",
+            "Tailwind",
+            "Typescript",
+            "Vercel",
+            "Peer.js"
+        ],
+        "description": [
+            "I always wanted to develop and extend my expertise on alt systems to make already widely used services better.",
+            "This web-app, alongside P2P-File-Sharing, represent a new stone to my willingness to make everything P2P.",
+            "With this app, you can chat privately and anonymously with anyone. Everything is saved locally (yes, you physically own your data)"
+        ]
+
+    },
+    {
         "name": "Mandelbrot",
         "link": "https://github.com/johanmontorfano/mandelbrot-rs",
         "img": "/assets/projects/mandelbrot.png",
@@ -76,7 +94,8 @@
             "Typescript",
             "Tailwind",
             "PostCSS",
-            "Vercel"
+            "Vercel",
+            "Peer.js"
         ],
         "description": [
             "File sharing tool working only over P2P networks.",
