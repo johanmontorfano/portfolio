@@ -9,6 +9,9 @@ import "./index.css";
 import { DatalisExp, DatalisExperienceToggle } from "./datalis_exp";
 import { Orbs } from "./orbs";
 import { HireExperience } from "./hire_exp";
+import { inject } from "@vercel/analytics";
+
+inject();
 
 const isDark = window.matchMedia("(prefers-color-scheme: dark)");
 
