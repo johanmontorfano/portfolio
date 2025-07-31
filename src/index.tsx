@@ -85,6 +85,7 @@ function Wrapper() {
             <div style={{ display: "flex" }}>
                 <AppLink {...AppLinkPresets.gh} />
                 <AppLink {...AppLinkPresets.li} />
+                <AppLink {...AppLinkPresets.md} />
                 <AppLink {...AppLinkPresets.rg} />
             </div>
             <br />

@@ -1,9 +1,11 @@
-import { IoLogoGithub } from "solid-icons/io";
+import { IoLogoGithub, IoLogoMedium } from "solid-icons/io";
 import { IconTypes } from "solid-icons";
 import GithubPP from "../public/assets/pps/github_profile.png";
 import UpworkPP from "../public/assets/pps/upwork_profile.jpg";
+import MediumPP from "../public/assets/pps/medium_profile.jpg";
 import Linkedin from "../public/assets/svg/linkedin.svg";
 import ResearchGate from "../public/assets/svg/researchgate.svg";
+import Medium from "../public/assets/pps/medium.jpeg";
 
 interface AppLinkData {
     url: string;
@@ -21,6 +23,11 @@ export const AppLinkPresets: { [app: string]: AppLinkData } = {
         url: "https://www.linkedin.com/in/jhnm",
         appPicture: Linkedin,
         profilePicture: UpworkPP
+    },
+    md: {
+        url: "https://www.medium.com/@johandelhomme",
+        appPicture: Medium,
+        profilePicture: MediumPP
     },
     rg: {
         url: "https://www.researchgate.net/profile/Johan-Delhomme-Montorfano",
