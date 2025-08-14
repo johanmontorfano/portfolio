@@ -111,7 +111,11 @@
             "Javascript",
             "SQLite"
         ],
-        "description": []
+        "description": [
+            "Joogle Search is a search engine I built to better understand scraping mechanisms, indexing, and fast data access.",
+            "Built upon Rocket.rs, it features full indexing with robots.txt and sitemaps support.",
+            "It also features a dashboard where domain owners can submit their website for indexation."
+        ]
     },
     {
         "name": "JDOS",
