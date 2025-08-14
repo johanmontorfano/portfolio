@@ -26,7 +26,7 @@ export function HireExperience() {
                 "font-size": "1rem",
                 background: "#00000088",
                 "backdrop-filter": "blur(50px)",
-                padding: "12px",
+                padding: "8px",
                 "border-radius": "12px",
                 border: "1px solid #000000AA",
                 color: "white",
@@ -42,9 +42,11 @@ export function HireExperience() {
             }}
             class="elevate-on-hover"
         >
-            <IoFlash size={24}
+            <IoFlash size={20}
                 color="white"
-                style={{ "margin-right": "8px" }}
+                style={{
+                    "margin-right": "8px"
+                }}
             />
             Let's work together!
         </div>

@@ -24,7 +24,7 @@ export function DynImage(props: {src: string, timeout: number}) {
             ref={ref as any}
             src={props.src} 
             style={{
-                width: "100%", 
+                width: "calc(100% - 4px)", 
                 position: "absolute",
                 border: "2px solid lightgray",
                 "border-radius": "18px"

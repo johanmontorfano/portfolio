@@ -131,7 +131,8 @@ function Wrapper() {
                 position: "absolute",
                 top: 0,
                 left: 0,
-                "backdrop-filter": "blur(200px)"
+                "backdrop-filter": "blur(200px)",
+                background: "url(https://grainy-gradients.vercel.app/noise.svg)",
             }} />
             <Motion.img 
                 src={registeredImageSource()} 

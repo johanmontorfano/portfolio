@@ -1,12 +1,12 @@
 :root {
-  --color-bg1: rgb(131, 150, 255);
-  --color-bg2: rgb(179, 179, 179);
-  --color1: 116, 98, 255;
-  --color2: 118, 74, 221;
-  --color3: 132, 149, 216;
-  --color4: 200, 50, 50;
-  --color5: 116, 180, 212;
-  --color-interactive: 140, 100, 255;
+  --color-bg1: black;
+  --color-bg2: white; 
+  --color1: 255, 255, 255;
+  --color2: 255, 255, 255;
+  --color3: 0, 0, 0;
+  --color4: 125, 125, 125;
+  --color5: 255, 255, 255;
+  --color-interactive: 10, 10, 10;
   --circle-size: 80%;
   --blending: hard-light;
 }
@@ -66,7 +66,6 @@
   }
 
   .gradients-container {
-    filter: url(#goo) blur(40px) ;
     width: 100%;
     height: 100%;
   }

@@ -80,13 +80,12 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                 >
                     <Motion.div 
                         style={{
-                            width: "calc(100% - clamp(16px, 4vw, 40px))",
+                            width: "100%",
                             "max-width": "800px",
                             "max-height": "80vh",
-                            padding: "clamp(8px, 2vw, 20px)",
                             background: "white",
-                            "border-top-left-radius": "28px",
-                            "border-top-right-radius": "28px",
+                            "border-top-left-radius": "18px",
+                            "border-top-right-radius": "18px",
                             overflow: "auto",
                             left: "50%",
                             position: "absolute"
@@ -106,23 +105,7 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                             top: "100%"
                         }}
                     >
-                        <div style={{display: "grid"}}>
-                            <Show when={props.description.length > 1}>
-                                <div style={{
-                                    order: 2,
-                                    padding: "8px"
-                                }}>
-                                    <h2>ABOUT</h2>
-                                    {props.description.slice(1).map(text =>
-                                        <p style={{
-                                            "text-align": "justify",
-                                            "font-size": "1.1rem"
-                                        }}>
-                                            {text}
-                                        </p>
-                                )}
-                                </div>
-                            </Show>
+                        <div style={{display: "grid", padding: "8px"}}>
                             <div>
                                 <div style={{
                                     display: "flex",
@@ -131,9 +114,13 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                                     position: "sticky",
                                     top: 0,
                                     "z-index": 10,
+                                    "backdrop-filter": "blur(24px)",
                                     background: "#FFFFFFAA"
                                 }}>
-                                   <h1 style={{"font-size": "2rem"}}>
+                                   <h1 style={{
+                                       "font-size": "2rem",
+                                       "font-style": "italic"
+                                   }}>
                                         {props.name.toUpperCase()}
                                     </h1>
                                     <Motion.a 
@@ -152,7 +139,9 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                                             color: "black",
                                             "text-decoration": "none",
                                             "min-width": "80px",
-                                            padding: "8px",
+                                            padding: "18px",
+                                            "padding-top": "10px",
+                                            "padding-bottom": "10px",
                                             "border-radius": "8px"
                                         }}
                                         initial={{
@@ -185,6 +174,18 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                                     }
                                 </p>
                                 <DynImage src={props.img} timeout={200} />
+                                <Show when={props.description.length > 1}>
+                                    <div>
+                                        <h2>ABOUT</h2>
+                                        {props.description.slice(1).map(text =>
+                                            <p style={{
+                                                "font-size": "1.1rem"
+                                            }}>
+                                                {text}
+                                            </p>
+                                        )}
+                                    </div>
+                                </Show>
                             </div>
                         </div>
                     </Motion.div>
