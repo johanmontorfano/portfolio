@@ -21,6 +21,23 @@
         ]
     },
     {
+        "name": "Bad Clients",
+        "link": "https://badclients.app",
+        "img": "/assets/projects/badclients.png",
+        "skills": [
+            "Next.js",
+            "Postgres",
+            "Vercel",
+            "Tailwind",
+            "OpenAI API",
+            "Stripe"
+        ],
+        "description": [
+            "SaaS designed to help freelancers spot bad proposals by leveraging AI and a Chrome extension for direct integration in Upwork",
+            "It is shipped with extension keys to connect easily the extension, tiered payment, and the OpenAI API to connect OpenRouter models."
+        ]
+    },
+    {
         "name": "EPICS",
         "link": "https://github.com/johanmontorfano/epics",
         "img": "/assets/projects/epics.png",
@@ -31,57 +48,6 @@
         ],
         "description": [
             "A command-line utility to find documentation about coding style issues at Epitech."
-        ]
-    },
-    {
-        "name": "Ju-Chat",
-        "link": "https://juchat.johanmontorfano.com",
-        "img": "/assets/projects/juchat.png",
-        "skills": [
-            "Vite",
-            "Tailwind",
-            "Typescript",
-            "Vercel",
-            "Peer.js"
-        ],
-        "description": [
-            "I always wanted to develop and extend my expertise on alt systems to make already widely used services better.",
-            "This web-app, alongside P2P-File-Sharing, represent a new stone to my willingness to make everything P2P.",
-            "With this app, you can chat privately and anonymously with anyone. Everything is saved locally (yes, you physically own your data)"
-        ]
-
-    },
-    {
-        "name": "Mandelbrot",
-        "link": "https://github.com/johanmontorfano/mandelbrot-rs",
-        "img": "/assets/projects/mandelbrot.png",
-        "skills": [
-            "Rust",
-            "Winit",
-            "Softbuffer",
-            "GLSL"
-        ],
-        "description": [
-            "Mandelbrot set viewer made using Rust and Winit.",
-            "Originally made to run on CPU, this viewer was really laggy. The addition of chunks generation and the usage of shaders made it really efficient.",
-            "The hardest part of this project was to implement shaders. The addition of chunks generation is still under testing since it still needs a bit of tweaking..."
-        ]
-    },
-    {
-        "name": "Tic-Tac-Toe",
-        "link": "https://jmticp2p.vercel.app/",
-        "img": "/assets/projects/tictactoe.png",
-        "skills": [
-            "React.js",
-            "P2P",
-            "Peer.js",
-            "SaSS",
-            "Vercel"
-        ],
-        "description": [
-            "Tic-Tac-Toe playable single or in multiplayer mode.",
-            "This project is part of a vast plan I undertook to use as many decentralized web technologies as possible in my projects. The goal is to show my clients decentralized technologies are reliable.",
-            "This Tic-Tac-Toe relies on a relayed P2P network to work on multiplayer mode. However, due to Apple's privacy policies Apple devices may fail to connect to the network."
         ]
     },
     {
@@ -119,6 +85,23 @@
         ]
     },
     {
+        "name": "Ju-Chat",
+        "link": "https://juchat.johanmontorfano.com",
+        "img": "/assets/projects/juchat.png",
+        "skills": [
+            "Vite",
+            "Tailwind",
+            "Typescript",
+            "Vercel",
+            "Peer.js"
+        ],
+        "description": [
+            "I always wanted to develop and extend my expertise on alt systems to make already widely used services better.",
+            "This web-app, alongside P2P-File-Sharing, represent a new stone to my willingness to make everything P2P.",
+            "With this app, you can chat privately and anonymously with anyone. Everything is saved locally (yes, you physically own your data)"
+        ]
+    },
+    {
         "name": "Joogle Search",
         "link": "https://github.com/johanmontorfano/joogle",
         "img": "/assets/projects/joogle.png",
@@ -143,6 +126,36 @@
         "description": []
     },
     {
+        "name": "Mandelbrot",
+        "link": "https://github.com/johanmontorfano/mandelbrot-rs",
+        "img": "/assets/projects/mandelbrot.png",
+        "skills": [
+            "Rust",
+            "Winit",
+            "Softbuffer",
+            "GLSL"
+        ],
+        "description": [
+            "Mandelbrot set viewer made using Rust and Winit.",
+            "Originally made to run on CPU, this viewer was really laggy. The addition of chunks generation and the usage of shaders made it really efficient.",
+            "The hardest part of this project was to implement shaders. The addition of chunks generation is still under testing since it still needs a bit of tweaking..."
+        ]
+    },
+    {
+        "name": "OddsAssist",
+        "link": "https://oddsassist.com/",
+        "img": "/assets/projects/oddsassist.png",
+        "skills": [
+            "Tailwind",
+            "DaisyUI",
+            "Prisma"
+        ],
+        "description": [
+            "OddsAsssist is a betting assistance platform that aims at making betters more skilled",
+            "I took part in building the v2 of this product by developing the UI and some API routes of the project"
+        ]
+    },
+    {
         "name": "THE F_CK",
         "link": "https://github.com/johanmontorfano/thef-ck",
         "img": "/assets/projects/brainf.png",
@@ -151,5 +164,22 @@
             "Brainf*ck"
         ],
         "description": []
+    },
+    {
+        "name": "Tic-Tac-Toe",
+        "link": "https://jmticp2p.vercel.app/",
+        "img": "/assets/projects/tictactoe.png",
+        "skills": [
+            "React.js",
+            "P2P",
+            "Peer.js",
+            "SaSS",
+            "Vercel"
+        ],
+        "description": [
+            "Tic-Tac-Toe playable single or in multiplayer mode.",
+            "This project is part of a vast plan I undertook to use as many decentralized web technologies as possible in my projects. The goal is to show my clients decentralized technologies are reliable.",
+            "This Tic-Tac-Toe relies on a relayed P2P network to work on multiplayer mode. However, due to Apple's privacy policies Apple devices may fail to connect to the network."
+        ]
     }
 ]
