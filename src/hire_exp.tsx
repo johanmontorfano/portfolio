@@ -2,8 +2,6 @@ import { IoFlash } from "solid-icons/io";
 import { Motion } from "solid-motionone";
 
 export function HireExperience() {
-    console.log("hey");
-
     return <Motion.div
         style={{
             "z-index": 10,
@@ -24,7 +22,7 @@ export function HireExperience() {
         <div
             style={{
                 "font-size": "1rem",
-                background: "#00000088",
+                background: "#DDDA",
                 "backdrop-filter": "blur(50px)",
                 padding: "8px",
                 "border-radius": "12px",

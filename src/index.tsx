@@ -1,5 +1,5 @@
 import { For, Portal, render } from "solid-js/web";
-import { hoveredID, ProjectContainer, registeredImageSource } from "./project";
+import { hoveredID, ProjectContainer } from "./project";
 import { createEffect, createSignal, onMount, Show } from "solid-js";
 import { AppLink, AppLinkPresets } from "./app_link";
 import { Motion } from "solid-motionone";
@@ -7,7 +7,6 @@ import { Oval } from "solid-spinner";
 import { useProjectsLoader } from "./use_projects_loader";
 import "./index.css";
 import { DatalisExp, DatalisExperienceToggle } from "./datalis_exp";
-import { Orbs } from "./orbs";
 import { HireExperience } from "./hire_exp";
 import { inject } from "@vercel/analytics";
 
@@ -123,33 +122,6 @@ function Wrapper() {
             <Show when={hire_exp}>
                 <HireExperience />
             </Show>
-            <Orbs />
-            <div style={{
-                "z-index": 1,
-                width: "100%",
-                height: "100vh",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                "backdrop-filter": "blur(200px)",
-                background: "url(https://grainy-gradients.vercel.app/noise.svg)",
-            }} />
-            <Motion.img 
-                src={registeredImageSource()} 
-                style={{
-                    overflow: "hidden",
-                    position: "absolute",
-                    "transform-origin": "top left",
-                    height: "400px",
-                    "z-index": 2,
-                    transform: 
-                        `translateX(${imageX()}px) translateY(${imageY()}px)`
-                }}
-                animate={{
-                    filter: hoveredID() === -1 ? "blur(8px)" : "blur(0px)",
-                    opacity: hoveredID() === -1 ? 0 : 1
-                }} 
-            />
         </Portal>
     </div>
 }

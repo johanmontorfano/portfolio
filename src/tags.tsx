@@ -96,7 +96,7 @@ export function Tags(props: {skill: string}) {
             "margin-block": 0,
             "font-weight": "600",
             "font-variant": "all-small-caps",
-            color: tagData.color
+            color: "whitesmoke"
         }}>{props.skill}</p> : null}
     </div>
 }

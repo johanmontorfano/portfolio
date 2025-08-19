@@ -6,6 +6,8 @@ import MediumPP from "../public/assets/pps/medium_profile.jpg";
 import Linkedin from "../public/assets/svg/linkedin.svg";
 import ResearchGate from "../public/assets/svg/researchgate.svg";
 import Medium from "../public/assets/pps/medium.jpeg";
+import { Motion } from "solid-motionone";
+import { createSignal } from "solid-js";
 
 interface AppLinkData {
     url: string;
@@ -37,7 +39,9 @@ export const AppLinkPresets: { [app: string]: AppLinkData } = {
 }
 
 export function AppLink(kind: AppLinkData) {
-    return <div
+    const [hover, setHover] = createSignal(false);
+
+    return <Motion.div
         onClick={() => window.location.href = kind.url}
         style={{
             position: "relative",
@@ -45,6 +49,11 @@ export function AppLink(kind: AppLinkData) {
             height: "60px",
             margin: "8px"
         }}
+        animate={{
+            scale: hover() ? 1.3 : 1
+        }}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
     >
         <img
             style={{
@@ -54,14 +63,14 @@ export function AppLink(kind: AppLinkData) {
                 border: "2px solid lightgray"
             }} 
             src={kind.profilePicture} 
-            width={60} 
-            height={60} 
+            width={63} 
+            height={63} 
         />
         {typeof kind.appPicture === "string" ? 
             <img style={{
                     position: "absolute",
-                    bottom: 0,
-                    right: 0
+                    bottom: "2px",
+                    right: "2px"
                 }}
                 src={kind.appPicture}
                 width={20} 
@@ -69,13 +78,14 @@ export function AppLink(kind: AppLinkData) {
             /> :
             <kind.appPicture style={{
                     position: "absolute",
-                    bottom: 0,
-                    right: 0
+                    bottom: "2px",
+                    right: "2px"
                 }}
+                fill="black"
                 width={20} 
                 height={20} 
             />
         }
-    </div>
+    </Motion.div>
 }
 

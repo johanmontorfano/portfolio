@@ -74,16 +74,17 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                         "z-index": 10,
                         "backdrop-filter": "blur(12px)"
                     }}
-                    initial={{ background: "#CCCCCC00" }}
-                    animate={{ background: "#CCCCCCAA" }}
+                    initial={{ background: "#1110" }}
+                    animate={{ background: "#111A" }}
                     onClick={() => setOpen(false)}
                 >
                     <Motion.div 
                         style={{
                             width: "100%",
-                            "max-width": "800px",
+                            "max-width": "600px",
                             "max-height": "80vh",
-                            background: "white",
+                            background: "#222",
+                            border: "2px solid #333",
                             "border-top-left-radius": "18px",
                             "border-top-right-radius": "18px",
                             overflow: "auto",
@@ -115,7 +116,7 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                                     top: 0,
                                     "z-index": 10,
                                     "backdrop-filter": "blur(24px)",
-                                    background: "#FFFFFFAA"
+                                    background: "#222"
                                 }}>
                                    <h1 style={{
                                        "font-size": "2rem",
@@ -130,29 +131,29 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                                         onMouseEnter={() => setHoverLink(true)}
                                         onMouseLeave={() => setHoverLink(false)}
                                         style={{
-                                            background: "#EEEEEE",
+                                            background: "#222",
                                             border: "2px solid #CCCCCC", 
                                             "font-size": ".8rem",
                                             display: "flex",
                                             "align-items": "center",
                                             "justify-content": "space-around",
-                                            color: "black",
+                                            color: "whitesmoke",
                                             "text-decoration": "none",
                                             "min-width": "80px",
                                             padding: "18px",
                                             "padding-top": "10px",
                                             "padding-bottom": "10px",
-                                            "border-radius": "8px"
+                                            "border-radius": "8px",
                                         }}
                                         initial={{
-                                            scale: 1
+                                            background: "#222"
                                         }}
                                         animate={{
-                                            scale: hoverLink() ? 1.1 : 1
+                                            background: hoverLink() ? "#CCC" : "#222",
+                                            color: hoverLink() ? "#222" : "#CCC"
                                         }}
                                     >
                                         VISIT
-                                        <IoOpenOutline color="black" size={18} />
                                     </Motion.a>
                                 </div>
                                 <div style={{
