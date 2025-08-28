@@ -84,9 +84,9 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                             "max-width": "600px",
                             "max-height": "80vh",
                             background: "#222",
+                            "padding-bottom": "6px",
                             border: "2px solid #333",
-                            "border-top-left-radius": "18px",
-                            "border-top-right-radius": "18px",
+                            "border-radius": "24px",
                             overflow: "auto",
                             left: "50%",
                             position: "absolute"
@@ -103,7 +103,7 @@ export function ProjectContainer(props: Project, id: Accessor<number>) {
                             filter: "blur(0px)",
                             x: "-50%",
                             y: "-100%",
-                            top: "100%"
+                            top: "99%"
                         }}
                     >
                         <div style={{display: "grid", padding: "8px"}}>

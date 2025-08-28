@@ -38,6 +38,17 @@
         ]
     },
     {
+        "name": "CommonRift",
+        "link": "riftworks.vercel.app",
+        "img": "/assets/projects/rift.png",
+        "skills": [],
+        "description": [
+            "CommonRift is by biggest project yet.",
+            "At the intersection of decentralized identity, data ownership, and network efficiency, there is a gap CommonRift aims to fill with a new network that interops with the blockchain, offers granular control over data generation and sharing, enables portable identity.",
+            "But most of all, it aims at creating a web-layer with seamless onboarding and integration for users and developers."
+        ]
+    },
+    {
         "name": "EPICS",
         "link": "https://github.com/johanmontorfano/epics",
         "img": "/assets/projects/epics.png",
