@@ -35,6 +35,7 @@ body {
     font-size: 1.25rem;
     font-family: Roboto;
     user-select: none;
+    overscroll-behavior: none;
 }
 
 .text-atkinson > *, strong, u {
@@ -50,8 +51,10 @@ body {
     flex-direction: column;
     align-items: center;
     position: absolute;
+    max-height: 100dvh;
+    contain: paint;
     top: 25%;
-    width: 100%;
+    width: calc(100% - 30px);
     padding: 15px;
 
     & > * {

@@ -22,7 +22,7 @@ export function DynImage(props: {src: string, timeout: number}) {
     }}>
         <Motion.img
             ref={ref as any}
-            src={props.src} 
+            src={props.src + "?url"} 
             style={{
                 width: "calc(100% - 4px)", 
                 position: "absolute",
