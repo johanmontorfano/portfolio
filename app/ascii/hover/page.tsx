@@ -61,6 +61,7 @@ export class Halo extends Component<HaloState> {
 
         return {
             transparent: false,
+            cutout: false,
             size: [this.SIZE, this.SIZE],
             position: [charX, charY]
         }

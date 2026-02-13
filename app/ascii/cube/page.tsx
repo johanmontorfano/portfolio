@@ -55,6 +55,7 @@ export class Cube extends Component<CubeState> {
     onRequestProperties(_: EngineState): ComponentProps {
         return {
             transparent: false,
+            cutout: false,
             size: [this.width, this.height],
             position: [
                 _.charSize[0] / 2 - this.width / 2,
