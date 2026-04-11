@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+:root {
+    --bg: black;
+    --text: white;
+    --bg-o: #664C28AA;
+}
+
+body {
+    @apply text-(--text) bg-(--bg);
+}
+
+.btn {
+    @apply rounded-full border border-(--text) px-4 py-1 transition-colors;
+
+    &.icon { @apply flex gap-2 justify-between items-center; }
+    &:hover:enabled { @apply cursor-pointer hover:bg-white hover:text-black; }
+}

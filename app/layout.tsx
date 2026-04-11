@@ -1,14 +1,15 @@
 import { ReactNode } from "react";
-import "@/app/index.css";
 import { Metadata } from "next";
+import { grotesk } from "@/components/fonts";
+import "@/app/index.css";
 
 export const metadata: Metadata = {
-    title: "Johan Delhomme Montorfano's Portfolio",
+    title: "Johan's (amazing) portfolio",
 }
 
 export default function RootLayout(props: { children: ReactNode }) {
     return <html lang="en">
-        <body className="bg-black text-white m-0 p-0 h-dvh">
+        <body className={`m-0 p-0 h-dvh ${grotesk.className}`}>
             {props.children}
         </body>
     </html>

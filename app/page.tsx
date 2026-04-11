@@ -1,18 +1,15 @@
 "use client";
 
-import { useASCIIEngine } from "@/components/ascii/context";
-import { ASCIIImage } from "@/components/ascii/image";
-import { useEffect } from "react";
-import { Plasma } from "./ascii/plasma/page";
+import { Overlay } from "@/components/player/overlay";
+import { DynamicSceneLoader } from "@/components/scenes/loader";
 
 export default function Page() {
-    const ascii = useASCIIEngine();
-
-    useEffect(() => {
-        ascii.attach("#main");
-        ascii.addElement(new Plasma());
-        ascii.addElement(new ASCIIImage("/logo.png"));
-    }, []);
-
-    return <div id="main" className="w-full h-dvh" />
+    return <main className="relative">
+        <div id="player" className="relative h-[100dvh]">
+            <DynamicSceneLoader />
+        </div>
+        <div className="absolute inset-8 pointer-events-none">
+            <Overlay />
+        </div>
+    </main>
 }
