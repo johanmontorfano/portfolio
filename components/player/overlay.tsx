@@ -57,18 +57,21 @@ export function Overlay() {
                         {PlayerChapters.map((chapter, i) => (
                             <motion.li
                                 key={i}
-                                className="data-active:underline cursor-pointer origin-left"
+                                className="cursor-pointer origin-left"
                                 initial="hidden"
                                 animate="visible"
                                 exit="hidden"
                                 variants={appear}
                                 custom={1 + i}
                                 whileHover={{ scale: 1.2 }}
+                                style={{ textDecoration:
+                                    player.chapter === chapter ?
+                                        "underline" : "none"
+                                }}
                                 onClick={() => {
                                     player.togglePause();
                                     player.setChapter(chapter);
                                 }}
-                                data-active={player.chapter === chapter}
                             >
                                 {chapter.title}
                             </motion.li>
