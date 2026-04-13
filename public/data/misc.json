@@ -1,0 +1,35 @@
+{
+    "intro": "Over the years, I built tremendous amount of things. From this ASCII engine currently rendering text in the browser to autonomous decentralized systems, I always tried to discover new things while mastering others.",
+    "projects": [
+        {
+            "name": "Joogle",
+            "desc": "Exploring search engines indexing processes with Rust",
+            "module": "gh/joogle"
+        },
+        {
+            "name": "Hex Realm",
+            "desc": "Exploring Web 3D rendering with Three.js",
+            "module": "gh/hexrealm"
+        },
+        {
+            "name": "The F*ck",
+            "desc": "BrainF*ck interpreter build with Rust",
+            "module": "gh/thef-ck"
+        },
+        {
+            "name": "Le GRU",
+            "desc": "GRE General Test practice tool",
+            "module": "gh/gre"
+        },
+        {
+            "name": "ASCII Interactive Cube",
+            "desc": "Showcase of the custom-made ASCII rendering engine",
+            "module": "jsx/ascii/cube"
+        },
+        {
+            "name": "ASCII Plasma",
+            "desc": "Showcase of the custom-made ASCII rendering engine",
+            "module": "jsx/ascii/plasma"
+        }
+    ]
+}
