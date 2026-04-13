@@ -1,6 +1,25 @@
 import { create } from "zustand";
-import { EngineState, EngineUtils } from "./engine";
-import { ComponentProps } from "./component";
+import { Component, ComponentProps } from "./component";
+
+export interface EngineState {
+    canvas: HTMLCanvasElement;
+    context: CanvasRenderingContext2D;
+    size: [number, number];
+    charSize: [number, number];
+    fontSize: [number, number];
+    components: Component<any>[];
+    fontFamily: string;
+    ready: boolean;
+}
+
+export interface EngineUtils {
+    debug(): void;
+    reset(): void;
+    attach(selector: string): void;
+    forceRenderById(id: string): void;
+    removeById(id: string): void;
+    addElement(el: Component<any>): void;
+}
 
 // will determine the width and height of a single character of the chosen font
 function testCharSize(fontFamily: string): [number, number] {
@@ -8,7 +27,7 @@ function testCharSize(fontFamily: string): [number, number] {
 
     item.textContent = "w";
     item.style.setProperty("font-family", fontFamily);
-    item.style.setProperty("font-size", "16px");
+    item.style.setProperty("font-size", "22px");
     item.style.setProperty("padding", "0");
     item.style.setProperty("margin", "0");
 
@@ -70,7 +89,7 @@ export const useASCIIEngine = create<EngineState & EngineUtils>((update) => {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         Object.values(layers).forEach(b => {
-            const { size, position, transparent, cutout } = b.props;
+            const { size, position, transparent, cutout, color } = b.props;
 
             if (transparent) {
                 ctx.fillStyle = "black";
@@ -101,14 +120,37 @@ export const useASCIIEngine = create<EngineState & EngineUtils>((update) => {
                         }
                     }
                 } else {
-                    ctx.font = `${fontSize![1]}px monospace`;
+                    ctx.font = `22px monospace`;
                     ctx.textBaseline = "top";
-                    ctx.fillStyle = "white";
+                    ctx.fillStyle = color || "#FFFF";
                     ctx.fillText(line, absX, absY);
                 }
             }
         });
     }
+
+    function extApply(
+        cp: Component, mode: "props", data: ComponentProps, state: EngineState
+    ): ComponentProps;
+    function extApply(
+        cp: Component, mode: "render", data: string, state: EngineState,
+    ): string;
+
+    function extApply(
+        cp: Component,
+        mode: "props" | "render",
+        data: ComponentProps | string,
+        state: EngineState
+    ): ComponentProps | string {
+        cp.extensions.forEach(e => {
+            if (e.config.reactsToProperties && mode === "props")
+                data = e.onProperties(data as ComponentProps, state);
+            else if (e.config.reactsToRenders && mode === "render")
+                data = e.onRender(data as string, state);
+        });
+        return data;
+    }
+
 
     return {
         ready: true,
@@ -121,6 +163,14 @@ export const useASCIIEngine = create<EngineState & EngineUtils>((update) => {
         fontFamily: "monospace",
         fontSize,
         components: [],
+        debug() {
+            (window as Record<string, any>).ascii = () => useASCIIEngine.getState();
+        },
+        reset() {
+            useASCIIEngine.getState().components.forEach(c => c.onUnmount());
+            Object.keys(layers).forEach(l => { delete layers[l]; });
+            update({ components: [] });
+        },
         attach(selector) {
             const target = document.querySelector(selector);
 
@@ -128,19 +178,36 @@ export const useASCIIEngine = create<EngineState & EngineUtils>((update) => {
                 target.append(canvas);
             }
         },
+        forceRenderById(id: string) {
+            const component = useASCIIEngine.getState()
+                .components.find(v => v.id === id);
+
+            if (component !== undefined) component.force();
+        },
+        removeById(id: string) {
+            const index = useASCIIEngine.getState()
+                .components.findIndex(v => v.id === id);
+            const newList = useASCIIEngine.getState().components;
+
+            newList.splice(index, 1)[0]?.onUnmount();
+            delete layers[id];
+            update({ components: newList });
+            render(useASCIIEngine.getState());
+        },
         addElement(el) {
             el.onComponentChange(c => {
                 // since we are in an event listener, calling this will result
                 // in processing a capture of this at init time, which creates
-                // two different engine states
+                // two different engine states for the duration of this call
                 const state = useASCIIEngine.getState();
                 const { canvas, context: ctx } = state;
 
                 if (!canvas || !ctx) return;
 
-                const props = c.onRequestProperties(state);
-                const buffer = c.onRender(state);
-
+                const props = extApply(
+                    c, "props", c.onRequestProperties(state), state
+                );
+                const buffer = extApply(c, "render", c.onRender(state), state);
                 layers[c.id] = { props, buffer };
                 render(state);
             });
