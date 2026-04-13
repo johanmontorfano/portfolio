@@ -1,5 +1,5 @@
 import { Component, ComponentProps } from "./component";
-import { EngineState } from "./engine";
+import { EngineState } from "./context";
 
 interface ImageState {
     image: HTMLImageElement | null;
