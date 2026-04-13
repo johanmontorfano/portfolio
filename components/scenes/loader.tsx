@@ -1,18 +1,27 @@
 "use client";
 
-import { ComponentType, lazy, LazyExoticComponent, useEffect, useMemo, useState } from "react";
+import { ComponentType, lazy, LazyExoticComponent, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { BsList, BsPauseFill, BsPlayFill, BsXCircleFill } from "react-icons/bs";
+import { BsArrowLeft, BsList, BsPauseFill, BsPlayFill, BsXCircleFill } from "react-icons/bs";
 import { Chapter, usePlayer } from "../player/context";
-import meta from "@/public/metadata.json";
+import meta from "@/public/data/metadata.json";
 
 // PERF: we will be opting to a modular loader system where a module entry is
 // composed of <loader>/<name>. the loader gets the name and it is up to its
 // discrecy to return the appropriate DOM elements depending on the name
 // NOTE: available loaders are:
+// - url -> redirects to a specific URL
 // - jsx -> loads a JSX scene module
 // - none -> does nothing except loading metadata
 // - video -> loads a video from a public path
+
+interface DigestedChapter {
+    desc: string | null;
+    videoURL: string | null;
+    component: LazyExoticComponent<ComponentType<any>> | null;
+    goBack: boolean;
+    from: Chapter;
+}
 
 // this file will be used to develop a component to properly load scenes wether
 // those are videos or code
@@ -22,26 +31,10 @@ export function DynamicSceneLoader() {
     const [started, setStarted] = useState(false);
     const [showMenu, setShowMenu] = useState(true);
     const [showPlayer, setShowPlayer] = useState(false);
-
-    const chapterData = useMemo(() => {
-        const out: {
-            desc: string | null;
-            videoURL: string | null;
-            component: LazyExoticComponent<ComponentType<any>> | null;
-        } = {
-            desc: null, component: null, videoURL: null
-        };
-        const { module } = player.chapter;
-        const [loader, name] = module.split("/");
-
-        out.desc = (meta as Record<string, string>)[name];
-        if (loader === "video") out.videoURL = "/assets/video/" + name;
-        else if (loader === "jsx") out.component = lazy(() => import(
-            `@/components/scenes/by_module/${module}`
-        ));
-
-        return out;
-    }, [player.chapter.module]);
+    const [chapterData, setChapterData] = useState<DigestedChapter>({
+        desc: null, component: null, videoURL: null, goBack: false,
+        from: player.chapter
+    })
 
     const appear = {
         hidden: (i: number) => ({
@@ -60,10 +53,46 @@ export function DynamicSceneLoader() {
     };
 
     useEffect(() => {
-        setStarted(false);
-        setShowMenu(true);
-        setShowPlayer(false);
-    }, [player.chapter])
+        let {
+            module, enableBackNavigation,
+            disableIntro, disableRerender
+        } = player.chapter;
+
+        if (disableRerender) return;
+
+        const bsl = module.indexOf("/");
+        const [loader, name] = [module.slice(0, bsl), module.slice(bsl + 1)];
+        const out: DigestedChapter = {
+            desc: null, component: null, videoURL: null, goBack: false,
+            from: player.chapter
+        };
+
+        if (disableIntro === undefined) disableIntro = false;
+        if (["url", "gh"].includes(loader)) {
+            const url = loader === "url" ?
+                name : `https://github.com/johanmontorfano/${name}`;
+
+            if (enableBackNavigation) {
+                window.open(url);
+                player.setChapter({
+                    ...chapterData.from,
+                    disableRerender: true
+                });
+            } else window.location.assign(url);
+        } else {
+            out.goBack = enableBackNavigation ?? false;
+            out.desc = (meta as Record<string, string>)[name];
+            if (loader === "video") out.videoURL = "/assets/video/" + name;
+            else if (loader === "jsx") out.component = lazy(() => import(
+                `@/components/scenes/by_module/${name}.tsx`
+            ));
+
+            setStarted(disableIntro);
+            setShowMenu(!disableIntro);
+            setShowPlayer(disableIntro);
+            setChapterData(out);
+        }
+    }, [player.chapter.module]);
 
     return <motion.div
         className="w-full h-dvh bg-black flex justify-center items-center"
@@ -77,7 +106,7 @@ export function DynamicSceneLoader() {
         <AnimatePresence mode="wait">{showMenu &&
             <motion.div
                 className="flex flex-col items-center absolute"
-                key={player.chapter.title}
+                key={chapterData.from.title}
             >
                 <motion.h1
                     className="text-4xl font-bold text-center"
@@ -87,7 +116,7 @@ export function DynamicSceneLoader() {
                     variants={appear}
                     custom={0}
                 >
-                    {player.chapter.title}
+                    {chapterData.from.title}
                 </motion.h1>
                 {chapterData.desc && <motion.p
                     className="max-w-[500px] w-[90%] text-center mt-2"
@@ -110,6 +139,19 @@ export function DynamicSceneLoader() {
                     <p>Scene unavailable</p>
                 </motion.div>}
                 <div className="flex justfy-center gap-2 mt-2">
+                    {chapterData.goBack && <motion.button
+                        className="btn icon"
+                        onClick={() => {
+                            player.goBack();
+                        }}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        variants={appear}
+                        custom={2}
+                    >
+                        <BsArrowLeft size={18} />
+                    </motion.button>}
                     <motion.button
                         className="btn icon"
                         onClick={() => player.togglePause()}
@@ -117,7 +159,7 @@ export function DynamicSceneLoader() {
                         animate="visible"
                         exit="hidden"
                         variants={appear}
-                        custom={2}
+                        custom={3}
                     >
                         <BsList size={18} /> Menu
                     </motion.button>
@@ -134,7 +176,7 @@ export function DynamicSceneLoader() {
                         animate="visible"
                         exit="hidden"
                         variants={appear}
-                        custom={3}
+                        custom={4}
                     >
                         <BsPlayFill size={22} />
                         {started ? "Continue" : "Play"} 
@@ -142,9 +184,14 @@ export function DynamicSceneLoader() {
                 </div>
             </motion.div>
         }</AnimatePresence>
-        <AnimatePresence>{showPlayer && <div
+        <AnimatePresence mode="wait">{started && <motion.div
             className="relative w-full h-dvh"
-            key={player.chapter.title}
+            initial={{ opacity: 1, pointerEvents: "none" }}
+            animate={{
+                opacity: showPlayer ? 1 : 0,
+                pointerEvents: showPlayer ? "auto" : "none"
+            }}
+            key={chapterData.from.title}
         >
             <motion.div
                 initial="hidden"
@@ -153,6 +200,7 @@ export function DynamicSceneLoader() {
                 variants={appear}
                 custom={0}
             >
+                {chapterData.component && <chapterData.component key="jsx" />}
             </motion.div>
             <div className="absolute bottom-0 w-full p-4 gap-2 flex justify-center">
                 <motion.button
@@ -170,7 +218,7 @@ export function DynamicSceneLoader() {
                 >
                     <BsPauseFill size={26} /> 
                 </motion.button>
-                </div>
-        </div>}</AnimatePresence>
+            </div>
+        </motion.div>}</AnimatePresence>
     </motion.div>
 }
