@@ -49,12 +49,10 @@ export interface PlayerContext {
 
 // by chapters we mean all footages that are meant to be played
 export const PlayerChapters: Chapter[] = [
-    { title: "Robotic Arm", module: "none/robot" }, // footages, remote ctrl
-    { title: "MACUE", module: "none/macue" }, // footages + experimentation data
+    { title: "MACUE", module: "none/macue" }, // MACUE + remote ctrl + footages + experimentation data
+    { title: "Decentralization", module: "jsx/p2p" }, // jmp2p, ..
     { title: "Hardened Metadata Binding", module: "none/aead" }, // sealing
-    { title: "Sovereign Identity", module: "none/datalis" }, // indiv owship of data
     { title: "Johan's Dumb OS", module: "none/jdos" }, // OS + bootloader
-    { title: "Decentralized Development", module: "none/p2p" }, // jmp2p, ..
     { title: "Private Infrastructure", module: "none/infra" }, // arm, gitea, pod...
     { title: "Other Projects", module: "jsx/misc" } // anything like ascii...
 ];
