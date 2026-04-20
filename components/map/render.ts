@@ -1,9 +1,11 @@
 "use client";
 
 import { Link } from "./links";
+import { distance } from "./math";
 import { MapData, Node, XY } from "./types";
 
 export function getUpscalingFactor(map: MapData) {
+    if (typeof window === "undefined") return 1;
     return Math.max(1, window.innerWidth / map.w);
 }
 
@@ -43,9 +45,8 @@ export function prepareOffScreenCanvas(
     gcanvas: HTMLCanvasElement | null
 ) {
     const canvas = gcanvas || document.createElement("canvas");
-    const R = map.dot / 2;
-    
-    prepareUpscaling(canvas, map);
+    const scale = prepareUpscaling(canvas, map);
+    const R = map.dot * scale / 2;
 
     const ctx = canvas.getContext("2d")!;
 
@@ -78,15 +79,15 @@ export function prepareRenderingCanvas(
 // Converts a coordinate in RC space into a coordinate in XY space relative to
 // the map data (R = row, C = col needs a conversion in a cartesian space which
 // requires knowledge of the map's size, offsets, ...)
-export function toXY(map: MapData, r: number, c: number) {
-    const y = map.offY + r * map.dy;
-    const x = map.offX + (r % 2 === 1 ? map.dx / 2 : 0) + c * map.dx;
+export function toXY(map: MapData, r: number, c: number, scale: number) {
+    const y = map.offY + r * map.dy * scale;
+    const x = map.offX + (r % 2 === 1 ? map.dx / 2 : 0) + c * map.dx * scale;
 
     return { x, y };
 }
 
 // Converts a whole dotted map into a set of XY points with RC refs
-export function mapToXY(map: MapData) {
+export function mapToXY(map: MapData, scale: number) {
     const out: { r: number; c: number; x: number; y: number; }[] = [];
 
     // HACK: rows and columns might not all have the same size as the dotted
@@ -95,7 +96,7 @@ export function mapToXY(map: MapData) {
         const row = map.matrix[r] || [];
         for (let c = 0; c < row.length; c++) {
             if (!row[c]) continue;
-            const { x, y } = toXY(map, r, c);
+            const { x, y } = toXY(map, r, c, scale);
             out.push({ r, c, x, y });
         }
     }
@@ -133,14 +134,19 @@ export function drawLink(
 
     const a = nodeMap.get(link.fromId);
     const b = nodeMap.get(link.toId);
-    if (!a || !b) return;
+    if (!a || !b) {
+        //console.warn(`render::drawLink cannot draw link ${link.fromId} -> ${
+        //    link.toId
+        //} (${a?.id} -> ${b?.id})`);
+        return;
+    }
 
     const falpha = 0.9 * alpha * Math.min(a.alpha, 1) * Math.min(b.alpha, 1);
     if (falpha <= 0.02) return;
 
     const dx = b.x - a.x, dy = b.y - a.y;
     const len = Math.hypot(dx, dy) || 1;
-    const bulge = link.curve * 3 * (0.6 + 0.4 * 2);
+    const bulge = distance(a, b) * link.curve;
     
     // ctx.globalAlpha = Math.max(0, Math.min(1, applyFade(now, link)));
     ctx.beginPath();
