@@ -74,12 +74,12 @@
         {
             "text": "Still, traditional P2P networks are not perfect for adoption.",
             "event": "P2P_QUALITIES",
-            "duration": 14000
+            "duration": 22000
         },
         {
             "text": "Rift, one of my projects, aims at making P2P viable.",
             "event": "CR_ABILITIES",
-            "duration": 14000
+            "duration": 22000
         },
         {
             "event": "END",
