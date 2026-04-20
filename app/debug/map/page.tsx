@@ -4,9 +4,10 @@ import MapData from "@/public/maps/dot_map.json";
 
 // this map debug page is used to gather RC coordinates of specific points
 export default function Page() {
-    return <div className="max-w-full">
+    return <div className="max-w-full max-w-[800px]">
         <DottedMap
             data={MapData}
+            className="max-w-[1500px]"
             rcNodes={[
                 { r: 62, c: 49 },
                 { r: 62, c: 24 },
@@ -23,6 +24,9 @@ export default function Page() {
                 createLink(3, 5, { spawnAt: 1500 })
             ]}
             disableMutate
+
+            debugOnClickGetRC
+            debugExposeController
         />
     </div>
 }
