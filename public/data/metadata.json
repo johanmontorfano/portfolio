@@ -1,9 +1,7 @@
 {
   "macue": "Research and development of the Multi-modal Authenticity Capture in Untrusted Environments protocol, focusing on sensor fusion and anti-forgery forensic models",
   "aead": "Cryptographic sealing of media utilizing AEAD for secure binding of timestamp, GPS, and content metadata",
-  "datalis": "Framework ensuring individual ownership over generated data and sovereign identity management within decentralized architectures",
-  "jdos": "Low-level system engineering including the development of a custom operating system and bootloader sequences",
+  "jdos_scenery.mp4": "Develoment of a bootloader and kernel with user-spaces, ATA, VGA, and JIT execution support",
   "p2p": "Design of decentralized peer-to-peer services and communication protocols to democratize privacy-preserving systems",
-  "infra": "Architecture of sovereign infrastructure featuring private Gitea servers, custom Certificate Authorities, and Podman container orchestration",
   "misc": "Miscellaneous technical projects including high-performance ASCII rendering engines and modular software experimentation."
 }
