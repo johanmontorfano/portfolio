@@ -1,5 +1,4 @@
 {
-  "robot": "Implementation of PyMyCobot macros and automated Pod provisioning for remote control and telemetry retrieval from the MyArm M750",
   "macue": "Research and development of the Multi-modal Authenticity Capture in Untrusted Environments protocol, focusing on sensor fusion and anti-forgery forensic models",
   "aead": "Cryptographic sealing of media utilizing AEAD for secure binding of timestamp, GPS, and content metadata",
   "datalis": "Framework ensuring individual ownership over generated data and sovereign identity management within decentralized architectures",
