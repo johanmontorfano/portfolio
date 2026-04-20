@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { PlayerChapters, Socials, usePlayer } from "./context";
 import { TbPlayerTrackNextFilled } from "react-icons/tb";
-import Logo from "@/public/logo.png";
+import Logo from "@/public/assets/logo.png";
 
 export function Overlay() {
     const player = usePlayer();

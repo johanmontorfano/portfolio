@@ -82,7 +82,12 @@ export function DynamicSceneLoader() {
         } else {
             out.goBack = enableBackNavigation ?? false;
             out.desc = (meta as Record<string, string>)[name];
-            if (loader === "video") out.videoURL = "/assets/video/" + name;
+            if (loader === "video") {
+                out.videoURL = "/media/" + name;
+                out.component = lazy(() => import(
+                    "@/components/scenes/with_components/video_player.tsx"
+                ));
+            }
             else if (loader === "jsx") out.component = lazy(() => import(
                 `@/components/scenes/by_module/${name}.tsx`
             ));
@@ -200,23 +205,35 @@ export function DynamicSceneLoader() {
                 variants={appear}
                 custom={0}
             >
-                {chapterData.component && <chapterData.component key="jsx" />}
+                {chapterData.component && <chapterData.component
+                    key="jsx"
+                    videoURL={chapterData.videoURL}
+                />}
             </motion.div>
             <div className="absolute bottom-0 w-full p-4 gap-2 flex justify-center">
-                <motion.button
-                    key="play"
-                    className="btn icon px-2"
+                {chapterData.goBack && <motion.button
+                    className="btn icon"
                     onClick={() => {
-                        setShowMenu(true);
-                        setShowPlayer(false);
+                        player.goBack();
                     }}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    variants={appear}
+                    custom={0}
+                >
+                    <BsArrowLeft size={18} />
+                </motion.button>}
+                <motion.button
+                    className="btn icon"
+                    onClick={() => player.togglePause()}
                     initial="hidden"
                     animate="visible"
                     exit="hidden"
                     variants={appear}
                     custom={1}
                 >
-                    <BsPauseFill size={26} /> 
+                    <BsList size={18} /> Menu
                 </motion.button>
             </div>
         </motion.div>}</AnimatePresence>

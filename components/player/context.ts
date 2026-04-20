@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { IconType } from "react-icons";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
+import { FaResearchgate } from "react-icons/fa";
 
 // When the chapter's "disableIntro" property is set to true, all scenes
 // loaders are instructed to execute the scene directly with no interface
@@ -52,14 +53,18 @@ export const PlayerChapters: Chapter[] = [
     { title: "MACUE", module: "none/macue" }, // MACUE + remote ctrl + footages + experimentation data
     { title: "Decentralization", module: "jsx/p2p" }, // jmp2p, ..
     { title: "Hardened Metadata Binding", module: "none/aead" }, // sealing
-    { title: "Johan's Dumb OS", module: "none/jdos" }, // OS + bootloader
-    { title: "Private Infrastructure", module: "none/infra" }, // arm, gitea, pod...
+    { title: "Johan's Dumb OS", module: "video/jdos_scenery.mp4" }, // OS + bootloader
     { title: "Other Projects", module: "jsx/misc" } // anything like ascii...
 ];
 
 export const Socials: Social[] = [
     { title: "LinkedIn", target: "linkedin.com/in/jhnm", icon: BsLinkedin },
-    { title: "Github", target: "github.com/johanmontorfano", icon: BsGithub }
+    { title: "Github", target: "github.com/johanmontorfano", icon: BsGithub },
+    {
+        title: "ResearchGate",
+        target: "researchgate.net/profile/Johan-Delhomme-Montorfano/research",
+        icon: FaResearchgate
+    }
 ];
 
 export const usePlayer = create<PlayerContext & {
