@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
-import { rand, rchoice, rrange } from "./math";
+import { hexmix, rand, rchoice, rrange } from "./math";
 import { MapData, Node, RC } from "./types";
 import {
     applyFade,
@@ -14,6 +14,8 @@ import {
     toXY,
 } from "./render";
 import { createLinkGroup, Link } from "./links";
+import { useDottedMapController } from "@/hooks/use_dotted_map";
+import { onClickGetRC } from "./debug";
 
 interface MapProps {
     data: MapData;
@@ -21,6 +23,7 @@ interface MapProps {
     accent?: string;
     color?: string;
     bg?: string;
+    className?: string;
 
     rcNodes?: RC[]; // all RC entires will trigger a node spawn at position
     maxNodes?: number; // upper bound; actual count floats below/at this
@@ -39,7 +42,12 @@ interface MapProps {
     addProbability?: number; // prob to add a node at mutate tick
     linkProbability?: number; // prob to link nodes at mutate tick
     retireProbability?: number; // prob to retire a node at mutate tick
-    mutateEventGapRange?: [number, number] // time separation of mutate ticks
+    mutateEventGapRange?: [number, number]; // time separation of mutate ticks
+
+    debugOnClickGetRC?: boolean;
+    debugOnClickRemoveDot?: boolean;
+    debugExposeController?: boolean;
+    debugExposeMapData?: boolean;
 }
 
 // NOTE: theming and click events on this component has been removed to 
@@ -51,10 +59,11 @@ export function DottedMap({
     accent = "#22c55e",
     color = "#44454b",
     bg = "#000",
+    className = "",
 
     rcNodes = [],
     maxNodes = 200,
-    linkWidthPx = 1.8,
+    linkWidthPx = 3,
     linkDash = [8, 6],
     linkDashSpeed = 90,
     linkLifetimeRange = [7500, 12500],
@@ -64,9 +73,15 @@ export function DottedMap({
     linkProbability = 0.54,
     retireProbability = 0.47,
     mutateEventGapRange = [1200, 2200],
+
+    debugOnClickGetRC = false,
+    debugOnClickRemoveDot = false,
+    debugExposeController = false,
+    debugExposeMapData = false
 }: MapProps) {
+    const controller = useDottedMapController();
     // map represented as a set of XY coords for RC coords
-    const mapXY = useMemo(() => mapToXY(data), [data]);
+    const mapXY = useMemo(() => mapToXY(data, getUpscalingFactor(data)), [data]);
 
     // HACK: to optimize efficiency, we enforce a centralized occupied cells
     // counter using the "[r]:[c]" addressing system used before.
@@ -75,6 +90,18 @@ export function DottedMap({
     const occupiedCells = useRef<Set<string>>(new Set());
     const placedNodes = useRef<Node[]>([]);
     const activeLinks = useRef<Link[]>([]);
+    
+    // this variable is used to determine the last accent transition and
+    // animate it
+    const lastAccentChange = useRef<{
+        from: string,
+        to: string,
+        at: number
+    }>({
+        from: accent,
+        to: accent,
+        at: 0
+    });
 
     // we keep track of the total number of ndoes created to provide unique ids
     // to nodes
@@ -203,9 +230,8 @@ export function DottedMap({
 
     useEffect(() => {
         if (typeof window === "undefined") return;
-
-
-        window.nodes = { activeLinks, placedNodes };
+        if (debugExposeController) (window as any).mapController = controller;
+        if (debugExposeMapData) (window as any).mapData = data;
 
         offScreenCanvas.current = prepareOffScreenCanvas(
             bg,
@@ -218,10 +244,11 @@ export function DottedMap({
 
         const ctx = renderingCanvas.current!.getContext("2d")!;
         const scale = getUpscalingFactor(data);
+        const dotSize = data.dot * scale / 2;
         let frameReqHandle = 0;
 
         rcNodes.forEach((h) => {
-            const { x, y } = toXY(data, h.r, h.c);
+            const { x, y } = toXY(data, h.r, h.c, scale);
             addNodeNear(x, y, -1);
         });
         activeLinks.current.push(...links);
@@ -242,6 +269,43 @@ export function DottedMap({
                 if (placedNodes.current.length > maxNodes) tryRetireNode(now);
                 mutateScheduledAt.current = now + rrange(mutateEventGapRange);
             }
+            controller.readAll(cmd => {
+                if ("rc" in cmd) {
+                    const xy = toXY(data, cmd.rc.r, cmd.rc.c, scale);
+                    addNodeNear(xy.x, xy.y, now);
+                } else if ("link" in cmd) activeLinks.current.push(cmd.link);
+                else if ("name" in cmd) {
+                    prepareOffScreenCanvas(
+                        bg,
+                        color,
+                        mapToXY(data, getUpscalingFactor(data)),
+                        data,
+                        offScreenCanvas.current,
+                    ); 
+                }
+                else if ("rmlink" in cmd) {
+                    activeLinks.current = activeLinks.current.filter(l =>
+                        l.fromId !== cmd.rmlink.fromId &&
+                        l.toId !== cmd.rmlink.toId
+                    );
+                }
+                else if ("accent" in cmd) {
+                    lastAccentChange.current = {
+                        at: now,
+                        from: accent,
+                        to: cmd.accent
+                    }
+                }
+            });
+
+            if (accent !== lastAccentChange.current.to) {
+                accent = hexmix(
+                    lastAccentChange.current.from,
+                    lastAccentChange.current.to,
+                    (now - lastAccentChange.current.at) / 2000
+                );
+            }
+
             // if a node is retired and has finished transition, we remove it
             placedNodes.current = placedNodes.current.filter(
                 (n) => n.retiredAt < 1 || now - n.retiredAt <= 2500,
@@ -286,7 +350,7 @@ export function DottedMap({
                 );
                 ctx.fillStyle = accent;
                 ctx.beginPath();
-                ctx.arc(n.x, n.y, (data.dot / 2) * 1.1, 0, Math.PI * 2);
+                ctx.arc(n.x, n.y, dotSize * 1.1, 0, Math.PI * 2);
                 ctx.fill();
             }
             frameReqHandle = requestAnimationFrame(draw);
@@ -295,5 +359,16 @@ export function DottedMap({
         return () => cancelAnimationFrame(frameReqHandle);
     }, []);
 
-    return <canvas className="w-full" ref={renderingCanvas} />;
+    return <canvas
+        ref={renderingCanvas}
+        className={className}
+        onClick={(ev) => {
+            if (debugOnClickGetRC) onClickGetRC(
+                ev, data, getUpscalingFactor(data), addNodeNear,
+                debugOnClickRemoveDot ? (modified) => {
+                    data = modified;
+                } : undefined
+            );
+        }}
+    />;
 }
