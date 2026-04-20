@@ -1,0 +1,116 @@
+{
+    "map_data": {
+        "points": {
+            "centers": [
+                [85, 62],
+                [78, 60],
+                [75, 79],
+                [102, 53],
+                [58, 75],
+                [68, 128],
+                [41, 35]
+            ],
+            "peers": [
+                [91, 65],
+                [96, 68],
+                [95, 59],
+                [73, 68],
+                [99, 77],
+                [105, 47],
+                [84, 95],
+                [83, 86],
+                [90, 88],
+                [72, 96],
+                [65, 58],
+                [55, 94],
+                [68, 77],
+                [86, 73],
+                [83, 75],
+                [106, 93],
+                [98, 87],
+                [47, 116],
+                [80, 117],
+                [96, 175],
+                [43, 77],
+                [30, 86],
+                [23, 98],
+                [40, 100],
+                [45, 90],
+                [65, 54],
+                [74, 49]
+            ]
+        },
+        "links": {
+            "centers": [
+                [1, 2],
+                [1, 3],
+                [4, 1],
+                [5, 2],
+                [7, 2],
+                [5, 6]
+            ]
+        }
+    },
+    "steps": [
+        {
+            "text": "Apps and services are meant to rely on centralized resources.",
+            "duration": 6000,
+            "event": "CENTRALIZED"
+        },
+        {
+            "text": "This presents a big risks, as any event affecting those resources results in global services outages.",
+            "duration": 6000,
+            "event": "OUTAGE"
+        },
+        {
+            "text": "Also, ownership, privacy, and control become unenforceable rights.",
+            "duration": 6000
+        },
+        {
+            "text": "Unlikewise, decentralised networks allows individuals to not rely on centralized resources and trade fundamental rights in exchange of a reliable service.",
+            "duration": 16000,
+            "event": "P2P"
+        },
+        {
+            "text": "Still, traditional P2P networks are not perfect for adoption.",
+            "event": "P2P_QUALITIES",
+            "duration": 14000
+        },
+        {
+            "text": "Rift, one of my projects, aims at making P2P viable.",
+            "event": "CR_ABILITIES",
+            "duration": 14000
+        },
+        {
+            "event": "END",
+            "duration": 0
+        }
+    ],
+    "projects": [
+        {
+            "name": "Medium",
+            "desc": "Read my articles about the Web and decentralized networks",
+            "module": "url/https://medium.com/@johandelhomme"
+        },
+        {
+            "name": "Rift",
+            "desc": "Get to know Rift in-depth",
+            "module": "url/https://riftworks.vercel.app/"
+        },
+        {
+            "name": "P2P TTT",
+            "desc": "Explore a P2P Tic-Tac-Toe",
+            "module": "url/https://tictactoe.repos.johanmontorfano.com"
+        },
+        {
+            "name": "P2P Share",
+            "desc": "Explore a P2P file sharing tool",
+            "module": "url/https://p2p-share.repos.johanmontorfano.com"
+        },
+        {
+            "name": "P2P Stream",
+            "desc": "Explore a local P2P streaming tool",
+            "module": "url/https://local-stream-iota.vercel.app"
+        }
+    ]
+}
