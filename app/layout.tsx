@@ -5,6 +5,9 @@ import "@/app/index.css";
 
 export const metadata: Metadata = {
     title: "Johan's (amazing) portfolio",
+    icons: {
+        icon: "/assets/logo.svg"
+    }
 }
 
 export default function RootLayout(props: { children: ReactNode }) {
