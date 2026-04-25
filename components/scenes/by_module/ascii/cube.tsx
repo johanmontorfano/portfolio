@@ -18,7 +18,7 @@ export class Cube extends Component<CubeState> {
     private isDragging = false;
     private lastMousePos = { x: 0, y: 0 };
 
-    private listeners: Record<string, (ev: MouseEvent) => any> = {
+    private mlisteners: Record<string, (ev: MouseEvent) => any> = {
         mousedown: (e) => {
             this.isDragging = true;
             this.lastMousePos = { x: e.clientX, y: e.clientY };
@@ -40,6 +40,34 @@ export class Cube extends Component<CubeState> {
             this.isDragging = false;
         }
     }
+    private tlisteners: Record<string, (ev: TouchEvent) => any> = {
+        touchstart: (e) => {
+            this.isDragging = true;
+            this.lastMousePos = {
+                x: e.touches[0].clientX,
+                y: e.touches[0].clientY
+            }
+        },
+        touchmove: (e) => {
+            if (!this.isDragging) return;
+
+            const deltaX = e.touches[0].clientX - this.lastMousePos.x;
+            const deltaY = e.touches[0].clientY - this.lastMousePos.y;
+
+            this.setState({
+                angleY: this.state.angleY - deltaX * 0.01,
+                angleX: this.state.angleX + deltaY * 0.01
+            });
+
+            this.lastMousePos = {
+                x: e.touches[0].clientX,
+                y: e.touches[0].clientY
+            }
+        },
+        touchend: () => {
+            this.isDragging = false;
+        }
+    }
 
     constructor() {
         super({ angleX: 0, angleY: 0, angleZ: 0, size: 20 });
@@ -51,18 +79,28 @@ export class Cube extends Component<CubeState> {
     }
 
     private initMouseListeners() {
-        for (const key in this.listeners)
+        for (const key in this.mlisteners)
             window.addEventListener(
                 key as "mousedown" | "mouseup" | "mousemove",
-                this.listeners[key]
+                this.mlisteners[key]
+            );
+        for (const key in this.tlisteners)
+            window.addEventListener(
+                key as "touchstart" | "touchmove" | "touchend",
+                this.tlisteners[key]
             );
     }
 
     private removeMouseListeners() {
-        for (const key in this.listeners)
+        for (const key in this.mlisteners)
             window.removeEventListener(
                 key as "mousedown" | "mouseup" | "mousemove",
-                this.listeners[key]
+                this.mlisteners[key]
+            );
+        for (const key in this.tlisteners)
+            window.removeEventListener(
+                key as "touchstart" | "touchmove" | "touchend",
+                this.tlisteners[key]
             );
     }
 

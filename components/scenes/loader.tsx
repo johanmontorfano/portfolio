@@ -2,7 +2,7 @@
 
 import { ComponentType, lazy, LazyExoticComponent, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { BsArrowLeft, BsList, BsPauseFill, BsPlayFill, BsXCircleFill } from "react-icons/bs";
+import { BsArrowLeft, BsList, BsPlayFill, BsXCircleFill } from "react-icons/bs";
 import { Chapter, usePlayer } from "../player/context";
 import meta from "@/public/data/metadata.json";
 

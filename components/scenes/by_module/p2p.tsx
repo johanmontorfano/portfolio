@@ -114,7 +114,7 @@ export default function Scene() {
                         hidden: { opacity: 0 },
                         visible: { opacity: 1 }
                     }}
-                    className="w-full translate-x-[33%]"
+                    className="w-full sm:-translate-x-[40%] md:translate-x-[33%]"
                     initial="hidden"
                     animate="visible"
                     exit="hidden"

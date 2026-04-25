@@ -21,7 +21,7 @@ export function ProjectList(props: {
         }),
     };
 
-    return <motion.div className="grid grid-cols-1">
+    return <motion.div className="grid grid-cols-1 gap-2">
         <AnimatePresence>
             {props.entries.map((entry, i) =>
                 <motion.div
@@ -37,7 +37,7 @@ export function ProjectList(props: {
                     initial="hidden"
                     animate="visible"
                     exit="hidden"
-                    className="hover:[&_p]:underline cursor-pointer flex items-end gap-6"
+                    className="hover:[&_p]:underline cursor-pointer flex flex-col"
                     custom={i}
                     key={i}
                 >
