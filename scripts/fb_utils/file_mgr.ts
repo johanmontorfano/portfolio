@@ -57,6 +57,7 @@ export async function retrieveFileByRef(
         return data;
     return {
         id: data.id,
+        filename: data.filename,
         description: data.description,
         downloadUrl: data.downloadUrl,
         shareableLink: data.shareableLink
