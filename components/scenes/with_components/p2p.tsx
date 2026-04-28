@@ -14,7 +14,6 @@ import {
     FiKey,
     FiEyeOff,
     FiZap,
-    FiAlertTriangle,
     FiActivity,
 } from "react-icons/fi";
 
@@ -108,7 +107,7 @@ export function QualitiesShowcase(props: { qualities: typeof P2P_QUALITIES }) {
     };
 
     return (
-        <div className="max-w-4xl grid md:grid-cols-2 gap-8">
+        <div className="max-w-2xl grid md:grid-cols-2 gap-8">
             <div className="flex flex-col gap-4">
                 {props.qualities.good.map((q, i) => (
                     <motion.div
