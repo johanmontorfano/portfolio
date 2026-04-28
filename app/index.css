@@ -1,18 +1,47 @@
 @import "tailwindcss";
+@plugin "daisyui" {
+  themes: theme --default, theme --prefersdark, theme;
+};
 
-:root {
-    --bg: black;
-    --text: white;
-    --bg-o: #664C28AA;
+@plugin "daisyui/theme" {
+    name: "theme";
+    default: true;
+
+    --color-base-100: #0b0c10;
+    --color-base-200: #111318;
+    --color-base-300: #1f2430;
+    --color-base-content: #e5e7eb;
+    --color-primary: #44e88f;
+    --color-primary-content: #222;
+    --color-secondary: #d1d5db;
+    --color-secondary-content: #0b0b0b;
+    --color-accent: #38bdf8;
+    --color-accent-content: #0b0b0b;
+    --color-neutral: #0f172a;
+    --color-neutral-content: #e5e7eb;
+    --color-info: #60a5fa;
+    --color-info-content: #0b1120;
+    --color-success: #22c55e;
+    --color-success-content: #052e16;
+    --color-warning: #fbbf24;
+    --color-warning-content: #1f1300;
+    --color-error: #f87171;
+    --color-error-content: #190404;
+    --radius-selector: 0.25rem;
+    --radius-field: 0.7rem;
+    --radius-box: 1rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 1;
+    --noise: 0;
 }
 
-body {
-    @apply text-(--text) bg-(--bg);
+span.showoff {
+    font-family: serif;
+    @apply italic text-lg text-success;
 }
 
-.btn {
-    @apply rounded-full border border-(--text) px-4 py-1 transition-colors;
-
-    &.icon { @apply flex gap-2 justify-between items-center; }
-    &:hover:enabled { @apply cursor-pointer hover:bg-white hover:text-black; }
+code {
+    @apply text-sm bg-base-300 p-0.5 rounded-md;
 }
