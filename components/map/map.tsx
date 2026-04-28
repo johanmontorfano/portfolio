@@ -296,6 +296,11 @@ export function DottedMap({
                         to: cmd.accent
                     }
                 }
+                else if ("reset" in cmd) {
+                    occupiedCells.current.clear();
+                    placedNodes.current.splice(0);
+                    activeLinks.current.splice(0);
+                }
             });
 
             if (accent !== lastAccentChange.current.to) {
