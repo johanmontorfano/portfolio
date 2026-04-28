@@ -13,7 +13,7 @@ export default function Page() {
         new Date().getFullYear() - beganCodingAt.getFullYear();
 
     return (
-        <div className="max-w-[800px] w-full mx-auto">
+        <div className="max-w-[800px] w-[90%] mx-auto">
             <DocumentSmoothScroll />
             <header className="pt-48">
                 <Image alt="logo" src={Logo} className="w-10 h-10 invert" />
