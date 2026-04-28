@@ -6,7 +6,9 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "Shared file – JWS Drive",
-    icons: "/assets/logo.svg"
+    icons: {
+        icon: "/assets/logo.svg"
+    }
 }
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {
