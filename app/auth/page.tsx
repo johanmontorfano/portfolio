@@ -35,28 +35,30 @@ export default function Page() {
 
         setIsLoading(true);
         setError("");
-        await signInWithEmailAndPassword(auth, formData.email, formData.password)
-            .then(async (token) => {
-                const idToken = await token.user.getIdToken();
-                
-                fetch(
-                    "/auth/redirect",
-                    {
+        try {
+            await signInWithEmailAndPassword(auth, formData.email, formData.password)
+                .then(async (token) => {
+                    const idToken = await token.user.getIdToken();
+                    
+                    fetch("/auth/redirect", {
                         method: "POST",
-                        body: JSON.stringify({
-                            token: idToken
-                        })
-                    }
-                ).then(async (data) => {
-                    const body = await data.json();
+                        body: JSON.stringify({ token: idToken })
+                    }).then(async (data) => {
+                        const body = await data.json();
 
-                    if ("error" in body) setError(body["error"]);
-                    else router.push(body["appUrl"]);
-                }).catch((err) => {
-                    console.log(err);
-                    setError("Failed to finalize authentication");
-                })
-            }).catch((err) => setError(err)).finally(() => setIsLoading(false));
+                        if ("error" in body) setError(body["error"]);
+                        else router.push(body["appUrl"]);
+                    }).catch((err) => {
+                        console.log(err);
+                        setError("Failed to finalize authentication");
+                    })
+            });
+        } catch (e) {
+            console.error(e);
+            setError("Failed to authenticate");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
