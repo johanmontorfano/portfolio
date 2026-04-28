@@ -53,7 +53,7 @@
     },
     "steps": [
         {
-            "text": "Apps and services are meant to rely on centralized resources.",
+            "text": "Apps and services are often made to rely on centralized resources.",
             "duration": 6000,
             "event": "CENTRALIZED"
         },

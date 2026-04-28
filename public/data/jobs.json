@@ -1,0 +1,32 @@
+[
+    {
+        "company": "Veriscope AB",
+        "job": "Tech Lead",
+        "description": "Developed multi-platform products, advanced cryptographic methods, and blockchain systems to enable NGOs and news agencies to buy time and location verified content.",
+        "leavingReason": "Developed a Proof-of-Concept with a mobile app, a marketplace, and back-end services",
+        "links": {
+            "website": "https://veriscope.io/",
+            "marketplace": "https://heatmap.veriscope.io/"
+        },
+        "icon": "/assets/vscp.png"
+    },
+    {
+        "company": "Datelis",
+        "job": "Data & Blockchain Consultant",
+        "description": "Theorised a blockchain-based data harvesting platform for fair redistribution of data sales and programatically enforced withdrawal of data from the market.",
+        "leavingReason": "Documentation delivered",
+        "links": {
+            "documentation": "https://johanmontorfano.com/shared/9ed92216-1bd2-4a6c-a9fb-a1919110470b"
+        }
+    },
+    {
+        "company": "Franchisé Mobalpa",
+        "job": "Lead Software Engineer",
+        "description": "Developed a tailored CRM for a growing team needs.",
+        "leavingReason": "Product delivered",
+        "links": {
+            "showcase": "https://afs.johanmontorfano.com/"
+        },
+        "icon": "/assets/afs.svg"
+    }
+]
