@@ -6,12 +6,14 @@ type CreateLink = { link: Link };
 type RemoveLink = { rmlink: Link };
 type ChangeColor = { accent: string };
 type ForceRenderLayer = { name: "backdrop" };
+type Reset = { reset: true };
 
 type Commands = CreateNode |
     CreateLink |
     RemoveLink |
     ChangeColor |
-    ForceRenderLayer;
+    ForceRenderLayer |
+    Reset;
 
 const commands: Commands[] = [];
 
