@@ -1,3 +1,5 @@
+"use client";
+
 import { TypeWriter } from "@/components/ascii/basic/typewriter";
 import { useASCIIEngine } from "@/components/ascii/context";
 import { Center } from "@/components/ascii/basic/center";

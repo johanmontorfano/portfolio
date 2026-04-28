@@ -1,3 +1,5 @@
+"use client";
+
 import { DottedMap } from "@/components/map/map";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,7 +15,7 @@ import {
 
 import DotMap from "@/public/maps/europe_map.json";
 import data from "@/public/data/p2p.json";
-import { ProjectList } from "../with_components/project_list";
+import { BsPlay } from "react-icons/bs";
 
 export default function Scene() {
     const appear = {
@@ -34,11 +36,18 @@ export default function Scene() {
     const map = useDottedMapController();
 
     const [step, setStep] = useState<DigestedStep>();
-    const [showMap, setShowMap] = useState(true);
+    // only used to trigger a memo recompute when replaying the scene
+    const [playCounts, setPlayCounts] = useState(0);
+    const [showMap, setShowMap] = useState(false);
     const [component, setComponent] = useState<ReactNode>(null);
 
     const timeoutList = useMemo(() => {
         let totalDuration = 0;
+
+        if (playCounts === 0)
+            return [setTimeout(() => {
+                setStep({ id: -1, duration: 0, event: "END" });
+            }, 0)]
 
         return data.steps.map((step, idx) => {
             let id = setTimeout(() => {
@@ -48,7 +57,7 @@ export default function Scene() {
 
             return id;
         });
-    }, []);
+    }, [playCounts]);
 
     useEffect(() => () => timeoutList.forEach(id => clearInterval(id)), [])
     useEffect(() => {
@@ -100,30 +109,37 @@ export default function Scene() {
                 setComponent(<QualitiesShowcase qualities={CR_QUALITIES} />);
                 break;
             case "END":
-                setComponent(<ProjectList entries={data.projects} />);
+                setComponent(<button className="btn" onClick={() => {
+                    map.trigger({ reset: true });
+                    setStep(undefined);
+                    setComponent(null);
+                    setShowMap(true);
+                    setPlayCounts(prev => prev + 1);
+                }}>
+                    <BsPlay /> {playCounts === 0 ? "Play" : "Replay"}
+                </button>);
                 break;
             default:
                 break;
         }
     }, [step]);
 
-    return <div className="relative flex justify-center items-center w-full h-dvh overflow-hidden">
+    return <div className="relative flex justify-center h-[70vh] min-h-[600px] items-center w-full overflow-hidden">
         <AnimatePresence mode="wait">
             {showMap && <motion.div
                     variants={{
                         hidden: { opacity: 0 },
                         visible: { opacity: 1 }
                     }}
-                    className="w-full sm:-translate-x-[40%] md:translate-x-[33%]"
                     initial="hidden"
                     animate="visible"
                     exit="hidden"
                 >
-                <DottedMap data={DotMap} disableMutate />
+                <DottedMap data={DotMap} disableMutate className="rounded-lg" />
             </motion.div>}
             {step && component && <div key={step.id}>{component}</div>}
         </AnimatePresence>
-        <div className="absolute bottom-32 left-12">
+        <div className="absolute bottom-6 left-6">
             <AnimatePresence mode="wait">
                 {step?.text && <motion.p
                     variants={appear}
@@ -131,7 +147,7 @@ export default function Scene() {
                     animate="visible"
                     exit="hidden"
                     key={step.id}
-                    className="w-full max-w-[600px] text-white text-2xl"
+                    className="w-full max-w-[300px] text-white text-lg"
                 >
                     {step.text}
                 </motion.p>}
