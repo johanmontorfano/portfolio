@@ -1,5 +1,4 @@
 import { DynModuleLoader } from "@/components/scenes/spec_loader";
-import { DocumentSmoothScroll } from "@/components/smooth_scroll";
 import { BsAward, BsCameraVideo } from "react-icons/bs";
 import Image from "next/image";
 
@@ -14,7 +13,6 @@ export default function Page() {
 
     return (
         <div className="max-w-[800px] w-[90%] mx-auto">
-            <DocumentSmoothScroll />
             <header className="pt-48">
                 <Image alt="logo" src={Logo} className="w-10 h-10 invert" />
                 <br />
