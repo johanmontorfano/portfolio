@@ -1,15 +1,27 @@
 import { DynModuleLoader } from "@/components/scenes/spec_loader";
-import { BsAward, BsCameraVideo } from "react-icons/bs";
+import { BsAward, BsCameraVideo, BsEnvelope, BsGithub, BsLinkedin, BsMailbox } from "react-icons/bs";
+import { IconType } from "react-icons";
 import Image from "next/image";
 
 import Logo from "@/public/assets/logo.svg";
 import p2pData from "@/public/data/p2p.json";
 import JobBoard from "@/components/job_board";
 
+// PERF: THIS MUST BE KEPT A SERVER COMPONENT TO REDUCE THE JS LOAD ON THE 
+// CLIENT. IF IT IS MADE A CLIENT COMPONENT, useRef MIGHT NEED TO BE INTRODUCED
 export default function Page() {
     const beganCodingAt = new Date("07-10-2016");
     const beenCodingFor =
         new Date().getFullYear() - beganCodingAt.getFullYear();
+    const socials = [
+        [BsGithub, "GitHub", "https://www.github.com/johanmontorfano"],
+        [BsLinkedin, "LinkedIn", "https://www.linkedin.com/in/jhnm"],
+        [BsEnvelope, "E-mail", "mailto:hello@johanmontorfano.com"]
+    ] as const;
+
+    function SocialIcon(props: { icon: IconType }) {
+        return <props.icon size={28} className="mr-3" />
+    }
 
     return (
         <div className="max-w-[800px] w-[90%] mx-auto">
@@ -17,6 +29,20 @@ export default function Page() {
                 <Image alt="logo" src={Logo} className="w-10 h-10 invert" />
                 <br />
                 <h1 className="text-4xl font-bold">Hi, I am Johan!</h1>
+                <br />
+                <div>
+                    {socials.map((s, i) =>
+                        <a
+                            href={s[2]}
+                            target="_blank"
+                            className="tooltip"
+                            data-tip={s[1]}
+                            key={i}
+                        >
+                            <SocialIcon icon={s[0]} />
+                        </a>
+                    )}
+                </div>
             </header>
             <br />
             <main className="flex flex-col gap-4">
