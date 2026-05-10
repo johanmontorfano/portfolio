@@ -122,7 +122,7 @@ export default function Page() {
                             <button
                                 type="button"
                                 onClick={() => setStep("email")}
-                                className="text-xs text-zinc-500 hover:text-white cursor-pointer transition-colors"
+                                className="btn btn-ghost"
                             >
                                 Back
                             </button>
@@ -130,7 +130,7 @@ export default function Page() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="ml-auto px-5 py-2 rounded-md bg-blue-600 text-xs font-semibold hover:bg-blue-500 transition-all disabled:opacity-50 flex items-center justify-center cursor-pointer"
+                            className="btn btn-primary ml-auto"
                         >
                             {isLoading ? "..." :
                                 step === "email" ? "Continue" : "Sign In"}
