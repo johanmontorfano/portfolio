@@ -1,9 +1,7 @@
 import { DynModuleLoader } from "@/components/scenes/spec_loader";
-import { BsAward, BsCameraVideo, BsEnvelope, BsGithub, BsLinkedin, BsMailbox } from "react-icons/bs";
+import { BsAward, BsCameraVideo, BsEnvelope, BsGithub, BsLinkedin } from "react-icons/bs";
 import { IconType } from "react-icons";
-import Image from "next/image";
 
-import Logo from "@/public/assets/logo.svg";
 import p2pData from "@/public/data/p2p.json";
 import JobBoard from "@/components/job_board";
 
@@ -26,8 +24,6 @@ export default function Page() {
     return (
         <div className="max-w-[800px] w-[90%] mx-auto">
             <header className="pt-48">
-                <Image alt="logo" src={Logo} className="w-10 h-10 invert" />
-                <br />
                 <h1 className="text-4xl font-bold">Hi, I am Johan!</h1>
                 <br />
                 <div>
