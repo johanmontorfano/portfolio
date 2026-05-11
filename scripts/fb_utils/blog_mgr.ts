@@ -1,7 +1,6 @@
 import "server-only";
 import { firestore, storage } from "../firebase/server";
-import { DocumentData, DocumentSnapshot } from "firebase-admin/firestore";
-import type { Timestamp } from "firebase-admin/firestore";
+import { DocumentData, DocumentSnapshot, Timestamp } from "firebase-admin/firestore";
 
 export interface BlogPostMetadata {
     title: string;
@@ -68,4 +67,29 @@ export async function getLatestBlogPostsPaginated(from: number) {
         from, to: from + 10,
         totalPosts: len
     }
+}
+
+export async function removeBlogPost(id: string) {
+    if (!/^[a-z0-9-_]+$/i.test(id))
+        return false;
+    await firestore.collection("blog_posts").doc(id).delete();
+    await storage.bucket().file(`blog_posts/${id}.md`).delete();
+    return true;
+}
+
+export async function putBlogPost(
+    id: string,
+    metadata: BlogPostMetadata,
+    body: string
+) {
+    if (!/^[a-z0-9-_]+$/i.test(id))
+        return false;
+    await firestore.collection("blog_posts").doc(id).set({
+        ...metadata,
+        createdAt: metadata.createdAt < 1 ?
+            Timestamp.now() : Timestamp.fromMillis(metadata.createdAt),
+        gcsExtlessName: id
+    });
+    await storage.bucket().file(`blog_posts/${id}.md`).save(body);
+    return true;
 }
