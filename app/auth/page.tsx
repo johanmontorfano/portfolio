@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/scripts/firebase/client";
+import { BsEnvelope, BsKey } from "react-icons/bs";
 
 export default function Page() {
     const router = useRouter();
@@ -86,35 +87,36 @@ export default function Page() {
                     )}
                     {step === "email" ? (
                         <div className="space-y-2">
-                            <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
-                                Email Address
+                            <label className="input w-full validator">
+                                <BsEnvelope />
+                                <input
+                                    name="email"
+                                    type="email"
+                                    placeholder="name@company.com"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    autoFocus
+                                    required
+                                />
                             </label>
-                            <input
-                                autoFocus
-                                name="email"
-                                type="email"
-                                required
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                className="w-full rounded-md border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                                placeholder="name@company.com"
-                            />
+                            <div className="validator-hint hidden">
+                                Enter valid email address
+                            </div>
                         </div>
                     ) : (
                         <div className="space-y-2">
-                            <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
-                                Password
+                            <label className="input w-full">
+                                <BsKey />
+                                <input
+                                    name="password"
+                                    type="password"
+                                    placeholder="••••••••"
+                                    value={formData.password}
+                                    onChange={handleInputChange}
+                                    autoFocus
+                                    required
+                                />
                             </label>
-                            <input
-                                autoFocus
-                                name="password"
-                                type="password"
-                                required
-                                value={formData.password}
-                                onChange={handleInputChange}
-                                className="w-full rounded-md border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-                                placeholder="••••••••"
-                            />
                         </div>
                     )}
                     <div className="flex items-center justify-between pt-2">
@@ -132,8 +134,10 @@ export default function Page() {
                             disabled={isLoading}
                             className="btn btn-primary ml-auto"
                         >
-                            {isLoading ? "..." :
-                                step === "email" ? "Continue" : "Sign In"}
+                            {isLoading ?
+                                <span className="loading loading-spinner" /> :
+                                step === "email" ? "Continue" : "Sign In"
+                            }
                         </button>
                     </div>
                 </form>
