@@ -1,3 +1,4 @@
+import { BsPersonX } from "react-icons/bs";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,8 +12,13 @@ export function Navbar() {
             </Link>
         </div>
         <div className="flex gap-2">
-            <Link href="/blog" className="hover:underline">Blog</Link>
-            <Link href="/auth/redirect" className="hover:underline">Account</Link>
+            <Link href="/apps/admin/files" className="hover:underline">Files</Link>
+            <Link href="/apps/admin/blog" className="hover:underline">Blog</Link>
+        </div>
+        <div className="flex-1 flex justify-end">
+            <Link href="/auth/logout" className="btn btn-error btn-ghost btn-sm">
+                <BsPersonX size={18} />
+            </Link>
         </div>
     </div>
 }
