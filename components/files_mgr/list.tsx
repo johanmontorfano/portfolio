@@ -2,6 +2,7 @@
 
 import { ExtendedFile } from "@/scripts/fb_utils/types/file_mgr";
 import { BsLink, BsDownload, BsShieldCheck, BsGlobe2 } from "react-icons/bs";
+import Link from "next/link";
 
 export function ListExtendedFiles({ files }: { files: ExtendedFile[] }) {
     if (files.length === 0) {
@@ -72,7 +73,7 @@ export function ListExtendedFiles({ files }: { files: ExtendedFile[] }) {
                             </td>
                             <td className="text-right">
                                 <div className="flex justify-end gap-2">
-                                    <a
+                                    <Link
                                         href={file.shareableLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -80,14 +81,14 @@ export function ListExtendedFiles({ files }: { files: ExtendedFile[] }) {
                                         title="Copy Shareable Link"
                                     >
                                         <BsLink className="w-5 h-5" />
-                                    </a>
-                                    <a
+                                    </Link>
+                                    <Link
                                         href={file.downloadUrl}
                                         className="btn btn-primary btn-sm gap-2"
                                     >
                                         <BsDownload className="w-3.5 h-3.5" />
                                         Download
-                                    </a>
+                                    </Link>
                                 </div>
                             </td>
                         </tr>
