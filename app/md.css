@@ -1,0 +1,43 @@
+@import "./index.css";
+
+.md-container {
+    @apply leading-relaxed text-base-content;
+
+    h1 { @apply text-4xl font-extrabold mt-8 mb-4 border-b border-base-300 pb-2; }
+    h2 { @apply text-2xl font-bold mt-8 mb-3 border-s-4 border-primary ps-4; }
+    h3 { @apply text-xl font-bold mt-6 mb-2; }
+    h4 { @apply text-lg font-semibold mt-4; }
+    
+    p { @apply mb-4; }
+
+    a { @apply link link-primary no-underline hover:underline transition-all duration-200; }
+
+    ul, ol { @apply mb-4 ms-6; }
+    ul { @apply list-disc; }
+    ol { @apply list-decimal; }
+    li { @apply mb-1; }
+    li > ul, li > ol { @apply mt-1 mb-2; }
+
+    table { @apply table table-zebra w-full my-6 overflow-hidden rounded-box shadow-sm; }
+    thead { @apply bg-base-200; }
+    th, td { @apply border-base-300; }
+
+    blockquote { 
+        @apply alert alert-ghost italic border-s-4 border-l-secondary rounded-e-box rounded-s-none my-6 py-4; 
+    }
+
+    hr { @apply divider my-8; }
+
+    :not(pre) > code {
+        @apply badge badge-ghost font-mono text-sm px-1 py-0 h-auto rounded;
+    }
+
+    pre:has(code) {
+        @apply mockup-code my-6 w-full shadow-lg;
+        code { @apply block bg-transparent px-6 py-0 text-sm leading-6; }
+    }
+
+    img { @apply rounded-box shadow-md mx-auto my-6 border border-base-200; }
+
+    kbd { @apply kbd kbd-sm; }
+}
