@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 export default function Page() {
     const [posts, setPosts] = useState<BlogPostMetadata[]>([]);
     const [loading, setLoading] = useState(false);
+    const [allLoaded, setAllLoaded] = useState(false);
     const router = useRouter();
 
     async function getLatestPostsMetadataPaginated() {
@@ -18,6 +19,8 @@ export default function Page() {
             const data = await res.json();
 
             setPosts(prev => [...prev, ...data.posts]);
+            if (!data.posts.length)
+                setAllLoaded(true);
         }
         setLoading(false);
     }
@@ -45,8 +48,17 @@ export default function Page() {
                     }</p>
                 </li>)}
             </ul>
-            {loading && <div className="flex justify-center">
-                <span className="loading loading-spinner loading-xs" />
+            {!allLoaded && <div className="flex justify-center">
+                <button
+                    className="btn disabled:btn-disabled"
+                    disabled={loading}
+                    onClick={() => getLatestPostsMetadataPaginated()}
+                >
+                    {loading ?
+                        <span className="loading loading-spinner" /> :
+                        "Load More"
+                     }
+                </button>
             </div>}
         </main>
     </div>

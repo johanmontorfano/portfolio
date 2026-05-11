@@ -1,5 +1,5 @@
+import { Markdown } from "@/components/mini_md";
 import { getBlogPost } from "@/scripts/fb_utils/blog_mgr";
-import Markdown from "react-markdown";
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {
     const params = await props.params;
@@ -7,5 +7,5 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
 
     if (data === null)
         return 404;
-    return <Markdown>{data}</Markdown>;
+    return <Markdown content={data} />;
 }

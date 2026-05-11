@@ -51,7 +51,7 @@ export default async function Layout(props: {
         <main>
             {props.children}
         </main>
-        <footer>
+        <footer className="pb-8">
             <div className="divider" />
             <div className="flex justify-center">
                 <ScrollToTopButton />
