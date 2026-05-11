@@ -23,7 +23,7 @@
     th, td { @apply border-base-300; }
 
     blockquote { 
-        @apply alert italic border-s-4 border-l-secondary rounded-e-box rounded-s-none my-6 py-4; 
+        @apply alert flex flex-col align-start italic border-s-4 border-l-secondary rounded-e-box rounded-s-none my-6 py-4; 
     }
 
     hr { @apply divider my-8; }
