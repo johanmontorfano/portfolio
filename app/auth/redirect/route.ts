@@ -34,7 +34,6 @@ export async function POST(req: NextRequest) {
         .then(cookie => {
             cookieStore.set("session", cookie, {
                 maxAge: expiresIn,
-                httpOnly: true,
                 secure: process.env.NODE_ENV !== "development"
             });
             // TODO: in the future, this project might contains more than me as

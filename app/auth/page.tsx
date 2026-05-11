@@ -41,7 +41,7 @@ export default function Page() {
                 .then(async (token) => {
                     const idToken = await token.user.getIdToken();
                     
-                    fetch("/auth/redirect", {
+                    await fetch("/auth/redirect", {
                         method: "POST",
                         body: JSON.stringify({ token: idToken })
                     }).then(async (data) => {
