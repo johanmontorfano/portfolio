@@ -71,7 +71,7 @@ export default function Page() {
                     </h1>
                     <p className="text-sm text-zinc-400">
                         {step === "email" 
-                            ? "Enter your email to get started" 
+                            ? "Enter your email" 
                             : `Enter password for ${formData.email}`}
                     </p>
                 </header>
