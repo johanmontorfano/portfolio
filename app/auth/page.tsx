@@ -9,7 +9,6 @@ import { BsEnvelope, BsKey } from "react-icons/bs";
 export default function Page() {
     const router = useRouter();
 
-    const [step, setStep] = useState<"email" | "password">("email");
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -23,16 +22,6 @@ export default function Page() {
     // we verify first we are at the password step (the even is fired to auth)
     async function onSubmit(e: React.SubmitEvent) {
         e.preventDefault();
-
-        if (step === "email") {
-            if (formData.email.includes("@")) {
-                setError("");
-                setStep("password");
-            } else {
-                setError("Please enter a valid email.");
-            }
-            return;
-        }
 
         setIsLoading(true);
         setError("");
@@ -70,15 +59,9 @@ export default function Page() {
             <section className="w-full max-w-sm bg-zinc-900 rounded-lg p-6 border border-zinc-800 shadow-xl">
                 <header className="mb-6">
                     <h1 className="text-xl font-bold tracking-tight">
-                        {step === "email" ? "Sign in" : "Welcome back"}
+                        Welcome back
                     </h1>
-                    <p className="text-sm text-zinc-400">
-                        {step === "email" 
-                            ? "Enter your email" 
-                            : `Enter password for ${formData.email}`}
-                    </p>
                 </header>
-
                 <form
                     onSubmit={onSubmit}
                     className="space-y-4"
@@ -88,7 +71,6 @@ export default function Page() {
                             {error}
                         </div>
                     )}
-                    {step === "email" ? (
                         <div className="space-y-2">
                             <label className="input w-full validator">
                                 <BsEnvelope />
@@ -106,7 +88,6 @@ export default function Page() {
                                 Enter valid email address
                             </div>
                         </div>
-                    ) : (
                         <div className="space-y-2">
                             <label className="input w-full">
                                 <BsKey />
@@ -116,22 +97,11 @@ export default function Page() {
                                     placeholder="••••••••"
                                     value={formData.password}
                                     onChange={handleInputChange}
-                                    autoFocus
                                     required
                                 />
                             </label>
                         </div>
-                    )}
                     <div className="flex items-center justify-between pt-2">
-                        {step === "password" && (
-                            <button
-                                type="button"
-                                onClick={() => setStep("email")}
-                                className="btn btn-ghost"
-                            >
-                                Back
-                            </button>
-                        )}
                         <button
                             type="submit"
                             disabled={isLoading}
@@ -139,7 +109,7 @@ export default function Page() {
                         >
                             {isLoading ?
                                 <span className="loading loading-spinner" /> :
-                                step === "email" ? "Continue" : "Sign In"
+                                "Continue"
                             }
                         </button>
                     </div>
