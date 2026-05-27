@@ -4,7 +4,12 @@ import Link from "next/link";
 
 import Logo from "@/public/assets/logo.svg";
 
-export function Navbar() {
+export function Navbar({
+    links = [
+        ["/apps/admin/files", "Files"],
+        ["/apps/admin/blog", "Blog"]
+    ]
+}: { links?: [string, string][] }) {
     return <div className="navbar max-w-[800px] w-[90%] mx-auto sticky top-0 z-100">
         <div className="flex-1">
             <Link href="/">
@@ -12,8 +17,13 @@ export function Navbar() {
             </Link>
         </div>
         <div className="flex gap-2">
-            <Link href="/apps/admin/files" className="hover:underline">Files</Link>
-            <Link href="/apps/admin/blog" className="hover:underline">Blog</Link>
+            {links.map(d =>  
+                <Link
+                    key={`admin-nav-${d[0]}`}
+                    href={d[0]}
+                    className="hover:underline"
+                >{d[1]}</Link>
+            )}
         </div>
         <div className="flex-1 flex justify-end">
             <Link href="/auth/logout" className="btn btn-error btn-ghost btn-sm">

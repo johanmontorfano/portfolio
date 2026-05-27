@@ -48,7 +48,10 @@ export default function Page() {
                         const body = await data.json();
 
                         if ("error" in body) setError(body["error"]);
-                        else router.push(body["appUrl"]);
+                        else router.push(
+                            new URL(location.href).searchParams.get("next") ||
+                            body["appUrl"]
+                        );
                     }).catch((err) => {
                         console.log(err);
                         setError("Failed to finalize authentication");

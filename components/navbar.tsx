@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Logo from "@/public/assets/logo.svg";
+import { BsPerson } from "react-icons/bs";
 
 export function Navbar() {
     return <div className="navbar max-w-[800px] w-[90%] mx-auto sticky top-0 z-100">
@@ -12,7 +13,9 @@ export function Navbar() {
         </div>
         <div className="flex gap-2">
             {/*<Link href="/blog" className="hover:underline">Blog</Link>*/}
-            <Link href="/auth/redirect" className="hover:underline">Account</Link>
+            <Link href="/auth/redirect" className="hover:underline">
+                <BsPerson size={20} />
+            </Link>
         </div>
     </div>
 }
