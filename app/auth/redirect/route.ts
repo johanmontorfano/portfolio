@@ -33,8 +33,10 @@ export async function POST(req: NextRequest) {
     return await auth.createSessionCookie(body.data.token, { expiresIn })
         .then(cookie => {
             cookieStore.set("session", cookie, {
-                maxAge: expiresIn,
-                secure: process.env.NODE_ENV !== "development"
+                maxAge: expiresIn / 1000,
+                secure: process.env.NODE_ENV !== "development",
+                httpOnly: true,
+                sameSite: "strict"
             });
             // TODO: in the future, this project might contains more than me as
             // users and those users might not all have access to the same
