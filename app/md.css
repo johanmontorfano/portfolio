@@ -18,7 +18,16 @@
     li { @apply mb-1; }
     li > ul, li > ol { @apply mt-1 mb-2; }
 
-    table { @apply table table-zebra w-full my-6 overflow-hidden rounded-box shadow-sm; }
+    table {
+       @apply table table-zebra w-full my-6 overflow-hidden rounded-box shadow-sm;
+
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+  
+        width: max-content; 
+        min-width: 100%;
+    }
     thead { @apply bg-base-200; }
     th, td { @apply border-base-300; }
 
