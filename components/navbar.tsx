@@ -12,7 +12,7 @@ export function Navbar() {
             </Link>
         </div>
         <div className="flex gap-2">
-            {/*<Link href="/blog" className="hover:underline">Blog</Link>*/}
+            <Link href="/blog" className="hover:underline">Blog</Link>
             <Link href="/auth/redirect" className="hover:underline">
                 <BsPerson size={20} />
             </Link>
