@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET() {
     try {
         const res = await fetch(
-            "https://lyondoku.vercel.app/api/data/navbar",
+            "https://www.lyondle.fr/api/data/navbar",
             {
                 headers: {
                     "Authorization": `Bearer ${process.env.LYONDLE_SECRET}`
@@ -26,7 +26,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
     try {
         const res = await fetch(
-            "https://lyondoku.vercel.app/api/data/navbar",
+            "https://www.lyondle.fr/api/data/navbar",
             {
                 method: "POST",
                 body: JSON.stringify(await req.json()),
