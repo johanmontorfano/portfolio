@@ -15,7 +15,7 @@ export default async function Page() {
                     key={post.gcsExtlessName}
                     className="cursor-pointer border-b border-base-300 hover:bg-base-200"
                 >
-                    <Link href={`/blog/${post.gcsExtlessName}`} className="list-row">
+                    <Link href={`/blog/${post.gcsExtlessName}`} className="flex flex-col gap-1 md:gap-3 md:flex-row p-2">
                         <p>{post.title}</p>
                         <p className="opacity-60">{
                             new Date(post.createdAt).toDateString()
