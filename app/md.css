@@ -36,8 +36,6 @@
         @apply mockup-code my-6 w-full shadow-lg;
         code { @apply block bg-transparent px-6 py-0 text-sm leading-6; }
     }
-
     img { @apply rounded-box shadow-md mx-auto my-6 border border-base-200; }
-
     kbd { @apply kbd kbd-sm; }
 }
