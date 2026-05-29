@@ -53,12 +53,12 @@ export async function getBlogPostMetadata(id: string) {
     return castToBlogPostMetadata(snap);
 }
 
-export async function getLatestBlogPostsPaginated(from: number) {
+export async function getLatestBlogPostsPaginated(from: number, limit = 10) {
     const len = await firestore.collection("blog_posts").count().get();
     const snap = await firestore.collection("blog_posts")
         .orderBy("createdAt", "desc")
         .offset(from)
-        .limit(10)
+        .limit(limit)
         .get();
     const data = snap.docs.map(castToBlogPostMetadata);
 

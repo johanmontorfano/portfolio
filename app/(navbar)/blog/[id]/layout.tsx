@@ -1,9 +1,9 @@
 import { getBlogPostMetadata } from "@/scripts/fb_utils/blog_mgr";
 import { ReactNode } from "react";
 import { BsArrowLeft } from "react-icons/bs";
-import { ScrollToTopButton } from "@/components/scroll_to_top";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { serif } from "@/components/fonts";
 import Link from "next/link";
 
 export async function generateMetadata(props: {
@@ -42,20 +42,15 @@ export default async function Layout(props: {
                 <BsArrowLeft /> Latest Posts
             </Link>
             <br />
-            <h1 className="text-4xl font-bold">{data.title}</h1>
-            <p className="text-base-content/60 text-sm">
+            <h1 className={`text-4xl font-bold mt-12 text-center ${serif.className}`}>
+                {data.title}
+            </h1>
+            <p className="text-center text-base-content/60 text-sm mt-2 mb-12">
                 {new Date(data.createdAt).toDateString()}
             </p>
-            <div className="divider" />
         </header>
         <main>
             {props.children}
         </main>
-        <footer className="pb-8">
-            <div className="divider" />
-            <div className="flex justify-center">
-                <ScrollToTopButton />
-            </div>
-        </footer>
     </div>;
 }
