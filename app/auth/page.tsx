@@ -55,8 +55,8 @@ export default function Page() {
     };
 
     return (
-        <main className="flex h-dvh items-center justify-center bg-black text-white">
-            <section className="w-full max-w-sm bg-zinc-900 rounded-lg p-6 border border-zinc-800 shadow-xl">
+        <main className="flex h-dvh items-center justify-center">
+            <section className="w-full max-w-sm bg-base-200 border border-base-300 p-6">
                 <header className="mb-6">
                     <h1 className="text-xl font-bold tracking-tight">
                         Welcome back
