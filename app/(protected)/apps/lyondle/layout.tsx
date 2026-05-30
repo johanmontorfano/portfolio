@@ -3,7 +3,10 @@ import { ReactNode } from "react";
 
 export default function Layout(props: { children: ReactNode }) {
     return <div className="w-full w-[90%] max-w-[1000px] mx-auto">
-        <Navbar links={[]} />
+        <Navbar links={[
+            ["/apps/lyondle/title", "Title"],
+            ["/apps/lyondle/explorer", "Explorer"]
+        ]} />
         <header className="pt-48">
             <h1 className="text-4xl font-bold">Lyondle Manager</h1>
         </header>

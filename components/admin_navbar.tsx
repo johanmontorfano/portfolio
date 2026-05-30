@@ -7,7 +7,8 @@ import Logo from "@/public/assets/logo.svg";
 export function Navbar({
     links = [
         ["/apps/admin/files", "Files"],
-        ["/apps/admin/blog", "Blog"]
+        ["/apps/admin/blog", "Blog"],
+        ["/apps/lyondle", "Lyondle"]
     ]
 }: { links?: [string, string][] }) {
     return <div className="navbar max-w-[800px] w-[90%] mx-auto sticky top-0 z-100">
