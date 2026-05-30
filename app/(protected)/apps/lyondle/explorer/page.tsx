@@ -103,7 +103,7 @@ export default function Page() {
 
             const serialized = [
                 `id == [${object.id}]`,
-                ...Object.entries(object).map(o => `SET ${o[0]} '${o[1]}'`)
+                ...Object.entries(object).map(o => `SET ${o[0]} [${o[1]}]`)
             ];
 
             const res = await fetch("/api/lyondle/cql", {
