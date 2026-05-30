@@ -1,6 +1,7 @@
 // both routes acts as proxies implementing the authorization header to query
 // lyondle
 
+import { getUser } from "@/scripts/fb_utils/server_auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -24,6 +25,11 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+    const user = await getUser();
+
+    if (user === null)
+        return NextResponse.json({ error: "not logged in" }, { status: 403 });
+
     try {
         const res = await fetch(
             "https://www.lyondle.fr/api/data/navbar",
