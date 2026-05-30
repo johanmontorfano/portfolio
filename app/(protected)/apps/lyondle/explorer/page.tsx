@@ -124,11 +124,6 @@ export default function Page() {
     }, []);
 
     useEffect(() => {
-        setResults([]);
-        setSelectedProperty(null);
-    }, [selectedDataset]);
-
-    useEffect(() => {
         setSelectedComparator(null);
         setSearchString("");
     }, [selectedProperty]);
@@ -185,6 +180,8 @@ export default function Page() {
                     defaultValue="Stations"
                     className="select max-w-32"
                     onChange={(ev) => {
+                        setResults([]);
+                        setSelectedProperty(null);
                         setSelectedDataset(ev.target.value);
                     }}
                     disabled={loading}
