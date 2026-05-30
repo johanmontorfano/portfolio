@@ -26,7 +26,7 @@ export function Navbar({
             )}
         </div>
         <div className="flex-1 flex justify-end">
-            <Link href="/auth/logout" className="btn btn-error btn-ghost btn-sm">
+            <Link href="/auth/logout" prefetch={false} className="btn btn-error btn-ghost btn-sm">
                 <BsPersonX size={18} />
             </Link>
         </div>
