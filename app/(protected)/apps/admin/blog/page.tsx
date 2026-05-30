@@ -1,15 +1,13 @@
 "use client";
 
-import { BlogPostMetadata } from "@/scripts/fb_utils/blog_mgr";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { BlogPostMetadata } from "@/scripts/fb_utils/blog_mgr";
 import { useEffect, useState } from "react";
 import { BsPencil, BsPlus, BsTrash } from "react-icons/bs";
 
 export default function Page() {
     const [posts, setPosts] = useState<BlogPostMetadata[]>([]);
     const [loading, setLoading] = useState(false);
-    const router = useRouter();
 
     async function getLatestPostsMetadataPaginated() {
         setLoading(true);
@@ -49,9 +47,11 @@ export default function Page() {
                 threshold: 0.5
             });
         }}>
-            <Link href="/apps/admin/blog/editor?new" className="btn">
-                <BsPlus /> Create
-            </Link>
+            <div className="py-4 flex justify-end">
+                <Link href="/apps/admin/blog/editor?new" className="btn btn-neutral gap-2">
+                    <BsPlus /> Create
+                </Link>
+            </div>
             <table className="table table-zebra w-full">
                 <thead>
                     <tr className="bg-base-200/50">
