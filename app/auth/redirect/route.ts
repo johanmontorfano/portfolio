@@ -27,26 +27,31 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "invalid body" }, { status: 400 });
     }
 
-    const expiresIn = 60 * 60 * 12 * 1000;
+    const expiration = 60 * 60 * 12;
     const cookieStore = await cookies();
 
-    return await auth.createSessionCookie(body.data.token, { expiresIn })
-        .then(cookie => {
-            cookieStore.set("session", cookie, {
-                maxAge: expiresIn / 1000,
-                sameSite: "strict"
-            });
-            // TODO: in the future, this project might contains more than me as
-            // users and those users might not all have access to the same
-            // things. therefore, this return statement might evolve in a more
-            // complete permission system
-            return NextResponse.json({ appUrl: "/apps/admin/files" });
-        })
-        .catch(err => {
-            console.log(err);
-            return NextResponse.json(
-                { error: "session init failed" },
-                { status: 500 }
-            );
+    try {
+        const cookie = await auth.createSessionCookie(body.data.token, {
+            expiresIn: expiration * 1000
         });
+
+        cookieStore.set("session", cookie, {
+            maxAge: expiration,
+            httpOnly: true,
+            sameSite: "strict",
+            path: "/"
+        });
+
+        // TODO: in the future, this project might contains more than me as
+        // users and those users might not all have access to the same
+        // things. therefore, this return statement might evolve in a more
+        // complete permission system
+        return NextResponse.json({ appUrl: "/apps/admin/files" });
+    } catch (err) {
+        console.log(err);
+        return NextResponse.json(
+            { error: "session init failed" },
+            { status: 500 }
+        );
+    }
 }
