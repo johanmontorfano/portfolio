@@ -39,7 +39,10 @@ export async function POST(req: NextRequest) {
         body.data.body
     );
 
-    if (ok) revalidatePath("/blog");
+    if (ok) {
+        revalidatePath("/blog");
+        revalidatePath("/apps/admin/blog");
+    }
     return NextResponse.json({ ok });
 }
 
@@ -57,6 +60,9 @@ export async function DELETE(req: NextRequest) {
 
     const ok = await removeBlogPost(url.searchParams.get("id")!);
 
-    if (ok) revalidatePath("/blog")
+    if (ok) {
+        revalidatePath("/blog");
+        revalidatePath("/apps/admin/blog");
+    }
     return NextResponse.json({ ok });
 }

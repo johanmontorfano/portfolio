@@ -1,5 +1,6 @@
 import { createFileAndGetUploadURL } from "@/scripts/fb_utils/file_mgr";
 import { getUser } from "@/scripts/fb_utils/server_auth";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
 
@@ -24,6 +25,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         return NextResponse.json({ error: "invalid req" }, { status: 400 });
 
     try {
+        revalidatePath("/apps/admin/files");
         return NextResponse.json({ uploadUrl: await createFileAndGetUploadURL(
             body.data.filename,
             body.data.description,

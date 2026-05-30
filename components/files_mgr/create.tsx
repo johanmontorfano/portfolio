@@ -69,6 +69,7 @@ export function SubmitFileModal({
         }
         setLoading(false);
         onClose();
+        window.location.reload();
     }
 
     return (
