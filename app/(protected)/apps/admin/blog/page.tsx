@@ -1,19 +1,10 @@
 import { DeleteButton } from "@/components/blog_mgr/delete";
 import { getLatestBlogPostsPaginated } from "@/scripts/fb_utils/blog_mgr";
 import Link from "next/link";
-import { BsPencil, BsPlus, BsTrash } from "react-icons/bs";
+import { BsPencil, BsPlus } from "react-icons/bs";
 
 export default async function Page() {
     const posts = (await getLatestBlogPostsPaginated(0, 1000)).posts;
-
-    async function deleteBlogPost(id: string) {
-        const res = await fetch("/api/blog?id=" + id, { method: "DELETE" });
-        const data = await res.json();
-
-        if (data.ok) {
-            setPosts(prev => prev.filter(p => p.gcsExtlessName !== id));
-        }
-    }
 
     return <div>
         <header className="pt-48">
