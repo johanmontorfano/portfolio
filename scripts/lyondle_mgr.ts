@@ -108,7 +108,7 @@ export const stationsProperties: Record<string, PartialColosseProperty> = {
         type: "float"
     },
     "finalScore": {
-        text: "Cognitive score",
+        text: "Final score",
         type: "float"
     },
     "stopsId": {
