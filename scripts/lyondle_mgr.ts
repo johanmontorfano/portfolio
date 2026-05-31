@@ -107,6 +107,10 @@ export const stationsProperties: Record<string, PartialColosseProperty> = {
         text: "Cognitive score",
         type: "float"
     },
+    "finalScore": {
+        text: "Cognitive score",
+        type: "float"
+    },
     "stopsId": {
         text: "TITAN Stops ID",
         type: "list"
