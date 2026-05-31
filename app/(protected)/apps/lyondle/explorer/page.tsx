@@ -110,7 +110,7 @@ export default function Page() {
                 method: "POST",
                 body: JSON.stringify({
                     target: selectedDataset,
-                    query: `SELECT ${serialized.join(" ")}`,
+                    query: `IF ${serialized.join(" ")}`,
                 }),
             });
             const body = await res.json();
@@ -152,7 +152,7 @@ export default function Page() {
                 method: "POST",
                 body: JSON.stringify({
                     target: selectedDataset,
-                    query: `SELECT ${serialized.join(" ")}`,
+                    query: `IF ${serialized.join(" ")}`,
                 }),
             });
             const body = await res.json();
