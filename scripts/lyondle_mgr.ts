@@ -53,7 +53,7 @@ export const colosseTypes: Record<
 export const stationsProperties: Record<string, PartialColosseProperty> = {
     "id": {
         text: "Station ID",
-        type: "list"
+        type: "int"
     },
     "name": {
         text: "Station name",
@@ -106,6 +106,10 @@ export const stationsProperties: Record<string, PartialColosseProperty> = {
     "cognitiveScore": {
         text: "Cognitive score",
         type: "float"
+    },
+    "stopsId": {
+        text: "TITAN Stops ID",
+        type: "list"
     }
 };
 
@@ -120,11 +124,11 @@ export const linesProperties: Record<string, PartialColosseProperty> = {
     },
     "termA": {
         text: "Terminus A ID",
-        type: "list"
+        type: "int"
     },
     "termB": {
         text: "Terminus B ID",
-        type: "list"
+        type: "int"
     },
     "termAName": {
         text: "Terminus A name",
