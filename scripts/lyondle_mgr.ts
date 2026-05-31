@@ -53,7 +53,7 @@ export const colosseTypes: Record<
 export const stationsProperties: Record<string, PartialColosseProperty> = {
     "id": {
         text: "Station ID",
-        type: "int"
+        type: "list"
     },
     "name": {
         text: "Station name",
@@ -81,7 +81,7 @@ export const stationsProperties: Record<string, PartialColosseProperty> = {
     },
     "street": {
         text: "Street",
-        type: "str"
+        type: "list"
     },
     "lon": {
         text: "Longitude",
@@ -93,11 +93,11 @@ export const stationsProperties: Record<string, PartialColosseProperty> = {
     },
     "borough": {
         text: "Borough",
-        type: "str"
+        type: "list"
     },
     "city": {
         text: "City",
-        type: "str"
+        type: "list"
     },
     "terminus": {
         text: "Is a terminus?",
@@ -120,11 +120,11 @@ export const linesProperties: Record<string, PartialColosseProperty> = {
     },
     "termA": {
         text: "Terminus A ID",
-        type: "int"
+        type: "list"
     },
     "termB": {
         text: "Terminus B ID",
-        type: "int"
+        type: "list"
     },
     "termAName": {
         text: "Terminus A name",
