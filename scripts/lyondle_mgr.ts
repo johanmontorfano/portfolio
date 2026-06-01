@@ -85,11 +85,11 @@ export const stationsProperties: Record<string, PartialColosseProperty> = {
     },
     "lon": {
         text: "Longitude",
-        type: "float"
+        type: "list"
     },
     "lat": {
         text: "Latitude",
-        type: "float"
+        type: "list"
     },
     "borough": {
         text: "Borough",
