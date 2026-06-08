@@ -11,7 +11,6 @@ export function RowEditor(props: {
     const ctx = useExplorerContext();
     const [formData, setFormData] = useState<Record<string, any>>({});
 
-    // Sync context state to local form state when a row is selected
     useEffect(() => {
         if (ctx.object) {
             setFormData({ ...ctx.object });
@@ -25,14 +24,11 @@ export function RowEditor(props: {
     function onChange(key: string, value: any, type: string) {
         let processedValue = value;
         
-        // Match casting to how you deserialize types in your viewer
         if (type === "int" || type === "float") {
             processedValue = value === "" ? "" : Number(value);
         } else if (type === "list") {
-            // Keeps a comma-separated format live, splits on save/submit if needed
             processedValue = value;
         }
-
         setFormData((prev) => ({ ...prev, [key]: processedValue }));
     };
 

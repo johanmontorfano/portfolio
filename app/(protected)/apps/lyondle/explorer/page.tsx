@@ -65,7 +65,6 @@ export default function Page() {
     const explorerCtx = useExplorerContext();
 
     const [loading, setLoading] = useState(false);
-    const [changed, setChanged] = useState(false);
     const [results, setResults] = useState<Record<string, any>[]>([]);
     const [selectedDataset, setSelectedDataset] = useState("stations");
     const [selectedProperty, setSelectedProperty] =
@@ -115,10 +114,8 @@ export default function Page() {
             });
             const body = await res.json();
 
-            if ("success" in body && body["success"]) {
+            if ("success" in body && body["success"])
                 setResults(p => p.map(o => o.id === pobject.id ? pobject : o));
-                setChanged(true);
-            }
             setLoading(false);
         });
     }, []);
@@ -299,14 +296,16 @@ export default function Page() {
                                     explorerCtx.setObject(r);
                                     explorerCtx.setOpen(true);
                                 }}>
-                                    {Object.entries(r).map((e, i) => (
+                                    {Object.keys(
+                                        getDatasetProperties(selectedDataset)
+                                    ).map((e, i) => (
                                         <td key={"td-" + r.id + "-" + e[0] + i}>
                                             <WithValue
-                                                value={e[1]}
+                                                value={r[e]}
                                                 type={
                                                     getDatasetProperties(
                                                         selectedDataset,
-                                                    )[e[0]].type
+                                                    )[e].type
                                                 }
                                             />
                                         </td>
