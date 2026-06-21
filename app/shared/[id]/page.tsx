@@ -21,7 +21,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     return <div className="w-full h-dvh flex justify-center items-center">
         <div className="card max-w-[400px]!">
             <figure>
-                <Image alt="logo" src={Logo} className="invert w-16 h-16" />
+                <Image alt="logo" src={Logo} className="w-16 h-16" />
             </figure>
             <div className="card-body">
                 <h1 className="card-title text-2xl">
