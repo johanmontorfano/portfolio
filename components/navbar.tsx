@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Logo from "@/public/assets/logo.svg";
-import { BsPerson } from "react-icons/bs";
 
 export function Navbar() {
     return <div className="navbar max-w-[800px] w-[90%] mx-auto sticky top-0 z-100">
@@ -15,6 +14,5 @@ export function Navbar() {
             <Link href="/blog">Blog</Link>
             <Link href="/auth/redirect">Account</Link>
         </div>
-        <div className="flex-1" />
     </div>
 }
