@@ -135,7 +135,7 @@ export default function Scene() {
                     animate="visible"
                     exit="hidden"
                 >
-                <DottedMap data={DotMap} disableMutate className="rounded-lg" />
+                <DottedMap data={DotMap} disableMutate className="absolute w-full h-full top-0 left-[12%] scale-115" />
             </motion.div>}
             {step && component && <div key={step.id}>{component}</div>}
         </AnimatePresence>

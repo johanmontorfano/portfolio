@@ -56,9 +56,9 @@ interface MapProps {
 export function DottedMap({
     data,
     links = [],
-    accent = "#22c55e",
-    color = "#44454b",
+    accent = "#618658",
     bg = "#000",
+    color = "#473b28",
     className = "",
 
     rcNodes = [],
