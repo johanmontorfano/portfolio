@@ -1,6 +1,13 @@
 import { DynModuleLoader } from "@/components/scenes/spec_loader";
-import { BsAward, BsCameraVideo, BsEnvelope, BsGithub, BsLinkedin } from "react-icons/bs";
 import { IconType } from "react-icons";
+import { 
+    BsAwardFill,
+    BsCameraVideoFill,
+    BsEnvelope,
+    BsGithub,
+    BsLinkedin,
+    BsPeopleFill
+} from "react-icons/bs";
 
 import p2pData from "@/public/data/p2p.json";
 import JobBoard from "@/components/job_board";
@@ -87,14 +94,56 @@ export default function Page() {
                 </p>
                 <h2 className="text-2xl font-semibold">Projects</h2>
                 <div className="card bg-base-200 border border-base-300">
+                    <figure>
+                        <img src="https://lyondle.fr/og-banner.png" />
+                    </figure>
                     <div className="card-body">
                         <div className="flex gap-2 items-stretch">
                             <div className="badge badge-xs badge-primary">
-                                <BsAward />
+                                <BsPeopleFill />
+                                +150 daily players
+                            </div>
+                        </div>
+                        <h3 className="card-title">Lyondle</h3>
+                        <p className="text-justify">
+                            This platform offers 3 daily mini-games to better
+                            understand Lyon's transit network. It works off
+                            public data.
+                        </p>
+                        <p className="text-justify">
+                            To power it properly, I developed a custom database
+                            and ingestion engine. This allows everything to be
+                            snappy while keeping the running costs low, the
+                            logic very simple, and it allows for an explosive
+                            redundancy.
+                        </p>
+                        <ul className="list-disc pl-4">
+                            <li
+                                className="hover:underline cursor-pointer italic opacity-60"
+                            >
+                                <a href="/blog/7ecf765c-143f-43e0-b252-64191d08527c">
+                                    Technical Explanation
+                                </a>
+                            </li>
+                            <li
+                                className="hover:underline cursor-pointer italic opacity-60"
+                            >
+                                <a href="https://lyondle.fr">
+                                    Lyondle
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="card bg-base-200 border border-base-300">
+                    <div className="card-body">
+                        <div className="flex gap-2 items-stretch">
+                            <div className="badge badge-xs badge-primary">
+                                <BsAwardFill />
                                 Awarded
                             </div>
                             <div className="badge badge-warning badge-xs">
-                                <BsCameraVideo />
+                                <BsCameraVideoFill />
                                 Video soon to be released
                             </div>
                         </div>
