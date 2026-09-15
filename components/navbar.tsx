@@ -1,16 +1,18 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import Logo from "@/public/assets/logo.svg";
-
 export function Navbar() {
-    return <div className="navbar max-w-[800px] w-[90%] mx-auto sticky top-0 z-100">
-        <div className="flex-1">
-            <Link href="/">
-                <Image alt="logo" src={Logo} className="w-10 h-10" />
+    return <div
+        className="navbar max-w-[800px] w-[90%] mx-auto sticky top-0 z-100"
+    >
+        <div className="flex gap-4 [&>a]:hover:text-base-content [&>a]:text-base-content/70 [&>a]:transition-colors mx-auto">
+            <Link href="https://linkedin.com/in/jhnm">LinkedIn</Link>
+            <Link href="https://codeland.johanmontorfano.com/johan">
+                Codeland
             </Link>
-        </div>
-        <div className="flex gap-2 [&>a]:hover:text-base-content [&>a]:text-base-content/70 [&>a]:transition-colors">
+            <Link href="https://github.com/johanmontorfano">
+                GitHub
+            </Link>
+            <div className="divider divider-horizontal" />
             <Link href="/blog">Blog</Link>
             <Link href="/auth/redirect">Account</Link>
         </div>

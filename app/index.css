@@ -1,33 +1,43 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-    themes: lyondle --default;
+    themes: goatedzombie --default;
 }
 
+
 @plugin "daisyui/theme" {
-    name: "lyondle";
+    name: "goatedzombie";
     default: true;
-    
-    --color-primary: oklch(42% 0.12 28);
-    --color-primary-content: oklch(96% 0.02 80);
-    --color-secondary: oklch(38% 0.05 240);
-    --color-secondary-content: oklch(96% 0.01 240);
-    --color-accent: oklch(78% 0.09 85);
-    --color-accent-content: oklch(30% 0.05 85);
-    --color-base-100: oklch(94% 0.035 80); 
-    --color-base-200: oklch(89% 0.045 80);
-    --color-base-300: oklch(82% 0.055 80);
-    --color-base-content: oklch(22% 0.018 75);
-    --color-neutral: oklch(28% 0.02 75);
-    --color-neutral-content: oklch(93% 0.03 80);
-    --color-info: oklch(55% 0.08 240);
-    --color-success: oklch(58% 0.08 140);
-    --color-warning: oklch(75% 0.11 80);
-    --color-error: oklch(48% 0.14 25);
-    --radius-selector: 0rem;
-    --radius-field: 0rem;
-    --radius-box: 0rem;
+
+    --color-base-100: oklch(0% 0.005 285.823);
+    --color-base-200: oklch(18.5% 0.005 285.823);
+    --color-base-300: oklch(23.9% 0.006 286.033);
+    --color-base-content: oklch(97% 0.001 106.424);
+    --color-primary: oklch(54% 0.245 262.881);
+    --color-primary-content: oklch(97% 0.001 106.424);
+    --color-secondary: oklch(39% 0.141 25.723);
+    --color-secondary-content: oklch(97% 0 0);
+    --color-accent: oklch(79% 0.209 151.711);
+    --color-accent-content: oklch(26% 0.065 152.934);
+    --color-neutral: oklch(21.8% 0.006 285.885);
+    --color-neutral-content: oklch(98% 0.001 106.423);
+    --color-info: oklch(70% 0.165 254.624);
+    --color-info-content: oklch(28% 0.091 267.935);
+    --color-success: oklch(76% 0.177 163.223);
+    --color-success-content: oklch(26% 0.051 172.552);
+    --color-warning: oklch(85% 0.199 91.936);
+    --color-warning-content: oklch(28% 0.066 53.813);
+    --color-error: oklch(70% 0.191 22.216);
+    --color-error-content: oklch(25% 0.092 26.042);
+    --radius-selector: 1rem;
+    --radius-field: 1rem;
+    --radius-box: 1rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
     --border: 1px;
+    --depth: 0;
+    --noise: 0;
 }
+
 
 span.showoff {
     font-family: serif;
