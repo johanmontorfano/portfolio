@@ -21,10 +21,9 @@ export default function PortfolioPage() {
             <main className="space-y-2">
                 <section className="space-y-4 text-neutral-300 mb-8">
                     <p>
-                        Based in Lyon, France. Focused on building resilient,
-                        autonomous systems across decentralized protocols,
-                        operating system internals, and physical-world
-                        verification.
+                        Based in Lyon, France, my area of interest and expertise
+                        always resided in building highly resilient, efficient,
+                        and autonomous systems with innovative approaches.
                     </p>
                 </section>
                 <section className="space-y-6">
@@ -208,10 +207,6 @@ export default function PortfolioPage() {
                     </article>
                 </section>
             </main>
-            <footer className="mt-24 border-t border-neutral-800 pt-8 text-center text-xs text-neutral-600">
-                &copy; {new Date().getFullYear()} Johan Montorfano. Built with
-                Next.js Server Components.
-            </footer>
         </div>
     );
 }
