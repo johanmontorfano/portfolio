@@ -12,7 +12,7 @@ function getInstance() {
     if (found) return found;
 
     return firebase.initializeApp({
-        credential: firebase.credential.cert({
+        credential: firebase.cert({
             projectId: process.env.NEXT_PUBLIC_FB_PROJECT_ID,
             clientEmail: process.env.FB_CLIENT_EMAIL,
             privateKey: process.env.FB_SERVICE_KEY?.replace(/\\n/g, "\n"),
