@@ -6,7 +6,8 @@ const nextConfig: NextConfig = {
             protocol: "https",
             hostname: "lyondle.fr",
         }]
-    }
+    },
+    serverExternalPackages: ["firebase-admin"],
 };
 
 export default nextConfig;

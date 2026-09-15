@@ -25,8 +25,10 @@ export async function getBlogPost(id: string) {
         const res = await storage.bucket().file(`blog_posts/${id}.md`)
             .download();
     
+        console.log(res);
         return res[0].toString();
     } catch (e) {
+        console.error(e);
         return null;
     }
 }

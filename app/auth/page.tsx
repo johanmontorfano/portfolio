@@ -56,7 +56,7 @@ export default function Page() {
 
     return (
         <main className="flex h-dvh items-center justify-center">
-            <section className="w-full max-w-sm bg-base-200 border border-base-300 p-6">
+            <section className="w-full max-w-sm rounded-lg bg-base-200 border border-base-300 p-6">
                 <header className="mb-6">
                     <h1 className="text-xl font-bold tracking-tight">
                         Welcome back

@@ -2,7 +2,7 @@ import { BsPersonX } from "react-icons/bs";
 import Image from "next/image";
 import Link from "next/link";
 
-import Logo from "@/public/assets/logo.svg";
+import Logo from "@/public/assets/logo-white.svg";
 
 export function Navbar({
     links = [
