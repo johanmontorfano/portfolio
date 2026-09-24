@@ -17,10 +17,10 @@ export async function GET() {
         const body = await res.json();
 
         if (res.ok) return NextResponse.json({ title: body.title });
-        else throw Error("Request error");
+        else throw Error(`Failed to get title (${res.status})`);
     } catch (e) {
         console.error(e);
-        return NextResponse.json({ error: "query failed" }, { status: 500 });
+        return NextResponse.json({ error: e }, { status: 500 });
     }
 }
 

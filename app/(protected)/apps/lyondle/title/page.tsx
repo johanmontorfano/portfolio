@@ -13,7 +13,7 @@ export default function Page() {
             const body = await res.json();
 
             if (res.ok) setCurrentTitle(body.title);
-            else throw Error("Request error");
+            else throw Error(`Request error (${res.status}): ${body.error}`);
         } catch (e) {
             console.error(e);
             setCurrentTitle("...");
@@ -35,7 +35,7 @@ export default function Page() {
             if (res.ok) {
                 setCurrentTitle(body.title)
                 setTitle("");
-            } else throw Error("Request error");
+            } else throw Error(`Request error (${res.status}): ${body.error}`);
         } catch (e) {
             console.error(e);
         } finally {
@@ -49,7 +49,11 @@ export default function Page() {
 
     return <div>
         <div>
-            <p>Navigation bar display title</p>
+            <header className="pt-48">
+                <h1 className="text-4xl font-bold">App Title</h1>
+                <p>Change Lyondle's navbar title from here</p>
+            </header>
+            <br />
             <form className="flex gap-1" onSubmit={async e => {
                 e.preventDefault();
                 await handleSubmit();

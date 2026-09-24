@@ -8,7 +8,7 @@ import {
     getDatasetProperties,
 } from "@/scripts/lyondle_mgr";
 import { useEffect, useMemo, useState } from "react";
-import { BsBroadcast, BsSearch } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 
 // will render an object value relative to its type
 export function WithValue(props: { type: string; value: any }) {
@@ -165,7 +165,11 @@ export default function Page() {
     return (
         <div>
             <RowEditor dataset={datasetProperties} />
-            <p>Colosse Explorer</p>
+            <header className="pt-48">
+                <h1 className="text-4xl font-bold">COLOSSE</h1>
+                <p>Query and modify data from COLOSSE</p>
+            </header>
+            <br />
             <form
                 onSubmit={(ev) => {
                     ev.preventDefault();
