@@ -1,20 +1,19 @@
 import { DeleteButton } from "@/components/blog_mgr/delete";
 import { getLatestBlogPostsPaginated } from "@/scripts/fb_utils/blog_mgr";
 import Link from "next/link";
+import { Suspense } from "react";
 import { BsPencil, BsPlus } from "react-icons/bs";
 
-export default async function Page() {
+async function Manager() {
     const posts = (await getLatestBlogPostsPaginated(0, 1000)).posts;
 
-    return <div>
-        <header className="pt-48">
-            <h1 className="text-4xl font-bold">Blog Manager</h1>
-            <p>The blog manager is used to manage the portfolio's blog</p>
-        </header>
-        <br />
+    return (
         <main>
             <div className="py-4 flex justify-end">
-                <Link href="/apps/admin/blog/editor?new" className="btn btn-neutral gap-2">
+                <Link
+                    href="/apps/admin/blog/editor?new"
+                    className="btn btn-neutral gap-2"
+                >
                     <BsPlus /> Create
                 </Link>
             </div>
@@ -27,27 +26,43 @@ export default async function Page() {
                     </tr>
                 </thead>
                 <tbody>
-                    {posts.map(post => <tr
-                        key={post.gcsExtlessName}
-                        className="hover"
-                    >
-                        <td>{post.title}</td>
-                        <td>{new Date(post.createdAt).toDateString()}</td>
-                        <td>
-                            <div className="flex justify-end gap-2">
-                                <DeleteButton id={post.gcsExtlessName} />
-                                <Link
-                                    href={"/apps/admin/blog/editor?id=" +
-                                        post.gcsExtlessName}
-                                    className="btn btn-primary btn-square btn-sm"
-                                >
-                                    <BsPencil className="w-3.5 h-3.5" />
-                                </Link>
-                            </div>
-                        </td>
-                    </tr>)}
+                    {posts.map((post) => (
+                        <tr key={post.gcsExtlessName} className="hover">
+                            <td>{post.title}</td>
+                            <td>{new Date(post.createdAt).toDateString()}</td>
+                            <td>
+                                <div className="flex justify-end gap-2">
+                                    <DeleteButton id={post.gcsExtlessName} />
+                                    <Link
+                                        href={
+                                            "/apps/admin/blog/editor?id=" +
+                                            post.gcsExtlessName
+                                        }
+                                        className="btn btn-primary btn-square btn-sm"
+                                    >
+                                        <BsPencil className="w-3.5 h-3.5" />
+                                    </Link>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </main>
-    </div>
+    );
+}
+
+export default async function Page() {
+    return (
+        <div>
+            <header className="pt-48">
+                <h1 className="text-4xl font-bold">Blog Manager</h1>
+                <p>The blog manager is used to manage the portfolio's blog</p>
+            </header>
+            <br />
+            <Suspense fallback={<p>Retrieving posts...</p>}>
+                <Manager />
+            </Suspense>
+        </div>
+    );
 }
